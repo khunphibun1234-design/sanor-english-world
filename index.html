@@ -305,6 +305,10 @@ textarea{min-height:130px;resize:vertical;line-height:1.7}
 .sfoot2 .fen{color:#E3E9FF;font-size:.8rem}
 .sfoot2 .fic{flex:0 0 auto;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;box-shadow:0 2px 6px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.4)}
 .sfoot2 .i1{background:linear-gradient(160deg,#3aa0ff,#1c63e0)}.sfoot2 .i2{background:linear-gradient(160deg,#ffc44d,#f08a12)}.sfoot2 .i3{background:linear-gradient(160deg,#a58bff,#6d4de0)}
+.sfoot2 .i4{background:linear-gradient(160deg,#35d6a0,#12957a)}
+.sfoot2 .fvis{display:inline-block;margin:0 0 4px;padding:3px 12px;border-radius:999px;font-weight:700;background:linear-gradient(90deg,#FFD83B,#FFB300);color:#3A2A00;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.sfoot2 .fvis b{color:#3A2A00!important;font-size:1.05em}.sfoot2 .fvis .fen{color:#5a4300}
+.sfoot2 .fvnote{display:block}.sfoot2 .fvis:not([hidden]){display:inline-block}
 .sfoot2 .fsep{height:1px;margin:0 0 10px;background:linear-gradient(90deg,transparent,rgba(160,190,255,.7),transparent)}
 .sfoot2 .fbot{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-top:2px}
 .sfoot2 .fcopy{font-size:.8rem;color:#E3E9FF}
@@ -472,6 +476,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--pen);box-shadow:0 0 0
 <div class="fsep" aria-hidden="true"></div>
 <div class="frow"><span class="fic i2"><svg viewBox="0 0 24 24" width="22" height="22" fill="#fff" aria-hidden="true"><rect x="4" y="13" width="4" height="7" rx="1"/><rect x="10" y="9" width="4" height="11" rx="1"/><rect x="16" y="5" width="4" height="15" rx="1"/></svg></span><p>ความก้าวหน้าของผู้เรียนเก็บในเครื่องนี้ และส่งให้ครูเมื่อกด <b>“ส่งผลให้ครู”</b> เท่านั้น ระบบใช้รหัสนักเรียน ไม่เก็บชื่อจริง<br><span class="fen">Progress stays on this device and is sent to the teacher only when you press “Send to teacher”. Student codes only.</span></p></div>
 <div class="frow"><span class="fic i3"><svg viewBox="0 0 24 24" width="22" height="22" fill="#fff" aria-hidden="true"><rect x="5" y="8" width="14" height="11" rx="3.5"/><circle cx="12" cy="4.5" r="1.6"/><rect x="11.2" y="5" width="1.6" height="3"/><circle cx="9.2" cy="13" r="1.5" fill="#6d4de0"/><circle cx="14.8" cy="13" r="1.5" fill="#6d4de0"/><rect x="2.5" y="11" width="2" height="4" rx="1"/><rect x="19.5" y="11" width="2" height="4" rx="1"/></svg></span><p>เสียงในแอปนี้เป็นเสียงสังเคราะห์ด้วย AI ไม่ใช่เสียงคนจริง<br><span class="fen">The voices in this app are computer-generated (AI), not real people.</span></p></div>
+<div class="frow" id="fvrow"><span class="fic i4"><svg viewBox="0 0 24 24" width="22" height="22" fill="#fff" aria-hidden="true"><path d="M12 5C6.5 5 2.5 9.2 1.2 12c1.3 2.8 5.3 7 10.8 7s9.5-4.2 10.8-7C21.5 9.2 17.5 5 12 5zm0 11.2A4.2 4.2 0 1112 7.8a4.2 4.2 0 010 8.4zm0-2.2a2 2 0 100-4 2 2 0 000 4z"/></svg></span><p><span class="fvis" id="fvis" hidden>ผู้เข้าชมแอปนี้ <b id="fvn">0</b> ครั้ง <span class="fen">· Visits</span></span><span class="fvnote">เว็บนี้นับจำนวนผู้เข้าชมแบบไม่ระบุตัวตน ไม่ใช้คุกกี้<br><span class="fen">Anonymous visit counting. No cookies.</span></span></p></div>
 <div class="fbot"><span class="fcopy">© 2026 Sanor English World</span><span class="fpill"><svg viewBox="0 0 24 24" width="18" height="18" fill="#fff" aria-hidden="true"><path d="M12 8.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm9 4.5l-2.1-.4a7 7 0 00-.8-1.9l1.2-1.8-1.6-1.6-1.8 1.2a7 7 0 00-1.9-.8L13.6 5h-2.2l-.4 2.1c-.7.2-1.3.5-1.9.8L7.3 6.7 5.7 8.3l1.2 1.8c-.3.6-.6 1.2-.8 1.9L4 12.4v2.2l2.1.4c.2.7.5 1.3.8 1.9l-1.2 1.8 1.6 1.6 1.8-1.2c.6.3 1.2.6 1.9.8l.4 2.1h2.2l.4-2.1c.7-.2 1.3-.5 1.9-.8l1.8 1.2 1.6-1.6-1.2-1.8c.3-.6.6-1.2.8-1.9l2.1-.4z" opacity=".95"/></svg> Prototype v5.0</span></div>
 </div></footer>
 <div id="toast" hidden></div>
@@ -3509,4 +3514,20 @@ function openTown(){SanorTown.open()}
 render();
 </script>
 
+<script data-goatcounter="https://sanor-english-world.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+/* visitor counter: shows the site total from GoatCounter; stays hidden if it cannot be loaded */
+(function(){try{
+  var u='https://sanor-english-world.goatcounter.com/counter/TOTAL.json';
+  var ctl=('AbortController' in window)?new AbortController():null;
+  var t=setTimeout(function(){try{ctl&&ctl.abort()}catch(e){}},6000);
+  fetch(u,ctl?{signal:ctl.signal}:{}).then(function(r){if(!r.ok)throw new Error('http '+r.status);return r.json()}).then(function(j){
+    clearTimeout(t);
+    var n=parseInt(String(j&&j.count).replace(/\D/g,''),10);
+    if(!isFinite(n)||n<0)return;
+    var b=document.getElementById('fvn'),w=document.getElementById('fvis');
+    if(b&&w){b.textContent=n.toLocaleString('en-US');w.hidden=false}
+  }).catch(function(){})
+}catch(e){}})();
+</script>
 </body></html>

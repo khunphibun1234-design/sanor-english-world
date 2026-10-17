@@ -1854,7 +1854,7 @@ function topicBanner(t){
   const el2=el('div',{class:'ubanner tbanner',style:'--ub:'+b[0]},ic,el('div',{class:'ubt'},el('span',{class:'ubn'},'Unit '+U+' · Topic '+noOf(t)+' / '+UNITS.find(u=>u.n===U).total),el('h1',{class:'ubh'},t.en),el('span',{class:'ubp'},t.th),q));
   el2.upd=()=>{q.textContent='Done '+doneCount(t.id)+' / '+STEPS.length+' steps'};el2.upd();return el2}
 function topicView(tid,step){
-  const t=T.find(x=>x.id===tid);vcWarm('L'+tid);const stage=el('div',{class:'stage stack'});
+  const t=T.find(x=>x.id===tid);vcWarm('L'+tid);if(tid===1)vcWarm('L1w');const stage=el('div',{class:'stage stack'});
   const tabs=el('div',{class:'tabs stabs',role:'tablist'});const banner=topicBanner(t);const shead=el('div',{class:'shead'});
   const drawTabs=()=>{tabs.replaceChildren(...STEPS.map(([k,l])=>el('button',{class:'tab',role:'tab',type:'button',style:'--sc:'+SDEF[k][0],'aria-selected':String(k===step),onclick:()=>{step=k;view.step=k;drawTabs();draw()}},sico(k),el('span',{},l),isDone(tid,k)?el('span',{class:'ck','aria-label':'Passed'},'✓'):null)));
     const si=STEPS.findIndex(x=>x[0]===step);shead.setAttribute('style','--sc:'+SDEF[step][0]);shead.replaceChildren(sico(step),'Step '+(si+1)+' · '+STEPS[si][1],el('small',{},isDone(tid,step)?'✓ Passed':'Step '+(si+1)+' of '+STEPS.length));banner.upd()};

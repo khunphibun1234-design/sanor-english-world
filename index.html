@@ -319,6 +319,8 @@ textarea{min-height:130px;resize:vertical;line-height:1.7}
 .top.hero.hbanner{padding:0;background:none;gap:0;display:block;line-height:0;border-radius:16px;overflow:hidden;box-shadow:0 3px 0 rgba(8,16,70,.28),0 10px 22px rgba(20,60,160,.22)}
 .hbanner img{display:block;width:100%;height:auto}
 .hbanner .bw{display:none}
+.hbanner .hsr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+#shero{padding-block:20px 0}#shero .top{margin-bottom:0}#shero+#app{padding-block-start:14px}
 @media(min-width:700px){.hbanner .bp{display:none}.hbanner .bw{display:block}}
 .note{font-size:.9rem;color:var(--soft);border-top:1.5px dashed var(--line);padding-top:12px;margin-top:22px}
 .dl{display:flex;flex-direction:column;gap:8px}
@@ -468,6 +470,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--pen);box-shadow:0 0 0
 .ttab{border-radius:12px}
 </style>
 
+<header class="wrap" id="shero"></header>
 <div class="wrap" id="app"></div>
 <footer class="sfoot2" id="sfoot">
 <div class="fart"><img class="fph" id="fartp" alt="Sanor English World. Practice a little every day. ฝึกวันละนิด เก่งขึ้นทุกวัน" width="800" height="670"><img class="fpw" id="fart" alt="" aria-hidden="true" width="1400" height="327"></div>
@@ -1160,7 +1163,7 @@ function home(){
       el('span',{class:'cen'},t.en),
       el('span',{class:'hint'},lk?'Take the pre-test first':full?(avg(t.id)>=85?'Excellent':avg(t.id)>=65?'Good':'Passed'):d+' / '+STEPS.length+' steps'))}),testCell(U,'post')]);
   app.replaceChildren(
-    heroBanner(),guestBook(),
+    guestBook(),
     el('div',{class:'stack'},
       el('div',{class:'card stack'},hd('user','My Information\u2063ข้อมูลของฉัน'),el('div',{class:'row',style:'align-items:flex-start'},
         el('div',{class:'field',style:'flex:1 1 120px'},el('label',{for:'code'},'Student code\u2063รหัสนักเรียน'),code),
@@ -1271,7 +1274,9 @@ function heroBanner(){
   return el('div',{class:'top hero hbanner'},
     el('img',{class:'bp',src:BAN_PHONE,alt,width:'900',height:'417',decoding:'async'}),
     el('img',{class:'bw',src:BAN_WIDE,alt,width:'1600',height:'517',decoding:'async'}),
-    el('h1',{},'Sanor English World'))}
+    el('span',{class:'hsr'},'Sanor English World'))}
+/* banner + footer are a fixed pair: the banner sits above every page, the footer below every page */
+$('#shero').replaceChildren(heroBanner());
 
 let CUR_SERIES='buddy';
 function townPane(){const box=el('div',{class:'tinline'});SanorTown.mount(box);return box}

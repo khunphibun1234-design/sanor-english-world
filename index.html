@@ -104,7 +104,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 .th{display:block;font-size:.76em;font-weight:500;opacity:.9;line-height:1.25;letter-spacing:0}
 label .th{opacity:.75}
-.back .th{display:inline;margin-left:.5em;font-size:.8em}
+.back .th{display:inline;margin-left:0;font-size:.8em;font-weight:700}
 .btn{background:var(--pen);color:var(--on-pen);border:0;border-radius:8px;padding:10px 18px;font-weight:700;min-height:44px}
 .btn.ghost{background:transparent;color:var(--pen);border:1.5px solid var(--pen)}
 .btn.small{min-height:36px;padding:6px 12px;font-size:.92rem}
@@ -258,7 +258,10 @@ textarea{min-height:130px;resize:vertical;line-height:1.7}
 .checks{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:4px}
 .checks li.ok::before{content:"✓ ";color:var(--green);font-weight:700}
 .checks li.no::before{content:"✗ ";color:var(--red);font-weight:700}
-.back{background:none;border:0;color:var(--pen);font-weight:700;padding:6px 0;min-height:40px}
+.back{display:inline-flex;align-items:center;gap:.4em;flex-wrap:wrap;background:linear-gradient(135deg,#3B3F4C 0%,#7A2230 55%,#C4262E 100%);color:#fff;border:1px solid rgba(255,255,255,.22);border-radius:999px;font-weight:800;font-size:1rem;padding:9px 18px 9px 14px;min-height:44px;margin:0 0 12px;cursor:pointer;box-shadow:0 3px 0 rgba(20,10,15,.45),0 8px 16px rgba(120,20,30,.28);transition:transform .12s,box-shadow .12s,filter .12s}
+.back:hover{filter:brightness(1.1)}
+.back:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(20,10,15,.45),0 3px 8px rgba(120,20,30,.25)}
+.back:focus-visible{outline:3px solid #FFD83B;outline-offset:3px}
 
 .gbook{margin:10px 0 0}
 .gbar{width:100%;display:flex;align-items:center;gap:12px;text-align:left;border:0;border-radius:16px;padding:12px 16px;color:#fff;background:linear-gradient(104deg,#23262e 0%,#3b404c 62%,#c8102e 62.4%,#8e0a1f 100%);box-shadow:0 3px 0 rgba(0,0,0,.35);min-height:60px;font-family:var(--display);cursor:pointer}

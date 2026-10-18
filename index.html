@@ -1,6 +1,6 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Sanor English World | ฝึกภาษาอังกฤษ ม.2 วันละนิด</title>
-<link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" sizes="192x192" href="icon-192.png"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="apple-mobile-web-app-title" content="Sanor English"><meta name="application-name" content="Sanor English"><meta name="theme-color" content="#2B46D6">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" sizes="192x192" href="sanor-icon-192.png"><link rel="apple-touch-icon" sizes="180x180" href="sanor-icon-180.png"><meta name="apple-mobile-web-app-title" content="Sanor English"><meta name="application-name" content="Sanor English"><meta name="theme-color" content="#2B46D6">
 <meta name="description" content="Sanor English World: English practice app for Grade 8 (M.2) students. Listen, speak, read and write a little every day.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Sanor English World">
@@ -948,7 +948,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261018ad';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261018ae';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}

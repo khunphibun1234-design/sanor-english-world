@@ -947,7 +947,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261018s';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261018t';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -2455,6 +2455,27 @@ const STORIES=[{
   {"q": "What is on discount today?", "o": ["Ice cream", "Eggs", "Milk", "Rice"], "why": "There is a discount on ice cream today!"}],
  order:[1, 3, 7, 10],
  write:"Excuse me. Where can I find ...?"},
+{
+ id:21,title:"My Free Time",th:"เวลาว่างของฉัน",
+ pred:{q:"Fah, Tom, and Mali talk about their free time. What do you think they talk about?",o:["Their hobbies.", "Their homework.", "Their lunch."]},
+ s:[["It is Friday after school. Fah, Tom, and Mali go home together.", "เย็นวันศุกร์หลังเลิกเรียน ฟ้า ทอม และมะลาเดินกลับบ้านด้วยกัน"],
+  ["Mali asks, \"What do you do in your free time?\"", "มะลาถามว่า \"เธอทำอะไรในเวลาว่าง\""],
+  ["Fah says, \"I like to draw pictures. I draw every evening.\"", "ฟ้าพูดว่า \"ฉันชอบวาดรูป ฉันวาดทุกเย็น\""],
+  ["Tom says, \"I draw, too! On Sunday, I play the guitar with my cousin.\"", "ทอมพูดว่า \"ฉันก็วาดรูปเหมือนกัน! วันอาทิตย์ฉันเล่นกีตาร์กับลูกพี่ลูกน้อง\""],
+  ["Fah says, \"Wow! Do you sing, too?\"", "ฟ้าพูดว่า \"ว้าว! เธอร้องเพลงด้วยไหม\""],
+  ["Tom says, \"Yes, I do. We sing songs together.\"", "ทอมพูดว่า \"ร้องสิ เราร้องเพลงด้วยกัน\""],
+  ["Fah asks, \"Mali, what about you?\"", "ฟ้าถามว่า \"มะลา แล้วเธอล่ะ\""],
+  ["Mali says, \"I enjoy taking photos with my phone.\"", "มะลาพูดว่า \"ฉันชอบถ่ายรูปด้วยโทรศัพท์\""],
+  ["She has a photo of the market.", "เธอมีรูปถ่ายตลาด"],
+  ["Fah says, \"It is so nice! Can you take a photo of my drawing?\"", "ฟ้าพูดว่า \"สวยจัง! ช่วยถ่ายรูปงานวาดของฉันได้ไหม\""],
+  ["Mali says, \"Sure!\" Tom says, \"Let's do our hobbies together someday.\"", "มะลาพูดว่า \"ได้เลย!\" ทอมพูดว่า \"สักวันหนึ่งเรามาทำงานอดิเรกด้วยกันนะ\""],
+  ["The three friends are happy. Free time is fun with friends.", "เพื่อนทั้งสามคนมีความสุข เวลาว่างสนุกเมื่ออยู่กับเพื่อน"]],
+ vocab:[["enjoy", "ชอบ / สนุกกับ"], ["someday", "สักวันหนึ่ง"], ["sure", "ได้เลย / แน่นอน"]],
+ qs:[{"q": "What does Tom do on Sunday?", "o": ["He plays the guitar with his cousin", "He takes photos with his phone", "He draws with Mali", "He goes to the market"], "why": "Tom says, \"On Sunday, I play the guitar with my cousin.\""},
+  {"q": "What does Mali enjoy?", "o": ["Taking photos with her phone", "Singing songs", "Playing the guitar", "Drawing pictures"], "why": "Mali says, \"I enjoy taking photos with my phone.\""},
+  {"q": "What does Fah ask Mali to do?", "o": ["Take a photo of her drawing", "Sing a song with her", "Play the guitar", "Draw a picture"], "why": "Fah says, \"Can you take a photo of my drawing?\""}],
+ order:[1, 3, 7, 9],
+ write:"In my free time, I ..."},
 {
  id:22,title:"The Volleyball Match",th:"การแข่งวอลเลย์บอล",
  pred:{q:"What do you think happens at the match?",o:["Tom's team wins.", "Tom's team loses.", "The game stops."]},

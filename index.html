@@ -947,7 +947,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261018q';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261018r';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -2413,6 +2413,27 @@ const STORIES=[{
   {"q": "What does Fah's father ask for at the end?", "o": ["The check", "The menu", "A fork", "A plate"], "why": "Fah's father says, \"Can I have the check, please?\""}],
  order:[2, 6, 8, 10],
  write:"Can I have ..., please?"},
+{
+ id:19,title:"No Bag, Please",th:"ไม่เอาถุงนะครับ",
+ pred:{q:"Ben goes to a convenience store after school. What do you think he buys?",o:["A snack and a drink.", "A bicycle.", "A new school bag."]},
+ s:[["After school, Ben goes to a convenience store.", "หลังเลิกเรียน เบนไปร้านสะดวกซื้อ"],
+  ["He buys a sandwich and a bottle of milk.", "เขาซื้อแซนด์วิชและนมหนึ่งขวด"],
+  ["The cashier says, \"Hello! Would you like me to heat it up?\"", "แคชเชียร์พูดว่า \"สวัสดีค่ะ ให้อุ่นให้ไหมคะ\""],
+  ["Ben says, \"Yes, please.\"", "เบนพูดว่า \"อุ่นครับ\""],
+  ["The cashier says, \"Do you need a bag?\"", "แคชเชียร์พูดว่า \"ต้องการถุงไหมคะ\""],
+  ["Ben says, \"No bag, please. I have my own bag.\"", "เบนพูดว่า \"ไม่เอาถุงครับ ผมมีถุงของตัวเอง\""],
+  ["The cashier says, \"Do you have a membership card?\"", "แคชเชียร์พูดว่า \"มีบัตรสมาชิกไหมคะ\""],
+  ["Ben says, \"Yes, I do. Here you are.\"", "เบนพูดว่า \"มีครับ นี่ครับ\""],
+  ["The cashier says, \"That is forty-five baht. Cash or card?\"", "แคชเชียร์พูดว่า \"ทั้งหมดสี่สิบห้าบาทค่ะ เงินสดหรือบัตรคะ\""],
+  ["Ben says, \"Cash, please.\"", "เบนพูดว่า \"เงินสดครับ\""],
+  ["The cashier gives him the receipt. Ben says, \"Thank you!\"", "แคชเชียร์ให้ใบเสร็จเขา เบนพูดว่า \"ขอบคุณครับ!\""],
+  ["Ben puts the sandwich and the milk in his bag. He is happy.", "เบนใส่แซนด์วิชและนมในกระเป๋าของเขา เขามีความสุข"]],
+ vocab:[["convenience store", "ร้านสะดวกซื้อ"], ["heat it up", "อุ่นให้ร้อน"], ["own", "ของตัวเอง"]],
+ qs:[{"q": "What does Ben buy?", "o": ["A sandwich and a bottle of milk", "A snack and a bottle of water", "Rice and soup", "A book and a pen"], "why": "He buys a sandwich and a bottle of milk."},
+  {"q": "Why does Ben say \"No bag, please\"?", "o": ["He has his own bag", "He is not hungry", "He has no money", "He does not like bags"], "why": "Ben says, \"I have my own bag.\""},
+  {"q": "How does Ben pay?", "o": ["Cash", "Card", "QR code", "Membership card"], "why": "Ben says, \"Cash, please.\""}],
+ order:[1, 2, 5, 9],
+ write:"I would like a ... and a ..., please."},
 {
  id:22,title:"The Volleyball Match",th:"การแข่งวอลเลย์บอล",
  pred:{q:"What do you think happens at the match?",o:["Tom's team wins.", "Tom's team loses.", "The game stops."]},

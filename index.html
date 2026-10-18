@@ -947,7 +947,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261018v';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261018w';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -2536,7 +2536,28 @@ const STORIES=[{
   {"q": "What does Fah say about the password?", "o": ["Keep it secret", "Share it with friends", "Use your name", "Post it online"], "why": "Fah says, \"Keep your password secret. Do not share it with anyone.\""},
   {"q": "What should Tom do if something online is not safe?", "o": ["Tell an adult", "Post about it", "Share his password", "Talk to a stranger"], "why": "Tom says, \"I tell an adult if something is not safe.\""}],
  order:[0, 3, 6, 8],
- write:"Do not ... . Keep ... secret."}];
+ write:"Do not ... . Keep ... secret."},
+{
+ id:25,title:"A Weekend with Cousins",th:"สุดสัปดาห์กับลูกพี่ลูกน้อง",
+ pred:{q:"Fah's cousin visits her for the weekend. What do you think they do?",o:["They help at the market and cook.", "They go to school.", "They sleep all day."]},
+ s:[["It is the weekend. Fah's cousin visits her house.", "เป็นวันหยุดสุดสัปดาห์ ลูกพี่ลูกน้องของฟ้ามาเยี่ยมบ้านเธอ"],
+  ["On Saturday morning, Fah and her cousin help her mother at the market.", "เช้าวันเสาร์ ฟ้ากับลูกพี่ลูกน้องช่วยแม่ที่ตลาด"],
+  ["They buy fruit and vegetables.", "พวกเขาซื้อผลไม้และผัก"],
+  ["In the afternoon, they relax at home and play games.", "ช่วงบ่าย พวกเขาพักผ่อนที่บ้านและเล่นเกม"],
+  ["On Sunday morning, the family goes to the temple.", "เช้าวันอาทิตย์ ครอบครัวไปวัด"],
+  ["Then they cook lunch together.", "แล้วพวกเขาก็ทำอาหารกลางวันด้วยกัน"],
+  ["Fah's cousin says, \"This food is very good!\"", "ลูกพี่ลูกน้องของฟ้าพูดว่า \"อาหารอร่อยมากเลย!\""],
+  ["In the evening, they watch a movie.", "ตอนเย็น พวกเขาดูหนัง"],
+  ["After the movie, Fah asks, \"What do you do on weekends?\"", "หลังหนังจบ ฟ้าถามว่า \"เธอทำอะไรในวันหยุดสุดสัปดาห์\""],
+  ["Her cousin says, \"I relax and play games at home.\"", "ลูกพี่ลูกน้องของเธอพูดว่า \"ฉันพักผ่อนและเล่นเกมที่บ้าน\""],
+  ["On Sunday night, her cousin goes home. Fah does her homework.", "คืนวันอาทิตย์ ลูกพี่ลูกน้องกลับบ้าน ฟ้าทำการบ้าน"],
+  ["Fah says, \"I like weekends with my cousin.\"", "ฟ้าพูดว่า \"หนูชอบวันหยุดกับลูกพี่ลูกน้องค่ะ\""]],
+ vocab:[["visits", "มาเยี่ยม"], ["relax", "พักผ่อน"], ["cook", "ทำอาหาร"]],
+ qs:[{"q": "Where do Fah and her cousin go on Saturday morning?", "o": ["The market", "The temple", "The movie theater", "School"], "why": "On Saturday morning, Fah and her cousin help her mother at the market."},
+  {"q": "What does the family do after the temple?", "o": ["They cook lunch together", "They watch a movie", "They go to the market", "They play soccer"], "why": "Then they cook lunch together."},
+  {"q": "What does Fah do on Sunday night?", "o": ["Her homework", "She watches a movie", "She goes to the market", "She plays games"], "why": "On Sunday night, Fah does her homework."}],
+ order:[0, 1, 4, 7],
+ write:"On Saturday, I ..."}];
 let STORY_T=[];
 function storyStop(){STORY_T.forEach(clearTimeout);STORY_T=[];try{stopSay()}catch(e){}}
 const SIC={

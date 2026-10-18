@@ -947,7 +947,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261018h';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261018i';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -2165,6 +2165,27 @@ const STORIES=[{
   {"q": "Where does the family eat lunch?", "o": ["In the living room", "In the garden", "In the car", "In the bedroom"], "why": "They eat together in the living room."}],
  order:[0, 3, 5, 6],
  write:"My family ..."},
+{
+ id:3,title:"Who Is It?",th:"ใครกันนะ",
+ pred:{q:"Mali and Ben play a game at lunch time. What do you think they do?",o:["They guess who a person is.", "They run a race.", "They cook lunch."]},
+ s:[["It is lunch time at school.", "ตอนพักเที่ยงที่โรงเรียน"],
+  ["Mali and Ben look at the students.", "มะลากับเบนมองดูนักเรียน"],
+  ["Mali says, \"Let's play a game. Guess who it is!\"", "มะลาพูดว่า \"มาเล่นเกมกัน ทายสิว่าเป็นใคร!\""],
+  ["Mali says, \"He is tall, and he has curly hair.\"", "มะลาพูดว่า \"เขาตัวสูง และมีผมหยิก\""],
+  ["Ben says, \"Does he wear glasses?\"", "เบนพูดว่า \"เขาใส่แว่นตาไหม\""],
+  ["Mali says, \"Yes, he does. He is friendly and funny.\"", "มะลาพูดว่า \"ใช่ เขาใส่ เขาเป็นกันเองและตลก\""],
+  ["Ben says, \"Is it Tom?\"", "เบนพูดว่า \"ใช่ทอมหรือเปล่า\""],
+  ["Mali says, \"No. Tom is short, and he does not wear glasses.\"", "มะลาพูดว่า \"ไม่ใช่ ทอมตัวเตี้ย และไม่ใส่แว่นตา\""],
+  ["Ben looks again. There is a tall boy with curly hair and glasses.", "เบนมองอีกครั้ง มีเด็กชายตัวสูง ผมหยิก ใส่แว่นตาคนหนึ่ง"],
+  ["Ben says, \"Is it Max?\"", "เบนพูดว่า \"ใช่แม็กซ์หรือเปล่า\""],
+  ["Mali says, \"Yes, it is Max!\"", "มะลาพูดว่า \"ใช่ คือแม็กซ์!\""],
+  ["Max says, \"Hello, Mali! Hello, Ben!\" The three friends are happy.", "แม็กซ์พูดว่า \"สวัสดี มะลา! สวัสดี เบน!\" เพื่อนทั้งสามคนมีความสุข"]],
+ vocab:[["game", "เกม"], ["guess", "ทาย"], ["boy", "เด็กชาย"], ["again", "อีกครั้ง"]],
+ qs:[{"q": "Who is short?", "o": ["Tom", "Max", "Ben", "Mali"], "why": "Tom is short, and he does not wear glasses."},
+  {"q": "What kind of hair does Max have?", "o": ["Curly hair", "Short black hair", "Long black hair", "Short brown hair"], "why": "Max is tall, and he has curly hair."},
+  {"q": "Who is the boy in Mali's game?", "o": ["Max", "Tom", "Ben", "Jack"], "why": "Mali says, \"Yes, it is Max!\""}],
+ order:[2, 6, 8, 10],
+ write:"My friend is ... and ..."},
 {
  id:6,title:'The First Day at School',th:'วันแรกที่โรงเรียน',
  pred:{q:'What do you think happens on Fah\'s first day?',o:['She makes a new friend.','She loses her bag.','She goes home early.']},

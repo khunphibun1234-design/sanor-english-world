@@ -947,7 +947,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261018l';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261018m';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -2270,6 +2270,26 @@ const STORIES=[{
   {"q": "What is Ben's favorite subject?", "o": ["P.E.", "Science", "Math", "English"], "why": "Ben says, \"P.E.! It is my favorite subject.\""}],
  order:[2, 5, 7, 10],
  write:"My favorite subject is ..."},
+{
+ id:8,title:"The Missing Pencil",th:"ดินสอที่หายไป",
+ pred:{q:"Tom cannot find his pencil in class. What do you think he does?",o:["He asks his friends.", "He goes home.", "He draws a picture."]},
+ s:[["It is English class. Ms. Anna says, \"Please open your books.\"", "เป็นคาบภาษาอังกฤษ ครูแอนนาพูดว่า \"กรุณาเปิดหนังสือ\""],
+  ["Tom looks in his pencil case. His pencil is not there!", "ทอมมองในกล่องดินสอ ดินสอของเขาไม่อยู่ที่นั่น!"],
+  ["Tom says to Mali, \"Can I borrow your pencil, please?\"", "ทอมพูดกับมะลาว่า \"ขอยืมดินสอของเธอหน่อยได้ไหม\""],
+  ["Mali says, \"Sorry, I do not have a pencil. I have a ruler and an eraser.\"", "มะลาพูดว่า \"ขอโทษนะ ฉันไม่มีดินสอ ฉันมีไม้บรรทัดกับยางลบ\""],
+  ["Tom says to Ben, \"Do you have a pencil?\"", "ทอมพูดกับเบนว่า \"เธอมีดินสอไหม\""],
+  ["Ben says, \"No, I do not. Ask Ms. Anna.\"", "เบนพูดว่า \"ไม่มี ลองถามครูแอนนาสิ\""],
+  ["Tom says, \"Excuse me, Ms. Anna. I do not have a pencil.\"", "ทอมพูดว่า \"ขอโทษครับ ครูแอนนา ผมไม่มีดินสอ\""],
+  ["Ms. Anna looks at the floor. She says, \"Look! There is a pencil next to the trash can.\"", "ครูแอนนามองดูที่พื้น แล้วพูดว่า \"ดูสิ! มีดินสออยู่ข้างๆ ถังขยะ\""],
+  ["Tom says, \"That is my pencil! Thank you, Ms. Anna.\"", "ทอมพูดว่า \"นั่นดินสอของผม! ขอบคุณครับ ครูแอนนา\""],
+  ["Ms. Anna says, \"You are welcome. Now please write in your notebook.\"", "ครูแอนนาพูดว่า \"ยินดี ตอนนี้กรุณาเขียนในสมุดของเธอ\""],
+  ["Tom is happy. Now he can write in his notebook.", "ทอมมีความสุข ตอนนี้เขาเขียนในสมุดของเขาได้แล้ว"]],
+ vocab:[["borrow", "ยืม"], ["ask", "ถาม / ขอ"], ["excuse me", "ขอโทษ / ขออนุญาต"]],
+ qs:[{"q": "What does Mali have?", "o": ["A ruler and an eraser", "A pencil and a ruler", "A notebook and a pencil", "A pencil case and a fan"], "why": "Mali says, \"I have a ruler and an eraser.\""},
+  {"q": "Who helps Tom find his pencil?", "o": ["Ms. Anna", "Ben", "Mali", "Max"], "why": "Ms. Anna looks at the floor and sees the pencil."},
+  {"q": "Where is Tom's pencil?", "o": ["Next to the trash can", "In his pencil case", "On his desk", "In Ben's bag"], "why": "There is a pencil next to the trash can."}],
+ order:[1, 2, 6, 8],
+ write:"There is a ... in my pencil case."},
 {
  id:12,title:"Lost in Town",th:"หลงทางในเมือง",
  pred:{q:"What do you think Fah does?",o:["She helps the visitor.", "She does not know the way.", "She goes to the market."]},

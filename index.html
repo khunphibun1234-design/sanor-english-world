@@ -947,7 +947,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261018k';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261018l';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -2249,6 +2249,27 @@ const STORIES=[{
   {q:'What is Mali\'s favorite subject?',o:['Science','Math','English','P.E.'],why:'Mali says, "My favorite subject is Science."'}],
  order:[1,3,6,10],
  write:'My favorite subject is ...'},
+{
+ id:7,title:"Which Class Is Next?",th:"คาบต่อไปคือวิชาอะไร",
+ pred:{q:"It is Wednesday morning. Ben cannot find his schedule. What do you think Ben does?",o:["He asks Mali.", "He goes home.", "He sleeps in class."]},
+ s:[["It is Wednesday morning. Ben looks in his bag.", "เช้าวันพุธ เบนมองหาในกระเป๋าของเขา"],
+  ["His schedule is not there!", "ตารางเรียนของเขาไม่อยู่ที่นั่น!"],
+  ["Ben says, \"Oh no! Where is my schedule?\"", "เบนพูดว่า \"ไม่นะ! ตารางเรียนของฉันอยู่ไหน\""],
+  ["Mali says, \"It is OK. Look at my schedule.\"", "มะลาพูดว่า \"ไม่เป็นไร ดูตารางเรียนของฉันสิ\""],
+  ["Ben says, \"What do we have today?\"", "เบนพูดว่า \"วันนี้เราเรียนอะไรบ้าง\""],
+  ["Mali says, \"We have Science in the first period.\"", "มะลาพูดว่า \"เราเรียนวิทยาศาสตร์คาบแรก\""],
+  ["Ben says, \"Which class is next?\"", "เบนพูดว่า \"คาบต่อไปคือวิชาอะไร\""],
+  ["Mali says, \"P.E. is in the second period.\"", "มะลาพูดว่า \"พลศึกษาอยู่คาบที่สอง\""],
+  ["Ben says, \"P.E.! It is my favorite subject.\"", "เบนพูดว่า \"พลศึกษา! เป็นวิชาโปรดของฉันเลย\""],
+  ["Mali says, \"My favorite subject is Science.\"", "มะลาพูดว่า \"วิชาโปรดของฉันคือวิทยาศาสตร์\""],
+  ["Ben looks in his book. His schedule is there!", "เบนมองในหนังสือของเขา ตารางเรียนอยู่ที่นั่น!"],
+  ["Ben says, \"Thank you, Mali! Let's go to Science class.\"", "เบนพูดว่า \"ขอบคุณนะ มะลา! ไปเรียนวิทยาศาสตร์กันเถอะ\""]],
+ vocab:[["bag", "กระเป๋า"], ["class", "คาบเรียน / ห้องเรียน"], ["next", "ถัดไป"]],
+ qs:[{"q": "Where is Ben's schedule at the end?", "o": ["In his book", "In his bag", "At home", "On the desk"], "why": "Ben looks in his book. His schedule is there!"},
+  {"q": "What do they have in the first period?", "o": ["Science", "P.E.", "Math", "English"], "why": "We have Science in the first period."},
+  {"q": "What is Ben's favorite subject?", "o": ["P.E.", "Science", "Math", "English"], "why": "Ben says, \"P.E.! It is my favorite subject.\""}],
+ order:[2, 5, 7, 10],
+ write:"My favorite subject is ..."},
 {
  id:12,title:"Lost in Town",th:"หลงทางในเมือง",
  pred:{q:"What do you think Fah does?",o:["She helps the visitor.", "She does not know the way.", "She goes to the market."]},

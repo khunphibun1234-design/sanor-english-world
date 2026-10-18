@@ -13,15 +13,7 @@
 <meta property="og:locale" content="th_TH">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://khunphibun1234-design.github.io/sanor-english-world/share.jpg">
-<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}.storyc{display:flex;align-items:center;gap:14px;width:100%;text-align:left;cursor:pointer;color:var(--ink);font:inherit;border:2px solid #946A00;border-radius:14px;background:var(--card);padding:14px 16px;min-height:72px}
-.storyc:hover{background:var(--pen-bg)}.storyc:focus-visible{outline:3px solid var(--pen);outline-offset:2px}
-.storyc b{display:block;font-size:1.1rem}.storyc .sth{display:block;font-size:.9rem;color:var(--soft)}
-.sline{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border-radius:10px;border:1.5px solid transparent}
-.sline.on{background:var(--pen-bg);border-color:var(--pen)}.sline .sp{flex:0 0 auto}.sline .sen{flex:1;min-width:0;line-height:1.6}
-.sline .sth{display:block;font-size:.88rem;color:var(--soft)}.sline .sth[hidden]{display:none}
-.pchoice{display:block;width:100%;text-align:left;margin:6px 0;min-height:44px}.pchoice[aria-pressed=true]{border-color:var(--pen);background:var(--pen-bg)}
-.sunit{margin:10px 2px 0;font-size:1rem;color:var(--ink)}
-</style></head><body>
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <meta charset="utf-8">
 <title>Sanor English World</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&display=swap">
@@ -479,6 +471,67 @@ input:focus,select:focus,textarea:focus{border-color:var(--pen);box-shadow:0 0 0
 :root[data-theme="dark"] .mapgrid{background:linear-gradient(180deg,#1C2A78,#2B1F7A)}
 .mapgrid .pl{border-radius:14px;box-shadow:0 3px 0 rgba(0,0,40,.28)}
 .ttab{border-radius:12px}
+
+/* ===== Sanor Stories: one storybook look, built from the Buddy tokens (unit colours = UBAN, step colours = SDEF/XD) ===== */
+.sthero{--ub:#3A2FB8;position:relative;isolation:isolate;overflow:hidden;border-radius:18px;padding:18px 16px 16px;color:#fff;background:linear-gradient(125deg,#2B46D6 0%,#5A3FD0 58%,#8A4FC8 100%);box-shadow:0 3px 0 rgba(8,16,70,.3),0 10px 22px var(--glow);display:flex;flex-direction:column;gap:12px}
+.sthero::before{content:"";position:absolute;z-index:-1;inset:0;background:radial-gradient(ellipse 60% 140% at 100% 0,rgba(255,255,255,.24),transparent 60%),repeating-radial-gradient(circle at 100% 100%,rgba(255,255,255,.07) 0 2px,transparent 2px 18px)}
+.sthero::after{content:"";position:absolute;z-index:-1;right:-70px;bottom:-84px;width:200px;height:110px;border-radius:50%;border:2px solid rgba(255,216,59,.6)}
+.sthero .shtop{display:flex;align-items:center;gap:14px}
+.sthero .shic{flex:none;width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.18);display:grid;place-items:center}
+.sthero .shic svg{width:38px;height:38px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.sthero h1{font-size:1.75rem;line-height:1.1}
+.sthero .shth{font-size:.95rem;opacity:.95}
+.sthero .shtag{margin:0;font-size:1rem;font-weight:600}.sthero .shf{display:flex;flex-wrap:wrap;gap:6px}
+.sthero .shf i{font-style:normal;background:var(--gold);color:var(--gold-ink);border-radius:999px;padding:1px 10px;font-size:.78rem;font-weight:800}
+.spath{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.spath li{--sc:var(--pen);display:flex;flex-direction:column;align-items:center;gap:3px;text-align:center;border:1.5px solid var(--line);border-radius:12px;background:var(--card);padding:8px 2px 7px;min-width:0}
+.spath .sn{width:30px;height:30px;border-radius:50%;background:var(--sc);display:grid;place-items:center;position:relative}
+.spath .sn svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
+.spath b{font-size:.74rem;line-height:1.15;color:var(--ink)}.spath small{font-size:.68rem;color:var(--soft);line-height:1.15}
+.spnote{margin:0;font-size:.86rem;color:var(--soft);line-height:1.5}
+.sunit{--u:#2447C8;display:flex;align-items:center;gap:10px;margin:14px 2px 0;font-size:1.05rem;color:var(--ink)}
+.sunit .sui{flex:none;width:34px;height:34px;border-radius:50%;background:var(--u);display:grid;place-items:center}
+.sunit .sui svg{width:20px;height:20px;fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.sunit small{display:block;font-family:var(--body);font-weight:600;font-size:.76rem;color:var(--soft)}
+.storyc{--u:#2447C8;position:relative;display:flex;align-items:stretch;gap:0;width:100%;text-align:left;cursor:pointer;color:var(--ink);font:inherit;border:1.5px solid var(--edge);border-radius:16px;background:var(--card);padding:0;min-height:96px;overflow:hidden;box-shadow:0 2px 0 var(--glow),0 8px 18px var(--glow)}
+.storyc:hover{border-color:var(--u)}.storyc:focus-visible{outline:3px solid var(--pen);outline-offset:2px}
+.storyc:active{transform:translateY(2px)}
+.storyc .scov{flex:none;width:84px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#fff;background:linear-gradient(160deg,var(--u) 0%,color-mix(in srgb,var(--u) 55%,#2A1A8A) 100%)}
+.storyc .scov::before{content:"";position:absolute;left:9px;top:0;bottom:0;width:3px;background:rgba(255,255,255,.28)}
+.storyc .scov::after{content:"";position:absolute;right:12px;top:0;width:12px;height:22px;background:var(--gold);clip-path:polygon(0 0,100% 0,100% 100%,50% 76%,0 100%)}
+.storyc .scn{font-family:var(--display);font-weight:800;font-size:2rem;line-height:1;margin-left:6px}
+.storyc .scl{font-size:.68rem;font-weight:700;opacity:.92;margin-left:6px}
+.storyc .stx{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:3px;padding:12px 8px 12px 14px}
+.storyc .stt{font-family:var(--display);font-weight:700;font-size:1.08rem;line-height:1.25}
+.storyc .sth{font-size:.88rem;color:var(--soft);line-height:1.3}
+.storyc .smeta{display:flex;flex-wrap:wrap;gap:5px;margin-top:3px}
+.storyc .smeta i{font-style:normal;font-size:.72rem;font-weight:700;color:var(--pen);background:var(--pen-bg);border-radius:999px;padding:0 8px;line-height:1.6}
+.storyc .smeta i.gv{background:var(--gold);color:var(--gold-ink)}
+.storyc .sgo{flex:none;align-self:center;margin-right:12px;width:34px;height:34px;border-radius:50%;background:var(--pen-bg);display:grid;place-items:center}
+.storyc .sgo svg{width:18px;height:18px;fill:none;stroke:var(--pen);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.sbanner2{margin-bottom:0}
+.sst{display:flex;align-items:center;gap:10px;border-radius:14px;padding:10px 14px;color:#fff;background:var(--sc);font-family:var(--display);box-shadow:0 2px 0 rgba(0,0,0,.2)}
+.sst svg{width:28px;height:28px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.sst .sstt{display:flex;flex-direction:column;min-width:0}.sst b{font-size:1.12rem;line-height:1.2}.sst small{font-family:var(--body);font-weight:600;font-size:.8rem;opacity:.95}
+.sst .ssn{margin-left:auto;flex:none;font-family:var(--body);font-weight:700;font-size:.78rem;background:rgba(255,255,255,.22);border-radius:999px;padding:1px 10px}
+.ssec{display:flex;flex-direction:column;gap:10px;scroll-margin-top:12px}
+.ssec>.card::before{display:none}
+.stabs2{position:sticky;top:0;z-index:5;padding:6px 0;background:linear-gradient(180deg,var(--paper) 70%,transparent)}
+.pchoice{display:flex!important;align-items:center;gap:10px;width:100%;text-align:left;margin:0;min-height:48px;border-radius:14px!important;background:var(--card)!important;color:var(--ink)!important}
+.pchoice::before{content:"";flex:none;width:18px;height:18px;border-radius:50%;border:2px solid var(--pen);background:var(--card)}
+.pchoice[aria-pressed=true]{border-color:var(--pen2)!important;background:var(--pen-bg)!important}
+.pchoice[aria-pressed=true]::before{background:radial-gradient(circle,var(--pen2) 0 4px,var(--card) 5px)}
+.sbook{display:flex;flex-direction:column;gap:2px;border-radius:14px;background:var(--paper);border:1.5px solid var(--line);padding:6px}
+.sline{display:flex;gap:10px;align-items:flex-start;padding:10px 10px 10px 8px;border-radius:12px;border-left:4px solid transparent;transition:background .2s,border-color .2s}
+.sline.on{background:linear-gradient(90deg,rgba(255,216,59,.34),rgba(255,216,59,.08));border-left-color:var(--gold2)}
+.sline .sp{flex:none;width:38px;height:38px;min-height:38px;padding:0;border-radius:50%;display:grid;place-items:center}
+.sline .sp svg{width:18px;height:18px}
+.sline .sen{flex:1;min-width:0;font-size:1.1rem;line-height:1.7}
+.sline .sth{display:block;font-size:.88rem;line-height:1.45;color:var(--soft);margin-top:2px}.sline .sth[hidden]{display:none}
+.gloss{border-radius:14px;border:1.5px dashed var(--pen);background:var(--pen-bg);color:var(--ink);padding:10px 14px;font-weight:600;font-size:.95rem}
+.sedit{border:1.5px solid var(--edge);border-radius:14px;padding:4px 14px;font:inherit;font-size:1.08rem;line-height:32px;color:var(--ink);resize:vertical;background-color:var(--card);background-image:repeating-linear-gradient(transparent 0 31px,var(--line) 31px 32px);background-attachment:local;min-height:72px}
+.sedit:focus-visible{outline:3px solid var(--pen);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){.sline{transition:none}.storyc:active{transform:none}}
 </style>
 
 <header class="wrap" id="shero"></header>
@@ -894,7 +947,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261018f';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261018g';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -2179,21 +2232,33 @@ const STORIES=[{
  write:"My favorite sport is ..."}];
 let STORY_T=[];
 function storyStop(){STORY_T.forEach(clearTimeout);STORY_T=[];try{stopSay()}catch(e){}}
+const SIC={
+  book:'<svg viewBox="0 0 24 24"><path d="M12 6.5C10.5 5 8 4.5 4 4.5v13c4 0 6.5.5 8 2 1.5-1.5 4-2 8-2v-13c-4 0-6.5.5-8 2zM12 6.5v13"/></svg>',
+  go:'<svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>'};
+const SSTEPS=[['star','Think','คิด'],['listen','Listen','ฟัง'],['quiz','Answer','ตอบ'],['write','Write','เขียน']];
+const svgEl=(cls,html)=>{const e=el('span',{class:cls,'aria-hidden':'true'});e.innerHTML=html;return e};
 function storiesPane(){
   const blocks=[];
   UNITS.forEach(U=>{const list=STORIES.filter(st=>Math.ceil(st.id/5)===U.n);if(!list.length)return;
-    blocks.push(el('h3',{class:'sunit'},'Unit '+U.n+' · '+U.en),
-      ...list.map(st=>el('button',{class:'storyc',type:'button',onclick:()=>go({n:'story',id:st.id})},
-        el('span',{style:'flex:1;min-width:0'},el('b',{},'Story '+st.id+': '+st.title),el('span',{class:'sth'},st.th+' · '+st.s.length+' lines')),
-        el('span',{class:'pill'},'Open'))))});
-  return el('div',{class:'stack'},
-    el('div',{class:'card stack'},hd('read','Sanor Stories\u2063เรื่องสั้นพร้อมเสียง'),
-      el('p',{},'Listen, read along, and answer a few questions.'),
-      el('p',{class:'hint'},'ฟัง อ่านตาม และตอบคำถามสั้นๆ ไม่มีคะแนน ไม่บันทึกคำตอบ ไม่ส่งผลถึงครู'),
-      el('p',{class:'hint'},'แต่ละเรื่องผูกกับหนึ่งหัวข้อของ Sanor Buddy (เลขเรื่อง = เลขหัวข้อ) อ่านหลังเรียนหัวข้อนั้นจะเข้าใจง่ายที่สุด')),
+    const ub=UBAN[U.n]||UBAN[1],first=(U.n-1)*5+1;
+    blocks.push(el('h3',{class:'sunit',style:'--u:'+ub[0]},svgEl('sui',ub[1]),el('span',{},'Unit '+U.n+' · '+U.en,el('small',{},'Topics '+first+'–'+(first+4)))),
+      ...list.map(st=>{const tp=T.find(t=>t.id===st.id),voice=st.s.every(x=>vcFind(x[0],false));
+        return el('button',{class:'storyc',type:'button',style:'--u:'+ub[0],'aria-label':'Story '+st.id+': '+st.title,onclick:()=>go({n:'story',id:st.id})},
+          el('span',{class:'scov','aria-hidden':'true'},el('span',{class:'scn'},String(st.id)),el('span',{class:'scl'},'Story')),
+          el('span',{class:'stx'},el('span',{class:'stt'},st.title),el('span',{class:'sth'},st.th),
+            el('span',{class:'smeta'},el('i',{},st.s.length+' lines'),tp?el('i',{},'Topic '+st.id+' · '+tp.en):null,voice?el('i',{class:'gv'},"Teacher's voice"):null)),
+          svgEl('sgo',SIC.go))}))});
+  const ic=svgEl('shic',HD('read')[1]);
+  const hero=el('div',{class:'sthero'},
+    el('div',{class:'shtop'},ic,el('div',{},el('h1',{},'Sanor Stories'),el('span',{class:'shth'},'เรื่องสั้นพร้อมเสียง'))),
+    el('p',{class:'shtag'},'Listen, read along, and answer a few questions.'));
+  const path=el('ol',{class:'spath','aria-label':'Four steps in every story'},SSTEPS.map(([k,en,th])=>el('li',{style:'--sc:'+HD(k)[0]},svgEl('sn',HD(k)[1]),el('b',{},en),el('small',{},th))));
+  return el('div',{class:'stack'},hero,path,
+    el('p',{class:'spnote'},'ฟัง อ่านตาม และตอบคำถามสั้นๆ ไม่มีคะแนน ไม่บันทึกคำตอบ ไม่ส่งผลถึงครู · เลขเรื่อง = เลขหัวข้อของ Sanor Buddy อ่านหลังเรียนหัวข้อนั้นจะเข้าใจง่ายที่สุด'),
     ...blocks,
     el('p',{class:'note'},'More stories are coming. เรื่องใหม่จะทยอยเพิ่ม'));
 }
+function sstep(k,n,en,th){return el('div',{class:'sst',style:'--sc:'+HD(k)[0]},svgEl('',HD(k)[1]),el('span',{class:'sstt'},el('b',{},en),el('small',{},th)),el('span',{class:'ssn'},n+' / 4'))}
 function storyView(id){
   const st=STORIES.find(x=>x.id===id);if(!st){go({n:'home'});return}
   storyStop();vcWarm('ST'+st.id);
@@ -2202,7 +2267,7 @@ function storyView(id){
   const pmsg=el('p',{class:'hint','aria-live':'polite'},'No wrong answers. ไม่มีถูกผิด');
   const pbtn=st.pred.o.map(t=>el('button',{class:'btn ghost pchoice',type:'button','aria-pressed':'false',onclick:ev=>{
     pbtn.forEach(b=>b.setAttribute('aria-pressed','false'));ev.currentTarget.setAttribute('aria-pressed','true');pmsg.textContent='Good idea! Now listen and read to find out. ลองฟังและอ่านเพื่อดูว่าจริงไหม'}},t));
-  const predict=el('div',{class:'card stack'},hd('star','Think first⁣คิดก่อนอ่าน'),el('p',{},st.pred.q),...pbtn,pmsg);
+  const predict=el('section',{class:'ssec',id:'sst1'},sstep('star',1,'Think first','คิดก่อนอ่าน'),el('div',{class:'card stack'},el('p',{style:'font-size:1.05rem'},st.pred.q),...pbtn,pmsg));
   /* 2. listen + read along */
   const lines=[];const clearHi=()=>lines.forEach(l=>l.classList.remove('on'));
   const hasVoice=st.s.every(x=>vcFind(x[0],false));
@@ -2219,30 +2284,35 @@ function storyView(id){
     const t=el('span',{class:'sth'},th);thEls.push(t);
     const row=el('div',{class:'sline'},el('button',{class:'btn small sp',type:'button','aria-label':'Listen to this line',onclick:()=>{storyStop();clearHi();row.classList.add('on');say(en,0.9)}},icon()),
       el('span',{class:'sen',lang:'en'},...rich(en),t));lines.push(row)});
+  const book=el('div',{class:'sbook'},...lines);
   const playAll=()=>{storyStop();clearHi();
     const cl=st.s.map(x=>vcFind(x[0],false));
     if(cl.every(Boolean)){vcPlay(cl,()=>{});let t=0;cl.forEach((c,i)=>{STORY_T.push(setTimeout(()=>{clearHi();lines[i].classList.add('on')},t));t+=c[2]+330});STORY_T.push(setTimeout(clearHi,t))}
     else sayMany(st.s.map(x=>({text:x[0]})),0.9)};
   const thBtn=el('button',{class:'btn small ghost',type:'button',onclick:()=>{showTh=!showTh;thEls.forEach(e=>e.hidden=!showTh);thBtn.textContent=showTh?'Hide Thai⁣ซ่อนภาษาไทย':'Show Thai⁣แสดงภาษาไทย'}},'Hide Thai⁣ซ่อนภาษาไทย');
-  const reader=el('div',{class:'card stack'},hd('listen','Listen and read⁣ฟังและอ่านตาม'),
+  const reader=el('section',{class:'ssec',id:'sst2'},sstep('listen',2,'Listen and read','ฟังและอ่านตาม'),el('div',{class:'card stack'},
     hasVoice?null:el('p',{class:'hint'},'ครูกำลังอัดเสียงเรื่องนี้ ตอนนี้ใช้เสียงจากเครื่องของคุณไปก่อน (Teacher\'s voice is coming soon. Your device voice is used for now.)'),
-    el('div',{class:'row'},el('button',{class:'btn',type:'button',onclick:playAll},icon(),' Listen to the story'),el('button',{class:'btn small ghost',type:'button',onclick:()=>{storyStop();clearHi()}},'Stop'),thBtn),
-    ...lines,gloss);
+    el('div',{class:'row'},el('button',{class:'btn cta go',type:'button',onclick:playAll},icon(),' Listen to the story'),el('button',{class:'btn small ghost',type:'button',onclick:()=>{storyStop();clearHi()}},'Stop'),thBtn),
+    book,gloss));
   /* 3. questions (not saved: no score, no mistake notebook) */
-  const qbox=el('div',{});
+  const qbox=el('section',{class:'ssec',id:'sst3'}),qbody=el('div',{});
   const ord=st.order.map(i=>st.s[i][0]);
   const mkQs=()=>{let sh=shuffle(ord),n=0;while(sh.join(' ')===ord.join(' ')&&n++<9)sh=shuffle(ord);
     return [...st.qs.map(q=>mc({q:q.q,o:q.o,why:q.why})),{type:'ro',q:'Put the story in order',th:'เรียงเหตุการณ์ในเรื่องให้ถูกลำดับ',words:sh,answer:ord.join(' '),punct:''}]};
-  const startQ=()=>runQs(qbox,mkQs(),{notebook:true,retry:startQ,next:()=>wcard.scrollIntoView({behavior:'smooth',block:'start'}),nextLabel:'Write one sentence⁣ไปขั้นเขียน'});
-  qbox.append(el('div',{class:'card stack'},hd('quiz','Questions⁣คำถาม'),el('p',{class:'hint'},'3 questions and 1 ordering task. No score is saved. คำถาม 3 ข้อและเรียงเหตุการณ์ 1 ข้อ ไม่บันทึกคะแนน'),
+  const startQ=()=>runQs(qbody,mkQs(),{notebook:true,retry:startQ,next:()=>wcard.scrollIntoView({behavior:'smooth',block:'start'}),nextLabel:'Write one sentence⁣ไปขั้นเขียน'});
+  qbox.append(sstep('quiz',3,'Questions','คำถาม'),qbody);
+  qbody.append(el('div',{class:'card stack'},el('p',{class:'hint'},'3 questions and 1 ordering task. No score is saved. คำถาม 3 ข้อและเรียงเหตุการณ์ 1 ข้อ ไม่บันทึกคะแนน'),
     el('div',{class:'row'},el('button',{class:'btn',type:'button',onclick:startQ},'Start the questions⁣เริ่มตอบคำถาม'))));
   /* 4. write one sentence (stays on this screen only) */
-  const area=el('textarea',{placeholder:st.write,lang:'en',spellcheck:'false',rows:2,'aria-label':'Write one sentence'});
-  const wcard=el('div',{class:'card stack'},hd('write','Write one sentence⁣เขียนต่อ 1 ประโยค'),area,
+  const area=el('textarea',{class:'sedit',placeholder:st.write,lang:'en',spellcheck:'false',rows:2,'aria-label':'Write one sentence'});
+  const wcard=el('section',{class:'ssec',id:'sst4'},sstep('write',4,'Write one sentence','เขียนต่อ 1 ประโยค'),el('div',{class:'card stack'},area,
     el('div',{class:'row'},el('button',{class:'btn small',type:'button',onclick:()=>{const v=area.value.trim();if(v)say(v,0.9);else toast('Type a sentence first.')}},icon(),' Listen to my sentence'),
       el('button',{class:'btn small ghost',type:'button',onclick:()=>{area.value=''}},'Clear⁣ล้าง')),
-    el('p',{class:'hint'},'ข้อความนี้อยู่บนหน้าจอนี้เท่านั้น ไม่บันทึก ไม่ส่งไปที่ใด และไม่ต้องใส่ชื่อจริง (This stays on your screen. Do not type your real name.)'));
-  app.replaceChildren(back,pageBanner('read','#946A00','Story '+st.id+': '+st.title,st.th),predict,reader,qbox,wcard);
+    el('p',{class:'hint'},'ข้อความนี้อยู่บนหน้าจอนี้เท่านั้น ไม่บันทึก ไม่ส่งไปที่ใด และไม่ต้องใส่ชื่อจริง (This stays on your screen. Do not type your real name.)')));
+  const ub=UBAN[Math.ceil(st.id/5)]||UBAN[1],un=UNITS.find(u=>u.n===Math.ceil(st.id/5));
+  const banner=el('div',{class:'ubanner tbanner',style:'--ub:'+ub[0]},svgEl('ubi',ub[1]),el('div',{class:'ubt'},el('span',{class:'ubn'},'Unit '+un.n+' · Story '+st.id),el('h1',{class:'ubh'},st.title),el('span',{class:'ubp'},st.th)));
+  const jump=el('nav',{class:'tabs stabs stabs2','aria-label':'Steps in this story'},SSTEPS.map(([k,en],i)=>el('button',{class:'tab',type:'button',style:'--sc:'+HD(k)[0],onclick:()=>document.getElementById('sst'+(i+1)).scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'start'})},svgEl('',HD(k)[1]),en)));
+  app.replaceChildren(back,banner,jump,predict,reader,qbox,wcard);
 }
 /* ============ SANOR TOWN (prototype: map + places) ============ */
 const SanorTown=(()=>{

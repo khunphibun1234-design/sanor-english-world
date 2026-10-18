@@ -947,7 +947,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261018t';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261018u';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -2494,7 +2494,28 @@ const STORIES=[{
   {"q": "Who is sad?", "o": ["Tom", "Fah", "Nok", "The teacher"], "why": "Tom is sad because his team loses."},
   {"q": "What does Fah say to Tom?", "o": ["You are a good player.", "You are a bad player.", "Go home.", "I am tired."], "why": "Fah says, \"You are a good player.\""}],
  order:[0, 3, 5, 8],
- write:"My favorite sport is ..."}];
+ write:"My favorite sport is ..."},
+{
+ id:23,title:"The Concert",th:"คอนเสิร์ต",
+ pred:{q:"Fah and Mali go to a concert at school. What do you think they see there?",o:["A band and a singer.", "A football game.", "A cooking class."]},
+ s:[["On Saturday, Fah and Mali go to a concert at school.", "วันเสาร์ ฟ้ากับมะลาไปดูคอนเสิร์ตที่โรงเรียน"],
+  ["A band plays on the stage.", "วงดนตรีเล่นอยู่บนเวที"],
+  ["The singer is very good.", "นักร้องร้องเก่งมาก"],
+  ["Fah says, \"Wow! The band is very popular.\"", "ฟ้าพูดว่า \"ว้าว! วงนี้ดังมากเลย\""],
+  ["Mali says, \"Yes! My favorite song is next.\"", "มะลาพูดว่า \"ใช่! เพลงที่ฉันชอบที่สุดกำลังจะมาแล้ว\""],
+  ["The singer sings the song. Everyone sings with her.", "นักร้องร้องเพลงนั้น ทุกคนร้องตามเธอ"],
+  ["After the concert, Fah asks, \"What kind of music do you like?\"", "หลังคอนเสิร์ต ฟ้าถามว่า \"เธอชอบเพลงแนวไหน\""],
+  ["Mali says, \"I like pop music. I listen to it every day.\"", "มะลาพูดว่า \"ฉันชอบเพลงป๊อป ฉันฟังทุกวัน\""],
+  ["Fah says, \"Me too! Let's go to the movie theater next Saturday.\"", "ฟ้าพูดว่า \"ฉันก็เหมือนกัน! วันเสาร์หน้าไปโรงหนังกันเถอะ\""],
+  ["Mali says, \"Sure! I like funny cartoons. I do not like scary movies.\"", "มะลาพูดว่า \"ได้เลย! ฉันชอบการ์ตูนตลกๆ ฉันไม่ชอบหนังน่ากลัว\""],
+  ["Fah says, \"OK! Let's meet at two o'clock.\"", "ฟ้าพูดว่า \"โอเค! เจอกันตอนบ่ายสองนะ\""],
+  ["The two friends are happy. It is a good Saturday.", "เพื่อนทั้งสองคนมีความสุข เป็นวันเสาร์ที่ดี"]],
+ vocab:[["popular", "ได้รับความนิยม / ดัง"], ["cartoons", "การ์ตูน"], ["scary", "น่ากลัว"]],
+ qs:[{"q": "Where do Fah and Mali go on Saturday?", "o": ["A concert at school", "The movie theater", "The market", "A supermarket"], "why": "On Saturday, Fah and Mali go to a concert at school."},
+  {"q": "What kind of music does Mali like?", "o": ["Pop music", "Rock music", "Country music", "Thai songs"], "why": "Mali says, \"I like pop music.\""},
+  {"q": "What does Mali not like?", "o": ["Scary movies", "Funny cartoons", "Pop music", "Concerts"], "why": "Mali says, \"I do not like scary movies.\""}],
+ order:[0, 3, 6, 8],
+ write:"My favorite song is ..."}];
 let STORY_T=[];
 function storyStop(){STORY_T.forEach(clearTimeout);STORY_T=[];try{stopSay()}catch(e){}}
 const SIC={

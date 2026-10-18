@@ -947,7 +947,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261018i';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261018j';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -2186,6 +2186,27 @@ const STORIES=[{
   {"q": "Who is the boy in Mali's game?", "o": ["Max", "Tom", "Ben", "Jack"], "why": "Mali says, \"Yes, it is Max!\""}],
  order:[2, 6, 8, 10],
  write:"My friend is ... and ..."},
+{
+ id:4,title:"Mali's House",th:"บ้านของมะลา",
+ pred:{q:"Ben visits Mali's house for the first time. What do you think Mali shows him?",o:["Her rooms.", "Her school bag.", "Her bicycle."]},
+ s:[["Ben goes to Mali's house for the first time.", "เบนไปบ้านของมะลาเป็นครั้งแรก"],
+  ["Mali says, \"Welcome to my house! Come in.\"", "มะลาพูดว่า \"ยินดีต้อนรับสู่บ้านของฉัน! เข้ามาสิ\""],
+  ["Mali says, \"This is the living room. We watch TV here.\"", "มะลาพูดว่า \"นี่คือห้องนั่งเล่น เราดูทีวีที่นี่\""],
+  ["Mali says, \"The kitchen is next to the living room.\"", "มะลาพูดว่า \"ห้องครัวอยู่ติดกับห้องนั่งเล่น\""],
+  ["Mali says, \"There are three bedrooms. This is my bedroom.\"", "มะลาพูดว่า \"มีสามห้องนอน นี่คือห้องนอนของฉัน\""],
+  ["Ben looks in her room. There is a bed, a desk, and a fan.", "เบนมองเข้าไปในห้องของเธอ มีเตียง โต๊ะ และพัดลม"],
+  ["Ben says, \"Where is the bathroom?\"", "เบนพูดว่า \"ห้องน้ำอยู่ที่ไหน\""],
+  ["Mali says, \"It is next to my bedroom.\"", "มะลาพูดว่า \"อยู่ติดกับห้องนอนของฉัน\""],
+  ["Ben says, \"Do you have a garden?\"", "เบนพูดว่า \"บ้านเธอมีสวนไหม\""],
+  ["Mali says, \"Yes, we have a small garden.\"", "มะลาพูดว่า \"มี เรามีสวนเล็กๆ\""],
+  ["Ben says, \"I like your house, Mali.\"", "เบนพูดว่า \"ฉันชอบบ้านของเธอนะ มะลา\""],
+  ["Mali says, \"Thank you! It is a small house, but it is a happy house.\"", "มะลาพูดว่า \"ขอบคุณ! เป็นบ้านหลังเล็ก แต่เป็นบ้านที่มีความสุข\""]],
+ vocab:[["welcome", "ยินดีต้อนรับ"], ["come in", "เข้ามาสิ"], ["watch", "ดู (ดูทีวี)"]],
+ qs:[{"q": "What is next to the living room?", "o": ["The kitchen", "The bathroom", "The garden", "The bedroom"], "why": "The kitchen is next to the living room."},
+  {"q": "What is in Mali's bedroom?", "o": ["A bed, a desk, and a fan", "A bed, a TV, and a lamp", "A table, a sofa, and a fan", "A desk, a chair, and a bookshelf"], "why": "There is a bed, a desk, and a fan."},
+  {"q": "Where is the bathroom?", "o": ["Next to Mali's bedroom", "Next to the kitchen", "In the garden", "Next to the living room"], "why": "Mali says, \"It is next to my bedroom.\""}],
+ order:[2, 4, 6, 9],
+ write:"There is a ... in my house."},
 {
  id:6,title:'The First Day at School',th:'วันแรกที่โรงเรียน',
  pred:{q:'What do you think happens on Fah\'s first day?',o:['She makes a new friend.','She loses her bag.','She goes home early.']},

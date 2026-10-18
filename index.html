@@ -947,7 +947,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261018n';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261018o';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -2310,6 +2310,25 @@ const STORIES=[{
   {"q": "What does Ben order?", "o": ["Pad krapao and iced tea", "Fried rice and orange juice", "Green curry and milk tea", "Som tam and iced tea"], "why": "Ben orders pad krapao and iced tea."}],
  order:[1, 4, 7, 8],
  write:"I would like ..., please."},
+{
+ id:10,title:"Join a Club",th:"เข้าร่วมชมรม",
+ pred:{q:"It is Club Day. Fah and Tom look at the clubs. Which club do you think they join?",o:["The art club.", "The soccer club.", "The music club."]},
+ s:[["Today is Club Day at school.", "วันนี้เป็นวันชมรมที่โรงเรียน"],
+  ["Fah and Tom look at the clubs.", "ฟ้ากับทอมดูชมรมต่างๆ"],
+  ["Fah says, \"Which club do you want to join, Tom?\"", "ฟ้าพูดว่า \"เธออยากเข้าร่วมชมรมไหน ทอม\""],
+  ["Tom says, \"I want to join the art club. I like drawing. What about you?\"", "ทอมพูดว่า \"ฉันอยากเข้าชมรมศิลปะ ฉันชอบวาดรูป แล้วเธอล่ะ\""],
+  ["Fah says, \"Me too! Let's join together.\"", "ฟ้าพูดว่า \"ฉันก็เหมือนกัน! เข้าด้วยกันเถอะ\""],
+  ["Mali says, \"Welcome! I am a member of the art club.\"", "มะลาพูดว่า \"ยินดีต้อนรับ! ฉันเป็นสมาชิกชมรมศิลปะ\""],
+  ["Fah says, \"When does the club meet?\"", "ฟ้าพูดว่า \"ชมรมพบกันเมื่อไร\""],
+  ["Mali says, \"We meet every Friday after school. Let's practice drawing together!\"", "มะลาพูดว่า \"เราพบกันทุกวันศุกร์หลังเลิกเรียน มาฝึกวาดรูปด้วยกันเถอะ!\""],
+  ["Tom says, \"It is good to join a club with my best friend.\"", "ทอมพูดว่า \"ดีจังที่ได้เข้าชมรมกับเพื่อนสนิทของฉัน\""],
+  ["Fah and Tom join the art club. They are happy.", "ฟ้ากับทอมเข้าชมรมศิลปะ พวกเขามีความสุข"]],
+ vocab:[["meet", "พบกัน / นัดประชุม"], ["together", "ด้วยกัน"], ["welcome", "ยินดีต้อนรับ"]],
+ qs:[{"q": "Which club does Tom want to join?", "o": ["The art club", "The soccer club", "The music club", "The English club"], "why": "Tom says, \"I want to join the art club.\""},
+  {"q": "Who is a member of the art club?", "o": ["Mali", "Ben", "Ms. Anna", "Max"], "why": "Mali says, \"I am a member of the art club.\""},
+  {"q": "When does the art club meet?", "o": ["Every Friday after school", "Every Monday morning", "Every Wednesday", "Every Sunday"], "why": "Mali says, \"We meet every Friday after school.\""}],
+ order:[2, 4, 5, 9],
+ write:"I want to join the ... club."},
 {
  id:12,title:"Lost in Town",th:"หลงทางในเมือง",
  pred:{q:"What do you think Fah does?",o:["She helps the visitor.", "She does not know the way.", "She goes to the market."]},

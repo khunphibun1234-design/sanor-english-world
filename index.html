@@ -947,7 +947,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261018o';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261018p';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -2351,6 +2351,26 @@ const STORIES=[{
   {"q": "Where is the post office?", "o": ["Next to the bank", "Next to the park", "Next to the hospital", "Next to the temple"], "why": "\"It is next to the bank.\""}],
  order:[0, 2, 8, 11],
  write:"Where is the ...? Go straight."},
+{
+ id:16,title:"A Cool Drink",th:"เครื่องดื่มเย็นๆ",
+ pred:{q:"It is a hot day. Fah and Mali are thirsty. What do you think they do?",o:["They go to a shop.", "They go to bed.", "They play volleyball."]},
+ s:[["It is a hot day. Fah and Mali are thirsty.", "วันนี้อากาศร้อน ฟ้ากับมะลากระหายน้ำ"],
+  ["They go to a small shop.", "พวกเขาไปร้านเล็กๆ ร้านหนึ่ง"],
+  ["The seller says, \"What do you want?\"", "คนขายพูดว่า \"รับอะไรดี\""],
+  ["Mali says, \"I want a glass of orange juice, please.\"", "มะลาพูดว่า \"ขอน้ำส้มหนึ่งแก้วค่ะ\""],
+  ["Fah says, \"I do not like juice. I want a glass of water.\"", "ฟ้าพูดว่า \"ฉันไม่ชอบน้ำผลไม้ ขอน้ำเปล่าหนึ่งแก้วค่ะ\""],
+  ["Mali says, \"Do you want some fruit, too?\"", "มะลาพูดว่า \"เธออยากได้ผลไม้ด้วยไหม\""],
+  ["Fah says, \"Yes, please. I want some fruit.\"", "ฟ้าพูดว่า \"อยากสิ ขอผลไม้หน่อย\""],
+  ["The seller says, \"Here you are. Cool water, orange juice, and fruit.\"", "คนขายพูดว่า \"นี่ค่ะ น้ำเย็น น้ำส้ม และผลไม้\""],
+  ["Fah says, \"Water is good for me. Fruit is good for me, too.\"", "ฟ้าพูดว่า \"น้ำเปล่าดีต่อฉัน ผลไม้ก็ดีต่อฉันเหมือนกัน\""],
+  ["Mali says, \"Orange juice is good, too!\"", "มะลาพูดว่า \"น้ำส้มก็ดีเหมือนกัน!\""],
+  ["They drink and eat. Now Fah and Mali are cool and happy.", "พวกเขาดื่มและกิน ตอนนี้ฟ้ากับมะลาเย็นสบายและมีความสุข"]],
+ vocab:[["hot", "ร้อน"], ["shop", "ร้าน"], ["cool", "เย็น / เย็นสบาย"]],
+ qs:[{"q": "What does Mali want?", "o": ["A glass of orange juice", "A glass of water", "A glass of milk", "Some noodles"], "why": "Mali says, \"I want a glass of orange juice, please.\""},
+  {"q": "Which drink does Fah not like?", "o": ["Juice", "Water", "Milk", "Tea"], "why": "Fah says, \"I do not like juice.\""},
+  {"q": "What do they get with the drinks?", "o": ["Fruit", "Rice", "Chicken", "Noodles"], "why": "The seller gives them cool water, orange juice, and fruit."}],
+ order:[1, 3, 4, 7],
+ write:"I like ..., but I do not like ..."},
 {
  id:17,title:"Grandma at the Market",th:"คุณยายที่ตลาด",
  pred:{q:"What do you think Grandmother does at the market?",o:["She buys food.", "She sleeps.", "She sells shoes."]},

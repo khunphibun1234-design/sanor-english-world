@@ -13,7 +13,14 @@
 <meta property="og:locale" content="th_TH">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://khunphibun1234-design.github.io/sanor-english-world/share.jpg">
-<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}.storyc{display:flex;align-items:center;gap:14px;width:100%;text-align:left;cursor:pointer;color:var(--ink);font:inherit;border:2px solid #946A00;border-radius:14px;background:var(--card);padding:14px 16px;min-height:72px}
+.storyc:hover{background:var(--pen-bg)}.storyc:focus-visible{outline:3px solid var(--pen);outline-offset:2px}
+.storyc b{display:block;font-size:1.1rem}.storyc .sth{display:block;font-size:.9rem;color:var(--soft)}
+.sline{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border-radius:10px;border:1.5px solid transparent}
+.sline.on{background:var(--pen-bg);border-color:var(--pen)}.sline .sp{flex:0 0 auto}.sline .sen{flex:1;min-width:0;line-height:1.6}
+.sline .sth{display:block;font-size:.88rem;color:var(--soft)}.sline .sth[hidden]{display:none}
+.pchoice{display:block;width:100%;text-align:left;margin:6px 0;min-height:44px}.pchoice[aria-pressed=true]{border-color:var(--pen);background:var(--pen-bg)}
+</style></head><body>
 <meta charset="utf-8">
 <title>Sanor English World</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&display=swap">
@@ -886,7 +893,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261018d';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261018e';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -1049,7 +1056,7 @@ const app=$('#app');
 function go(v){view=v;window.scrollTo(0,0);render()}
 function render(){
   if(view.n==='topic'){const t0=T.find(x=>x.id===view.tid);if(t0&&gated(unitOf(t0)))view=(!PREVIEW&&!bigRec())?{n:'big',gate:true}:{n:'test',u:unitOf(t0),kind:'pre',gate:true}}
-  view.n==='home'?home():view.n==='topic'?topicView(view.tid,view.step||'words'):view.n==='report'?reportView():view.n==='test'?testView(view.u,view.kind,view.gate):view.n==='final'?finalView():view.n==='big'?bigView(view.gate):view.n==='game'?gameView(view.u,view.mode):notebook()}
+  view.n==='home'?home():view.n==='topic'?topicView(view.tid,view.step||'words'):view.n==='report'?reportView():view.n==='test'?testView(view.u,view.kind,view.gate):view.n==='final'?finalView():view.n==='big'?bigView(view.gate):view.n==='game'?gameView(view.u,view.mode):view.n==='story'?storyView(view.id):notebook()}
 
 function ringBg(n){
   const seg=360/STEPS.length,gap=7,a=[];
@@ -1176,7 +1183,7 @@ function home(){
         spHint,
         el('span',{class:'hint'},'ใช้รหัสนักเรียนเท่านั้น ไม่ต้องใส่ชื่อจริง ข้อมูลเก็บไว้ในเครื่องนี้ ครูจะเห็นผลเมื่อคุณกด "ส่งผลให้ครู" และส่งข้อความให้ครู')),
       seriesStrip(),
-      ...(CUR_SERIES==='town'?[townPane()]:[
+      ...(CUR_SERIES==='town'?[townPane()]:CUR_SERIES==='stories'?[storiesPane()]:[
       bigCard(),
       unitTabs,
       finalCard(),
@@ -1290,7 +1297,7 @@ const SERIES=[
  {id:'real',name:'Sanor Real Life',d:'English for everyday situations',c:'#0F7B5F',k:'users'},
  {id:'movies',name:'Sanor Movies',d:'Learn English from movie scenes',c:'#7A3FC4',k:'play'},
  {id:'music',name:'Sanor Music',d:'Learn English through songs',c:'#B8540A',k:'listen'},
- {id:'stories',name:'Sanor Stories',d:'Short stories with audio',c:'#946A00',k:'read'},
+ {id:'stories',name:'Sanor Stories',d:'Short stories with audio',c:'#946A00',k:'read',live:true,facts:['Listen','Read along','No scores']},
  {id:'town',name:'Sanor Town',d:'Explore the town and talk in English',c:'#4D7C0F',k:'pin',live:true},
  {id:'bridge',name:'Sanor Bridge',d:'From Thai to natural English',c:'#475569',k:'talk'},
  {id:'spark',name:'Spark 2',d:'Practice with the Spark 2 textbook',c:'#C42A66',k:'trophy'},
@@ -1299,7 +1306,7 @@ function seriesStrip(){
   return el('section',{class:'series','aria-label':'Learning series'},el('h2',{class:'sbanner'},el('span',{class:'sbt'},el('span',{class:'sben'},'Learning series'),'\u2063',el('span',{class:'sbth'},'ชุดการเรียน'),el('span',{class:'sbh'},'Choose the series you want to study\u2063เลือกชุดการเรียนที่ต้องการ')),el('span',{class:'sbadge','aria-hidden':'true'},el('b',{},'Pick one'),el('i',{},'เลือก 1 ชุด'))),
     [...SERIES.filter(x=>x.id!==CUR_SERIES),...SERIES.filter(x=>x.id===CUR_SERIES)].map(x=>{const on=x.id===CUR_SERIES,ic=el('span',{class:'si','aria-hidden':'true'});ic.innerHTML=HD(x.k)[1];
       return el('button',{class:'sc'+(on?' on':'')+(x.live?' live':''),type:'button',style:'--c:'+x.c,'aria-current':on?'true':null,
-        onclick:()=>{if(x.id==='town'||x.id==='buddy'){if(on)return;if(x.id==='buddy')SanorTown.unmount();CUR_SERIES=x.id;go({n:'home'});const t=document.querySelector('.sc.on');if(t)t.scrollIntoView({block:'start'})}else toast(x.name+' is coming soon.')}},
+        onclick:()=>{if(x.id==='town'||x.id==='buddy'||x.id==='stories'){if(on)return;if(x.id!=='town')SanorTown.unmount();storyStop();CUR_SERIES=x.id;go({n:'home'});const t=document.querySelector('.sc.on');if(t)t.scrollIntoView({block:'start'})}else toast(x.name+' is coming soon.')}},
         ic,el('span',{class:'stxt'},el('b',{},x.name),el('span',{class:'sd'},x.d),x.facts&&on?el('span',{class:'sfacts'},x.facts.map(f=>el('i',{},f))):null,el('span',{class:'pill'},on?'You are here':(x.live?'Tap to open':'Coming soon'))))}))}
 function summaryText(){
   const lines=['Sanor English World · Sanor Buddy (ม.2)','รหัสนักเรียน: '+(cleanCode()||'-')+' · ห้อง: '+(S.room?roomTh(S.room):'-')+' · ภาคเรียน: '+(S.term||'-')+' · ฝึกมาแล้ว '+(S.days||[]).length+' วัน'];
@@ -2067,6 +2074,91 @@ function notebook(){
   app.replaceChildren(el('button',{class:'back',type:'button',onclick:()=>go({n:'home'})},'← Back to home\u2063กลับหน้าหลัก'),pageBanner('notebook','#9D174D','My Mistake Notebook','Practice only what you missed'),box);
 }
 if('speechSynthesis' in window)try{speechSynthesis.getVoices()}catch(e){}
+/* ============ SANOR STORIES (short stories with audio; no scores, nothing is saved or sent) ============ */
+const STORIES=[{
+ id:1,title:'The First Day at School',th:'วันแรกที่โรงเรียน',
+ pred:{q:'What do you think happens on Fah\'s first day?',o:['She makes a new friend.','She loses her bag.','She goes home early.']},
+ s:[['It is Monday. It is the first day of the new term.','วันนี้เป็นวันจันทร์ เป็นวันแรกของภาคเรียนใหม่'],
+  ['Fah walks to school with her friend Tom.','ฟ้าเดินไปโรงเรียนกับทอมเพื่อนของเธอ'],
+  ['She is a little nervous.','เธอประหม่านิดหน่อย'],
+  ['In the classroom, she meets a new girl.','ในห้องเรียน เธอพบเด็กหญิงคนใหม่'],
+  ['The girl says, "Hello! My name is Mali. I am from Bangkok."','เด็กหญิงคนนั้นพูดว่า "สวัสดี! ฉันชื่อมะลิ ฉันมาจากกรุงเทพฯ"'],
+  ['Fah smiles. "Hello, Mali! My name is Fah. Nice to meet you."','ฟ้ายิ้ม "สวัสดีมะลิ ฉันชื่อฟ้า ยินดีที่ได้รู้จัก"'],
+  ['They look at the schedule.','พวกเธอดูตารางเรียน'],
+  ['They have Math in the first period and English in the second period.','พวกเธอเรียนคณิตศาสตร์คาบแรก และภาษาอังกฤษคาบที่สอง'],
+  ['Mali says, "My favorite subject is Science."','มะลิพูดว่า "วิชาที่ฉันชอบที่สุดคือวิทยาศาสตร์"'],
+  ['Fah says, "Me too!"','ฟ้าพูดว่า "ฉันก็เหมือนกัน!"'],
+  ['At lunch, the three friends eat together.','ตอนพักเที่ยง เพื่อนทั้งสามคนกินข้าวด้วยกัน'],
+  ['Fah is not nervous. She is happy.','ฟ้าไม่ประหม่าแล้ว เธอมีความสุข'],
+  ['It is a good first day.','เป็นวันแรกที่ดี']],
+ vocab:[['nervous','ประหม่า'],['term','ภาคเรียน'],['girl','เด็กหญิง']],
+ qs:[{q:'Who walks to school with Fah?',o:['Tom','Mali','Nok','Her mother'],why:'Fah walks to school with her friend Tom.'},
+  {q:'Where is Mali from?',o:['Bangkok','Ubon','Khon Kaen','Japan'],why:'Mali says, "I am from Bangkok."'},
+  {q:'What is Mali\'s favorite subject?',o:['Science','Math','English','P.E.'],why:'Mali says, "My favorite subject is Science."'}],
+ order:[1,3,6,10],
+ write:'My favorite subject is ...'}];
+let STORY_T=[];
+function storyStop(){STORY_T.forEach(clearTimeout);STORY_T=[];try{stopSay()}catch(e){}}
+function storiesPane(){
+  return el('div',{class:'stack'},
+    el('div',{class:'card stack'},hd('read','Sanor Stories⁣เรื่องสั้นพร้อมเสียง'),
+      el('p',{},'Listen, read along, and answer a few questions.'),
+      el('p',{class:'hint'},'ฟัง อ่านตาม และตอบคำถามสั้นๆ ไม่มีคะแนน ไม่บันทึกคำตอบ ไม่ส่งผลถึงครู')),
+    ...STORIES.map(st=>el('button',{class:'storyc',type:'button',onclick:()=>go({n:'story',id:st.id})},
+      el('span',{style:'flex:1;min-width:0'},el('b',{},'Story '+st.id+': '+st.title),el('span',{class:'sth'},st.th+' · '+st.s.length+' lines')),
+      el('span',{class:'pill'},'Open'))),
+    el('p',{class:'note'},'More stories are coming. เรื่องใหม่จะทยอยเพิ่ม'));
+}
+function storyView(id){
+  const st=STORIES.find(x=>x.id===id);if(!st){go({n:'home'});return}
+  storyStop();vcWarm('ST'+st.id);
+  const back=el('button',{class:'back',type:'button',onclick:()=>{storyStop();go({n:'home'})}},'← Back to Stories⁣กลับหน้า Stories');
+  /* 1. predict (no wrong answers) */
+  const pmsg=el('p',{class:'hint','aria-live':'polite'},'No wrong answers. ไม่มีถูกผิด');
+  const pbtn=st.pred.o.map(t=>el('button',{class:'btn ghost pchoice',type:'button','aria-pressed':'false',onclick:ev=>{
+    pbtn.forEach(b=>b.setAttribute('aria-pressed','false'));ev.currentTarget.setAttribute('aria-pressed','true');pmsg.textContent='Good idea! Now listen and read to find out. ลองฟังและอ่านเพื่อดูว่าจริงไหม'}},t));
+  const predict=el('div',{class:'card stack'},hd('star','Think first⁣คิดก่อนอ่าน'),el('p',{},st.pred.q),...pbtn,pmsg);
+  /* 2. listen + read along */
+  const lines=[];const clearHi=()=>lines.forEach(l=>l.classList.remove('on'));
+  const hasVoice=st.s.every(x=>vcFind(x[0],false));
+  const alts=st.vocab.map(v=>esc(v[0])).sort((a,b)=>b.length-a.length).join('|');
+  const re=new RegExp('(^|[^A-Za-z])('+alts+')(?![A-Za-z])','gi');
+  const gloss=el('div',{class:'gloss','aria-live':'polite'},'Tap a highlighted word to see its meaning⁣แตะคำที่ไฮไลต์เพื่อดูความหมาย');
+  const thEls=[];let showTh=true;
+  const rich=text=>{const parts=[];let last=0,m;re.lastIndex=0;
+    while((m=re.exec(text))){const start=m.index+m[1].length,w=m[0].slice(m[1].length);parts.push(text.slice(last,start));
+      const v=st.vocab.find(x=>x[0].toLowerCase()===m[2].toLowerCase());
+      parts.push(el('button',{class:'hl',type:'button',onclick:()=>{gloss.textContent=v[0]+' = '+v[1];say(v[0],0.85)}},w));last=start+w.length}
+    parts.push(text.slice(last));return parts};
+  st.s.forEach(([en,th])=>{
+    const t=el('span',{class:'sth'},th);thEls.push(t);
+    const row=el('div',{class:'sline'},el('button',{class:'btn small sp',type:'button','aria-label':'Listen to this line',onclick:()=>{storyStop();clearHi();row.classList.add('on');say(en,0.9)}},icon()),
+      el('span',{class:'sen',lang:'en'},...rich(en),t));lines.push(row)});
+  const playAll=()=>{storyStop();clearHi();
+    const cl=st.s.map(x=>vcFind(x[0],false));
+    if(cl.every(Boolean)){vcPlay(cl,()=>{});let t=0;cl.forEach((c,i)=>{STORY_T.push(setTimeout(()=>{clearHi();lines[i].classList.add('on')},t));t+=c[2]+330});STORY_T.push(setTimeout(clearHi,t))}
+    else sayMany(st.s.map(x=>({text:x[0]})),0.9)};
+  const thBtn=el('button',{class:'btn small ghost',type:'button',onclick:()=>{showTh=!showTh;thEls.forEach(e=>e.hidden=!showTh);thBtn.textContent=showTh?'Hide Thai⁣ซ่อนภาษาไทย':'Show Thai⁣แสดงภาษาไทย'}},'Hide Thai⁣ซ่อนภาษาไทย');
+  const reader=el('div',{class:'card stack'},hd('listen','Listen and read⁣ฟังและอ่านตาม'),
+    hasVoice?null:el('p',{class:'hint'},'ครูกำลังอัดเสียงเรื่องนี้ ตอนนี้ใช้เสียงจากเครื่องของคุณไปก่อน (Teacher\'s voice is coming soon. Your device voice is used for now.)'),
+    el('div',{class:'row'},el('button',{class:'btn',type:'button',onclick:playAll},icon(),' Listen to the story'),el('button',{class:'btn small ghost',type:'button',onclick:()=>{storyStop();clearHi()}},'Stop'),thBtn),
+    ...lines,gloss);
+  /* 3. questions (not saved: no score, no mistake notebook) */
+  const qbox=el('div',{});
+  const ord=st.order.map(i=>st.s[i][0]);
+  const mkQs=()=>{let sh=shuffle(ord),n=0;while(sh.join(' ')===ord.join(' ')&&n++<9)sh=shuffle(ord);
+    return [...st.qs.map(q=>mc({q:q.q,o:q.o,why:q.why})),{type:'ro',q:'Put the story in order',th:'เรียงเหตุการณ์ในเรื่องให้ถูกลำดับ',words:sh,answer:ord.join(' '),punct:''}]};
+  const startQ=()=>runQs(qbox,mkQs(),{notebook:true,retry:startQ,next:()=>wcard.scrollIntoView({behavior:'smooth',block:'start'}),nextLabel:'Write one sentence⁣ไปขั้นเขียน'});
+  qbox.append(el('div',{class:'card stack'},hd('quiz','Questions⁣คำถาม'),el('p',{class:'hint'},'3 questions and 1 ordering task. No score is saved. คำถาม 3 ข้อและเรียงเหตุการณ์ 1 ข้อ ไม่บันทึกคะแนน'),
+    el('div',{class:'row'},el('button',{class:'btn',type:'button',onclick:startQ},'Start the questions⁣เริ่มตอบคำถาม'))));
+  /* 4. write one sentence (stays on this screen only) */
+  const area=el('textarea',{placeholder:st.write,lang:'en',spellcheck:'false',rows:2,'aria-label':'Write one sentence'});
+  const wcard=el('div',{class:'card stack'},hd('write','Write one sentence⁣เขียนต่อ 1 ประโยค'),area,
+    el('div',{class:'row'},el('button',{class:'btn small',type:'button',onclick:()=>{const v=area.value.trim();if(v)say(v,0.9);else toast('Type a sentence first.')}},icon(),' Listen to my sentence'),
+      el('button',{class:'btn small ghost',type:'button',onclick:()=>{area.value=''}},'Clear⁣ล้าง')),
+    el('p',{class:'hint'},'ข้อความนี้อยู่บนหน้าจอนี้เท่านั้น ไม่บันทึก ไม่ส่งไปที่ใด และไม่ต้องใส่ชื่อจริง (This stays on your screen. Do not type your real name.)'));
+  app.replaceChildren(back,pageBanner('read','#946A00','Story '+st.id+': '+st.title,st.th),predict,reader,qbox,wcard);
+}
 /* ============ SANOR TOWN (prototype: map + places) ============ */
 const SanorTown=(()=>{
 let HOST=null;

@@ -947,7 +947,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261018m';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261018n';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -2290,6 +2290,26 @@ const STORIES=[{
   {"q": "Where is Tom's pencil?", "o": ["Next to the trash can", "In his pencil case", "On his desk", "In Ben's bag"], "why": "There is a pencil next to the trash can."}],
  order:[1, 2, 6, 8],
  write:"There is a ... in my pencil case."},
+{
+ id:9,title:"Lunch at the Cafeteria",th:"อาหารกลางวันที่โรงอาหาร",
+ pred:{q:"Ben and Mali are hungry at lunch time. What do you think happens at the cafeteria?",o:["Ben orders lunch.", "Ben plays soccer.", "Ben goes to the market."]},
+ s:[["It is twelve o'clock. Ben and Mali are hungry.", "เที่ยงแล้ว เบนกับมะลาหิว"],
+  ["They go to the cafeteria. They stand in line and read the menu.", "พวกเขาไปโรงอาหาร ต่อแถวและดูรายการอาหาร"],
+  ["Ben says to the seller, \"I would like pad krapao, please.\"", "เบนพูดกับคนขายว่า \"ขอผัดกะเพราครับ\""],
+  ["The seller says, \"OK. It is forty baht.\"", "คนขายพูดว่า \"ได้ ราคาสี่สิบบาท\""],
+  ["Ben says, \"Here you are. Forty baht.\"", "เบนพูดว่า \"นี่ครับ สี่สิบบาท\""],
+  ["Ben is also thirsty. He says, \"I would like iced tea, too. How much is it?\"", "เบนกระหายน้ำด้วย เขาพูดว่า \"ขอชาเย็นด้วยครับ ราคาเท่าไร\""],
+  ["The seller says, \"It is fifteen baht.\"", "คนขายพูดว่า \"สิบห้าบาท\""],
+  ["Ben looks in his bag. He does not have fifteen baht.", "เบนมองในกระเป๋า เขาไม่มีเงินสิบห้าบาท"],
+  ["Mali says, \"No problem, Ben. Here is fifteen baht.\"", "มะลาพูดว่า \"ไม่เป็นไร เบน นี่สิบห้าบาท\""],
+  ["Ben says, \"Thank you, Mali!\"", "เบนพูดว่า \"ขอบคุณนะ มะลา!\""],
+  ["Now Ben and Mali are not hungry. They are not thirsty.", "ตอนนี้เบนกับมะลาไม่หิวแล้ว และไม่กระหายน้ำแล้ว"]],
+ vocab:[["seller", "คนขาย"], ["no problem", "ไม่เป็นไร"], ["here you are", "นี่ครับ/ค่ะ (ใช้ตอนยื่นของให้)"]],
+ qs:[{"q": "How much is the pad krapao?", "o": ["Forty baht", "Fifteen baht", "Fifty baht", "Sixty baht"], "why": "The seller says, \"It is forty baht.\""},
+  {"q": "Why does Ben need Mali's help?", "o": ["He does not have fifteen baht", "He is not hungry", "He does not like iced tea", "He loses his bag"], "why": "Ben looks in his bag. He does not have fifteen baht."},
+  {"q": "What does Ben order?", "o": ["Pad krapao and iced tea", "Fried rice and orange juice", "Green curry and milk tea", "Som tam and iced tea"], "why": "Ben orders pad krapao and iced tea."}],
+ order:[1, 4, 7, 8],
+ write:"I would like ..., please."},
 {
  id:12,title:"Lost in Town",th:"หลงทางในเมือง",
  pred:{q:"What do you think Fah does?",o:["She helps the visitor.", "She does not know the way.", "She goes to the market."]},

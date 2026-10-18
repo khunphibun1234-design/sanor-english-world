@@ -947,7 +947,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261018u';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261018v';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -2515,7 +2515,28 @@ const STORIES=[{
   {"q": "What kind of music does Mali like?", "o": ["Pop music", "Rock music", "Country music", "Thai songs"], "why": "Mali says, \"I like pop music.\""},
   {"q": "What does Mali not like?", "o": ["Scary movies", "Funny cartoons", "Pop music", "Concerts"], "why": "Mali says, \"I do not like scary movies.\""}],
  order:[0, 3, 6, 8],
- write:"My favorite song is ..."}];
+ write:"My favorite song is ..."},
+{
+ id:24,title:"A Safe Password",th:"รหัสผ่านที่ปลอดภัย",
+ pred:{q:"Tom has a new app on his phone. What do you think Fah tells him?",o:["Keep your password secret.", "Play games all night.", "Tell everyone your password."]},
+ s:[["After school, Tom has a new app on his phone.", "หลังเลิกเรียน ทอมมีแอปใหม่ในโทรศัพท์"],
+  ["He wants to send messages to his friends.", "เขาอยากส่งข้อความหาเพื่อนๆ"],
+  ["The app says, \"Please write a password.\"", "แอปบอกว่า \"กรุณาเขียนรหัสผ่าน\""],
+  ["Tom says, \"I use my name.\"", "ทอมพูดว่า \"ฉันใช้ชื่อของฉัน\""],
+  ["Fah says, \"No, Tom! Do not use your name. It is not safe.\"", "ฟ้าพูดว่า \"ไม่นะทอม! อย่าใช้ชื่อของเธอ มันไม่ปลอดภัย\""],
+  ["Tom asks, \"Why not?\"", "ทอมถามว่า \"ทำไมล่ะ\""],
+  ["Fah says, \"Keep your password secret. Do not share it with anyone.\"", "ฟ้าพูดว่า \"เก็บรหัสผ่านเป็นความลับ อย่าบอกใคร\""],
+  ["Tom has a new password. He does not tell anyone.", "ทอมมีรหัสผ่านใหม่ เขาไม่บอกใคร"],
+  ["Then Tom wants to post his phone number online.", "แล้วทอมอยากโพสต์เบอร์โทรศัพท์ของเขาออนไลน์"],
+  ["Fah says, \"No! Do not post private information online.\"", "ฟ้าพูดว่า \"ไม่! อย่าโพสต์ข้อมูลส่วนตัวออนไลน์\""],
+  ["Tom says, \"OK, I understand. I tell an adult if something is not safe.\"", "ทอมพูดว่า \"โอเค ฉันเข้าใจแล้ว ฉันจะบอกผู้ใหญ่ถ้ามีอะไรไม่ปลอดภัย\""],
+  ["Tom says, \"Thank you, Fah!\" Fah smiles. They are good friends.", "ทอมพูดว่า \"ขอบคุณนะฟ้า!\" ฟ้ายิ้ม พวกเขาเป็นเพื่อนที่ดี"]],
+ vocab:[["secret", "ความลับ"], ["safe", "ปลอดภัย"], ["adult", "ผู้ใหญ่"]],
+ qs:[{"q": "What does Tom want to do with his new app?", "o": ["Send messages to his friends", "Watch videos", "Play games", "Take photos"], "why": "He wants to send messages to his friends."},
+  {"q": "What does Fah say about the password?", "o": ["Keep it secret", "Share it with friends", "Use your name", "Post it online"], "why": "Fah says, \"Keep your password secret. Do not share it with anyone.\""},
+  {"q": "What should Tom do if something online is not safe?", "o": ["Tell an adult", "Post about it", "Share his password", "Talk to a stranger"], "why": "Tom says, \"I tell an adult if something is not safe.\""}],
+ order:[0, 3, 6, 8],
+ write:"Do not ... . Keep ... secret."}];
 let STORY_T=[];
 function storyStop(){STORY_T.forEach(clearTimeout);STORY_T=[];try{stopSay()}catch(e){}}
 const SIC={

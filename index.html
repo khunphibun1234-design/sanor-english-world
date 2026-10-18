@@ -20,6 +20,7 @@
 .sline.on{background:var(--pen-bg);border-color:var(--pen)}.sline .sp{flex:0 0 auto}.sline .sen{flex:1;min-width:0;line-height:1.6}
 .sline .sth{display:block;font-size:.88rem;color:var(--soft)}.sline .sth[hidden]{display:none}
 .pchoice{display:block;width:100%;text-align:left;margin:6px 0;min-height:44px}.pchoice[aria-pressed=true]{border-color:var(--pen);background:var(--pen-bg)}
+.sunit{margin:10px 2px 0;font-size:1rem;color:var(--ink)}
 </style></head><body>
 <meta charset="utf-8">
 <title>Sanor English World</title>
@@ -893,7 +894,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261018e';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261018f';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -2076,7 +2077,24 @@ function notebook(){
 if('speechSynthesis' in window)try{speechSynthesis.getVoices()}catch(e){}
 /* ============ SANOR STORIES (short stories with audio; no scores, nothing is saved or sent) ============ */
 const STORIES=[{
- id:1,title:'The First Day at School',th:'วันแรกที่โรงเรียน',
+ id:2,title:"Sunday at Grandma's",th:"วันอาทิตย์ที่บ้านคุณยาย",
+ pred:{q:"What do you think the family does on Sunday?",o:["They visit Grandma.", "They go to school.", "They go to the market."]},
+ s:[["It is Sunday. Fah's family goes to her grandmother's house.", "วันนี้เป็นวันอาทิตย์ ครอบครัวของฟ้าไปบ้านคุณยาย"],
+  ["Her father and mother are in the car.", "คุณพ่อและคุณแม่ของเธออยู่ในรถ"],
+  ["Her older brother is in the car too.", "พี่ชายของเธออยู่ในรถด้วย"],
+  ["Her younger sister is hungry.", "น้องสาวของเธอหิว"],
+  ["Grandmother is at the door. She says, \"Welcome!\"", "คุณยายอยู่ที่ประตู ท่านพูดว่า \"ยินดีต้อนรับ!\""],
+  ["Grandfather is in the garden. He is tall and kind.", "คุณตาอยู่ในสวน ท่านตัวสูงและใจดี"],
+  ["Lunch is ready. They eat together in the living room.", "อาหารกลางวันพร้อมแล้ว พวกเขากินด้วยกันในห้องนั่งเล่น"],
+  ["Fah is happy. She loves her family.", "ฟ้ามีความสุข เธอรักครอบครัว"]],
+ vocab:[["car", "รถยนต์"], ["door", "ประตู"], ["ready", "พร้อม"]],
+ qs:[{"q": "Who is hungry?", "o": ["Her younger sister", "Her father", "Her mother", "Her older brother"], "why": "Her younger sister is hungry."},
+  {"q": "Where is Grandfather?", "o": ["In the garden", "In the car", "At the door", "In the kitchen"], "why": "Grandfather is in the garden."},
+  {"q": "Where does the family eat lunch?", "o": ["In the living room", "In the garden", "In the car", "In the bedroom"], "why": "They eat together in the living room."}],
+ order:[0, 3, 5, 6],
+ write:"My family ..."},
+{
+ id:6,title:'The First Day at School',th:'วันแรกที่โรงเรียน',
  pred:{q:'What do you think happens on Fah\'s first day?',o:['She makes a new friend.','She loses her bag.','She goes home early.']},
  s:[['It is Monday. It is the first day of the new term.','วันนี้เป็นวันจันทร์ เป็นวันแรกของภาคเรียนใหม่'],
   ['Fah walks to school with her friend Tom.','ฟ้าเดินไปโรงเรียนกับทอมเพื่อนของเธอ'],
@@ -2091,22 +2109,89 @@ const STORIES=[{
   ['At lunch, the three friends eat together.','ตอนพักเที่ยง เพื่อนทั้งสามคนกินข้าวด้วยกัน'],
   ['Fah is not nervous. She is happy.','ฟ้าไม่ประหม่าแล้ว เธอมีความสุข'],
   ['It is a good first day.','เป็นวันแรกที่ดี']],
- vocab:[['nervous','ประหม่า'],['term','ภาคเรียน'],['girl','เด็กหญิง']],
+ vocab:[['nervous','ประหม่า'],['term','ภาคเรียน'],['girl','เด็กหญิง'],['smiles','ยิ้ม']],
  qs:[{q:'Who walks to school with Fah?',o:['Tom','Mali','Nok','Her mother'],why:'Fah walks to school with her friend Tom.'},
   {q:'Where is Mali from?',o:['Bangkok','Ubon','Khon Kaen','Japan'],why:'Mali says, "I am from Bangkok."'},
   {q:'What is Mali\'s favorite subject?',o:['Science','Math','English','P.E.'],why:'Mali says, "My favorite subject is Science."'}],
  order:[1,3,6,10],
- write:'My favorite subject is ...'}];
+ write:'My favorite subject is ...'},
+{
+ id:12,title:"Lost in Town",th:"หลงทางในเมือง",
+ pred:{q:"What do you think Fah does?",o:["She helps the visitor.", "She does not know the way.", "She goes to the market."]},
+ s:[["A visitor is on the street. She looks at a map.", "นักท่องเที่ยวคนหนึ่งอยู่บนถนน เธอดูแผนที่"],
+  ["\"Excuse me,\" she says. \"Where is the post office?\"", "\"ขอโทษค่ะ\" เธอพูด \"ที่ทำการไปรษณีย์อยู่ที่ไหนคะ\""],
+  ["Fah says, \"Go straight on this street.\"", "ฟ้าพูดว่า \"เดินตรงไปตามถนนนี้\""],
+  ["\"Turn left at the traffic light.\"", "\"เลี้ยวซ้ายที่ไฟจราจร\""],
+  ["\"Then go over the bridge.\"", "\"แล้วเดินข้ามสะพาน\""],
+  ["\"The post office is on the corner. It is next to the bank.\"", "\"ที่ทำการไปรษณีย์อยู่ที่หัวมุม อยู่ข้างธนาคาร\""],
+  ["\"I do not know this town,\" says the visitor.", "\"ฉันไม่รู้จักเมืองนี้\" นักท่องเที่ยวพูด"],
+  ["\"Please come with me.\"", "\"ไปกับฉันหน่อยได้ไหม\""],
+  ["\"OK,\" says Fah. They walk together.", "\"ได้เลย\" ฟ้าพูด พวกเธอเดินไปด้วยกัน"],
+  ["They use the crosswalk. They turn left at the traffic light.", "พวกเธอใช้ทางม้าลาย แล้วเลี้ยวซ้ายที่ไฟจราจร"],
+  ["They go over the bridge.", "พวกเธอข้ามสะพาน"],
+  ["There is the post office!", "นั่นไงที่ทำการไปรษณีย์!"],
+  ["\"Thank you, Fah!\" says the visitor.", "\"ขอบคุณนะฟ้า!\" นักท่องเที่ยวพูด"]],
+ vocab:[["Excuse me", "ขอโทษ (ใช้เรียกให้คนสนใจ)"], ["over", "ข้าม"], ["walk", "เดิน"], ["come", "มา"]],
+ qs:[{"q": "Where does the visitor want to go?", "o": ["The post office", "The bank", "The hospital", "The temple"], "why": "She asks, \"Where is the post office?\""},
+  {"q": "What does Fah say first?", "o": ["Go straight on this street.", "Turn right at the corner.", "I do not know.", "Go to the park."], "why": "Fah says, \"Go straight on this street.\""},
+  {"q": "Where is the post office?", "o": ["Next to the bank", "Next to the park", "Next to the hospital", "Next to the temple"], "why": "\"It is next to the bank.\""}],
+ order:[0, 2, 8, 11],
+ write:"Where is the ...? Go straight."},
+{
+ id:17,title:"Grandma at the Market",th:"คุณยายที่ตลาด",
+ pred:{q:"What do you think Grandmother does at the market?",o:["She buys food.", "She sleeps.", "She sells shoes."]},
+ s:[["On Saturday, Fah goes to the market with her grandmother.", "วันเสาร์ ฟ้าไปตลาดกับคุณยาย"],
+  ["A vendor sells vegetables and fruit.", "แม่ค้าคนหนึ่งขายผักและผลไม้"],
+  ["\"Good morning!\" says the vendor. \"Everything is fresh today.\"", "\"สวัสดีตอนเช้า!\" แม่ค้าพูด \"วันนี้ของสดทุกอย่างเลย\""],
+  ["Grandmother looks at the vegetables. \"How much is one kilo?\"", "คุณยายดูผัก \"กิโลละเท่าไหร่คะ\""],
+  ["\"30 baht,\" says the vendor.", "\"30 บาท\" แม่ค้าตอบ"],
+  ["\"25 baht, please,\" says Grandmother. She smiles.", "\"25 บาทนะ\" คุณยายพูดพร้อมยิ้ม"],
+  ["The vendor laughs. \"OK, 25 baht.\"", "แม่ค้าหัวเราะ \"ได้จ้ะ 25 บาท\""],
+  ["Grandmother buys two kilos of vegetables.", "คุณยายซื้อผักสองกิโล"],
+  ["She buys some fruit too.", "ท่านซื้อผลไม้ด้วย"],
+  ["Fah gives the money to the vendor. The vendor gives her the change.", "ฟ้าให้เงินแม่ค้า แม่ค้าทอนเงินให้เธอ"],
+  ["Fah says, \"I like the market!\"", "ฟ้าพูดว่า \"หนูชอบตลาดจัง!\""],
+  ["Grandmother says, \"Me too. Everything is fresh!\"", "คุณยายพูดว่า \"ยายก็ชอบ ของสดทุกอย่างเลย!\""]],
+ vocab:[["everything", "ทุกอย่าง"], ["laughs", "หัวเราะ"], ["smiles", "ยิ้ม"]],
+ qs:[{"q": "What does the vendor sell?", "o": ["Vegetables and fruit", "Shoes and bags", "Noodles and rice", "Books and pens"], "why": "A vendor sells vegetables and fruit."},
+  {"q": "How much is one kilo at first?", "o": ["30 baht", "25 baht", "50 baht", "20 baht"], "why": "\"30 baht,\" says the vendor."},
+  {"q": "How much does Grandmother ask to pay?", "o": ["25 baht", "30 baht", "35 baht", "15 baht"], "why": "\"25 baht, please,\" says Grandmother."}],
+ order:[0, 3, 6, 9],
+ write:"I buy ... at the market."},
+{
+ id:22,title:"The Volleyball Match",th:"การแข่งวอลเลย์บอล",
+ pred:{q:"What do you think happens at the match?",o:["Tom's team wins.", "Tom's team loses.", "The game stops."]},
+ s:[["It is Friday afternoon. There is a volleyball match at school.", "บ่ายวันศุกร์ มีการแข่งวอลเลย์บอลที่โรงเรียน"],
+  ["Tom is a player on the class team.", "ทอมเป็นผู้เล่นในทีมของห้อง"],
+  ["Fah and Nok watch the game. Everyone is excited.", "ฟ้ากับนกดูเกม ทุกคนตื่นเต้น"],
+  ["At the end, the score is 22 to 25. Tom's team loses.", "ตอนจบ คะแนนเป็น 22 ต่อ 25 ทีมของทอมแพ้"],
+  ["Tom is sad.", "ทอมเสียใจ"],
+  ["Fah says, \"Do not be sad, Tom. You are a good player.\"", "ฟ้าพูดว่า \"อย่าเสียใจเลยทอม เธอเป็นผู้เล่นที่ดี\""],
+  ["Nok says, \"We lose today. But we practice every day.\"", "นกพูดว่า \"วันนี้เราแพ้ แต่เราซ้อมกันทุกวัน\""],
+  ["Tom smiles. \"OK! Let's practice.\"", "ทอมยิ้ม \"ได้เลย! ไปซ้อมกัน\""],
+  ["The three friends walk home together. They drink iced tea.", "เพื่อนทั้งสามเดินกลับบ้านด้วยกัน พวกเขาดื่มชาเย็น"],
+  ["Tom is not sad. He is ready for the next match.", "ทอมไม่เสียใจแล้ว เขาพร้อมสำหรับนัดต่อไป"]],
+ vocab:[["sad", "เสียใจ"], ["ready", "พร้อม"], ["smiles", "ยิ้ม"], ["walk", "เดิน"]],
+ qs:[{"q": "What sport do they play?", "o": ["Volleyball", "Badminton", "Dancing", "Singing"], "why": "There is a volleyball match at school."},
+  {"q": "Who is sad?", "o": ["Tom", "Fah", "Nok", "The teacher"], "why": "Tom is sad because his team loses."},
+  {"q": "What does Fah say to Tom?", "o": ["You are a good player.", "You are a bad player.", "Go home.", "I am tired."], "why": "Fah says, \"You are a good player.\""}],
+ order:[0, 3, 5, 8],
+ write:"My favorite sport is ..."}];
 let STORY_T=[];
 function storyStop(){STORY_T.forEach(clearTimeout);STORY_T=[];try{stopSay()}catch(e){}}
 function storiesPane(){
+  const blocks=[];
+  UNITS.forEach(U=>{const list=STORIES.filter(st=>Math.ceil(st.id/5)===U.n);if(!list.length)return;
+    blocks.push(el('h3',{class:'sunit'},'Unit '+U.n+' · '+U.en),
+      ...list.map(st=>el('button',{class:'storyc',type:'button',onclick:()=>go({n:'story',id:st.id})},
+        el('span',{style:'flex:1;min-width:0'},el('b',{},'Story '+st.id+': '+st.title),el('span',{class:'sth'},st.th+' · '+st.s.length+' lines')),
+        el('span',{class:'pill'},'Open'))))});
   return el('div',{class:'stack'},
-    el('div',{class:'card stack'},hd('read','Sanor Stories⁣เรื่องสั้นพร้อมเสียง'),
+    el('div',{class:'card stack'},hd('read','Sanor Stories\u2063เรื่องสั้นพร้อมเสียง'),
       el('p',{},'Listen, read along, and answer a few questions.'),
-      el('p',{class:'hint'},'ฟัง อ่านตาม และตอบคำถามสั้นๆ ไม่มีคะแนน ไม่บันทึกคำตอบ ไม่ส่งผลถึงครู')),
-    ...STORIES.map(st=>el('button',{class:'storyc',type:'button',onclick:()=>go({n:'story',id:st.id})},
-      el('span',{style:'flex:1;min-width:0'},el('b',{},'Story '+st.id+': '+st.title),el('span',{class:'sth'},st.th+' · '+st.s.length+' lines')),
-      el('span',{class:'pill'},'Open'))),
+      el('p',{class:'hint'},'ฟัง อ่านตาม และตอบคำถามสั้นๆ ไม่มีคะแนน ไม่บันทึกคำตอบ ไม่ส่งผลถึงครู'),
+      el('p',{class:'hint'},'แต่ละเรื่องผูกกับหนึ่งหัวข้อของ Sanor Buddy (เลขเรื่อง = เลขหัวข้อ) อ่านหลังเรียนหัวข้อนั้นจะเข้าใจง่ายที่สุด')),
+    ...blocks,
     el('p',{class:'note'},'More stories are coming. เรื่องใหม่จะทยอยเพิ่ม'));
 }
 function storyView(id){

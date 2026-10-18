@@ -947,7 +947,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261018p';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261018q';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -2392,6 +2392,27 @@ const STORIES=[{
   {"q": "How much does Grandmother ask to pay?", "o": ["25 baht", "30 baht", "35 baht", "15 baht"], "why": "\"25 baht, please,\" says Grandmother."}],
  order:[0, 3, 6, 9],
  write:"I buy ... at the market."},
+{
+ id:18,title:"A Table for Three",th:"โต๊ะสำหรับสามคน",
+ pred:{q:"Fah and her parents go to a restaurant. What do you think they do first?",o:["They ask for a table.", "They pay the check.", "They go home."]},
+ s:[["On Saturday night, Fah and her parents go to a restaurant.", "คืนวันเสาร์ ฟ้ากับพ่อแม่ไปร้านอาหาร"],
+  ["The waiter says, \"Good evening! How many people?\"", "พนักงานเสิร์ฟพูดว่า \"สวัสดีตอนเย็นค่ะ กี่ท่านคะ\""],
+  ["Fah's father says, \"A table for three, please.\"", "คุณพ่อของฟ้าพูดว่า \"โต๊ะสำหรับสามคนครับ\""],
+  ["The waiter says, \"This way, please. Here is the menu.\"", "พนักงานเสิร์ฟพูดว่า \"เชิญทางนี้ค่ะ นี่เมนูค่ะ\""],
+  ["Fah's father says, \"I would like chicken and rice, please.\"", "คุณพ่อของฟ้าพูดว่า \"ขอข้าวมันไก่ครับ\""],
+  ["Fah's mother says, \"I would like noodle soup.\"", "คุณแม่ของฟ้าพูดว่า \"ขอก๋วยเตี๋ยวน้ำค่ะ\""],
+  ["Fah says, \"I would like fried rice and a glass of water, please.\"", "ฟ้าพูดว่า \"ขอข้าวผัดและน้ำเปล่าหนึ่งแก้วค่ะ\""],
+  ["After dinner, the waiter says, \"Would you like some dessert?\"", "หลังอาหารเย็น พนักงานเสิร์ฟพูดว่า \"รับของหวานไหมคะ\""],
+  ["Fah says, \"Yes, please. I would like mango sticky rice.\"", "ฟ้าพูดว่า \"รับค่ะ ขอข้าวเหนียวมะม่วงค่ะ\""],
+  ["Her father says, \"One dessert and three spoons, please.\"", "คุณพ่อของเธอพูดว่า \"ของหวานหนึ่งที่ กับช้อนสามคันครับ\""],
+  ["Then Fah's father says, \"Can I have the check, please?\"", "จากนั้นคุณพ่อของฟ้าพูดว่า \"ขอใบเก็บเงินหน่อยครับ\""],
+  ["The food is delicious, and everyone is happy.", "อาหารอร่อย และทุกคนมีความสุข"]],
+ vocab:[["a table for three", "โต๊ะสำหรับสามคน"], ["this way", "ทางนี้"], ["spoons", "ช้อน (หลายคัน)"]],
+ qs:[{"q": "How many people are at the table?", "o": ["Three", "Two", "Four", "Five"], "why": "Fah's father says, \"A table for three, please.\""},
+  {"q": "What does Fah order for dinner?", "o": ["Fried rice and a glass of water", "Chicken and rice", "Noodle soup", "Pad Thai and a glass of milk"], "why": "Fah says, \"I would like fried rice and a glass of water, please.\""},
+  {"q": "What does Fah's father ask for at the end?", "o": ["The check", "The menu", "A fork", "A plate"], "why": "Fah's father says, \"Can I have the check, please?\""}],
+ order:[2, 6, 8, 10],
+ write:"Can I have ..., please?"},
 {
  id:22,title:"The Volleyball Match",th:"การแข่งวอลเลย์บอล",
  pred:{q:"What do you think happens at the match?",o:["Tom's team wins.", "Tom's team loses.", "The game stops."]},

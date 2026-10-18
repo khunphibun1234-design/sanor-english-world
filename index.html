@@ -947,7 +947,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261018j';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261018k';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -2207,6 +2207,26 @@ const STORIES=[{
   {"q": "Where is the bathroom?", "o": ["Next to Mali's bedroom", "Next to the kitchen", "In the garden", "Next to the living room"], "why": "Mali says, \"It is next to my bedroom.\""}],
  order:[2, 4, 6, 9],
  write:"There is a ... in my house."},
+{
+ id:5,title:"Fah's Busy Day",th:"วันที่ยุ่งของฟ้า",
+ pred:{q:"Fah has a busy day. What do you think happens in the morning?",o:["She wakes up late.", "She goes to the market.", "She plays volleyball."]},
+ s:[["Fah usually wakes up at six o'clock.", "ฟ้ามักตื่นนอนหกโมงเช้า"],
+  ["Today she wakes up at seven o'clock. She is late!", "วันนี้เธอตื่นเจ็ดโมงเช้า เธอตื่นสาย!"],
+  ["She takes a shower and has breakfast.", "เธออาบน้ำและกินอาหารเช้า"],
+  ["She goes to school with Tom.", "เธอไปโรงเรียนกับทอม"],
+  ["They walk fast.", "พวกเขาเดินเร็ว"],
+  ["School starts at eight o'clock. Fah is on time!", "โรงเรียนเริ่มแปดโมงเช้า ฟ้ามาทันเวลา!"],
+  ["After school, Fah goes home.", "หลังเลิกเรียน ฟ้ากลับบ้าน"],
+  ["In the evening, she always does her homework.", "ตอนเย็น เธอทำการบ้านเสมอ"],
+  ["Then she has dinner with her family.", "จากนั้นเธอกินอาหารเย็นกับครอบครัว"],
+  ["She goes to bed at ten o'clock.", "เธอเข้านอนสี่ทุ่ม"],
+  ["It is a busy day, but it is a good day.", "เป็นวันที่ยุ่ง แต่เป็นวันที่ดี"]],
+ vocab:[["late", "สาย / ช้า"], ["walk", "เดิน"], ["fast", "เร็ว"], ["on time", "ตรงเวลา"]],
+ qs:[{"q": "What time does Fah usually wake up?", "o": ["Six o'clock", "Seven o'clock", "Eight o'clock", "Ten o'clock"], "why": "Fah usually wakes up at six o'clock."},
+  {"q": "Who does Fah go to school with?", "o": ["Tom", "Mali", "Ben", "Max"], "why": "She goes to school with Tom."},
+  {"q": "What does Fah always do in the evening?", "o": ["She does her homework", "She plays badminton", "She watches TV", "She goes to the market"], "why": "In the evening, she always does her homework."}],
+ order:[1, 3, 7, 9],
+ write:"I usually wake up at ... and I always ..."},
 {
  id:6,title:'The First Day at School',th:'วันแรกที่โรงเรียน',
  pred:{q:'What do you think happens on Fah\'s first day?',o:['She makes a new friend.','She loses her bag.','She goes home early.']},

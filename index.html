@@ -947,7 +947,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261018g';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261018h';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -2130,6 +2130,25 @@ function notebook(){
 if('speechSynthesis' in window)try{speechSynthesis.getVoices()}catch(e){}
 /* ============ SANOR STORIES (short stories with audio; no scores, nothing is saved or sent) ============ */
 const STORIES=[{
+ id:1,title:"A New Friend",th:"เพื่อนใหม่",
+ pred:{q:"Fah meets a new boy in her class. What do you think they talk about?",o:["Their names and hobbies.", "A big test.", "Dinner at home."]},
+ s:[["It is the first day in Grade 8.", "วันนี้เป็นวันแรกในชั้น ม.2"],
+  ["A new boy is in Fah's class.", "มีเด็กชายคนใหม่อยู่ในห้องของฟ้า"],
+  ["Fah says, \"Hi! My name is Fah. What is your name?\"", "ฟ้าพูดว่า \"สวัสดี! ฉันชื่อฟ้า เธอชื่ออะไร\""],
+  ["The boy says, \"My name is Thanakorn, but my nickname is Tom.\"", "เด็กชายพูดว่า \"ฉันชื่อธนากร แต่ชื่อเล่นของฉันคือทอม\""],
+  ["Fah says, \"Nice to meet you, Tom. How old are you?\"", "ฟ้าพูดว่า \"ยินดีที่ได้รู้จักนะ ทอม เธออายุเท่าไร\""],
+  ["Tom says, \"I am thirteen years old. What is your hobby?\"", "ทอมพูดว่า \"ฉันอายุ 13 ปี งานอดิเรกของเธอคืออะไร\""],
+  ["Fah says, \"My hobby is drawing.\"", "ฟ้าพูดว่า \"งานอดิเรกของฉันคือการวาดรูป\""],
+  ["Tom says, \"Wow! My hobby is drawing, too!\"", "ทอมพูดว่า \"ว้าว! งานอดิเรกของฉันคือการวาดรูปเหมือนกัน!\""],
+  ["The two friends draw pictures together.", "เพื่อนทั้งสองคนวาดรูปด้วยกัน"],
+  ["Fah is happy. She has a new friend.", "ฟ้ามีความสุข เธอมีเพื่อนใหม่"]],
+ vocab:[["boy", "เด็กชาย"], ["draw", "วาดรูป"], ["pictures", "รูปภาพ"], ["together", "ด้วยกัน"]],
+ qs:[{"q": "What is the new boy's nickname?", "o": ["Tom", "Ben", "Max", "Jack"], "why": "His nickname is Tom."},
+  {"q": "How old is Tom?", "o": ["Thirteen", "Twelve", "Fourteen", "Fifteen"], "why": "Tom is thirteen years old."},
+  {"q": "What is Fah's hobby?", "o": ["Drawing", "Playing soccer", "Reading books", "Listening to music"], "why": "Fah's hobby is drawing."}],
+ order:[1, 3, 7, 8],
+ write:"My name is ... and my hobby is ..."},
+{
  id:2,title:"Sunday at Grandma's",th:"วันอาทิตย์ที่บ้านคุณยาย",
  pred:{q:"What do you think the family does on Sunday?",o:["They visit Grandma.", "They go to school.", "They go to the market."]},
  s:[["It is Sunday. Fah's family goes to her grandmother's house.", "วันนี้เป็นวันอาทิตย์ ครอบครัวของฟ้าไปบ้านคุณยาย"],

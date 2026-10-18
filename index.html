@@ -947,7 +947,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261018r';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261018s';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -2434,6 +2434,27 @@ const STORIES=[{
   {"q": "How does Ben pay?", "o": ["Cash", "Card", "QR code", "Membership card"], "why": "Ben says, \"Cash, please.\""}],
  order:[1, 2, 5, 9],
  write:"I would like a ... and a ..., please."},
+{
+ id:20,title:"Where Can I Find Eggs?",th:"ไข่อยู่ที่ไหนคะ",
+ pred:{q:"Fah goes to a big supermarket with her father. What do you think they need to find?",o:["Eggs and ice cream.", "A new bicycle.", "School books."]},
+ s:[["On Sunday, Fah goes to a big supermarket with her father.", "วันอาทิตย์ ฟ้าไปซูเปอร์มาร์เก็ตใหญ่กับคุณพ่อ"],
+  ["They take a cart.", "พวกเขาหยิบรถเข็น"],
+  ["Fah's father says, \"We need eggs, milk, and ice cream.\"", "คุณพ่อของฟ้าพูดว่า \"เราต้องซื้อไข่ นม และไอศกรีม\""],
+  ["Fah asks a worker, \"Excuse me. Where can I find eggs?\"", "ฟ้าถามพนักงานว่า \"ขอโทษค่ะ ไข่หาได้ที่ไหนคะ\""],
+  ["The worker says, \"Look in aisle three.\"", "พนักงานพูดว่า \"ดูที่ทางเดินที่สามค่ะ\""],
+  ["Fah puts the eggs and milk in the cart.", "ฟ้าใส่ไข่และนมในรถเข็น"],
+  ["Fah's father says, \"Where is the ice cream?\"", "คุณพ่อของฟ้าพูดว่า \"ไอศกรีมอยู่ที่ไหน\""],
+  ["The worker says, \"It is in the frozen food section, at the back.\"", "พนักงานพูดว่า \"อยู่ในแผนกอาหารแช่แข็งด้านหลังค่ะ\""],
+  ["There is a discount on ice cream today!", "วันนี้ไอศกรีมมีส่วนลด!"],
+  ["Fah's father says, \"Great! Let's take two.\"", "คุณพ่อของฟ้าพูดว่า \"เยี่ยม! เอาสองอันเลย\""],
+  ["They pay at the checkout.", "พวกเขาจ่ายเงินที่จุดชำระเงิน"],
+  ["Fah says, \"I like shopping with you.\" Her father is happy.", "ฟ้าพูดว่า \"หนูชอบไปซื้อของกับคุณพ่อค่ะ\" คุณพ่อของเธอมีความสุข"]],
+ vocab:[["worker", "พนักงาน"], ["need", "ต้องการ / ต้องซื้อ"], ["shopping", "การซื้อของ"]],
+ qs:[{"q": "Who goes to the supermarket with Fah?", "o": ["Her father", "Her mother", "Her brother", "Her teacher"], "why": "Fah goes to a big supermarket with her father."},
+  {"q": "Where is the ice cream?", "o": ["In the frozen food section", "In aisle three", "At the checkout", "On the shelf with the eggs"], "why": "The worker says, \"It is in the frozen food section, at the back.\""},
+  {"q": "What is on discount today?", "o": ["Ice cream", "Eggs", "Milk", "Rice"], "why": "There is a discount on ice cream today!"}],
+ order:[1, 3, 7, 10],
+ write:"Excuse me. Where can I find ...?"},
 {
  id:22,title:"The Volleyball Match",th:"การแข่งวอลเลย์บอล",
  pred:{q:"What do you think happens at the match?",o:["Tom's team wins.", "Tom's team loses.", "The game stops."]},

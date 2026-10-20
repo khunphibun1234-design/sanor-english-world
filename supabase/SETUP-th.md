@@ -20,8 +20,8 @@
 สมัครบัญชีครูผ่าน Authentication > Users > Add user แล้วรัน SQL บรรทัดท้ายไฟล์ schema.sql (แก้อีเมล) ไม่จำเป็นสำหรับการดูข้อมูลใน Dashboard ของ Supabase เพราะท่านเป็นเจ้าของโปรเจกต์อยู่แล้ว
 
 ## ขั้นที่ 5 ใส่ค่าในแอป
-Project Settings > API: คัดลอก **Project URL** และ **anon / public key** (ห้ามคัดลอก service_role)
-ในไฟล์ index.html หาบรรทัด `const CLOUD_CFG={url:'',key:'',` ใส่สองค่าระหว่างเครื่องหมาย ' ' แล้วบันทึกขึ้น GitHub
+Project Settings > API Keys: คัดลอก **Project URL** (ที่หน้า General หรือ Data API) และ **Publishable key** (ขึ้นต้น `sb_publishable_` ถ้าเป็นโปรเจกต์เก่าอาจเป็น anon key ขึ้นต้น `eyJ`) **ห้ามคัดลอก secret หรือ service_role**
+เปิดไฟล์ `cloud-config.js` บน GitHub (ปุ่มดินสอ Edit) วางสองค่าระหว่างเครื่องหมาย ' ' แล้ว Commit ไฟล์นี้เล็ก แก้บนเว็บ GitHub ได้ ไม่ต้องแตะ index.html
 
 ## ใช้งานจริง
 - **ดูข้อมูล:** Table Editor > latest_submissions (ผลล่าสุดต่อคนต่อภาคเรียน) ส่งออก CSV ได้ แล้วนำคอลัมน์ report_line ไปวางในแดชบอร์ดเดิมได้ทีละบรรทัด

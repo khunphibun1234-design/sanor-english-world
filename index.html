@@ -549,6 +549,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--pen);box-shadow:0 0 0
 </div></footer>
 <div id="toast" hidden></div>
 
+<script src="cloud-config.js?v=20261020ag"></script>
 <script>
 /* ============ CONTENT: Unit 1 · My School Life (ม.2, A1-A2) ============ */
 // Q(question, why, correct, ...wrongs)  — the correct answer is written first and shuffled at run time
@@ -948,7 +949,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261020af';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261020ag';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -1416,7 +1417,7 @@ function eb1Line(){
 /* ===== Sanor Cloud (Supabase) — สมัคร/ล็อกอิน/ส่งผลเข้าฐานข้อมูล =====
    ปิดอยู่จนกว่าครูจะใส่ url กับ key (public anon key เท่านั้น ห้ามใส่ service_role) แอปทำงานแบบเดิมทุกอย่างเมื่อยังว่าง
    ไม่ใช้ไลบรารีภายนอก เรียก REST ของ Supabase โดยตรง เก็บเฉพาะ token ในเครื่อง (ไม่เก็บรหัสผ่าน) */
-const CLOUD_CFG={url:'',key:'',domain:'students.sanor-app.com',consent:'v1'};
+const CLOUD_CFG=Object.assign({url:'',key:'',domain:'students.sanor-app.com',consent:'v1'},window.SANOR_CLOUD||{}); /* ค่า url/key ตั้งในไฟล์ cloud-config.js */
 const Cloud=(()=>{
   const SK='sanor-cloud-v1',cfg=CLOUD_CFG;
   const enabled=()=>!!(cfg.url&&cfg.key);
@@ -1428,7 +1429,7 @@ const Cloud=(()=>{
   const fail=(code,msg)=>{const e=new Error(msg||code);e.code=code;return e};
   async function call(path,opt,tok){
     let r;
-    try{r=await fetch(cfg.url.replace(/\/+$/,'')+path,Object.assign({},opt,{headers:Object.assign({'apikey':cfg.key,'Content-Type':'application/json','Authorization':'Bearer '+(tok||cfg.key)},opt&&opt.headers)}))}
+    try{r=await fetch(cfg.url.replace(/\/+$/,'')+path,Object.assign({},opt,{headers:Object.assign({'apikey':cfg.key,'Content-Type':'application/json'},tok?{'Authorization':'Bearer '+tok}:{},opt&&opt.headers)}))}
     catch(e){throw fail('network','ต่อเครือข่ายไม่ได้')}
     let j=null;try{j=await r.json()}catch(e){}
     if(!r.ok)throw fail(String((j&&(j.error_code||j.code||j.error))||r.status),(j&&(j.msg||j.message||j.error_description))||'');

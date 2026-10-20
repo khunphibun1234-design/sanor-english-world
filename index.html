@@ -948,7 +948,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261018ae';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261020af';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -1237,6 +1237,7 @@ function home(){
         el('div',{class:'field',style:'flex:1 1 100%'},el('label',{for:'room'},'Room\u2063ห้อง'),room)),
         spHint,
         el('span',{class:'hint'},'ใช้รหัสนักเรียนเท่านั้น ไม่ต้องใส่ชื่อจริง ข้อมูลเก็บไว้ในเครื่องนี้ ครูจะเห็นผลเมื่อคุณกด "ส่งผลให้ครู" และส่งข้อความให้ครู')),
+      accountCard(),
       seriesStrip(),
       ...(CUR_SERIES==='town'?[townPane()]:CUR_SERIES==='stories'?[storiesPane()]:[
       bigCard(),
@@ -1412,6 +1413,113 @@ function eb1Line(){
   const base=['EB1',clean(cleanCode()),clean(S.room),nowLocal(),S.mistakes.length,rows,(S.days||[]).length,S.last||'',testTail()].join(';');
   return base+';c='+hash4(base);
 }
+/* ===== Sanor Cloud (Supabase) — สมัคร/ล็อกอิน/ส่งผลเข้าฐานข้อมูล =====
+   ปิดอยู่จนกว่าครูจะใส่ url กับ key (public anon key เท่านั้น ห้ามใส่ service_role) แอปทำงานแบบเดิมทุกอย่างเมื่อยังว่าง
+   ไม่ใช้ไลบรารีภายนอก เรียก REST ของ Supabase โดยตรง เก็บเฉพาะ token ในเครื่อง (ไม่เก็บรหัสผ่าน) */
+const CLOUD_CFG={url:'',key:'',domain:'students.sanor-app.com',consent:'v1'};
+const Cloud=(()=>{
+  const SK='sanor-cloud-v1',cfg=CLOUD_CFG;
+  const enabled=()=>!!(cfg.url&&cfg.key);
+  const norm=c=>String(c||'').replace(/[^A-Za-z0-9_-]/g,'').slice(0,12).toLowerCase();
+  const mail=c=>norm(c)+'@'+cfg.domain;
+  let ses=null;
+  try{ses=JSON.parse(localStorage.getItem(SK)||'null')}catch(e){}
+  const keep=s=>{ses=s;try{s?localStorage.setItem(SK,JSON.stringify(s)):localStorage.removeItem(SK)}catch(e){}};
+  const fail=(code,msg)=>{const e=new Error(msg||code);e.code=code;return e};
+  async function call(path,opt,tok){
+    let r;
+    try{r=await fetch(cfg.url.replace(/\/+$/,'')+path,Object.assign({},opt,{headers:Object.assign({'apikey':cfg.key,'Content-Type':'application/json','Authorization':'Bearer '+(tok||cfg.key)},opt&&opt.headers)}))}
+    catch(e){throw fail('network','ต่อเครือข่ายไม่ได้')}
+    let j=null;try{j=await r.json()}catch(e){}
+    if(!r.ok)throw fail(String((j&&(j.error_code||j.code||j.error))||r.status),(j&&(j.msg||j.message||j.error_description))||'');
+    return j;
+  }
+  function fromAuth(j,code){
+    if(!j||!j.access_token)return null;
+    return {access:j.access_token,refresh:j.refresh_token,exp:(j.expires_at||Math.floor(Date.now()/1000)+(j.expires_in||3600)),code:norm(code)};
+  }
+  async function token(){
+    if(!ses)return null;
+    if(ses.exp-60>Date.now()/1000)return ses.access;
+    try{const j=await call('/auth/v1/token?grant_type=refresh_token',{method:'POST',body:JSON.stringify({refresh_token:ses.refresh})});const n=fromAuth(j,ses.code);if(!n)throw 0;keep(n);return n.access}
+    catch(e){if(e&&e.code==='network')throw e;keep(null);return null}
+  }
+  async function signUp(code,pw,room){
+    if(!norm(code)||pw.length<6)throw fail('weak');
+    const j=await call('/auth/v1/signup',{method:'POST',body:JSON.stringify({email:mail(code),password:pw})});
+    const s=fromAuth(j,code);
+    if(!s)throw fail('confirm','ระบบยังเปิดให้ยืนยันอีเมลอยู่ ครูต้องปิดตัวเลือกนี้ก่อน');
+    keep(s);
+    try{await call('/rest/v1/rpc/register_student',{method:'POST',body:JSON.stringify({p_room:room||'',p_consent:cfg.consent})},s.access)}
+    catch(e){keep(null);throw e}
+    return s;
+  }
+  async function signIn(code,pw){
+    const j=await call('/auth/v1/token?grant_type=password',{method:'POST',body:JSON.stringify({email:mail(code),password:pw})});
+    const s=fromAuth(j,code);if(!s)throw fail('login');keep(s);return s;
+  }
+  function signOut(){keep(null)}
+  async function submit(line,room,term){
+    const t=await token();if(!t)throw fail('nosession');
+    const code=ses.code;
+    if(String(line).split(';')[1].toLowerCase()!==code)throw fail('mismatch');
+    await call('/rest/v1/submissions',{method:'POST',headers:{'Prefer':'return=minimal'},body:JSON.stringify({student_code:code,room:room||'',term:term||'',report_line:line})},t);
+  }
+  function why(e){
+    const c=(e&&e.code)||'',m=(e&&e.message)||'';
+    if(c==='network')return 'ต่อเครือข่ายไม่ได้ ลองใหม่เมื่อมีสัญญาณ';
+    if(c==='weak'||/password/i.test(m)&&/least|short|weak/i.test(m))return 'รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร';
+    if(c==='user_already_exists'||/already/i.test(m))return 'รหัสนักเรียนนี้สมัครแล้ว ให้กด "เข้าสู่ระบบ" ถ้าลืมรหัสผ่านให้แจ้งครู';
+    if(c==='invalid_credentials'||/invalid login/i.test(m))return 'รหัสนักเรียนหรือรหัสผ่านไม่ถูกต้อง';
+    if(c==='nosession')return 'หมดเวลาเข้าสู่ระบบ ให้เข้าสู่ระบบใหม่';
+    if(c==='mismatch')return 'รหัสนักเรียนในหน้าหลักไม่ตรงกับบัญชีที่เข้าสู่ระบบ';
+    if(c==='confirm')return m;
+    if(c==='over_request_rate_limit'||c==='429')return 'ลองบ่อยเกินไป รอสักครู่แล้วลองใหม่';
+    return 'ทำรายการไม่สำเร็จ ลองใหม่ หรือแจ้งครู (รหัส '+(c||'?')+')';
+  }
+  return {enabled,signUp,signIn,signOut,submit,why,norm,user:()=>ses?ses.code:null};
+})();
+function accountCard(){
+  if(!Cloud.enabled()||PREVIEW)return null;
+  const box=el('div',{class:'card stack',id:'acct'});
+  let mode=Cloud.user()?'in':'login',busy=false;const mp=el('p',{class:'hint',role:'status'});const setMsg=t=>{mp.textContent=t||''};
+  const inp=(id,label,type,val,extra)=>el('div',{class:'field',style:'flex:1 1 140px'},el('label',{for:id},label),el('input',Object.assign({id,type:type||'text',value:val||'',autocomplete:'off'},extra||{})));
+  const run=async fn=>{if(busy)return;busy=true;setMsg('กำลังทำรายการ…');box.querySelectorAll('button').forEach(b=>b.disabled=true);let m='';try{m=await fn()||''}catch(e){m=Cloud.why(e)}busy=false;if(mode!==shown)draw();else box.querySelectorAll('button').forEach(b=>b.disabled=false);setMsg(m)};
+  const val=id=>{const n=box.querySelector('#'+id);return n?n.value:''};
+  let shown='';
+  function draw(){
+    shown=mode;const kids=[hd('user','My Account⁣บัญชีของฉัน')];
+    if(mode==='in'){
+      kids.push(el('p',{},'เข้าสู่ระบบแล้ว รหัสนักเรียน: ',el('b',{},Cloud.user())),
+        el('p',{class:'hint'},'กดส่งผลให้ครูได้ในหน้า "Send to teacher" ผลจะเข้าฐานข้อมูลของครูโดยตรง ไม่ต้องคัดลอกรหัส'),
+        el('div',{class:'row'},el('button',{class:'btn ghost',type:'button',onclick:()=>{Cloud.signOut();mode='login';draw();setMsg('ออกจากระบบแล้ว')}},'Log out⁣ออกจากระบบ')));
+    }else if(mode==='login'){
+      kids.push(el('div',{class:'row',style:'align-items:flex-start'},inp('acode','Student code⁣รหัสนักเรียน','text',S.code||'',{inputmode:'text',maxlength:'12'}),inp('apw','Password⁣รหัสผ่าน','password','',{autocomplete:'current-password'})),
+        el('div',{class:'row'},
+          el('button',{class:'btn',type:'button',onclick:()=>run(async()=>{const c=val('acode');await Cloud.signIn(c,val('apw'));S.code=Cloud.norm(c)===cleanCode().toLowerCase()?S.code:cleanCodeOf(c);save();mode='in';return 'เข้าสู่ระบบแล้ว'})},'Log in⁣เข้าสู่ระบบ'),
+          el('button',{class:'btn ghost',type:'button',onclick:()=>{mode='reg';draw()}},'Register⁣สมัครใช้งาน')));
+    }else{
+      kids.push(el('div',{class:'row',style:'align-items:flex-start'},inp('acode','Student code⁣รหัสนักเรียน','text',S.code||'',{maxlength:'12'}),
+          el('div',{class:'field',style:'flex:1 1 140px'},el('label',{for:'aroom'},'Room⁣ห้อง'),el('select',{id:'aroom'},[['','Choose room'],...ROOMS.map(r=>[r,roomTh(r)])].map(([v,l])=>el('option',{value:v,selected:v===(S.room||'')},l))))),
+        el('div',{class:'row',style:'align-items:flex-start'},inp('apw','Password (6+ characters)⁣ตั้งรหัสผ่าน อย่างน้อย 6 ตัว','password','',{autocomplete:'new-password'}),inp('apw2','Confirm password⁣ยืนยันรหัสผ่าน','password','',{autocomplete:'new-password'})),
+        el('label',{class:'hint',style:'display:flex;gap:.5rem;align-items:flex-start'},el('input',{id:'acons',type:'checkbox'}),el('span',{},'ผู้ปกครองลงนามยินยอมให้เก็บข้อมูลการเรียนของฉันแล้ว (ฉบับที่ครูแจก) ข้อมูลที่เก็บ: รหัสนักเรียน ห้อง ภาคเรียน คะแนน ถูก/ผิดรายข้อ ความคิดเห็น 4 ข้อ และวันที่ ไม่เก็บชื่อจริงหรือเสียง')),
+        el('p',{class:'hint'},'จำรหัสผ่านไว้ ถ้าลืมให้แจ้งครูเพื่อรีเซ็ต'),
+        el('div',{class:'row'},
+          el('button',{class:'btn',type:'button',onclick:()=>run(async()=>{
+            const c=val('acode'),pw=val('apw'),rm=val('aroom');
+            if(!Cloud.norm(c))return 'กรอกรหัสนักเรียนก่อน';
+            if(!rm)return 'เลือกห้องก่อน';
+            if(!box.querySelector('#acons').checked)return 'ต้องติ๊กรับทราบเรื่องความยินยอมก่อนสมัคร';
+            if(pw!==val('apw2'))return 'รหัสผ่านสองช่องไม่ตรงกัน';
+            await Cloud.signUp(c,pw,rm);S.code=cleanCodeOf(c);S.room=rm;save();mode='in';return 'สมัครและเข้าสู่ระบบแล้ว'})},'Create account⁣สมัคร'),
+          el('button',{class:'btn ghost',type:'button',onclick:()=>{mode='login';draw()}},'Back⁣กลับ')));
+    }
+    kids.push(mp);setMsg('');
+    box.replaceChildren(...kids);
+  }
+  draw();return box;
+}
+function cleanCodeOf(c){return String(c||'').replace(/[^A-Za-z0-9_-]/g,'').slice(0,12)}
 function copyText(txt,ta){
   const fb=()=>{ta.focus();ta.select();toast('เลือกข้อความแล้ว กดคัดลอกเองได้เลย')};
   try{navigator.clipboard.writeText(txt).then(()=>toast('คัดลอกแล้ว นำไปวางส่งครูได้เลย'),fb)}catch(e){fb()}
@@ -1429,7 +1537,14 @@ function reportView(){
       hd('send','รหัสผลของ '+cleanCode()+' · '+roomTh(S.room)+' · ภาค '+S.term),
       el('p',{},'กดคัดลอก แล้วนำไปวางส่งครูทั้งบรรทัด อย่าแก้ไข ฝึกเพิ่มแล้วส่งใหม่ได้ทุกเมื่อ ครูจะใช้ข้อมูลล่าสุดของคุณ'),
       ta,
-      el('div',{class:'row'},el('button',{class:'btn',type:'button',onclick:()=>copyText(txt,ta)},'คัดลอกรหัส')),
+      el('div',{class:'row'},...(Cloud.enabled()&&!PREVIEW?[el('button',{class:'btn',type:'button',onclick:async ev=>{
+        const b=ev.currentTarget,st=document.getElementById('cloudmsg');
+        if(!Cloud.user()){st.textContent='ต้องเข้าสู่ระบบก่อน กลับหน้าหลักแล้วดูการ์ด "บัญชีของฉัน"';return}
+        b.disabled=true;st.textContent='กำลังส่ง…';
+        try{await Cloud.submit(txt,S.room,S.term);st.textContent='ส่งให้ครูแล้ว ('+new Date().toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'})+') ฝึกเพิ่มแล้วส่งใหม่ได้ทุกเมื่อ'}
+        catch(e){st.textContent=Cloud.why(e)+' · ยังคัดลอกรหัสส่งครูแทนได้'}
+        b.disabled=false}},'Send to teacher now\u2063ส่งให้ครูเลย')]:[]),el('button',{class:Cloud.enabled()&&!PREVIEW?'btn ghost':'btn',type:'button',onclick:()=>copyText(txt,ta)},'คัดลอกรหัส')),
+      Cloud.enabled()&&!PREVIEW?el('p',{class:'hint',id:'cloudmsg',role:'status'},Cloud.user()?'เข้าสู่ระบบแล้ว: '+Cloud.user():'ยังไม่ได้เข้าสู่ระบบ'):null,
       el('details',{class:'det'},el('summary',{},'ดูว่าครูจะได้รับข้อมูลอะไรบ้าง'),
         el('p',{class:'hint'},'ข้อความนี้มีเฉพาะ: รหัสนักเรียน ห้อง ภาคเรียน คะแนนแต่ละขั้น จำนวนข้อในสมุดคำผิด และจำนวนวันที่ฝึก ไม่มีชื่อจริง ไม่มีเสียง และไม่มีข้อความที่คุณเขียน สรุปแบบอ่านง่ายด้านล่างเป็นข้อมูลชุดเดียวกัน'),
         el('pre',{class:'sumpre'},summaryText()))));

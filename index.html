@@ -305,6 +305,8 @@ textarea{min-height:130px;resize:vertical;line-height:1.7}
 .splash .splbl{display:block;line-height:1.2}
 .splash .spfill{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#FFC93C,#FFE08A)}
 body.splashing #shero,body.splashing #sfoot{display:none}
+.acframe{border:3px solid #D62F2F;border-radius:24px;padding:10px;display:grid;gap:12px;background:rgba(214,47,47,.04)}
+.acframe>.card,.acframe>.pbanner{margin:0}
 .acrow{display:flex;gap:.75rem;align-items:center;justify-content:space-between;flex-wrap:wrap}
 .sfoot2 .fart{position:relative;width:100%;aspect-ratio:800/670;overflow:hidden;line-height:0}
 .sfoot2 .fart img{display:block;width:100%;height:auto;max-width:none;-webkit-mask-image:linear-gradient(#000 94%,transparent);mask-image:linear-gradient(#000 94%,transparent)}
@@ -558,7 +560,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--pen);box-shadow:0 0 0
 </div></footer>
 <div id="toast" hidden></div>
 
-<script src="cloud-config.js?v=20261020ai"></script>
+<script src="cloud-config.js?v=20261020aj"></script>
 <script>
 /* ============ CONTENT: Unit 1 · My School Life (ม.2, A1-A2) ============ */
 // Q(question, why, correct, ...wrongs)  — the correct answer is written first and shuffled at run time
@@ -958,7 +960,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261020ai';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261020aj';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -1566,8 +1568,7 @@ function accountView(){
   const from=view.from==='home'?'home':'splash';
   app.replaceChildren(el('div',{class:'stack'},
     el('button',{class:'back',type:'button',onclick:()=>go({n:from})},'← Back\u2063กลับ'),
-    pageBanner('user','#2B46D6','My Account\u2063บัญชีของฉัน','สมัครหรือเข้าสู่ระบบ เพื่อให้ผลสอบเข้าฐานข้อมูลของครูโดยตรง'),
-    card))
+    el('div',{class:'acframe'},pageBanner('user','#2B46D6','My Account\u2063บัญชีของฉัน','สมัครหรือเข้าสู่ระบบ เพื่อให้ผลสอบเข้าฐานข้อมูลของครูโดยตรง'),card)))
 }
 function cleanCodeOf(c){return String(c||'').replace(/[^A-Za-z0-9_-]/g,'').slice(0,12)}
 function copyText(txt,ta){

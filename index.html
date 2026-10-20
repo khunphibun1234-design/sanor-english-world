@@ -113,7 +113,7 @@ label .th{opacity:.75}
 .btn[disabled]{opacity:.45;cursor:default}
 .field{display:flex;flex-direction:column;gap:4px}
 .field label{font-weight:600}
-input[type=text],textarea{font:inherit;color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:8px;padding:10px 12px;width:100%}
+input[type=text],input[type=password],textarea{font:inherit;color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:8px;padding:10px 12px;width:100%}
 textarea{min-height:130px;resize:vertical;line-height:1.7}
 .hint{font-size:.88rem;color:var(--soft)}
 .hint[hidden]{display:none}
@@ -297,6 +297,15 @@ textarea{min-height:130px;resize:vertical;line-height:1.7}
 .gthanks{text-align:center;padding:10px 0}.gthanks .gbig{width:56px;height:56px;margin:0 auto 8px;border-radius:50%;background:#c8102e;color:#fff;display:grid;place-items:center;font-size:1.8rem}
 
 .sfoot2{position:relative;isolation:isolate;overflow:hidden;max-width:720px;margin:8px auto 24px;width:calc(100% - 32px);border-radius:18px;color:#fff;background:linear-gradient(180deg,#1b3fc4 0%,#0f2a9d 30%,#16208a 70%,#3a22a0 100%);box-shadow:0 3px 0 rgba(8,16,70,.3),0 12px 26px rgba(20,60,160,.25);border:1px solid rgba(160,190,255,.55)}
+.splash{min-height:calc(100svh - 24px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:.6rem;padding:2rem 1.25rem;margin:12px 0;border-radius:22px;color:#fff;background:linear-gradient(180deg,#1b3fc4 0%,#0f2a9d 35%,#2a2299 75%,#4a2aa8 100%);border:1px solid rgba(160,190,255,.55);box-shadow:0 3px 0 rgba(8,16,70,.3),0 12px 26px rgba(20,60,160,.25)}
+.splash .splogo{width:min(46vw,170px);height:auto;border-radius:24px;background:#fff;padding:8px;box-shadow:0 6px 18px rgba(0,0,40,.35)}
+.splash h1{margin:.6rem 0 0;font-size:clamp(1.9rem,8vw,2.8rem);line-height:1.1;color:#fff}
+.splash .sptag{margin:0;font-size:1.15rem;font-weight:700;color:#FFE08A}.splash .spth{margin:0;font-size:1.05rem;color:#DDE6FF}
+.splash .spsub{margin:.4rem 0 0;color:#C9D6FF}
+.splash .spgo{margin-top:1.1rem;min-width:min(78vw,260px);min-height:52px;font-size:1.15rem;background:#FFC93C;color:#2B2100;box-shadow:0 3px 0 #B8860B}
+.splash .spnote{margin:1.2rem 0 0;font-size:.8rem;color:#C9D6FF;max-width:30em}
+body.splashing #shero,body.splashing #sfoot{display:none}
+.acrow{display:flex;gap:.75rem;align-items:center;justify-content:space-between;flex-wrap:wrap}
 .sfoot2 .fart{position:relative;width:100%;aspect-ratio:800/670;overflow:hidden;line-height:0}
 .sfoot2 .fart img{display:block;width:100%;height:auto;max-width:none;-webkit-mask-image:linear-gradient(#000 94%,transparent);mask-image:linear-gradient(#000 94%,transparent)}
 .sfoot2 .fpw{display:none!important}
@@ -414,7 +423,7 @@ body{background-color:var(--paper);background-image:radial-gradient(ellipse 90% 
 .card{position:relative;border-radius:16px;border:1.5px solid var(--edge);background:var(--card);box-shadow:0 2px 0 var(--glow),0 12px 26px var(--glow)}
 .card::before{content:"";position:absolute;left:14px;right:14px;top:0;height:4px;border-radius:0 0 6px 6px;background:linear-gradient(90deg,#1B3FC4,#6A3FD0 60%,var(--gold))}
 .hdi{background:linear-gradient(160deg,#3aa0ff,#1c63e0);box-shadow:0 2px 6px rgba(20,50,160,.35),inset 0 1px 0 rgba(255,255,255,.4)}
-input[type=text],textarea,select{border-radius:10px}
+input[type=text],input[type=password],textarea,select{border-radius:10px}
 input:focus,select:focus,textarea:focus{border-color:var(--pen);box-shadow:0 0 0 3px var(--glow);outline:none}
 /* buttons */
 .btn{background:linear-gradient(135deg,var(--btn1),var(--btn2));border-radius:12px;box-shadow:0 3px 0 rgba(20,30,120,.35),inset 0 1px 0 rgba(255,255,255,.25)}
@@ -1107,12 +1116,14 @@ function reorderQs(t){
 }
 
 /* ============ VIEWS ============ */
-let view={n:'home'};
+const SPLASH_ON=(()=>{try{return !/nosplash|preview/i.test(location.hash||'')&&!window.SANOR_NOSPLASH}catch(e){return true}})();
+let view={n:SPLASH_ON?'splash':'home'};
 const app=$('#app');
 function go(v){view=v;window.scrollTo(0,0);render()}
 function render(){
   if(view.n==='topic'){const t0=T.find(x=>x.id===view.tid);if(t0&&gated(unitOf(t0)))view=(!PREVIEW&&!bigRec())?{n:'big',gate:true}:{n:'test',u:unitOf(t0),kind:'pre',gate:true}}
-  view.n==='home'?home():view.n==='topic'?topicView(view.tid,view.step||'words'):view.n==='report'?reportView():view.n==='test'?testView(view.u,view.kind,view.gate):view.n==='final'?finalView():view.n==='big'?bigView(view.gate):view.n==='game'?gameView(view.u,view.mode):view.n==='story'?storyView(view.id):notebook()}
+  document.body.classList.toggle('splashing',view.n==='splash');
+  view.n==='splash'?splashView():view.n==='account'?accountView():view.n==='home'?home():view.n==='topic'?topicView(view.tid,view.step||'words'):view.n==='report'?reportView():view.n==='test'?testView(view.u,view.kind,view.gate):view.n==='final'?finalView():view.n==='big'?bigView(view.gate):view.n==='game'?gameView(view.u,view.mode):view.n==='story'?storyView(view.id):notebook()}
 
 function ringBg(n){
   const seg=360/STEPS.length,gap=7,a=[];
@@ -1204,7 +1215,9 @@ function home(){
   const U=UNITS.find(u=>u.n===curUnit),UT=topicsOf(curUnit);
   const done=UT.filter(t=>topicDone(t.id)).length;
   const unitTabs=el('div',{class:'tabs',role:'tablist','aria-label':'Choose a unit'},UNITS.map(u=>el('button',{class:'tab utab',role:'tab',type:'button',style:'--sc:'+UBAN[u.n][0],'aria-selected':String(u.n===curUnit),onclick:()=>{curUnit=u.n;home()}},'Unit '+u.n)));
-  const code=el('input',{type:'text',id:'code',maxlength:'12',autocomplete:'off',inputmode:'numeric',value:S.code,placeholder:'e.g. 12345',readOnly:isSpecial(S.room)});
+  const acctCode=(Cloud.enabled()&&!PREVIEW)?Cloud.user():null;
+  if(acctCode&&!isSpecial(S.room)&&String(S.code||'').toLowerCase()!==acctCode){S.code=cleanCodeOf(acctCode);save()}
+  const code=el('input',{type:'text',id:'code',maxlength:'12',autocomplete:'off',inputmode:'numeric',value:S.code,placeholder:'e.g. 12345',readOnly:isSpecial(S.room)||!!acctCode});
   code.addEventListener('input',()=>{S.code=code.value.trim();save()});
   const spTxt=r=>isSpecial(r)?'ห้องพิเศษ: '+SPECIAL[r][1]+' · ระบบใช้รหัส '+SPECIAL_CODE+' ให้อัตโนมัติ ข้อมูลจากห้องนี้ไม่ใช่ของนักเรียนจริง':'';
   const spHint=el('span',{class:'hint',id:'sphint',hidden:!isSpecial(S.room)},spTxt(S.room));
@@ -1214,7 +1227,7 @@ function home(){
   room.addEventListener('change',()=>{
     S.room=room.value;
     if(isSpecial(S.room)){S.code=SPECIAL_CODE;code.value=S.code;code.readOnly=true;spHint.textContent=spTxt(S.room);spHint.hidden=false}
-    else{if(S.code===SPECIAL_CODE){S.code='';code.value=''}code.readOnly=false;spHint.hidden=true}
+    else{if(S.code===SPECIAL_CODE){S.code=acctCode?cleanCodeOf(acctCode):'';code.value=S.code}code.readOnly=!!acctCode;spHint.hidden=true}
     save()});
   const term=el('select',{id:'term'},[['','Choose term'],...TERMS.map(t=>[t,'Term '+t])].map(([v,l])=>el('option',{value:v,selected:v===(S.term||'')},l)));
   term.addEventListener('change',()=>{S.term=term.value;save()});
@@ -1237,8 +1250,9 @@ function home(){
         el('div',{class:'field',style:'flex:1 1 150px'},el('label',{for:'term'},'Term / school year\u2063ภาคเรียน / ปีการศึกษา'),term),
         el('div',{class:'field',style:'flex:1 1 100%'},el('label',{for:'room'},'Room\u2063ห้อง'),room)),
         spHint,
-        el('span',{class:'hint'},(Cloud.enabled()&&!PREVIEW)?'ใช้รหัสนักเรียนเท่านั้น ไม่ต้องใส่ชื่อจริง ความก้าวหน้าการเรียนเก็บในเครื่องนี้ ครูจะเห็นผลสอบเมื่อคุณสมัครบัญชีด้านล่างและกด "ส่งให้ครูเลย" ผลที่ส่งแล้วเก็บในฐานข้อมูลของครู (ไม่เก็บชื่อจริง)':'ใช้รหัสนักเรียนเท่านั้น ไม่ต้องใส่ชื่อจริง ข้อมูลเก็บไว้ในเครื่องนี้ ครูจะเห็นผลเมื่อคุณกด "ส่งผลให้ครู" และส่งข้อความให้ครู')),
-      accountCard(),
+        acctCode?el('span',{class:'hint'},'รหัสนักเรียนมาจากบัญชีของคุณ แก้ไม่ได้ ถ้าต้องการเปลี่ยนให้ออกจากระบบที่หน้า My Account'):null,
+        el('span',{class:'hint'},(Cloud.enabled()&&!PREVIEW)?'ใช้รหัสนักเรียนเท่านั้น ไม่ต้องใส่ชื่อจริง ความก้าวหน้าการเรียนเก็บในเครื่องนี้ ครูจะเห็นผลสอบเมื่อคุณเข้าสู่ระบบที่หน้า My Account และกด "ส่งให้ครูเลย" ผลที่ส่งแล้วเก็บในฐานข้อมูลของครู (ไม่เก็บชื่อจริง)':'ใช้รหัสนักเรียนเท่านั้น ไม่ต้องใส่ชื่อจริง ข้อมูลเก็บไว้ในเครื่องนี้ ครูจะเห็นผลเมื่อคุณกด "ส่งผลให้ครู" และส่งข้อความให้ครู')),
+      accountRow(),
       seriesStrip(),
       ...(CUR_SERIES==='town'?[townPane()]:CUR_SERIES==='stories'?[storiesPane()]:[
       bigCard(),
@@ -1480,7 +1494,8 @@ const Cloud=(()=>{
   }
   return {enabled,signUp,signIn,signOut,submit,why,norm,user:()=>ses?ses.code:null};
 })();
-function accountCard(){
+function accountCard(opts){
+  opts=opts||{};
   if(!Cloud.enabled()||PREVIEW)return null;
   const box=el('div',{class:'card stack',id:'acct'});
   let mode=Cloud.user()?'in':'login',busy=false;const mp=el('p',{class:'hint',role:'status'});const setMsg=t=>{mp.textContent=t||''};
@@ -1489,16 +1504,18 @@ function accountCard(){
   const val=id=>{const n=box.querySelector('#'+id);return n?n.value:''};
   let shown='';
   function draw(){
-    shown=mode;const kids=[hd('user','My Account⁣บัญชีของฉัน')];
+    shown=mode;const kids=opts.page?[]:[hd('user','My Account⁣บัญชีของฉัน')];
     if(mode==='in'){
       kids.push(el('p',{},'เข้าสู่ระบบแล้ว รหัสนักเรียน: ',el('b',{},Cloud.user())),
         el('p',{class:'hint'},'กดส่งผลให้ครูได้ในหน้า "Send to teacher" ผลจะเข้าฐานข้อมูลของครูโดยตรง ไม่ต้องคัดลอกรหัส'),
-        el('div',{class:'row'},el('button',{class:'btn ghost',type:'button',onclick:()=>{Cloud.signOut();mode='login';draw();setMsg('ออกจากระบบแล้ว')}},'Log out⁣ออกจากระบบ')));
+        el('div',{class:'row'},opts.page?el('button',{class:'btn',type:'button',onclick:()=>go({n:'home'})},'Start learning\u2063เริ่มเรียน'):null,el('button',{class:'btn ghost',type:'button',onclick:()=>{Cloud.signOut();mode='login';draw();setMsg('ออกจากระบบแล้ว')}},'Log out⁣ออกจากระบบ')));
     }else if(mode==='login'){
       kids.push(el('div',{class:'row',style:'align-items:flex-start'},inp('acode','Student code⁣รหัสนักเรียน','text',S.code||'',{inputmode:'text',maxlength:'12'}),inp('apw','Password⁣รหัสผ่าน','password','',{autocomplete:'current-password'})),
         el('div',{class:'row'},
           el('button',{class:'btn',type:'button',onclick:()=>run(async()=>{const c=val('acode');await Cloud.signIn(c,val('apw'));S.code=Cloud.norm(c)===cleanCode().toLowerCase()?S.code:cleanCodeOf(c);save();mode='in';return 'เข้าสู่ระบบแล้ว'})},'Log in⁣เข้าสู่ระบบ'),
-          el('button',{class:'btn ghost',type:'button',onclick:()=>{mode='reg';draw()}},'Register⁣สมัครใช้งาน')));
+          el('button',{class:'btn ghost',type:'button',onclick:()=>{mode='reg';draw()}},'Register⁣สมัครใช้งาน')),
+        opts.page?el('div',{class:'row'},el('button',{class:'btn ghost',type:'button',onclick:()=>go({n:'home'})},'Use without an account\u2063ใช้โดยไม่มีบัญชี')):null,
+        opts.page?el('p',{class:'hint'},'ถ้าไม่มีบัญชี ยังเรียนได้ทุกอย่าง แต่ผลจะไม่เข้าฐานข้อมูลของครูโดยตรง (ยังคัดลอกรหัสผลส่งครูได้)'):null);
     }else{
       kids.push(el('div',{class:'row',style:'align-items:flex-start'},inp('acode','Student code⁣รหัสนักเรียน','text',S.code||'',{maxlength:'12'}),
           el('div',{class:'field',style:'flex:1 1 140px'},el('label',{for:'aroom'},'Room⁣ห้อง'),el('select',{id:'aroom'},[['','Choose room'],...ROOMS.map(r=>[r,roomTh(r)])].map(([v,l])=>el('option',{value:v,selected:v===(S.room||'')},l))))),
@@ -1519,6 +1536,33 @@ function accountCard(){
     box.replaceChildren(...kids);
   }
   draw();return box;
+}
+function accountRow(){
+  if(!Cloud.enabled()||PREVIEW)return null;
+  const u=Cloud.user();
+  return el('div',{class:'card acrow'},
+    el('span',{},u?'Account: ':'Not signed in\u2063ยังไม่ได้เข้าสู่ระบบ',u?el('b',{},u):null),
+    el('button',{class:'btn ghost',type:'button',onclick:()=>go({n:'account',from:'home'})},u?'My Account\u2063บัญชีของฉัน':'Sign in\u2063เข้าสู่ระบบ'))
+}
+function splashView(){
+  const next=()=>go((Cloud.enabled()&&!PREVIEW&&!Cloud.user())?{n:'account',from:'splash'}:{n:'home'});
+  app.replaceChildren(el('section',{class:'splash','aria-label':'Welcome'},
+    el('img',{class:'splogo',src:'sanor-icon-512.png',alt:'Sanor English World logo',width:'170',height:'170'}),
+    el('h1',{},'Sanor English World'),
+    el('p',{class:'sptag'},'Practice a little every day.'),
+    el('p',{class:'spth'},'ฝึกวันละนิด เก่งขึ้นทุกวัน'),
+    el('p',{class:'spsub'},'Sanor Buddy · English for Grade 8 (M.2)'),
+    el('button',{class:'btn spgo',type:'button',id:'spgo',onclick:next},'Start\u2063เริ่มใช้งาน'),
+    el('p',{class:'spnote'},'The voices in this app are computer-generated (AI).\u2063เสียงในแอปเป็นเสียงสังเคราะห์ด้วย AI')));
+}
+function accountView(){
+  const card=accountCard({page:true});
+  if(!card){go({n:'home'});return}
+  const from=view.from==='home'?'home':'splash';
+  app.replaceChildren(el('div',{class:'stack'},
+    el('button',{class:'back',type:'button',onclick:()=>go({n:from})},'← Back\u2063กลับ'),
+    pageBanner('user','#2B46D6','My Account\u2063บัญชีของฉัน','สมัครหรือเข้าสู่ระบบ เพื่อให้ผลสอบเข้าฐานข้อมูลของครูโดยตรง'),
+    card))
 }
 function cleanCodeOf(c){return String(c||'').replace(/[^A-Za-z0-9_-]/g,'').slice(0,12)}
 function copyText(txt,ta){
@@ -1546,6 +1590,7 @@ function reportView(){
         catch(e){st.textContent=Cloud.why(e)+' · ยังคัดลอกรหัสส่งครูแทนได้'}
         b.disabled=false}},'Send to teacher now\u2063ส่งให้ครูเลย')]:[]),el('button',{class:Cloud.enabled()&&!PREVIEW?'btn ghost':'btn',type:'button',onclick:()=>copyText(txt,ta)},'คัดลอกรหัส')),
       Cloud.enabled()&&!PREVIEW?el('p',{class:'hint',id:'cloudmsg',role:'status'},Cloud.user()?'เข้าสู่ระบบแล้ว: '+Cloud.user():'ยังไม่ได้เข้าสู่ระบบ'):null,
+      Cloud.enabled()&&!PREVIEW&&!Cloud.user()?el('div',{class:'row'},el('button',{class:'btn ghost',type:'button',onclick:()=>go({n:'account',from:'home'})},'My Account\u2063สมัคร / เข้าสู่ระบบ')):null,
       el('details',{class:'det'},el('summary',{},'ดูว่าครูจะได้รับข้อมูลอะไรบ้าง'),
         el('p',{class:'hint'},'ข้อความนี้มีเฉพาะ: รหัสนักเรียน ห้อง ภาคเรียน คะแนนแต่ละขั้น จำนวนข้อในสมุดคำผิด และจำนวนวันที่ฝึก ไม่มีชื่อจริง ไม่มีเสียง และไม่มีข้อความที่คุณเขียน สรุปแบบอ่านง่ายด้านล่างเป็นข้อมูลชุดเดียวกัน'),
         el('pre',{class:'sumpre'},summaryText()))));

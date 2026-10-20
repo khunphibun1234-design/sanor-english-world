@@ -307,6 +307,7 @@ textarea{min-height:130px;resize:vertical;line-height:1.7}
 body.splashing #shero,body.splashing #sfoot{display:none}
 .acframe{border:3px solid #D62F2F;border-radius:24px;padding:10px;display:grid;gap:12px;background:rgba(214,47,47,.04)}
 .acframe>.card,.acframe>.pbanner{margin:0}
+.rfopts{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}.rfopt{min-height:44px;padding:8px 14px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-weight:600}.rfopt.on{border-color:var(--pen);background:var(--pen-bg);box-shadow:0 0 0 2px var(--pen) inset}
 .acrow{display:flex;gap:.75rem;align-items:center;justify-content:space-between;flex-wrap:wrap}
 .sfoot2 .fart{position:relative;width:100%;aspect-ratio:800/670;overflow:hidden;line-height:0}
 .sfoot2 .fart img{display:block;width:100%;height:auto;max-width:none;-webkit-mask-image:linear-gradient(#000 94%,transparent);mask-image:linear-gradient(#000 94%,transparent)}
@@ -560,7 +561,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--pen);box-shadow:0 0 0
 </div></footer>
 <div id="toast" hidden></div>
 
-<script src="cloud-config.js?v=20261020aj"></script>
+<script src="cloud-config.js?v=20261021a"></script>
 <script>
 /* ============ CONTENT: Unit 1 · My School Life (ม.2, A1-A2) ============ */
 // Q(question, why, correct, ...wrongs)  — the correct answer is written first and shuffled at run time
@@ -893,7 +894,7 @@ const SPECIAL_CODE='888888';
 const SPECIAL={'JUDGE':['Review committee room','ห้องกรรมการตรวจผลงาน'],'TEST-STU':['Student test room','ห้องนักเรียนทดสอบระบบใช้งาน'],'TEST-TCH':['Teacher test room','ห้องครูทดสอบระบบใช้งาน']};
 const isSpecial=r=>Object.prototype.hasOwnProperty.call(SPECIAL,r);
 const roomTh=r=>isSpecial(r)?SPECIAL[r][1]:'ม.'+r;
-let S={code:'',room:'',term:'',prog:{},mistakes:[],days:[],last:'',lastTid:0,goal:3,tests:{}};
+let S={code:'',room:'',term:'',prog:{},mistakes:[],days:[],last:'',lastTid:0,goal:3,tests:{},reflect:{}};
 try{const r=localStorage.getItem(KEY);if(r)S=Object.assign(S,JSON.parse(r))}catch(e){}
 if(!S.tests||typeof S.tests!=='object'||Array.isArray(S.tests))S.tests={};
 if(!ROOMS.includes(S.room)&&!isSpecial(S.room))S.room='';
@@ -960,7 +961,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261020aj';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261021a';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -1089,6 +1090,7 @@ function runQs(box,qs,o){
       el('p',{},'Correct: '+right+' of '+qs.length+' questions.'+(pct>=80?' Great job!':pct>=60?' Good. Review the questions you missed.':' Practice one more round. You can do it!')),
       wrong.length&&!o.notebook?el('p',{class:'hint'},'Saved '+wrong.length+' missed questions in "My Mistake Notebook".'):null,
       el('div',{class:'row'},o.retry?el('button',{class:'btn ghost',type:'button',onclick:o.retry},'Try again\u2063ทำอีกครั้ง'):null,o.next?el('button',{class:'btn',type:'button',onclick:o.next},o.nextLabel||'Next step\u2063ไปขั้นต่อไป'):null)));
+    if(o.reflect){try{box.append(o.reflect())}catch(e){}}
   };
   show();
 }
@@ -1476,6 +1478,10 @@ const Cloud=(()=>{
     const s=fromAuth(j,code);if(!s)throw fail('login');keep(s);return s;
   }
   function signOut(){keep(null)}
+  async function reflect(row){
+    const t=await token();if(!t)throw fail('nosession');
+    await call('/rest/v1/reflections',{method:'POST',headers:{'Prefer':'return=minimal'},body:JSON.stringify(Object.assign({student_code:ses.code},row))},t);
+  }
   async function submit(line,room,term){
     const t=await token();if(!t)throw fail('nosession');
     const code=ses.code;
@@ -1494,7 +1500,7 @@ const Cloud=(()=>{
     if(c==='over_request_rate_limit'||c==='429')return 'ลองบ่อยเกินไป รอสักครู่แล้วลองใหม่';
     return 'ทำรายการไม่สำเร็จ ลองใหม่ หรือแจ้งครู (รหัส '+(c||'?')+')';
   }
-  return {enabled,signUp,signIn,signOut,submit,why,norm,user:()=>ses?ses.code:null};
+  return {enabled,signUp,signIn,signOut,submit,reflect,why,norm,user:()=>ses?ses.code:null};
 })();
 function accountCard(opts){
   opts=opts||{};
@@ -1538,6 +1544,41 @@ function accountCard(opts){
     box.replaceChildren(...kids);
   }
   draw();return box;
+}
+/* ===== Self-reflection card (shown after the Quiz step; 3 multiple-choice questions, no typing) ===== */
+const RF_FEEL=[['u','I understand it\u2063เข้าใจแล้ว'],['a','Almost\u2063เกือบเข้าใจ'],['n','I need more practice\u2063ต้องฝึกอีก']];
+const RF_WHEN=[['t','Today\u2063วันนี้'],['m','Tomorrow\u2063พรุ่งนี้'],['w','This weekend\u2063สุดสัปดาห์']];
+const biSet=(n,t)=>{const x=el('span',{},t);n.replaceChildren(...x.childNodes)};
+function reflectCard(t){
+  if(!S.reflect||typeof S.reflect!=='object')S.reflect={};
+  const cur=Object.assign({},S.reflect[t.id]||{});
+  const box=el('div',{class:'card stack',id:'reflect'});const msg=el('p',{class:'hint',role:'status','aria-live':'polite'});
+  const cloudOn=Cloud.enabled()&&!PREVIEW;
+  const pick=(key,label,opts)=>{
+    const row=el('div',{class:'rfopts',role:'group','aria-label':label});
+    opts.forEach(([v,l])=>{const b=el('button',{type:'button',class:'rfopt'+(cur[key]===v?' on':''),'aria-pressed':String(cur[key]===v),onclick:()=>{cur[key]=v;row.querySelectorAll('button').forEach(x=>{const on=x===b;x.classList.toggle('on',on);x.setAttribute('aria-pressed',String(on))});sv.disabled=!(cur.feel&&cur.focus&&cur.plan)}},l);row.append(b)});
+    return row};
+  const sv=el('button',{class:'btn',type:'button',disabled:!(cur.feel&&cur.focus&&cur.plan),onclick:async()=>{
+    sv.disabled=true;const rec={feel:cur.feel,focus:cur.focus,plan:cur.plan,at:todayStr()};
+    S.reflect[t.id]=rec;touch();save();
+    let m='Saved on this phone.\u2063บันทึกในเครื่องแล้ว';
+    if(cloudOn&&Cloud.user()){
+      try{await Cloud.reflect({room:S.room||'',term:S.term||'',topic_id:t.id,feel:rec.feel,focus:rec.focus,plan:rec.plan});m='Saved and sent to your teacher.\u2063บันทึกและส่งให้ครูแล้ว'}
+      catch(e){m='Saved on this phone, but not sent to your teacher. Press Save again later.\u2063บันทึกในเครื่องแล้ว แต่ยังส่งให้ครูไม่สำเร็จ ลองกดบันทึกอีกครั้งภายหลัง'}
+    }else if(cloudOn){m='Saved on this phone. Log in at My Account to send it to your teacher.\u2063บันทึกในเครื่องแล้ว เข้าสู่ระบบที่ My Account เพื่อส่งให้ครู'}
+    biSet(msg,m);sv.disabled=false;biSet(sv,'Save again\u2063บันทึกอีกครั้ง');
+    go2.hidden=false;
+  }},'Save\u2063บันทึก');
+  const go2=el('button',{class:'btn ghost',type:'button',hidden:true,onclick:()=>{const f=cur.focus;if(f&&STEPS.some(x=>x[0]===f)){view={n:'topic',tid:t.id,step:f};render();window.scrollTo(0,0)}}},'Practice it now\u2063ไปฝึกส่วนนี้เลย');
+  const q=(en,th,node)=>el('div',{class:'field'},el('label',{},en,el('br'),el('small',{},th)),node);
+  box.replaceChildren(hd('review','Think about it\u2063คิดทบทวน'),
+    el('p',{class:'hint'},'Three quick questions. No score. Choose one answer for each.\u2063ตอบ 3 ข้อสั้น ๆ ไม่มีคะแนน เลือกคำตอบข้อละ 1 อย่าง'),
+    q('1. How do you feel about this topic?','1. รู้สึกอย่างไรกับหัวข้อนี้',pick('feel','How do you feel about this topic?',RF_FEEL)),
+    q('2. Which part do you want to practice more?','2. อยากฝึกส่วนไหนเพิ่ม',pick('focus','Which part do you want to practice more?',STEPS.map(([k,l])=>[k,l]))),
+    q('3. When will you practice again?','3. จะฝึกอีกเมื่อไหร่',pick('plan','When will you practice again?',RF_WHEN)),
+    el('div',{class:'row'},sv,go2),msg,
+    el('p',{class:'hint'},cloudOn?'Your answers stay on this phone. If you are logged in, they are also sent to your teacher with your student code.\u2063คำตอบเก็บในเครื่อง ถ้าเข้าสู่ระบบอยู่ จะส่งให้ครูพร้อมรหัสนักเรียนด้วย':'Your answers stay on this phone only.\u2063คำตอบเก็บในเครื่องนี้เท่านั้น'));
+  return box;
 }
 function accountRow(){
   if(!Cloud.enabled()||PREVIEW)return null;
@@ -2278,7 +2319,7 @@ function writeStep(t,box,upd,next){
       el('div',{class:'field'},el('label',{for:'wr'},'My writing'),area),el('div',{class:'row'},el('button',{class:'btn',type:'button',onclick:check},'Check my writing')),out));
 }
 function quizStep(t,box,upd,next){
-  const start=()=>runQs(box,t.quiz.map(q=>mc(q)),{tid:t.id,onFinish:p=>upd('quiz',p),retry:start,next,nextLabel:'Back to home'});
+  const start=()=>runQs(box,t.quiz.map(q=>mc(q)),{tid:t.id,onFinish:p=>upd('quiz',p),retry:start,next,nextLabel:'Back to home',reflect:()=>reflectCard(t)});
   box.replaceChildren(el('div',{class:'card stack'},hd('quiz','Grammar Quiz · 4 questions'),el('p',{},'Choose the correct answer. Questions you miss are saved in your notebook.'),el('div',{class:'row'},el('button',{class:'btn',type:'button',onclick:start},'Start the quiz\u2063เริ่มควิซ'))));
 }
 

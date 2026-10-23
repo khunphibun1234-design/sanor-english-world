@@ -561,7 +561,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--pen);box-shadow:0 0 0
 </div></footer>
 <div id="toast" hidden></div>
 
-<script src="cloud-config.js?v=20261023j"></script>
+<script src="cloud-config.js?v=20261023k"></script>
 <script>
 /* ============ CONTENT: Unit 1 · My School Life (ม.2, A1-A2) ============ */
 // Q(question, why, correct, ...wrongs)  — the correct answer is written first and shuffled at run time
@@ -961,7 +961,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261023j';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261023k';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -972,7 +972,9 @@ function vcBlob(b){if(VC.blobs[b])return Promise.resolve(VC.blobs[b]);
     .then(bl=>{const u=URL.createObjectURL(bl);VC.blobs[b]=u;VC.order.push(b);while(VC.order.length>6){const o=VC.order.shift();try{URL.revokeObjectURL(VC.blobs[o])}catch(e){}delete VC.blobs[o]}delete VC.loading[b];return u})
     .catch(e=>{delete VC.loading[b];VC.err='bundle: '+e;throw e}))}
 function vcWarm(name){try{if(!VC.idx)return;const b=VC.idx.bundles.indexOf(name);if(b>=0)vcBlob(b).catch(()=>{})}catch(e){}}
-function vcFind(text,slow){if(!VC.idx)return null;return VC.idx.clips[vcKey(text,slow)]||null}
+/* some words have a topic-specific recording: key 'word@tid' wins while that topic is open (temple in topic 25) */
+const VCALT={25:{temple:1}};
+function vcFind(text,slow){if(!VC.idx)return null;const a=!slow&&typeof view!=='undefined'&&view&&view.n==='topic'&&VCALT[view.tid];if(a&&a[text]){const c=VC.idx.clips[vcKey(text+'@'+view.tid,false)];if(c)return c}return VC.idx.clips[vcKey(text,slow)]||null}
 function vcStop(){VC.tok++;clearInterval(VC.timer);try{if(VC.el)VC.el.pause()}catch(e){}}
 function vcPlay(list,fail){const el=vcEl();if(!el){fail();return}
   const my=++VC.tok;clearInterval(VC.timer);try{el.pause()}catch(e){}

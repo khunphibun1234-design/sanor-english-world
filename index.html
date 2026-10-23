@@ -561,7 +561,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--pen);box-shadow:0 0 0
 </div></footer>
 <div id="toast" hidden></div>
 
-<script src="cloud-config.js?v=20261023b"></script>
+<script src="cloud-config.js?v=20261023d"></script>
 <script>
 /* ============ CONTENT: Unit 1 · My School Life (ม.2, A1-A2) ============ */
 // Q(question, why, correct, ...wrongs)  — the correct answer is written first and shuffled at run time
@@ -961,7 +961,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261023b';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261023d';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -2129,7 +2129,7 @@ function topicBanner(t){
   const el2=el('div',{class:'ubanner tbanner',style:'--ub:'+b[0]},ic,el('div',{class:'ubt'},el('span',{class:'ubn'},'Unit '+U+' · Topic '+noOf(t)+' / '+UNITS.find(u=>u.n===U).total),el('h1',{class:'ubh'},t.en),el('span',{class:'ubp'},t.th),q));
   el2.upd=()=>{q.textContent='Done '+doneCount(t.id)+' / '+STEPS.length+' steps'};el2.upd();return el2}
 function topicView(tid,step){
-  const t=T.find(x=>x.id===tid);vcWarm('L'+tid);if(tid===1)vcWarm('L1w');const stage=el('div',{class:'stage stack'});
+  const t=T.find(x=>x.id===tid);vcWarm('L'+tid);if(tid===1)vcWarm('L1w');if(tid===11)vcWarm('L14');const stage=el('div',{class:'stage stack'});
   const tabs=el('div',{class:'tabs stabs',role:'tablist'});const banner=topicBanner(t);const shead=el('div',{class:'shead'});
   const drawTabs=()=>{tabs.replaceChildren(...STEPS.map(([k,l])=>el('button',{class:'tab',role:'tab',type:'button',style:'--sc:'+SDEF[k][0],'aria-selected':String(k===step),onclick:()=>{step=k;view.step=k;drawTabs();draw()}},sico(k),el('span',{},l),isDone(tid,k)?el('span',{class:'ck','aria-label':'Passed'},'✓'):null)));
     const si=STEPS.findIndex(x=>x[0]===step);shead.setAttribute('style','--sc:'+SDEF[step][0]);shead.replaceChildren(sico(step),'Step '+(si+1)+' · '+STEPS[si][1],el('small',{},isDone(tid,step)?'✓ Passed':'Step '+(si+1)+' of '+STEPS.length));banner.upd()};

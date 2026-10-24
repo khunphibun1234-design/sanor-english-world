@@ -561,7 +561,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--pen);box-shadow:0 0 0
 </div></footer>
 <div id="toast" hidden></div>
 
-<script src="cloud-config.js?v=20261024a"></script>
+<script src="cloud-config.js?v=20261024b"></script>
 <script>
 /* ============ CONTENT: Unit 1 · My School Life (ม.2, A1-A2) ============ */
 // Q(question, why, correct, ...wrongs)  — the correct answer is written first and shuffled at run time
@@ -961,7 +961,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261024a';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261024b';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -2874,35 +2874,35 @@ let HOST=null;
 const TOWN_NPCS=[
  {id:'mali',name:'Mali',role:'Fruit seller⁣แม่ค้าผลไม้',x:-7,z:-5.4,ry:0,shirt:[.93,.36,.52],pants:[.3,.3,.45],hair:[.08,.06,.07],acc:'bun',
   turns:[
-   {npc:"Good morning! What would you like?",th:'สวัสดีตอนเช้า! คุณต้องการอะไรคะ',o:["I'd like two mangoes, please.","I'm fine, thank you.","My name is Ben."],
+   {npc:"Good morning! What would you like?",th:'สวัสดีตอนเช้า! คุณต้องการอะไรคะ',o:["I'd like two mangoes, please.","Good morning! I'm fine, thank you.","Yes, I like fruit."],
     hint:'แม่ค้าถามว่า "คุณต้องการอะไร" ให้ตอบว่าต้องการอะไร',ok:"I'd like ... = ฉันต้องการ ... ใช้สั่งของอย่างสุภาพ"},
-   {npc:"Here you are. That is fifty baht.",th:'นี่ค่ะ ทั้งหมดห้าสิบบาท',o:["Here is fifty baht. Thank you.","I am fifty years old.","It is a mango."],
+   {npc:"Here you are. That is fifty baht.",th:'นี่ค่ะ ทั้งหมดห้าสิบบาท',o:["Here is fifty baht. Thank you.","Thank you. How much is it?","You're welcome. Here you are."],
     hint:'แม่ค้าบอกราคา ให้ตอบด้วยการจ่ายเงิน',ok:'Here is ... baht = นี่เงิน ... บาท ใช้ตอนจ่ายเงิน'},
-   {npc:"You're welcome. Have a nice day!",th:'ยินดีค่ะ ขอให้เป็นวันที่ดีนะคะ',o:["You too. Goodbye!","I'm sorry.","How old are you?"],
+   {npc:"You're welcome. Have a nice day!",th:'ยินดีค่ะ ขอให้เป็นวันที่ดีนะคะ',o:["You too. Goodbye!","Good morning!","Nice to meet you."],
     hint:'แม่ค้าอวยพรให้ ให้ตอบอวยพรกลับและลา',ok:'You too. = คุณก็เช่นกัน ใช้ตอบคำอวยพร'}]},
  {id:'somchai',name:'Mr. Somchai',role:'Egg seller⁣ลุงขายไข่',x:7,z:-5.4,ry:0,shirt:[.96,.96,.92],pants:[.35,.3,.22],hair:[.78,.78,.8],acc:'hat',
   turns:[
-   {npc:"Hello! How can I help you?",th:'สวัสดีครับ ให้ช่วยอะไรไหมครับ',o:["Do you have eggs?","I have a brother.","I can swim."],
+   {npc:"Hello! How can I help you?",th:'สวัสดีครับ ให้ช่วยอะไรไหมครับ',o:["Do you have eggs?","I'm fine, thank you. And you?","Yes, I can help you."],
     hint:'ผู้ขายถามว่าให้ช่วยอะไร ให้ถามหาสินค้าที่ต้องการ',ok:'Do you have ...? = คุณมี ... ไหม ใช้ถามหาสินค้า'},
-   {npc:"Yes, we do. They are five baht each.",th:'มีครับ ฟองละห้าบาท',o:["I'll take six eggs, please.","It's six o'clock.","I am six."],
+   {npc:"Yes, we do. They are five baht each.",th:'มีครับ ฟองละห้าบาท',o:["I'll take six eggs, please.","Do you have eggs?","Yes, I do. They are five baht."],
     hint:'ผู้ขายบอกราคาไข่ ให้บอกว่าจะซื้อกี่ฟอง',ok:"I'll take ... = ฉันขอเอา ... ใช้ตัดสินใจซื้อ"},
-   {npc:"That is thirty baht.",th:'สามสิบบาทครับ',o:["Here you are.","You're welcome.","I'm hungry."],
+   {npc:"That is thirty baht.",th:'สามสิบบาทครับ',o:["Here you are.","You're welcome.","Yes, I'd like six eggs."],
     hint:'ผู้ขายบอกราคารวม ให้ยื่นเงินให้',ok:'Here you are. = นี่ครับ/ค่ะ ใช้ตอนยื่นของให้คนอื่น'}]},
  {id:'nok',name:'Ms. Nok',role:'T-shirt seller⁣แม่ค้าเสื้อ',x:-7,z:5.4,ry:Math.PI,shirt:[.35,.5,.95],pants:[.25,.25,.3],hair:[.45,.2,.6],acc:'long',
   turns:[
-   {npc:"Hi! Are you looking for something?",th:'สวัสดีค่ะ กำลังมองหาอะไรอยู่ไหมคะ',o:["Yes. I'm looking for a T-shirt.","It is a good day.","No, I don't. Thank you."],
+   {npc:"Hi! Are you looking for something?",th:'สวัสดีค่ะ กำลังมองหาอะไรอยู่ไหมคะ',o:["Yes. I'm looking for a T-shirt.","Yes, thank you. I'm fine.","Yes, it's a nice T-shirt."],
     hint:'แม่ค้าถามว่ามองหาอะไรไหม ให้ตอบว่าใช่และบอกสิ่งที่หา',ok:"I'm looking for ... = ฉันกำลังหา ..."},
-   {npc:"What size do you need?",th:'ต้องการไซซ์อะไรคะ',o:["Medium, please.","It is eight o'clock.","It is blue."],
+   {npc:"What size do you need?",th:'ต้องการไซซ์อะไรคะ',o:["Medium, please.","Blue, please.","Three hundred baht, please."],
     hint:'แม่ค้าถามไซซ์ ให้ตอบเป็นไซซ์เสื้อ เช่น small, medium, large',ok:'Medium = ไซซ์กลาง (small เล็ก, large ใหญ่)'},
-   {npc:"It is three hundred baht.",th:'ตัวละสามร้อยบาทค่ะ',o:["That's expensive. Can you make it cheaper?","I'm sorry, I'm late.","Yes, I am a student."],
+   {npc:"It is three hundred baht.",th:'ตัวละสามร้อยบาทค่ะ',o:["That's expensive. Can you make it cheaper?","Medium, please.","OK. What size do you need?"],
     hint:'แม่ค้าบอกราคา ให้ตอบเรื่องราคา เช่น ขอลดราคา',ok:'Can you make it cheaper? = ลดราคาได้ไหม'}]},
  {id:'chai',name:'Mr. Chai',role:'Market helper⁣ผู้ช่วยตลาด',x:2.6,z:5.2,ry:Math.PI,shirt:[.2,.62,.38],pants:[.2,.28,.4],hair:[.1,.08,.08],acc:'cap',
   turns:[
-   {npc:"Hello! Can I help you?",th:'สวัสดีครับ ให้ผมช่วยไหมครับ',o:["Excuse me, where is the bathroom?","I am in the market.","Yes, he can."],
+   {npc:"Hello! Can I help you?",th:'สวัสดีครับ ให้ผมช่วยไหมครับ',o:["Excuse me, where is the bathroom?","I'm fine, thank you. And you?","Yes, the bathroom is over there."],
     hint:'ผู้ช่วยถามว่าให้ช่วยไหม ให้ถามหาห้องน้ำ',ok:'Excuse me, where is ...? = ขอโทษครับ ... อยู่ที่ไหน ใช้ถามทาง'},
-   {npc:"It is next to the fruit stall.",th:'อยู่ข้างๆ ร้านผลไม้ครับ',o:["Thank you. Is it far?","I like fruit.","I am a student."],
+   {npc:"It is next to the fruit stall.",th:'อยู่ข้างๆ ร้านผลไม้ครับ',o:["Thank you. Is it far?","Yes, it is next to the stall.","Thank you. Where is the bathroom?"],
     hint:'ผู้ช่วยบอกที่ตั้งแล้ว ให้ขอบคุณและถามต่อว่าไกลไหม',ok:'Is it far? = ไกลไหม'},
-   {npc:"No, it is not far. Go straight and turn left.",th:'ไม่ไกลครับ เดินตรงไปแล้วเลี้ยวซ้าย',o:["Go straight and turn left. Got it. Thanks!","I am going to school.","It is a big market."],
+   {npc:"No, it is not far. Go straight and turn left.",th:'ไม่ไกลครับ เดินตรงไปแล้วเลี้ยวซ้าย',o:["Go straight and turn left. Got it. Thanks!","Turn right. Got it. Thanks!","Yes, it is far. Thank you."],
     hint:'ผู้ช่วยบอกเส้นทาง ให้ทวนเส้นทางและขอบคุณ',ok:'Go straight = เดินตรงไป, turn left = เลี้ยวซ้าย'}]}
 ];
 
@@ -3119,21 +3119,21 @@ SCENES.push({id:'restaurant',name:'Restaurant',th:'ร้านอาหาร',
   return{a:new Float32Array(c.a),ob:c.ob}},
  npcs:[
  NPCDEF('fon','Ms. Fon','Hostess⁣พนักงานต้อนรับ',0,-3.6,0,[.85,.2,.25],[.15,.15,.2],[.08,.06,.07],'bun',[
-  TT("Welcome! Do you have a reservation?",'ยินดีต้อนรับค่ะ จองโต๊ะไว้ไหมคะ',"No, I don't. A table for three, please.","I'm a student.","It's a big table.",'ถามว่าจองไว้ไหม (Do you ...?) ตอบ No, I don\'t. แล้วขอโต๊ะ','reservation = การจอง, A table for three = โต๊ะสำหรับสามคน'),
-  TT("This way, please. Here is the menu.",'เชิญทางนี้ค่ะ นี่เมนูค่ะ',"Thank you. What do you recommend?","It is a long menu.","This way is nice.",'ได้เมนูแล้ว ให้ขอบคุณและถามว่าอะไรอร่อย','What do you recommend? = คุณแนะนำอะไร'),
-  TT("Please wait here. A waiter will come soon.",'กรุณารอตรงนี้ค่ะ พนักงานจะมาเร็วๆ นี้',"OK. Thank you.","He is a waiter.","I'm sorry, I'm fine.",'ให้รอ ให้ตอบรับและขอบคุณ','Please wait here. = กรุณารอที่นี่')]),
+  TT("Welcome! Do you have a reservation?",'ยินดีต้อนรับค่ะ จองโต๊ะไว้ไหมคะ',"No, I don't. A table for three, please.","Yes, I'd like fried rice, please.","Excuse me. Can I have the bill, please?",'ถามว่าจองไว้ไหม (Do you ...?) ตอบ No, I don\'t. แล้วขอโต๊ะ','reservation = การจอง, A table for three = โต๊ะสำหรับสามคน'),
+  TT("This way, please. Here is the menu.",'เชิญทางนี้ค่ะ นี่เมนูค่ะ',"Thank you. What do you recommend?","No, thank you. I'm full.","Thank you. Goodbye!",'ได้เมนูแล้ว ให้ขอบคุณและถามว่าอะไรอร่อย','What do you recommend? = คุณแนะนำอะไร'),
+  TT("Please wait here. A waiter will come soon.",'กรุณารอตรงนี้ค่ะ พนักงานจะมาเร็วๆ นี้',"OK. Thank you.","Here is the menu. Thank you.","Goodbye! Have a nice day.",'ให้รอ ให้ตอบรับและขอบคุณ','Please wait here. = กรุณารอที่นี่')]),
  NPCDEF('tong','Mr. Tong','Waiter⁣พนักงานเสิร์ฟ',-4.3,.6,0,[.95,.95,.95],[.1,.1,.15],[.1,.07,.05],'',[
-  TT("Are you ready to order?",'พร้อมสั่งอาหารหรือยังครับ',"Yes. I'd like fried rice, please.","No, I'm Tong.","I like the table.",'ถามว่าพร้อมสั่งไหม ให้ตอบและสั่งอาหาร','fried rice = ข้าวผัด'),
-  TT("Would you like it spicy?",'รับเผ็ดไหมครับ',"Not too spicy, please.","Yes, it is Tuesday.","I'm hungry, thank you.",'ถามว่าเอาเผ็ดไหม ให้บอกระดับความเผ็ด','spicy = เผ็ด, Not too spicy = ไม่เผ็ดมาก'),
-  TT("Would you like some dessert?",'รับของหวานไหมครับ',"No, thank you. I'm full.","It is a good dessert.","I like Monday.",'ถามว่าเอาของหวานไหม ให้ปฏิเสธอย่างสุภาพ','I\'m full. = ฉันอิ่มแล้ว')]),
+  TT("Are you ready to order?",'พร้อมสั่งอาหารหรือยังครับ',"Yes. I'd like fried rice, please.","Yes. Can I have the bill, please?","Yes. I'd like to pay by QR code.",'ถามว่าพร้อมสั่งไหม ให้ตอบและสั่งอาหาร','fried rice = ข้าวผัด'),
+  TT("Would you like it spicy?",'รับเผ็ดไหมครับ',"Not too spicy, please.","Yes, I'd like fried rice, please.","Yes, I'd like some dessert.",'ถามว่าเอาเผ็ดไหม ให้บอกระดับความเผ็ด','spicy = เผ็ด, Not too spicy = ไม่เผ็ดมาก'),
+  TT("Would you like some dessert?",'รับของหวานไหมครับ',"No, thank you. I'm full.","Yes, not too spicy, please.","Yes, it's free. Please sit.",'ถามว่าเอาของหวานไหม ให้ปฏิเสธอย่างสุภาพ','I\'m full. = ฉันอิ่มแล้ว')]),
  NPCDEF('ann','Ann','Customer⁣ลูกค้าที่นั่งอยู่',8.1,.8,-Math.PI/2,[.9,.6,.2],[.2,.25,.4],[.3,.2,.1],'long',[
-  TT("Hi! Is this seat free?",'สวัสดี ที่นั่งนี้ว่างไหม',"Yes, it's free. Please sit.","I'm free on Monday.","It's a big restaurant.",'ถามว่าที่นั่งว่างไหม ให้ตอบว่าว่างและเชิญนั่ง','Is this seat free? = ที่นั่งนี้ว่างไหม'),
-  TT("What are you having?",'คุณกินอะไรอยู่',"I'm having fried rice. How about you?","I have a brother.","It's six o'clock.",'ถามว่ากินอะไร ให้ตอบและถามกลับ','How about you? = แล้วคุณล่ะ'),
-  TT("Mmm, it smells good!",'อืม กลิ่นหอมจัง',"Yes, it's delicious!","No, it's Thursday.","I am a student.",'พูดถึงอาหารว่ากลิ่นหอม ให้เห็นด้วย','delicious = อร่อย')]),
+  TT("Hi! Is this seat free?",'สวัสดี ที่นั่งนี้ว่างไหม',"Yes, it's free. Please sit.","Yes, I'd like the menu, please.","I'm fine, thank you. How are you?",'ถามว่าที่นั่งว่างไหม ให้ตอบว่าว่างและเชิญนั่ง','Is this seat free? = ที่นั่งนี้ว่างไหม'),
+  TT("What are you having?",'คุณกินอะไรอยู่',"I'm having fried rice. How about you?","I'm free today. How about you?","I'm from Ubon. How about you?",'ถามว่ากินอะไร ให้ตอบและถามกลับ','How about you? = แล้วคุณล่ะ'),
+  TT("Mmm, it smells good!",'อืม กลิ่นหอมจัง',"Yes, it's delicious!","Yes, it's free. Please sit.","No, thank you. Not too spicy.",'พูดถึงอาหารว่ากลิ่นหอม ให้เห็นด้วย','delicious = อร่อย')]),
  NPCDEF('pat','Ms. Pat','Cashier⁣แคชเชียร์',4,-6.3,0,[.3,.55,.8],[.2,.2,.3],[.08,.06,.07],'cap',[
-  TT("Did you enjoy your meal?",'อาหารถูกปากไหมคะ',"Yes, it was delicious. Thank you!","No, I'm Thai.","It is on the table.",'ถามว่าอาหารอร่อยไหม ให้ตอบ','Did you enjoy ...? ตอบ Yes, it was ...'),
-  TT("That will be two hundred and fifty baht.",'ทั้งหมดสองร้อยห้าสิบบาทค่ะ',"Can I pay by QR code?","It's a nice code.","I like my meal.",'ถามว่าจ่ายแบบไหนได้ไหม','Can I pay by ...? = จ่ายด้วย ... ได้ไหม'),
-  TT("Sure! Please scan here.",'ได้ค่ะ สแกนตรงนี้เลยค่ะ',"OK. Thank you. Goodbye!","Please sit down.","It's a big phone.",'ให้สแกนจ่าย ให้ตอบรับ ขอบคุณและลา','Please scan here. = กรุณาสแกนที่นี่')])]});
+  TT("Did you enjoy your meal?",'อาหารถูกปากไหมคะ',"Yes, it was delicious. Thank you!","Yes, a table for three, please.","Yes, it's free. Please sit.",'ถามว่าอาหารอร่อยไหม ให้ตอบ','Did you enjoy ...? ตอบ Yes, it was ...'),
+  TT("That will be two hundred and fifty baht.",'ทั้งหมดสองร้อยห้าสิบบาทค่ะ',"Can I pay by QR code?","OK. How much is it?","I'd like to see the menu, please.",'ถามว่าจ่ายแบบไหนได้ไหม','Can I pay by ...? = จ่ายด้วย ... ได้ไหม'),
+  TT("Sure! Please scan here.",'ได้ค่ะ สแกนตรงนี้เลยค่ะ',"OK. Thank you. Goodbye!","Please sit down here. Thank you.","Yes, a table for three, please.",'ให้สแกนจ่าย ให้ตอบรับ ขอบคุณและลา','Please scan here. = กรุณาสแกนที่นี่')])]});
 SCENES.push({id:'seven',name:'7-Eleven',th:'เซเว่น อีเลฟเว่น',color:'#E26A00',spawn:[0,3.2,Math.PI],bounds:[-12.4,12.4,-9,9],
  build(){const c=mk();base(c,[-12.4,12.4,-9,9],0,[.88,.88,.9]);shell(c,[.97,.97,.97],[.3,.3,.35],false);
   c.box(0,3.85,-6.15,19,.22,.06,[.95,.5,.1]);c.box(0,3.55,-6.15,19,.22,.06,[.1,.6,.3]);c.box(0,3.25,-6.15,19,.22,.06,[.85,.15,.2]);
@@ -3145,21 +3145,21 @@ SCENES.push({id:'seven',name:'7-Eleven',th:'เซเว่น อีเลฟ�
   return{a:new Float32Array(c.a),ob:c.ob}},
  npcs:[
  NPCDEF('ying','Ms. Ying','Cashier⁣แคชเชียร์',-1,-6.3,0,[.95,.5,.1],[.2,.2,.25],[.08,.06,.07],'bun',[
-  TT("Hi! Did you find everything?",'สวัสดีค่ะ หาของครบไหมคะ',"Yes, thank you.","Yes, I'm Ying.","It's seven.",'ถามว่าหาของครบไหม ให้ตอบและขอบคุณ','Did you find everything? = หาของครบไหม'),
-  TT("Would you like a bag?",'รับถุงไหมคะ',"No, thanks. I have my own bag.","Yes, it's a big bag.","It's plastic.",'ถามว่าเอาถุงไหม ให้ปฏิเสธสุภาพ','my own bag = ถุงของฉันเอง'),
-  TT("Do you want to heat it up?",'อุ่นให้ไหมคะ',"Yes, please.","It is hot today.","I'm cold, thanks.",'ถามว่าอุ่นอาหารไหม (Do you want ...?) ตอบ Yes, please.','heat it up = อุ่นให้ร้อน')]),
+  TT("Hi! Did you find everything?",'สวัสดีค่ะ หาของครบไหมคะ',"Yes, thank you.","I'm fine, thank you. And you?","Yes, please heat it up.",'ถามว่าหาของครบไหม ให้ตอบและขอบคุณ','Did you find everything? = หาของครบไหม'),
+  TT("Would you like a bag?",'รับถุงไหมคะ',"No, thanks. I have my own bag.","Thank you. Where is the water?","Yes, I did. Thank you.",'ถามว่าเอาถุงไหม ให้ปฏิเสธสุภาพ','my own bag = ถุงของฉันเอง'),
+  TT("Do you want to heat it up?",'อุ่นให้ไหมคะ',"Yes, please.","Yes, I did. Thank you.","Yes, it's hot today.",'ถามว่าอุ่นอาหารไหม (Do you want ...?) ตอบ Yes, please.','heat it up = อุ่นให้ร้อน')]),
  NPCDEF('beer','Mr. Beer','Store staff⁣พนักงานร้าน',6.4,-1.2,0,[.1,.6,.3],[.2,.25,.3],[.1,.07,.05],'',[
-  TT("Can I help you find something?",'ให้ช่วยหาของไหมครับ',"Yes. Where is the water?","I'm a customer.","I'm in a store.",'พนักงานถามว่าให้ช่วยหาของไหม ให้ถามว่าน้ำอยู่ที่ไหน','Where is ...? = ... อยู่ที่ไหน'),
-  TT("It's in the fridge, next to the milk.",'อยู่ในตู้แช่ ข้างๆ นมครับ',"Thank you. Do you have snacks?","The milk is cold.","I'm in the fridge.",'ได้คำตอบแล้ว ให้ขอบคุณและถามหาขนม','snacks = ขนมขบเคี้ยว'),
-  TT("Yes, they're on aisle two. Go straight and turn left.",'มีครับ อยู่แถวสอง เดินตรงแล้วเลี้ยวซ้าย',"Aisle two. Got it. Thanks!","I'm two.","It's a straight aisle.",'ได้เส้นทางแล้ว ให้ทวนและขอบคุณ','aisle = ทางเดินระหว่างชั้นวาง')]),
+  TT("Can I help you find something?",'ให้ช่วยหาของไหมครับ',"Yes. Where is the water?","Yes, I did. Thank you.","Thank you. Do you have snacks?",'พนักงานถามว่าให้ช่วยหาของไหม ให้ถามว่าน้ำอยู่ที่ไหน','Where is ...? = ... อยู่ที่ไหน'),
+  TT("It's in the fridge, next to the milk.",'อยู่ในตู้แช่ ข้างๆ นมครับ',"Thank you. Do you have snacks?","Thank you. Where is the water?","Yes, the milk is in the fridge.",'ได้คำตอบแล้ว ให้ขอบคุณและถามหาขนม','snacks = ขนมขบเคี้ยว'),
+  TT("Yes, they're on aisle two. Go straight and turn left.",'มีครับ อยู่แถวสอง เดินตรงแล้วเลี้ยวซ้าย',"Aisle two. Got it. Thanks!","Aisle five. Got it. Thanks!","Go straight and turn right. Thanks!",'ได้เส้นทางแล้ว ให้ทวนและขอบคุณ','aisle = ทางเดินระหว่างชั้นวาง')]),
  NPCDEF('nid','Ms. Nid','Service counter⁣พนักงานบริการ',-6.5,-6.3,0,[.2,.5,.8],[.2,.2,.3],[.1,.07,.05],'long',[
-  TT("Hello. Can I help you?",'สวัสดีค่ะ ให้ช่วยอะไรไหมคะ',"Yes. I'd like to top up my phone, please.","I have a phone.","It's a phone.",'ให้บอกว่าต้องการเติมเงินโทรศัพท์','top up = เติมเงิน'),
-  TT("How much do you want to top up?",'ต้องการเติมเท่าไรคะ',"One hundred baht, please.","I'm one hundred.","It's my phone number.",'ถามจำนวนเงิน ให้บอกจำนวน','How much ...? = เท่าไร'),
-  TT("Done! Please check your phone.",'เรียบร้อยค่ะ ลองเช็กโทรศัพท์ดูนะคะ',"Thank you very much!","It is on the counter.","I have no phone.",'เสร็จแล้ว ให้ขอบคุณ','Done! = เสร็จแล้ว')]),
+  TT("Hello. Can I help you?",'สวัสดีค่ะ ให้ช่วยอะไรไหมคะ',"Yes. I'd like to top up my phone, please.","I'm fine, thank you. And you?","Yes, I can help you.",'ให้บอกว่าต้องการเติมเงินโทรศัพท์','top up = เติมเงิน'),
+  TT("How much do you want to top up?",'ต้องการเติมเท่าไรคะ',"One hundred baht, please.","Yes, please.","It's a blue phone.",'ถามจำนวนเงิน ให้บอกจำนวน','How much ...? = เท่าไร'),
+  TT("Done! Please check your phone.",'เรียบร้อยค่ะ ลองเช็กโทรศัพท์ดูนะคะ',"Thank you very much!","One hundred baht, please.","I'd like to top up my phone, please.",'เสร็จแล้ว ให้ขอบคุณ','Done! = เสร็จแล้ว')]),
  NPCDEF('gift','Gift','Customer⁣ลูกค้าในแถว',-1,-3.6,0,[.9,.3,.5],[.2,.3,.45],[.1,.07,.05],'',[
-  TT("Excuse me. Are you in line?",'ขอโทษนะ เธอต่อแถวอยู่ไหม',"Yes, I am. Please go first.","No, I'm Gift.","It's a long line.",'ถามว่าต่อแถวไหม (Are you ...?) ตอบ Yes, I am.','Are you in line? = คุณต่อแถวอยู่ไหม'),
-  TT("Thanks! Do you like this snack?",'ขอบใจ! เธอชอบขนมนี้ไหม',"Yes, I do. It's tasty.","Yes, I am.","It is a snack.",'ถามว่าชอบไหม (Do you ...?) ตอบ Yes, I do.','tasty = อร่อย'),
-  TT("Cool. I'll buy it. Bye!",'เยี่ยม ฉันจะซื้อบ้าง บ๊ายบาย',"Bye! See you.","It's tasty.","Nice to meet you.",'เพื่อนลา ให้ลากลับ','See you. = แล้วเจอกัน')])]});
+  TT("Excuse me. Are you in line?",'ขอโทษนะ เธอต่อแถวอยู่ไหม',"Yes, I am. Please go first.","I'm fine, thank you. And you?","No, I'm in line. Please go first.",'ถามว่าต่อแถวไหม (Are you ...?) ตอบ Yes, I am.','Are you in line? = คุณต่อแถวอยู่ไหม'),
+  TT("Thanks! Do you like this snack?",'ขอบใจ! เธอชอบขนมนี้ไหม',"Yes, I do. It's tasty.","Yes, I am. It's tasty.","It's a long line. Thank you.",'ถามว่าชอบไหม (Do you ...?) ตอบ Yes, I do.','tasty = อร่อย'),
+  TT("Cool. I'll buy it. Bye!",'เยี่ยม ฉันจะซื้อบ้าง บ๊ายบาย',"Bye! See you.","It's tasty.","Excuse me. Are you in line?",'เพื่อนลา ให้ลากลับ','See you. = แล้วเจอกัน')])]});
 SCENES.push({id:'bigc',name:'Big C',th:'บิ๊กซี',color:'#C81E1E',spawn:[0,3.2,Math.PI],bounds:[-12.4,12.4,-9,9],
  build(){const c=mk();base(c,[-12.4,12.4,-9,9],0,[.9,.9,.92]);shell(c,[.98,.98,.98],[.8,.12,.12],false);
   c.box(0,3.6,-6.14,8,.9,.06,[.8,.12,.12]);c.box(0,1.1,-6.18,4,2.2,.06,[.6,.85,.95]);
@@ -3171,21 +3171,21 @@ SCENES.push({id:'bigc',name:'Big C',th:'บิ๊กซี',color:'#C81E1E',spaw
   return{a:new Float32Array(c.a),ob:c.ob}},
  npcs:[
  NPCDEF('boon','Mr. Boon','Sales staff⁣พนักงานขาย',-3,-3.6,0,[.8,.12,.12],[.2,.2,.25],[.1,.07,.05],'',[
-  TT("Excuse me, can I help you?",'ขอโทษครับ ให้ช่วยไหมครับ',"Yes. How much is this?","Yes, it is a shirt.","I'm looking.",'พนักงานถามว่าให้ช่วยไหม ให้ถามราคา','How much is this? = อันนี้ราคาเท่าไร'),
-  TT("It's on sale. It's fifty percent off.",'ลดราคาครับ ลดห้าสิบเปอร์เซ็นต์',"That's great! I'll take two.","I'm fifty.","It is a sale.",'ได้ยินว่าลดราคา ให้ดีใจและบอกว่าจะซื้อกี่ชิ้น','on sale = ลดราคา, fifty percent off = ลด 50%'),
-  TT("Do you need a shopping cart?",'ต้องการรถเข็นไหมครับ',"Yes, please.","It is a big store.","I'm in the store.",'ถามว่าต้องการรถเข็นไหม ให้ตอบรับ','shopping cart = รถเข็นซื้อของ')]),
+  TT("Excuse me, can I help you?",'ขอโทษครับ ให้ช่วยไหมครับ',"Yes. How much is this?","I'm fine, thank you. And you?","Yes, I can help you.",'พนักงานถามว่าให้ช่วยไหม ให้ถามราคา','How much is this? = อันนี้ราคาเท่าไร'),
+  TT("It's on sale. It's fifty percent off.",'ลดราคาครับ ลดห้าสิบเปอร์เซ็นต์',"That's great! I'll take two.","How much is this?","What size do you need?",'ได้ยินว่าลดราคา ให้ดีใจและบอกว่าจะซื้อกี่ชิ้น','on sale = ลดราคา, fifty percent off = ลด 50%'),
+  TT("Do you need a shopping cart?",'ต้องการรถเข็นไหมครับ',"Yes, please.","It's fifty percent off.","Yes, I'll take two.",'ถามว่าต้องการรถเข็นไหม ให้ตอบรับ','shopping cart = รถเข็นซื้อของ')]),
  NPCDEF('lek','Ms. Lek','Cashier⁣แคชเชียร์',5,-6.3,0,[.95,.95,.95],[.2,.2,.3],[.08,.06,.07],'bun',[
-  TT("Do you have a member card?",'มีบัตรสมาชิกไหมคะ',"No, I don't.","Yes, I am.","It's a blue card.",'ถามว่ามีบัตรไหม (Do you have ...?) ตอบ Yes, I do. / No, I don\'t.','member card = บัตรสมาชิก'),
-  TT("Your total is four hundred baht.",'ยอดรวมสี่ร้อยบาทค่ะ',"Can I pay by card?","I'm four hundred.","It is a total.",'ได้ยอดรวมแล้ว ให้ถามว่าจ่ายด้วยบัตรได้ไหม','total = ยอดรวม'),
-  TT("Sure. Please enter your PIN.",'ได้ค่ะ กรุณากดรหัสค่ะ',"OK. Here you go.","Please sit down.","I'm a PIN.",'ให้กดรหัส ให้ตอบรับ','Here you go. = นี่ค่ะ/ครับ')]),
+  TT("Do you have a member card?",'มีบัตรสมาชิกไหมคะ',"No, I don't.","I'm fine, thank you. And you?","I'd like a shopping cart, please.",'ถามว่ามีบัตรไหม (Do you have ...?) ตอบ Yes, I do. / No, I don\'t.','member card = บัตรสมาชิก'),
+  TT("Your total is four hundred baht.",'ยอดรวมสี่ร้อยบาทค่ะ',"Can I pay by card?","Yes, I have a member card.","OK. How much is it?",'ได้ยอดรวมแล้ว ให้ถามว่าจ่ายด้วยบัตรได้ไหม','total = ยอดรวม'),
+  TT("Sure. Please enter your PIN.",'ได้ค่ะ กรุณากดรหัสค่ะ',"OK. Here you go.","Please sit down. Thank you.","Yes, it's four hundred baht.",'ให้กดรหัส ให้ตอบรับ','Here you go. = นี่ค่ะ/ครับ')]),
  NPCDEF('mint2','Ms. Mai','Information desk⁣เจ้าหน้าที่ประชาสัมพันธ์',-6,-6.3,0,[.3,.6,.85],[.2,.2,.3],[.1,.07,.05],'long',[
-  TT("Hello. How may I help you?",'สวัสดีค่ะ ให้ช่วยอะไรคะ',"Where can I find rice?","I'm a customer.","It is a big bag.",'ให้ถามว่าข้าวอยู่ตรงไหน','Where can I find ...? = ฉันหา ... ได้ที่ไหน'),
-  TT("Rice is in aisle five, next to the noodles.",'ข้าวอยู่แถวห้า ข้างๆ เส้นก๋วยเตี๋ยวค่ะ',"Thank you. Is aisle five far?","I like noodles.","It is five.",'ได้ตำแหน่งแล้ว ให้ขอบคุณและถามว่าไกลไหม','next to = ข้างๆ'),
-  TT("No, it's near the entrance.",'ไม่ไกลค่ะ อยู่ใกล้ทางเข้า',"Great. Thanks a lot!","I'm near.","Yes, it is far.",'ได้คำตอบแล้ว ให้ขอบคุณ','Thanks a lot! = ขอบคุณมาก')]),
+  TT("Hello. How may I help you?",'สวัสดีค่ะ ให้ช่วยอะไรคะ',"Where can I find rice?","Thank you. Goodbye!","I'm fine, thank you. And you?",'ให้ถามว่าข้าวอยู่ตรงไหน','Where can I find ...? = ฉันหา ... ได้ที่ไหน'),
+  TT("Rice is in aisle five, next to the noodles.",'ข้าวอยู่แถวห้า ข้างๆ เส้นก๋วยเตี๋ยวค่ะ',"Thank you. Is aisle five far?","Yes, I like noodles.","Thank you. Where can I find rice?",'ได้ตำแหน่งแล้ว ให้ขอบคุณและถามว่าไกลไหม','next to = ข้างๆ'),
+  TT("No, it's near the entrance.",'ไม่ไกลค่ะ อยู่ใกล้ทางเข้า',"Great. Thanks a lot!","Yes, it is far. Thanks!","Go straight and turn left. Thanks!",'ได้คำตอบแล้ว ให้ขอบคุณ','Thanks a lot! = ขอบคุณมาก')]),
  NPCDEF('ben2','Ben','Shopper⁣ลูกค้าอีกคน',8.2,.5,-Math.PI/2,[.2,.6,.4],[.25,.25,.35],[.3,.2,.1],'',[
-  TT("Hi! Which snack is good?",'หวัดดี ขนมอันไหนอร่อย',"I like these chips. They're tasty.","I'm a snack.","It is on the shelf.",'เพื่อนถามขนมอันไหนอร่อย ให้แนะนำ','I like ... = ฉันชอบ ...'),
-  TT("How much are they?",'ราคาเท่าไร',"They are twenty baht.","It is a bag.","They are cold.",'ถามราคา (หลายชิ้น) ใช้ They are ... baht.','How much are they? = (หลายชิ้น) ราคาเท่าไร'),
-  TT("Thanks! You're a big help.",'ขอบใจ! เธอช่วยได้มากเลย',"You're welcome!","I'm sorry.","I'm big.",'ได้รับคำขอบคุณ ให้ตอบ','You\'re welcome. = ยินดี/ไม่เป็นไร')])]});
+  TT("Hi! Which snack is good?",'หวัดดี ขนมอันไหนอร่อย',"I like these chips. They're tasty.","Yes, it's on the shelf.","I'm fine, thank you. And you?",'เพื่อนถามขนมอันไหนอร่อย ให้แนะนำ','I like ... = ฉันชอบ ...'),
+  TT("How much are they?",'ราคาเท่าไร',"They are twenty baht.","Yes, they are very tasty.","Thank you. Where is the cashier?",'ถามราคา (หลายชิ้น) ใช้ They are ... baht.','How much are they? = (หลายชิ้น) ราคาเท่าไร'),
+  TT("Thanks! You're a big help.",'ขอบใจ! เธอช่วยได้มากเลย',"You're welcome!","Sorry, I'm late.","Nice to meet you.",'ได้รับคำขอบคุณ ให้ตอบ','You\'re welcome. = ยินดี/ไม่เป็นไร')])]});
 SCENES.push({id:'lotus',name:"Lotus's",th:'โลตัส',color:'#15803D',spawn:[0,3.2,Math.PI],bounds:[-12.4,12.4,-9,9],
  build(){const c=mk();base(c,[-12.4,12.4,-9,9],0,[.88,.92,.88]);shell(c,[.9,.95,.9],[.1,.5,.25],false);
   c.box(0,3.6,-6.14,8,.9,.06,[.1,.5,.25]);c.box(0,1.1,-6.18,4,2.2,.06,[.6,.85,.95]);

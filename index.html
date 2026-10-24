@@ -561,7 +561,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--pen);box-shadow:0 0 0
 </div></footer>
 <div id="toast" hidden></div>
 
-<script src="cloud-config.js?v=20261024b"></script>
+<script src="cloud-config.js?v=20261024c"></script>
 <script>
 /* ============ CONTENT: Unit 1 · My School Life (ม.2, A1-A2) ============ */
 // Q(question, why, correct, ...wrongs)  — the correct answer is written first and shuffled at run time
@@ -961,7 +961,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261024b';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261024c';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -3036,21 +3036,21 @@ SCENES.push({id:'school',name:'School',th:'โรงเรียน',color:'#244
   return{a:new Float32Array(c.a),ob:c.ob}},
  npcs:[
  {id:'anong',name:'Ms. Anong',role:'Teacher⁣ครู',x:-4,z:-4.8,ry:0,shirt:[.5,.25,.65],pants:[.2,.2,.3],hair:[.1,.07,.07],acc:'bun',turns:[
-  TT("Good morning! How are you today?",'อรุณสวัสดิ์ วันนี้เป็นอย่างไรบ้าง',"I'm fine, thank you. And you?","I'm in Grade 8.","It's a school.",'ครูถามสารทุกข์สุกดิบ ให้ตอบและถามกลับ','How are you? ตอบ I\'m fine, thank you. And you?'),
-  TT("I'm great, thanks. Are you ready for class?",'ครูสบายดี พร้อมเข้าเรียนหรือยัง',"Yes, I am. What time does class start?","I'm a teacher.","No, it isn't.",'ถามว่าพร้อมไหม ให้ตอบและถามเวลาเรียน','What time does ... start? = ... เริ่มกี่โมง'),
-  TT("It starts at eight thirty. Please hurry!",'เริ่มแปดโมงครึ่ง รีบหน่อยนะ',"OK. See you in class!","I have a pen.","It's a big class.",'ครูบอกเวลาและเร่ง ให้ตอบรับและลา','See you in class! = เจอกันในห้องเรียน')]},
+  TT("Good morning! How are you today?",'อรุณสวัสดิ์ วันนี้เป็นอย่างไรบ้าง',"I'm fine, thank you. And you?","I'm ready for class.","Nice to meet you.",'ครูถามสารทุกข์สุกดิบ ให้ตอบและถามกลับ','How are you? ตอบ I\'m fine, thank you. And you?'),
+  TT("I'm great, thanks. Are you ready for class?",'ครูสบายดี พร้อมเข้าเรียนหรือยัง',"Yes, I am. What time does class start?","Yes, I am. I'm fine, thank you.","Yes, it starts at eight thirty.",'ถามว่าพร้อมไหม ให้ตอบและถามเวลาเรียน','What time does ... start? = ... เริ่มกี่โมง'),
+  TT("It starts at eight thirty. Please hurry!",'เริ่มแปดโมงครึ่ง รีบหน่อยนะ',"OK. See you in class!","What time does class start?","Thank you. I'm fine.",'ครูบอกเวลาและเร่ง ให้ตอบรับและลา','See you in class! = เจอกันในห้องเรียน')]},
  {id:'ton',name:'Ton',role:'Classmate⁣เพื่อนร่วมชั้น',x:3,z:-1.2,ry:0,shirt:[.95,.95,.95],pants:[.15,.2,.45],hair:[.08,.06,.05],acc:'',turns:[
-  TT("Hi! What's your favorite subject?",'หวัดดี วิชาที่เธอชอบที่สุดคืออะไร',"My favorite subject is English.","I'm in room 802.","I like Monday.",'ถามวิชาที่ชอบ ให้ตอบชื่อวิชา','My favorite subject is ... = วิชาที่ฉันชอบคือ ...'),
-  TT("Really? Why do you like it?",'จริงเหรอ ทำไมถึงชอบ',"Because it is fun.","Because I'm thirteen.","It is on Monday.",'ถามเหตุผล ให้ตอบด้วย Because ...','Why ...? ตอบด้วย Because ... = เพราะว่า ...'),
-  TT("Cool! Do you want to play basketball after school?",'เจ๋ง! เลิกเรียนไปเล่นบาสไหม',"Sure! See you at four o'clock.","He is a good player.","I'm at school.",'ชวนเล่นบาส ให้ตอบรับ','Sure! = ได้เลย ใช้ตอบรับคำชวน')]},
+  TT("Hi! What's your favorite subject?",'หวัดดี วิชาที่เธอชอบที่สุดคืออะไร',"My favorite subject is English.","My favorite color is blue.","Yes, I like school.",'ถามวิชาที่ชอบ ให้ตอบชื่อวิชา','My favorite subject is ... = วิชาที่ฉันชอบคือ ...'),
+  TT("Really? Why do you like it?",'จริงเหรอ ทำไมถึงชอบ',"Because it is fun.","I like it every Monday.","Yes, I really like it.",'ถามเหตุผล ให้ตอบด้วย Because ...','Why ...? ตอบด้วย Because ... = เพราะว่า ...'),
+  TT("Cool! Do you want to play basketball after school?",'เจ๋ง! เลิกเรียนไปเล่นบาสไหม',"Sure! See you at four o'clock.","It's four o'clock.","It's after school.",'ชวนเล่นบาส ให้ตอบรับ','Sure! = ได้เลย ใช้ตอบรับคำชวน')]},
  {id:'prem',name:'Mr. Prem',role:'Librarian⁣บรรณารักษ์',x:-7.6,z:3.2,ry:Math.PI/2,shirt:[.2,.55,.4],pants:[.3,.3,.35],hair:[.7,.7,.72],acc:'',turns:[
-  TT("Hello. Can I help you?",'สวัสดีครับ ให้ช่วยอะไรไหม',"Yes. I'd like to borrow a book, please.","I have a book.","The library is big.",'บรรณารักษ์ถามว่าให้ช่วยไหม ให้บอกว่าต้องการยืมหนังสือ','borrow a book = ยืมหนังสือ'),
-  TT("Sure. What kind of book?",'ได้ครับ หนังสือประเภทไหน',"An English story book, please.","It's a library.","On the desk.",'ถามประเภทหนังสือ ให้ตอบประเภท','What kind of ...? = ... ประเภทไหน'),
-  TT("Here you are. Please return it in two weeks.",'นี่ครับ กรุณาคืนภายในสองสัปดาห์',"OK. Thank you very much!","I'm two weeks old.","It's a long book.",'ได้หนังสือแล้ว ให้ตอบรับและขอบคุณ','return = คืน, in two weeks = ภายในสองสัปดาห์')]},
+  TT("Hello. Can I help you?",'สวัสดีครับ ให้ช่วยอะไรไหม',"Yes. I'd like to borrow a book, please.","I'm fine, thank you. And you?","Yes, I can help you.",'บรรณารักษ์ถามว่าให้ช่วยไหม ให้บอกว่าต้องการยืมหนังสือ','borrow a book = ยืมหนังสือ'),
+  TT("Sure. What kind of book?",'ได้ครับ หนังสือประเภทไหน',"An English story book, please.","Yes, I'd like a book, please.","It's on the desk.",'ถามประเภทหนังสือ ให้ตอบประเภท','What kind of ...? = ... ประเภทไหน'),
+  TT("Here you are. Please return it in two weeks.",'นี่ครับ กรุณาคืนภายในสองสัปดาห์',"OK. Thank you very much!","I'd like to borrow a book.","Where is the library?",'ได้หนังสือแล้ว ให้ตอบรับและขอบคุณ','return = คืน, in two weeks = ภายในสองสัปดาห์')]},
  {id:'nan',name:'Nan',role:'Student⁣นักเรียนอีกคน',x:8,z:-2,ry:0,shirt:[.95,.4,.4],pants:[.2,.2,.3],hair:[.12,.08,.05],acc:'long',turns:[
-  TT("Excuse me. Where is the library?",'ขอโทษนะ ห้องสมุดอยู่ที่ไหน',"Go straight. It's on the left.","I'm Nan.","Thank you very much.",'เพื่อนถามทาง ให้บอกทางไปห้องสมุด','Go straight = เดินตรงไป, on the left = ทางซ้าย'),
-  TT("Thanks! Is it far?",'ขอบคุณ! ไกลไหม',"No, it's very close.","Yes, I am.","It's two books.",'ถามว่าไกลไหม ให้ตอบว่าไกลหรือใกล้','close = ใกล้, far = ไกล'),
-  TT("Great. See you later!",'เยี่ยม แล้วเจอกันนะ',"See you! Bye.","Nice to meet you.","I'm fine.",'เพื่อนลา ให้ลากลับ','See you later! = แล้วเจอกัน')]}]});
+  TT("Excuse me. Where is the library?",'ขอโทษนะ ห้องสมุดอยู่ที่ไหน',"Go straight. It's on the left.","Yes, the library is big.","Thank you. Where is the library?",'เพื่อนถามทาง ให้บอกทางไปห้องสมุด','Go straight = เดินตรงไป, on the left = ทางซ้าย'),
+  TT("Thanks! Is it far?",'ขอบคุณ! ไกลไหม',"No, it's very close.","Yes, it's close.","Turn left. Thank you.",'ถามว่าไกลไหม ให้ตอบว่าไกลหรือใกล้','close = ใกล้, far = ไกล'),
+  TT("Great. See you later!",'เยี่ยม แล้วเจอกันนะ',"See you! Bye.","Thanks! Where is the library?","Good morning!",'เพื่อนลา ให้ลากลับ','See you later! = แล้วเจอกัน')]}]});
 /* 4 Bus station */
 SCENES.push({id:'bus',name:'Bus Station',th:'สถานีรถบัส',color:'#0F7B5F',spawn:[0,2.6,Math.PI],bounds:[-12.4,12.4,-9,9],
  build(){const c=mk();base(c,[-12.4,12.4,-9,9],0,[.74,.74,.76]);
@@ -3560,21 +3560,21 @@ SCENES.push({id:'cafeteria',name:'Cafeteria',th:'โรงอาหาร',color
   return{a:new Float32Array(c.a),ob:c.ob}},
  npcs:[
  NPCDEF('malee','Ms. Malee','Food vendor⁣แม่ค้าอาหาร',-6,-6.3,0,[.9,.5,.2],[.25,.2,.3],[.08,.06,.07],'bun',[
-  TT("Hello! What would you like for lunch?",'สวัสดีจ้ะ กินอะไรดีจ๊ะ',"I'd like fried rice, please.","I'm at lunch.","It is a lunch.",'แม่ค้าถามว่าจะกินอะไร ให้สั่งอาหาร','I\'d like ..., please. = ขอ ... ค่ะ/ครับ'),
-  TT("Do you want a fried egg on top?",'เอาไข่ดาวด้วยไหมจ๊ะ',"Yes, please.","Yes, I'm an egg.","It's on top.",'ถามว่าเอาไข่ดาวไหม (Do you want ...?) ตอบรับอย่างสุภาพ','fried egg = ไข่ดาว, on top = ด้านบน'),
-  TT("That's forty baht.",'สี่สิบบาทจ้ะ',"Here you are. Thank you.","It's forty.","You're welcome.",'ได้ราคาแล้ว ให้จ่ายเงินและขอบคุณ','Here you are. = นี่ค่ะ/ครับ')]),
+  TT("Hello! What would you like for lunch?",'สวัสดีจ้ะ กินอะไรดีจ๊ะ',"I'd like fried rice, please.","I'm fine, thank you.","Forty baht, please.",'แม่ค้าถามว่าจะกินอะไร ให้สั่งอาหาร','I\'d like ..., please. = ขอ ... ค่ะ/ครับ'),
+  TT("Do you want a fried egg on top?",'เอาไข่ดาวด้วยไหมจ๊ะ',"Yes, please.","Here you are.","That's forty baht.",'ถามว่าเอาไข่ดาวไหม (Do you want ...?) ตอบรับอย่างสุภาพ','fried egg = ไข่ดาว, on top = ด้านบน'),
+  TT("That's forty baht.",'สี่สิบบาทจ้ะ',"Here you are. Thank you.","Yes, please.","I'd like fried rice, please.",'ได้ราคาแล้ว ให้จ่ายเงินและขอบคุณ','Here you are. = นี่ค่ะ/ครับ')]),
  NPCDEF('wichai','Mr. Wichai','Drink seller⁣คนขายเครื่องดื่ม',6,-6.3,0,[.2,.5,.8],[.2,.2,.25],[.1,.07,.05],'cap',[
-  TT("Hi! Are you thirsty?",'สวัสดีครับ กระหายน้ำไหมครับ',"Yes, I am. Can I have some water?","Yes, I do.","I'm a water.",'ถามว่ากระหายน้ำไหม (Are you ...?) ตอบ Yes, I am.','thirsty = กระหายน้ำ'),
-  TT("Cold water or orange juice?",'น้ำเย็นหรือน้ำส้มครับ',"Orange juice, please.","It's cold.","I'm orange.",'ถามให้เลือกเครื่องดื่ม','Cold water or orange juice? = น้ำเย็นหรือน้ำส้ม'),
-  TT("Ten baht, please.",'สิบบาทครับ',"Here's ten baht. Thanks!","I'm ten.","It's a bottle.",'ถูกบอกราคา ให้จ่ายเงินและขอบคุณ','Ten baht, please. = สิบบาทครับ')]),
+  TT("Hi! Are you thirsty?",'สวัสดีครับ กระหายน้ำไหมครับ',"Yes, I am. Can I have some water?","I'm fine, thank you.","Yes, I am. Here's ten baht.",'ถามว่ากระหายน้ำไหม (Are you ...?) ตอบ Yes, I am.','thirsty = กระหายน้ำ'),
+  TT("Cold water or orange juice?",'น้ำเย็นหรือน้ำส้มครับ',"Orange juice, please.","Ten baht, please.","Yes, please.",'ถามให้เลือกเครื่องดื่ม','Cold water or orange juice? = น้ำเย็นหรือน้ำส้ม'),
+  TT("Ten baht, please.",'สิบบาทครับ',"Here's ten baht. Thanks!","Orange juice, please.","You're welcome.",'ถูกบอกราคา ให้จ่ายเงินและขอบคุณ','Ten baht, please. = สิบบาทครับ')]),
  NPCDEF('ploy','Ploy','Classmate⁣เพื่อนร่วมชั้น',-9.4,-.7,Math.PI/2,[.9,.4,.5],[.25,.3,.5],[.08,.06,.07],'long',[
-  TT("Hi! Is this seat taken?",'สวัสดี ที่นั่งนี้มีคนนั่งหรือยัง',"No, it isn't. Please sit down.","Yes, I do.","It's a seat.",'ถามว่าที่นั่งว่างไหม (Is ...?) ตอบ No, it isn\'t.','Is this seat taken? = ที่นั่งนี้มีคนนั่งหรือยัง'),
-  TT("What do you usually eat for lunch?",'เธอกินอะไรเป็นประจำตอนกลางวัน',"I usually eat rice with chicken.","I'm usually lunch.","It is usually good.",'ถามว่ากินอะไรเป็นประจำ ตอบด้วย usually','usually = มักจะ, rice with chicken = ข้าวกับไก่'),
-  TT("Is the food here good?",'อาหารที่นี่อร่อยไหม',"Yes, it's delicious.","Yes, I am.","It's a cafeteria.",'ถามว่าอาหารอร่อยไหม ตอบ Yes, it is.','delicious = อร่อย')]),
+  TT("Hi! Is this seat taken?",'สวัสดี ที่นั่งนี้มีคนนั่งหรือยัง',"No, it isn't. Please sit down.","Hi! I'm fine, thank you.","I usually eat rice.",'ถามว่าที่นั่งว่างไหม (Is ...?) ตอบ No, it isn\'t.','Is this seat taken? = ที่นั่งนี้มีคนนั่งหรือยัง'),
+  TT("What do you usually eat for lunch?",'เธอกินอะไรเป็นประจำตอนกลางวัน',"I usually eat rice with chicken.","I'm at the cafeteria.","It's delicious. Thank you.",'ถามว่ากินอะไรเป็นประจำ ตอบด้วย usually','usually = มักจะ, rice with chicken = ข้าวกับไก่'),
+  TT("Is the food here good?",'อาหารที่นี่อร่อยไหม',"Yes, it's delicious.","I usually eat rice with chicken.","Yes, please sit down.",'ถามว่าอาหารอร่อยไหม ตอบ Yes, it is.','delicious = อร่อย')]),
  NPCDEF('teacher','Teacher Anan','Teacher⁣ครู',2,-.4,Math.PI,[.3,.45,.6],[.2,.2,.25],[.1,.07,.05],'',[
-  TT("Good afternoon! Did you eat lunch?",'สวัสดีตอนบ่าย กินข้าวกลางวันหรือยัง',"Yes, I did. It was good.","Yes, I do.","I'm lunch.",'ถามว่ากินแล้วหรือยัง (Did you ...?) ตอบ Yes, I did.','Did you eat ...? = กิน ... แล้วหรือยัง'),
-  TT("Please throw your trash in the bin.",'กรุณาทิ้งขยะในถังนะ',"OK. I'll do it now.","I'm a trash.","It is a bin.",'ครูขอให้ทิ้งขยะ ให้ตอบรับ','trash = ขยะ (อเมริกัน), bin = ถัง'),
-  TT("Keep the cafeteria clean, please.",'ช่วยกันรักษาความสะอาดโรงอาหารด้วยนะ',"Yes, Teacher. I will.","I'm clean.","It's a cafeteria.",'ครูขอให้รักษาความสะอาด ให้ตอบรับ','Keep ... clean. = รักษา ... ให้สะอาด')])]});
+  TT("Good afternoon! Did you eat lunch?",'สวัสดีตอนบ่าย กินข้าวกลางวันหรือยัง',"Yes, I did. It was good.","Good afternoon, Teacher! I'm fine.","Yes, I will. It was good.",'ถามว่ากินแล้วหรือยัง (Did you ...?) ตอบ Yes, I did.','Did you eat ...? = กิน ... แล้วหรือยัง'),
+  TT("Please throw your trash in the bin.",'กรุณาทิ้งขยะในถังนะ',"OK. I'll do it now.","Yes, I did. It was good.","Thank you, Teacher. Goodbye!",'ครูขอให้ทิ้งขยะ ให้ตอบรับ','trash = ขยะ (อเมริกัน), bin = ถัง'),
+  TT("Keep the cafeteria clean, please.",'ช่วยกันรักษาความสะอาดโรงอาหารด้วยนะ',"Yes, Teacher. I will.","Yes, Teacher. I'm fine.","Thank you. It was good.",'ครูขอให้รักษาความสะอาด ให้ตอบรับ','Keep ... clean. = รักษา ... ให้สะอาด')])]});
 
 /* ===== Classroom ===== */
 SCENES.push({id:'classroom',name:'Classroom',th:'ห้องเรียน',color:'#0D9488',spawn:[0,3.2,Math.PI],bounds:[-12.4,12.4,-9,9],
@@ -3590,21 +3590,21 @@ SCENES.push({id:'classroom',name:'Classroom',th:'ห้องเรียน',co
   return{a:new Float32Array(c.a),ob:c.ob}},
  npcs:[
  NPCDEF('suda','Teacher Suda','English teacher⁣ครูสอนภาษาอังกฤษ',0,-5.7,0,[.7,.3,.45],[.2,.2,.3],[.08,.06,.07],'bun',[
-  TT("Good morning, class! How are you today?",'สวัสดีตอนเช้านักเรียน วันนี้เป็นอย่างไรบ้าง',"I'm fine, thank you. And you?","I'm a student.","It's morning.",'ครูถามสารทุกข์สุกดิบ ให้ตอบและถามกลับ','And you? = แล้วคุณล่ะ'),
-  TT("Please open your books to page ten.",'กรุณาเปิดหนังสือหน้าสิบ',"OK, Teacher.","I'm a book.","It's ten.",'ครูสั่งให้เปิดหนังสือ ให้ตอบรับ','open your books to page ... = เปิดหนังสือหน้า ...'),
-  TT("Do you have any questions?",'มีคำถามไหม',"Yes. What does this word mean?","Yes, I am.","It's a question.",'ครูถามว่ามีคำถามไหม (Do you ...?) ถามความหมายของคำ','What does ... mean? = ... แปลว่าอะไร')]),
+  TT("Good morning, class! How are you today?",'สวัสดีตอนเช้านักเรียน วันนี้เป็นอย่างไรบ้าง',"I'm fine, thank you. And you?","Yes, I'm ready for class.","Nice to meet you, Teacher.",'ครูถามสารทุกข์สุกดิบ ให้ตอบและถามกลับ','And you? = แล้วคุณล่ะ'),
+  TT("Please open your books to page ten.",'กรุณาเปิดหนังสือหน้าสิบ',"OK, Teacher.","I'm fine, Teacher.","Yes, it's ten o'clock.",'ครูสั่งให้เปิดหนังสือ ให้ตอบรับ','open your books to page ... = เปิดหนังสือหน้า ...'),
+  TT("Do you have any questions?",'มีคำถามไหม',"Yes. What does this word mean?","OK, Teacher. I'll open my book.","Yes, I have a pen.",'ครูถามว่ามีคำถามไหม (Do you ...?) ถามความหมายของคำ','What does ... mean? = ... แปลว่าอะไร')]),
  NPCDEF('nok','Nok','Classmate⁣เพื่อนร่วมชั้น',-9.2,-.7,Math.PI/2,[.9,.4,.5],[.25,.3,.5],[.08,.06,.07],'long',[
-  TT("Hi! Can I borrow your pen, please?",'สวัสดี ขอยืมปากกาหน่อยได้ไหม',"Sure. Here you go.","Yes, I'm a pen.","It's my pen.",'เพื่อนขอยืมปากกา ให้ตอบรับและยื่นให้','Can I borrow ...? = ขอยืม ... ได้ไหม'),
-  TT("Thanks! What subject do you like?",'ขอบคุณ เธอชอบวิชาอะไร',"I like math.","I'm a subject.","It is a class.",'ถามว่าชอบวิชาอะไร ตอบ I like ...','subject = วิชา, math = คณิตศาสตร์ (อเมริกัน)'),
-  TT("Is the test today or tomorrow?",'สอบวันนี้หรือพรุ่งนี้',"It's tomorrow.","I'm tomorrow.","Yes, it is.",'ถามให้เลือก วันนี้หรือพรุ่งนี้ ตอบด้วยคำเดียว','test = การสอบ, tomorrow = พรุ่งนี้')]),
+  TT("Hi! Can I borrow your pen, please?",'สวัสดี ขอยืมปากกาหน่อยได้ไหม',"Sure. Here you go.","I like math.","Thanks! I have a pen.",'เพื่อนขอยืมปากกา ให้ตอบรับและยื่นให้','Can I borrow ...? = ขอยืม ... ได้ไหม'),
+  TT("Thanks! What subject do you like?",'ขอบคุณ เธอชอบวิชาอะไร',"I like math.","Sure. Here you go.","My favorite color is blue.",'ถามว่าชอบวิชาอะไร ตอบ I like ...','subject = วิชา, math = คณิตศาสตร์ (อเมริกัน)'),
+  TT("Is the test today or tomorrow?",'สอบวันนี้หรือพรุ่งนี้',"It's tomorrow.","I like math.","It's nine o'clock.",'ถามให้เลือก วันนี้หรือพรุ่งนี้ ตอบด้วยคำเดียว','test = การสอบ, tomorrow = พรุ่งนี้')]),
  NPCDEF('tom','Tom','Classmate⁣เพื่อนร่วมชั้น',8.6,-.7,-Math.PI/2,[.3,.6,.45],[.25,.3,.5],[.1,.07,.05],'cap',[
-  TT("Excuse me. What time is it?",'ขอโทษนะ ตอนนี้กี่โมงแล้ว',"It's nine o'clock.","It's Monday.","I'm nine.",'ถามเวลา ตอบ It\'s ... o\'clock.','What time is it? = กี่โมงแล้ว'),
-  TT("Where is the eraser?",'ยางลบอยู่ที่ไหน',"It's on the desk.","It's an eraser.","Yes, it is.",'ถามว่าอยู่ที่ไหน ตอบด้วย on / in / under','eraser = ยางลบ, desk = โต๊ะเรียน'),
-  TT("Can you help me with my homework?",'ช่วยทำการบ้านหน่อยได้ไหม',"Sure. Let's do it together.","I'm homework.","No, it isn't.",'เพื่อนขอให้ช่วย ให้ตอบรับ','homework = การบ้าน, together = ด้วยกัน')]),
+  TT("Excuse me. What time is it?",'ขอโทษนะ ตอนนี้กี่โมงแล้ว',"It's nine o'clock.","It's on the desk.","Sure. Here you go.",'ถามเวลา ตอบ It\'s ... o\'clock.','What time is it? = กี่โมงแล้ว'),
+  TT("Where is the eraser?",'ยางลบอยู่ที่ไหน',"It's on the desk.","It's nine o'clock.","Yes, I have an eraser.",'ถามว่าอยู่ที่ไหน ตอบด้วย on / in / under','eraser = ยางลบ, desk = โต๊ะเรียน'),
+  TT("Can you help me with my homework?",'ช่วยทำการบ้านหน่อยได้ไหม',"Sure. Let's do it together.","Yes, I do my homework.","OK, Teacher.",'เพื่อนขอให้ช่วย ให้ตอบรับ','homework = การบ้าน, together = ด้วยกัน')]),
  NPCDEF('monitor','Beam','Class monitor⁣หัวหน้าห้อง',3,1.2,Math.PI,[.25,.45,.7],[.2,.2,.25],[.1,.07,.05],'',[
-  TT("Good morning! Are you new here?",'สวัสดีตอนเช้า เธอเป็นนักเรียนใหม่หรือเปล่า',"No, I'm not. I'm in this class.","Yes, I do.","I'm a morning.",'ถามว่าใหม่ไหม (Are you ...?) ตอบ No, I\'m not.','new = ใหม่, class = ห้องเรียน/ชั้น'),
-  TT("Please clean the board today.",'วันนี้ช่วยลบกระดานด้วยนะ',"OK. I'll clean it now.","I'm a board.","It's clean.",'ถูกขอให้ลบกระดาน ให้ตอบรับ','clean the board = ลบกระดาน'),
-  TT("Class starts in five minutes.",'อีกห้านาทีเข้าเรียนแล้ว',"Thanks. I'll sit down now.","I'm five.","It's a class.",'ได้ยินว่าใกล้เข้าเรียน ให้ขอบคุณและนั่ง','starts in five minutes = เริ่มในอีกห้านาที')])]});
+  TT("Good morning! Are you new here?",'สวัสดีตอนเช้า เธอเป็นนักเรียนใหม่หรือเปล่า',"No, I'm not. I'm in this class.","Good morning! I'm fine, thank you.","Yes, I do. I'm in this class.",'ถามว่าใหม่ไหม (Are you ...?) ตอบ No, I\'m not.','new = ใหม่, class = ห้องเรียน/ชั้น'),
+  TT("Please clean the board today.",'วันนี้ช่วยลบกระดานด้วยนะ',"OK. I'll clean it now.","Sure. Here you go.","Yes, it's clean.",'ถูกขอให้ลบกระดาน ให้ตอบรับ','clean the board = ลบกระดาน'),
+  TT("Class starts in five minutes.",'อีกห้านาทีเข้าเรียนแล้ว',"Thanks. I'll sit down now.","It's nine o'clock.","Yes, class is fun.",'ได้ยินว่าใกล้เข้าเรียน ให้ขอบคุณและนั่ง','starts in five minutes = เริ่มในอีกห้านาที')])]});
 
 /* ===== Home ===== */
 SCENES.push({id:'home',name:'Home',th:'บ้าน',color:'#E11D48',spawn:[0,3.2,Math.PI],bounds:[-12.4,12.4,-9,9],
@@ -3677,21 +3677,21 @@ SCENES.push({id:'sports',name:'Sports Field',th:'สนามกีฬา',color
   return{a:new Float32Array(c.a),ob:c.ob}},
  npcs:[
  NPCDEF('kru','Coach Chai','PE teacher⁣ครูพละ',-2.4,-.8,Math.PI,[.15,.45,.7],[.15,.15,.2],[.1,.07,.05],'cap',[
-  TT("Hello, team! Are you ready for class?",'สวัสดีทุกคน พร้อมเรียนหรือยัง',"Yes, we are. Let's start!","Yes, I do.","It's a team.",'ครูถามว่าพร้อมไหม (Are you ...?) ตอบ Yes, we are.','Are you ready? = พร้อมหรือยัง'),
-  TT("First, run around the field twice.",'ก่อนอื่น วิ่งรอบสนามสองรอบ',"OK, Coach. I'll run now.","I'm a field.","It's twice.",'ครูสั่งให้วิ่ง ให้ตอบรับ','run around ... = วิ่งรอบ ..., twice = สองครั้ง'),
-  TT("Good job! Drink some water.",'เก่งมาก ดื่มน้ำหน่อยนะ',"Thank you, Coach.","I'm a job.","It is water.",'ครูชม ให้ขอบคุณ','Good job! = เก่งมาก')]),
+  TT("Hello, team! Are you ready for class?",'สวัสดีทุกคน พร้อมเรียนหรือยัง',"Yes, we are. Let's start!","Yes, I do. Let's start!","Good morning, Coach! I'm fine.",'ครูถามว่าพร้อมไหม (Are you ...?) ตอบ Yes, we are.','Are you ready? = พร้อมหรือยัง'),
+  TT("First, run around the field twice.",'ก่อนอื่น วิ่งรอบสนามสองรอบ',"OK, Coach. I'll run now.","Yes, we are.","Thank you, Coach.",'ครูสั่งให้วิ่ง ให้ตอบรับ','run around ... = วิ่งรอบ ..., twice = สองครั้ง'),
+  TT("Good job! Drink some water.",'เก่งมาก ดื่มน้ำหน่อยนะ',"Thank you, Coach.","OK, Coach. I'll run now.","Yes, we are.",'ครูชม ให้ขอบคุณ','Good job! = เก่งมาก')]),
  NPCDEF('ball','Ball','Soccer player⁣นักฟุตบอล',5.0,-4.0,Math.PI,[.9,.25,.25],[.95,.95,.95],[.08,.06,.07],'',[
-  TT("Hey! Do you play soccer?",'นี่ เธอเล่นฟุตบอลไหม',"Yes, I do. I play every Friday.","Yes, I am.","I'm soccer.",'ถามว่าเล่นไหม (Do you ...?) ตอบ Yes, I do.','soccer = ฟุตบอล (อเมริกัน), every Friday = ทุกวันศุกร์'),
-  TT("Great! Can you join our team?",'เยี่ยม เธอมาเล่นทีมเราได้ไหม',"Sure. I'd love to.","I'm a team.","It is great.",'ถูกชวนเข้าทีม ให้ตอบรับ','join = เข้าร่วม, I\'d love to. = ยินดีเลย'),
-  TT("Pass the ball to me!",'ส่งบอลมาให้หน่อย',"OK! Here it comes.","I'm a ball.","It's pass.",'ถูกขอให้ส่งบอล ให้ตอบรับ','pass = ส่ง (บอล)')]),
+  TT("Hey! Do you play soccer?",'นี่ เธอเล่นฟุตบอลไหม',"Yes, I do. I play every Friday.","Yes, I am. I play every Friday.","Sure. I'd love to.",'ถามว่าเล่นไหม (Do you ...?) ตอบ Yes, I do.','soccer = ฟุตบอล (อเมริกัน), every Friday = ทุกวันศุกร์'),
+  TT("Great! Can you join our team?",'เยี่ยม เธอมาเล่นทีมเราได้ไหม',"Sure. I'd love to.","Yes, I do. I play every Friday.","Thank you, Coach.",'ถูกชวนเข้าทีม ให้ตอบรับ','join = เข้าร่วม, I\'d love to. = ยินดีเลย'),
+  TT("Pass the ball to me!",'ส่งบอลมาให้หน่อย',"OK! Here it comes.","Sure. I'd love to.","Yes, I do. Here you go.",'ถูกขอให้ส่งบอล ให้ตอบรับ','pass = ส่ง (บอล)')]),
  NPCDEF('may','May','Classmate⁣เพื่อนร่วมชั้น',-8.6,1.2,Math.PI/2,[.95,.6,.2],[.2,.25,.4],[.08,.06,.07],'long',[
-  TT("Hi! What sports do you like?",'สวัสดี เธอชอบกีฬาอะไร',"I like badminton.","I'm a sport.","It's a sport.",'ถามว่าชอบกีฬาอะไร ตอบ I like ...','badminton = แบดมินตัน'),
-  TT("Me too! Let's play after school.",'ฉันก็ชอบ เล่นกันหลังเลิกเรียนนะ',"Good idea. See you then!","I'm after.","It's a school.",'เพื่อนชวนเล่น ให้ตอบรับ','Let\'s ... = ไป ... กันเถอะ, Good idea. = ความคิดดี'),
-  TT("Are you good at sports?",'เธอเก่งกีฬาไหม',"Yes, I am. I'm good at running.","Yes, I do.","It's good.",'ถามว่าเก่งไหม (Are you ...?) ตอบ Yes, I am.','be good at ... = เก่งเรื่อง ...')]),
+  TT("Hi! What sports do you like?",'สวัสดี เธอชอบกีฬาอะไร',"I like badminton.","Yes, I like sports.","Good idea. See you then!",'ถามว่าชอบกีฬาอะไร ตอบ I like ...','badminton = แบดมินตัน'),
+  TT("Me too! Let's play after school.",'ฉันก็ชอบ เล่นกันหลังเลิกเรียนนะ',"Good idea. See you then!","I like badminton.","Yes, I am. After school.",'เพื่อนชวนเล่น ให้ตอบรับ','Let\'s ... = ไป ... กันเถอะ, Good idea. = ความคิดดี'),
+  TT("Are you good at sports?",'เธอเก่งกีฬาไหม',"Yes, I am. I'm good at running.","Yes, I do. I like sports.","Good idea. See you then!",'ถามว่าเก่งไหม (Are you ...?) ตอบ Yes, I am.','be good at ... = เก่งเรื่อง ...')]),
  NPCDEF('runner','Rin','Runner⁣นักวิ่ง',8.2,.4,-Math.PI/2,[.2,.7,.5],[.15,.15,.2],[.1,.07,.05],'cap',[
-  TT("Hi! Are you tired?",'สวัสดี เธอเหนื่อยไหม',"Yes, I am. I ran a lot.","Yes, I do.","I'm a tired.",'ถามว่าเหนื่อยไหม (Are you ...?) ตอบ Yes, I am.','tired = เหนื่อย, ran = วิ่งแล้ว (อดีตของ run)'),
-  TT("How often do you exercise?",'เธอออกกำลังกายบ่อยแค่ไหน',"I exercise three times a week.","I'm exercise.","It is often.",'ถามความถี่ ตอบด้วย times a week','three times a week = สัปดาห์ละสามครั้ง'),
-  TT("Exercise is good for your health.",'การออกกำลังกายดีต่อสุขภาพนะ',"I agree. Let's run together.","I'm health.","It's exercise.",'ได้ยินคำแนะนำ ให้เห็นด้วยและชวนวิ่ง','I agree. = ฉันเห็นด้วย, health = สุขภาพ')])]});
+  TT("Hi! Are you tired?",'สวัสดี เธอเหนื่อยไหม',"Yes, I am. I ran a lot.","Yes, I do. I run a lot.","I exercise three times a week.",'ถามว่าเหนื่อยไหม (Are you ...?) ตอบ Yes, I am.','tired = เหนื่อย, ran = วิ่งแล้ว (อดีตของ run)'),
+  TT("How often do you exercise?",'เธอออกกำลังกายบ่อยแค่ไหน',"I exercise three times a week.","Yes, I do. Three times.","Yes, I am. I ran a lot.",'ถามความถี่ ตอบด้วย times a week','three times a week = สัปดาห์ละสามครั้ง'),
+  TT("Exercise is good for your health.",'การออกกำลังกายดีต่อสุขภาพนะ',"I agree. Let's run together.","Yes, I am tired.","OK, Coach. I'll run now.",'ได้ยินคำแนะนำ ให้เห็นด้วยและชวนวิ่ง','I agree. = ฉันเห็นด้วย, health = สุขภาพ')])]});
 
 /* ===== Pharmacy ===== */
 SCENES.push({id:'pharmacy',name:'Pharmacy',th:'ร้านขายยา',color:'#059669',spawn:[0,3.2,Math.PI],bounds:[-12.4,12.4,-9,9],

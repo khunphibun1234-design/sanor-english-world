@@ -561,7 +561,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--pen);box-shadow:0 0 0
 </div></footer>
 <div id="toast" hidden></div>
 
-<script src="cloud-config.js?v=20261023k"></script>
+<script src="cloud-config.js?v=20261024a"></script>
 <script>
 /* ============ CONTENT: Unit 1 · My School Life (ม.2, A1-A2) ============ */
 // Q(question, why, correct, ...wrongs)  — the correct answer is written first and shuffled at run time
@@ -961,7 +961,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261023k';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261024a';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -1551,6 +1551,18 @@ function accountCard(opts){
 const RF_FEEL=[['u','I understand it\u2063เข้าใจแล้ว'],['a','Almost\u2063เกือบเข้าใจ'],['n','I need more practice\u2063ต้องฝึกอีก']];
 const RF_WHEN=[['t','Today\u2063วันนี้'],['m','Tomorrow\u2063พรุ่งนี้'],['w','This weekend\u2063สุดสัปดาห์']];
 const biSet=(n,t)=>{const x=el('span',{},t);n.replaceChildren(...x.childNodes)};
+/* ===== Optional link from a Buddy topic to a Sanor Town place (no score, nothing is sent) ===== */
+const TOWN_LINK={2:'home',6:'school',8:'classroom',9:'cafeteria',10:'sports',11:'khongchiam',14:'candle',15:'songkran',16:'cafeteria',17:'market',18:'restaurant',19:'seven',20:'bigc',22:'sports',23:'mall'};
+function townLinkCard(t){
+  try{
+    const id=TOWN_LINK[t.id];if(!id||typeof SanorTown==='undefined')return null;
+    const sc=SanorTown.SCENES.find(x=>x.id===id);if(!sc)return null;
+    return el('div',{class:'card stack',id:'townlink'},
+      el('h3',{},'Try it in Sanor Town\u2063ลองใช้ใน Town'),
+      el('p',{class:'hint'},'Optional practice: talk with people at '+sc.name+'. No score, nothing is sent.\u2063ฝึกเพิ่มโดยไม่บังคับ: คุยกับคนที่'+sc.th+' ไม่มีคะแนน ไม่ส่งข้อมูลใด ๆ'),
+      el('button',{class:'btn ghost',type:'button',onclick:()=>{try{SanorTown.openScene(id,'\u2190 Lesson\u2063กลับบทเรียน')}catch(e){}}},'Go to '+sc.name+'\u2063ไปที่'+sc.th));
+  }catch(e){return null}
+}
 function reflectCard(t){
   if(!S.reflect||typeof S.reflect!=='object')S.reflect={};
   const cur=Object.assign({},S.reflect[t.id]||{});
@@ -2321,7 +2333,7 @@ function writeStep(t,box,upd,next){
       el('div',{class:'field'},el('label',{for:'wr'},'My writing'),area),el('div',{class:'row'},el('button',{class:'btn',type:'button',onclick:check},'Check my writing')),out));
 }
 function quizStep(t,box,upd,next){
-  const start=()=>runQs(box,t.quiz.map(q=>mc(q)),{tid:t.id,onFinish:p=>upd('quiz',p),retry:start,next,nextLabel:'Back to home',reflect:()=>reflectCard(t)});
+  const start=()=>runQs(box,t.quiz.map(q=>mc(q)),{tid:t.id,onFinish:p=>upd('quiz',p),retry:start,next,nextLabel:'Back to home',reflect:()=>{const r=reflectCard(t),k=townLinkCard(t);return k?el('div',{class:'stack'},r,k):r}});
   box.replaceChildren(el('div',{class:'card stack'},hd('quiz','Grammar Quiz · 4 questions'),el('p',{},'Choose the correct answer. Questions you miss are saved in your notebook.'),el('div',{class:'row'},el('button',{class:'btn',type:'button',onclick:start},'Start the quiz\u2063เริ่มควิซ'))));
 }
 
@@ -4078,7 +4090,7 @@ const nTotal=s=>s.npcs?s.npcs.length:4;
 
 /* ---------- the 3D place ---------- */
 let TOWN=null;
-function playPlace(sc,onExit){
+function playPlace(sc,onExit,bl){
  if(TOWN)return;
  const cv=el('canvas',{class:'tcv','aria-label':'3D scene of '+sc.name,role:'img'});
  let gl=null;try{gl=cv.getContext('webgl',{antialias:true,alpha:false,powerPreference:'low-power'})||cv.getContext('experimental-webgl')}catch(e){}
@@ -4086,7 +4098,7 @@ function playPlace(sc,onExit){
  const close=skip=>{if(!TOWN)return;cancelAnimationFrame(TOWN.raf);window.removeEventListener('keydown',TOWN.kd);window.removeEventListener('keyup',TOWN.ku);window.removeEventListener('resize',TOWN.rs);
   try{const x=gl&&gl.getExtension('WEBGL_lose_context');if(x)x.loseContext()}catch(e){}
   stopSay();root.remove();document.body.classList.remove('tlock');TOWN=null;if(skip!==true&&onExit)onExit()};
- const back=el('button',{class:'tback',type:'button',onclick:close},'← Map⁣แผนที่');
+ const back=el('button',{class:'tback',type:'button',onclick:close},bl||'← Map⁣แผนที่');
  if(!gl){root.append(el('div',{class:'tfail card stack'},el('h2',{},'3D is not available on this phone'),el('p',{},'ขออภัย โทรศัพท์เครื่องนี้แสดงภาพ 3 มิติไม่ได้ ลองเปิดด้วย Chrome หรือเครื่องอื่นครับ'),back));
   document.body.append(root);document.body.classList.add('tlock');TOWN={raf:0,kd:()=>{},ku:()=>{},rs:()=>{},fail:true,close};return}
  const sh=(t,s)=>{const o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);return o};
@@ -4117,7 +4129,7 @@ function playPlace(sc,onExit){
  const hint=el('div',{class:'thint'},'Walk to a person with a yellow !⁣เดินไปหาคนที่มีเครื่องหมาย ! สีเหลือง');
  const panel=el('div',{class:'tpanel',hidden:true,role:'region','aria-label':'Conversation'});
  const win=el('div',{class:'twin',hidden:true});
- const warp=el('button',{class:'tplaces',type:'button',onclick:()=>placesSheet(s=>{if(s.id===sc.id)return;close(true);playPlace(s,onExit)})},'Go to another place\u2063ไปสถานที่อื่น');
+ const warp=el('button',{class:'tplaces',type:'button',onclick:()=>placesSheet(s=>{if(s.id===sc.id)return;close(true);playPlace(s,onExit,bl)})},'Go to another place\u2063ไปสถานที่อื่น');
  root.append(cv,warp,el('div',{class:'ttop'},back,el('div',{class:'ttitle'},el('b',{},'Sanor Town · '+sc.name),el('span',{class:'tbadge'},'Prototype')),stars),hint,joy,talk,panel,win);
  document.body.append(root);document.body.classList.add('tlock');
  const upStars=()=>{const n=npcs.filter(x=>x.done).length;stars.textContent='★ '+n+' / '+npcs.length};upStars();
@@ -4303,7 +4315,14 @@ function closeTown(){if(TOWN)TOWN.close(true);if(HOST){if(HOST.outer)HOST.outer.
 function mount(box){if(HOST&&HOST.outer)closeTown();box.inline=true;HOST=box;render()}
 function unmount(){if(TOWN)TOWN.close(true);if(HOST&&HOST.inline)HOST=null;document.body.classList.remove('tlock')}
 function open(){if(HOST)return;const outer=el('div',{class:'tgame',role:'dialog','aria-label':'Sanor Town'});const inner=el('div',{class:'tin'});outer.append(inner);document.body.append(outer);HOST=inner;HOST.outer=outer;render()}
-return {open,mount,unmount,close:closeTown,get g(){return TOWN},SCENES,LOCKED};
+function openScene(id,bl){
+ const sc=SCENES.find(s=>s.id===id);if(!sc||TOWN)return false;
+ if(HOST&&HOST.inline)return false;
+ if(!HOST){const outer=el('div',{class:'tgame',role:'dialog','aria-label':'Sanor Town'});const inner=el('div',{class:'tin'});outer.append(inner);document.body.append(outer);HOST=inner;HOST.outer=outer}
+ playPlace(sc,closeTown,bl);
+ if(!TOWN){closeTown();return false}
+ return true}
+return {open,openScene,mount,unmount,close:closeTown,get g(){return TOWN},SCENES,LOCKED};
 })();
 function openTown(){SanorTown.open()}
 

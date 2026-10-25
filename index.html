@@ -561,7 +561,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--pen);box-shadow:0 0 0
 </div></footer>
 <div id="toast" hidden></div>
 
-<script src="cloud-config.js?v=20261025c"></script>
+<script src="cloud-config.js?v=20261025d"></script>
 <script>
 /* ============ CONTENT: Unit 1 · My School Life (ม.2, A1-A2) ============ */
 // Q(question, why, correct, ...wrongs)  — the correct answer is written first and shuffled at run time
@@ -961,7 +961,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261025c';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261025d';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -3365,21 +3365,21 @@ SCENES.push({id:'longboat',name:'Longboat Racing',th:'แข่งเรือ�
   return{a:new Float32Array(c.a),ob:c.ob}},
  npcs:[
  NPCDEF('pong','Mr. Pong','Paddler⁣ฝีพาย',-6,-2.6,0,[.9,.2,.2],[.15,.2,.35],[.08,.06,.05],'cap',[
-  TT("Hi! I'm a paddler. We race every year.",'หวัดดี ผมเป็นฝีพาย เราแข่งกันทุกปีครับ',"Cool! How many people are in your boat?","I race a boat.","It is a river.",'เจอฝีพาย ให้ถามว่าในเรือมีกี่คน','paddler = ฝีพาย, How many people ...? = ... กี่คน'),
-  TT("Forty-five paddlers. It's a large long boat.",'สี่สิบห้าคนครับ เป็นเรือยาวใหญ่',"Wow! That's a lot of people!","I'm forty-five.","It's a long river.",'ได้ยินจำนวนมาก ให้แสดงความทึ่ง','large long boat = เรือยาวใหญ่ (ประมาณ 41–55 คน)'),
-  TT("Yes! We work together as a team.",'ใช่ครับ! เราทำงานร่วมกันเป็นทีม',"Good luck in the race!","I'm a team.","It is a race.",'ได้ยินว่าทำงานเป็นทีม ให้อวยพรให้โชคดี','as a team = เป็นทีม')]),
+  TT("Hi! I'm a paddler. We race every year.",'หวัดดี ผมเป็นฝีพาย เราแข่งกันทุกปีครับ',"Cool! How many people are in your boat?","Wow! That's a lot of people!","Good luck in the race!",'เจอฝีพาย ให้ถามว่าในเรือมีกี่คน','paddler = ฝีพาย, How many people ...? = ... กี่คน'),
+  TT("Forty-five paddlers. It's a large long boat.",'สี่สิบห้าคนครับ เป็นเรือยาวใหญ่',"Wow! That's a lot of people!","How many people are in your boat?","Good luck in the race!",'ได้ยินจำนวนมาก ให้แสดงความทึ่ง','large long boat = เรือยาวใหญ่ (ประมาณ 41–55 คน)'),
+  TT("Yes! We work together as a team.",'ใช่ครับ! เราทำงานร่วมกันเป็นทีม',"Good luck in the race!","Cool! How many people are in your boat?","Wow! That's a lot of people!",'ได้ยินว่าทำงานเป็นทีม ให้อวยพรให้โชคดี','as a team = เป็นทีม')]),
  NPCDEF('dam','Mr. Dam','Boat builder⁣ช่างต่อเรือ',4,.3,0,[.6,.45,.3],[.3,.3,.3],[.75,.75,.78],'hat',[
-  TT("This boat is made from one big log.",'เรือลำนี้ทำจากไม้ซุงต้นใหญ่ท่อนเดียวครับ',"Really? What kind of wood is it?","It is a boat.","I am a log.",'ได้ยินว่าทำจากไม้ท่อนเดียว ให้ถามชนิดไม้','log = ไม้ซุง, What kind of ...? = ... ชนิดไหน'),
-  TT("Teak or takian wood.",'ไม้สักหรือไม้ตะเคียนครับ',"That's interesting. Is it heavy?","It's wood.","I'm a teak.",'ได้ชื่อไม้แล้ว ให้ถามต่อว่าหนักไหม','teak = ไม้สัก'),
-  TT("We have small, medium, and large long boats.",'เรามีเรือยาวเล็ก กลาง และใหญ่ครับ',"The large boat has the most paddlers.","The small boat is the biggest.","I have a boat.",'ได้ยินขนาดเรือ ให้บอกว่าเรือใหญ่มีฝีพายมากที่สุด','the most = มากที่สุด (ใหญ่ 41–55, กลาง 31–40, เล็กไม่เกิน 30 คน)')]),
+  TT("This boat is made from one big log.",'เรือลำนี้ทำจากไม้ซุงต้นใหญ่ท่อนเดียวครับ',"Really? What kind of wood is it?","Teak or takian wood.","Wow! That's a lot of people!",'ได้ยินว่าทำจากไม้ท่อนเดียว ให้ถามชนิดไม้','log = ไม้ซุง, What kind of ...? = ... ชนิดไหน'),
+  TT("Teak or takian wood.",'ไม้สักหรือไม้ตะเคียนครับ',"That's interesting. Is it heavy?","Really? What kind of wood is it?","The small boat is the biggest.",'ได้ชื่อไม้แล้ว ให้ถามต่อว่าหนักไหม','teak = ไม้สัก'),
+  TT("We have small, medium, and large long boats.",'เรามีเรือยาวเล็ก กลาง และใหญ่ครับ',"The large boat has the most paddlers.","Really? What kind of wood is it?","The small boat has the most paddlers.",'ได้ยินขนาดเรือ ให้บอกว่าเรือใหญ่มีฝีพายมากที่สุด','the most = มากที่สุด (ใหญ่ 41–55, กลาง 31–40, เล็กไม่เกิน 30 คน)')]),
  NPCDEF('mon','Ms. Mon','Festival guide⁣ไกด์อาสางานแข่งเรือ',-1,-.8,0,[.2,.6,.5],[.2,.2,.3],[.1,.07,.05],'long',[
-  TT("Welcome to the Long Boat Race! Do you know when it is?",'ยินดีต้อนรับสู่งานแข่งเรือยาวค่ะ รู้ไหมคะว่าจัดเมื่อไร',"Yes. It's in the flood season, after Buddhist Lent.","It is in March.","It's a river race.",'ถามว่ารู้ไหมว่าจัดเมื่อไร ให้ตอบช่วงเวลา','flood season = ฤดูน้ำหลาก, after Buddhist Lent = หลังออกพรรษา'),
-  TT("That's right! Why do people hold the race?",'ถูกต้องค่ะ! ทำไมผู้คนถึงจัดการแข่งขันคะ',"For merit, for unity, and for fun.","It's a boat race.","Because it is a river.",'ถามเหตุผลของงาน ให้ตอบ (ทำบุญ ความสามัคคี ความสนุก)','merit = บุญ, unity = ความสามัคคี'),
-  TT("Very good! The race is very old. It started in the Ayutthaya period.",'เก่งมากค่ะ! ประเพณีนี้เก่าแก่มาก เริ่มตั้งแต่สมัยอยุธยา',"Wow! It's a very old tradition.","It's a new race.","I'm old.",'ได้ยินว่าเก่าแก่ ให้แสดงความทึ่ง','tradition = ประเพณี')]),
+  TT("Welcome to the Long Boat Race! Do you know when it is?",'ยินดีต้อนรับสู่งานแข่งเรือยาวค่ะ รู้ไหมคะว่าจัดเมื่อไร',"Yes. It's in the flood season, after Buddhist Lent.","For merit, for unity, and for fun.","Wow! It's a very old tradition.",'ถามว่ารู้ไหมว่าจัดเมื่อไร ให้ตอบช่วงเวลา','flood season = ฤดูน้ำหลาก, after Buddhist Lent = หลังออกพรรษา'),
+  TT("That's right! Why do people hold the race?",'ถูกต้องค่ะ! ทำไมผู้คนถึงจัดการแข่งขันคะ',"For merit, for unity, and for fun.","Yes. It's in the flood season, after Buddhist Lent.","It started in the Ayutthaya period.",'ถามเหตุผลของงาน ให้ตอบ (ทำบุญ ความสามัคคี ความสนุก)','merit = บุญ, unity = ความสามัคคี'),
+  TT("Very good! The race is very old. It started in the Ayutthaya period.",'เก่งมากค่ะ! ประเพณีนี้เก่าแก่มาก เริ่มตั้งแต่สมัยอยุธยา',"Wow! It's a very old tradition.","For merit, for unity, and for fun.","Yes. It's in the flood season, after Buddhist Lent.",'ได้ยินว่าเก่าแก่ ให้แสดงความทึ่ง','tradition = ประเพณี')]),
  NPCDEF('kwan','Kwan','Spectator⁣ผู้ชมการแข่งขัน',9,1.8,-Math.PI/2,[.95,.7,.25],[.2,.3,.5],[.1,.07,.05],'long',[
-  TT("Hi! Do you live near the river?",'หวัดดี เธออยู่ใกล้แม่น้ำไหม',"Yes, I do. I live near the Mun River.","No, I'm a river.","It is a long river.",'ถามว่าอยู่ใกล้แม่น้ำไหม (Do you ...?) ตอบ Yes, I do.','near = ใกล้, the Mun River = แม่น้ำมูล'),
-  TT("Do you come to the race every year?",'เธอมาดูแข่งทุกปีไหม',"Yes, I do. It's fun!","Yes, I am.","It's a year.",'ถามว่ามาทุกปีไหม (Do you ...?) ตอบ Yes, I do.','every year = ทุกปี'),
-  TT("Me too! Let's cheer for the red boat!",'ฉันก็เหมือนกัน! เชียร์เรือสีแดงกันเถอะ',"OK! Go, go, go!","I'm a boat.","It is red.",'ถูกชวนเชียร์ ให้ตอบรับ','cheer = เชียร์, Let\'s ... = ไป ... กันเถอะ')])]});
+  TT("Hi! Do you live near the river?",'หวัดดี เธออยู่ใกล้แม่น้ำไหม',"Yes, I do. I live near the Mun River.","Yes, I do. It's fun!","OK! Go, go, go!",'ถามว่าอยู่ใกล้แม่น้ำไหม (Do you ...?) ตอบ Yes, I do.','near = ใกล้, the Mun River = แม่น้ำมูล'),
+  TT("Do you come to the race every year?",'เธอมาดูแข่งทุกปีไหม',"Yes, I do. It's fun!","Yes, I do. I live near the Mun River.","OK! Go, go, go!",'ถามว่ามาทุกปีไหม (Do you ...?) ตอบ Yes, I do.','every year = ทุกปี'),
+  TT("Me too! Let's cheer for the red boat!",'ฉันก็เหมือนกัน! เชียร์เรือสีแดงกันเถอะ',"OK! Go, go, go!","Yes, I do. It's fun!","Yes, I do. I live near the Mun River.",'ถูกชวนเชียร์ ให้ตอบรับ','cheer = เชียร์, Let\'s ... = ไป ... กันเถอะ')])]});
 /* ===== Ubon: Songkran at Kaeng Saphue ===== */
 SCENES.push({id:'songkran',name:'Songkran Kaeng Saphue',th:'สงกรานต์แก่งสะพือ',color:'#0891B2',spawn:[0,3.2,Math.PI],bounds:[-12.4,12.4,-9,9],
  build(){const c=mk();base(c,[-12.4,12.4,-9,9],0,[.9,.82,.6]);
@@ -3469,21 +3469,21 @@ SCENES.push({id:'phuphrao',name:'Wat Phu Phrao',th:'วัดภูพร้า�
   return{a:new Float32Array(c.a),ob:c.ob}},
  npcs:[
  NPCDEF('chana','Mr. Chana','Temple guide⁣ไกด์วัด',1.5,1.2,0,[.97,.97,.95],[.2,.2,.25],[.5,.5,.52],'',[
-  TT("Welcome to Wat Phu Phrao! It is on top of Phu Phrao mountain.",'ยินดีต้อนรับสู่วัดภูพร้าว ตั้งอยู่บนยอดภูพร้าวครับ',"Wow! It's so high!","I'm a mountain.","It's a small hill.",'ได้ยินว่าอยู่บนภูเขา ให้แสดงความทึ่ง','on top of = บนยอด, mountain = ภูเขา'),
-  TT("A monk from Laos started this temple about fifty years ago.",'พระจากประเทศลาวเริ่มสร้างวัดนี้เมื่อประมาณห้าสิบปีก่อนครับ',"That's a long time ago!","I'm a monk.","It is Laos.",'ได้ยินประวัติ ให้แสดงความเห็น','about fifty years ago = เมื่อประมาณห้าสิบปีที่แล้ว'),
-  TT("Many people come to pray and chant here. Please take off your shoes and be quiet.",'คนมากมายมากราบไหว้และสวดมนต์ที่นี่ กรุณาถอดรองเท้าและสงบนะครับ',"OK. Thank you for telling me.","I'm a shoe.","It's my shoes.",'ถูกบอกมารยาท ให้ตอบรับและขอบคุณ','pray = กราบไหว้/อธิษฐาน, chant = สวดมนต์, take off your shoes = ถอดรองเท้า')]),
+  TT("Welcome to Wat Phu Phrao! It is on top of Phu Phrao mountain.",'ยินดีต้อนรับสู่วัดภูพร้าว ตั้งอยู่บนยอดภูพร้าวครับ',"Wow! It's so high!","OK. Thank you for telling me.","That's a long time ago!",'ได้ยินว่าอยู่บนภูเขา ให้แสดงความทึ่ง','on top of = บนยอด, mountain = ภูเขา'),
+  TT("A monk from Laos started this temple about fifty years ago.",'พระจากประเทศลาวเริ่มสร้างวัดนี้เมื่อประมาณห้าสิบปีก่อนครับ',"That's a long time ago!","Wow! It's so high!","OK. Thank you for telling me.",'ได้ยินประวัติ ให้แสดงความเห็น','about fifty years ago = เมื่อประมาณห้าสิบปีที่แล้ว'),
+  TT("Many people come to pray and chant here. Please take off your shoes and be quiet.",'คนมากมายมากราบไหว้และสวดมนต์ที่นี่ กรุณาถอดรองเท้าและสงบนะครับ',"OK. Thank you for telling me.","That's a long time ago!","Wow! It's so high!",'ถูกบอกมารยาท ให้ตอบรับและขอบคุณ','pray = กราบไหว้/อธิษฐาน, chant = สวดมนต์, take off your shoes = ถอดรองเท้า')]),
  NPCDEF('araya','Ms. Araya','Art guide⁣ไกด์งานศิลป์',4,-3.2,0,[.7,.3,.5],[.2,.2,.3],[.1,.07,.05],'long',[
-  TT("This is the ubosot. It looks like Wat Xieng Thong in Laos.",'นี่คืออุโบสถ ดูคล้ายวัดเชียงทองในลาวค่ะ',"That's interesting! It's very beautiful.","I'm in Laos.","It's a small ubosot.",'ชมความงามของอุโบสถ','ubosot = อุโบสถ (โบสถ์ในวัด)'),
-  TT("Every pillar is painted by hand.",'เสาทุกต้นลงลวดลายด้วยมือค่ะ',"Wow! That takes a long time.","I'm a pillar.","It is a hand.",'ได้ยินว่าวาดด้วยมือ ให้แสดงความทึ่ง','pillar = เสา, by hand = ด้วยมือ'),
-  TT("Behind the main Buddha statue, there is a Bodhi tree carved from wood.",'ด้านหลังพระประธานมีต้นโพธิ์แกะสลักจากไม้ค่ะ',"That's amazing! I'd like to see it.","I'm a Bodhi tree.","It's wood.",'ได้ยินเรื่องต้นโพธิ์แกะสลัก ให้ตอบ','carved = แกะสลัก, Bodhi tree = ต้นโพธิ์')]),
+  TT("This is the ubosot. It looks like Wat Xieng Thong in Laos.",'นี่คืออุโบสถ ดูคล้ายวัดเชียงทองในลาวค่ะ',"That's interesting! It's very beautiful.","Wow! That takes a long time.","That's amazing! I'd like to see it.",'ชมความงามของอุโบสถ','ubosot = อุโบสถ (โบสถ์ในวัด)'),
+  TT("Every pillar is painted by hand.",'เสาทุกต้นลงลวดลายด้วยมือค่ะ',"Wow! That takes a long time.","That's amazing! I'd like to see it.","Really? I want to see it!",'ได้ยินว่าวาดด้วยมือ ให้แสดงความทึ่ง','pillar = เสา, by hand = ด้วยมือ'),
+  TT("Behind the main Buddha statue, there is a Bodhi tree carved from wood.",'ด้านหลังพระประธานมีต้นโพธิ์แกะสลักจากไม้ค่ะ',"That's amazing! I'd like to see it.","Wow! That takes a long time.","OK. I'll come back this evening.",'ได้ยินเรื่องต้นโพธิ์แกะสลัก ให้ตอบ','carved = แกะสลัก, Bodhi tree = ต้นโพธิ์')]),
  NPCDEF('noi','Mr. Noi','Evening guide⁣ไกด์ช่วงเย็น',-1,-1.8,0,[.2,.3,.5],[.2,.2,.25],[.1,.07,.05],'cap',[
-  TT("Come back at sunset. The Kalpaphruek tree on the wall glows!",'กลับมาตอนพระอาทิตย์ตกนะครับ ต้นกัลปพฤกษ์บนผนังเรืองแสง!',"Really? I want to see it!","I'm a glow.","It's a tree.",'ได้ยินว่าต้นไม้เรืองแสง ให้แสดงความอยากเห็น','glow = เรืองแสง, sunset = พระอาทิตย์ตกดิน'),
-  TT("It's a painting behind the ubosot. The floor has tree-root patterns that glow too.",'เป็นภาพวาดหลังอุโบสถ และพื้นมีลายรากไม้ที่เรืองแสงด้วยครับ',"Wow! When can I see it?","I'm a pattern.","It's a floor.",'ได้ยินว่าพื้นก็เรืองแสง ให้ถามว่าดูได้เมื่อไร','pattern = ลวดลาย, When ...? = เมื่อไร'),
-  TT("In the evening, when the sky gets dark.",'ตอนเย็น เมื่อท้องฟ้ามืดครับ',"OK. I'll come back this evening.","It is dark.","I'm the sky.",'ได้เวลาแล้ว ให้บอกว่าจะกลับมา','this evening = เย็นนี้')]),
+  TT("Come back at sunset. The Kalpaphruek tree on the wall glows!",'กลับมาตอนพระอาทิตย์ตกนะครับ ต้นกัลปพฤกษ์บนผนังเรืองแสง!',"Really? I want to see it!","Yes, I can. It's beautiful.","That's a long time ago!",'ได้ยินว่าต้นไม้เรืองแสง ให้แสดงความอยากเห็น','glow = เรืองแสง, sunset = พระอาทิตย์ตกดิน'),
+  TT("It's a painting behind the ubosot. The floor has tree-root patterns that glow too.",'เป็นภาพวาดหลังอุโบสถ และพื้นมีลายรากไม้ที่เรืองแสงด้วยครับ',"Wow! When can I see it?","Really? I want to see it!","Yes, I can. It's beautiful.",'ได้ยินว่าพื้นก็เรืองแสง ให้ถามว่าดูได้เมื่อไร','pattern = ลวดลาย, When ...? = เมื่อไร'),
+  TT("In the evening, when the sky gets dark.",'ตอนเย็น เมื่อท้องฟ้ามืดครับ',"OK. I'll come back this evening.","Wow! When can I see it?","Really? I want to see it!",'ได้เวลาแล้ว ให้บอกว่าจะกลับมา','this evening = เย็นนี้')]),
  NPCDEF('pao','Pao','Visitor⁣ผู้มาเที่ยว',-8,1.6,Math.PI/2,[.95,.5,.2],[.25,.3,.5],[.1,.07,.05],'',[
-  TT("Hi! Look at the view. Can you see the reservoir?",'หวัดดี ดูวิวสิ มองเห็นอ่างเก็บน้ำไหม',"Yes, I can. It's beautiful.","Yes, I'm a reservoir.","It's a big view.",'ถามว่ามองเห็นไหม (Can you ...?) ตอบ Yes, I can.','reservoir = อ่างเก็บน้ำ, view = วิว'),
-  TT("I can also see the Chong Mek border checkpoint.",'ฉันมองเห็นจุดผ่านแดนช่องเม็กด้วย',"Where is it? Can you show me?","I'm a checkpoint.","It's a border.",'เพื่อนเห็นจุดผ่านแดน ให้ถามว่าอยู่ตรงไหน','border checkpoint = จุดผ่านแดน'),
-  TT("The sunset here is very beautiful.",'พระอาทิตย์ตกดินที่นี่สวยมาก',"I think so too. Let's stay and watch.","I'm a sunset.","It is a sun.",'เพื่อนชมพระอาทิตย์ตก ให้เห็นด้วยและชวนอยู่ดู','I think so too. = ฉันก็คิดอย่างนั้น')])]});
+  TT("Hi! Look at the view. Can you see the reservoir?",'หวัดดี ดูวิวสิ มองเห็นอ่างเก็บน้ำไหม',"Yes, I can. It's beautiful.","Where is it? Can you show me?","I think so too. Let's stay and watch.",'ถามว่ามองเห็นไหม (Can you ...?) ตอบ Yes, I can.','reservoir = อ่างเก็บน้ำ, view = วิว'),
+  TT("I can also see the Chong Mek border checkpoint.",'ฉันมองเห็นจุดผ่านแดนช่องเม็กด้วย',"Where is it? Can you show me?","Yes, I can. It's beautiful.","I think so too. Let's stay and watch.",'เพื่อนเห็นจุดผ่านแดน ให้ถามว่าอยู่ตรงไหน','border checkpoint = จุดผ่านแดน'),
+  TT("The sunset here is very beautiful.",'พระอาทิตย์ตกดินที่นี่สวยมาก',"I think so too. Let's stay and watch.","Yes, I can. It's beautiful.","Where is it? Can you show me?",'เพื่อนชมพระอาทิตย์ตก ให้เห็นด้วยและชวนอยู่ดู','I think so too. = ฉันก็คิดอย่างนั้น')])]});
 /* ===== Ubon: Pha Taem National Park ===== */
 SCENES.push({id:'phataem',name:'Pha Taem National Park',th:'อุทยานแห่งชาติผาแต้ม',color:'#9A3412',spawn:[0,3.4,Math.PI],bounds:[-12.4,12.4,-9,9],
  build(){const c=mk();base(c,[-12.4,12.4,-9,9],0,[.7,.62,.45]);
@@ -3503,21 +3503,21 @@ SCENES.push({id:'phataem',name:'Pha Taem National Park',th:'อุทยาน�
   return{a:new Float32Array(c.a),ob:c.ob}},
  npcs:[
  NPCDEF('kiat','Mr. Kiat','Park ranger⁣เจ้าหน้าที่อุทยาน',1.5,-.2,0,[.2,.5,.3],[.3,.3,.25],[.1,.07,.05],'hat',[
-  TT("Welcome to Pha Taem! This is the easternmost national park in Thailand.",'ยินดีต้อนรับสู่ผาแต้มครับ นี่คืออุทยานแห่งชาติที่อยู่ตะวันออกสุดของประเทศไทย',"Really? Is that why it's famous for the sunrise?","I'm a park.","It is a big east.",'ได้ยินว่าอยู่ตะวันออกสุด ให้ถามว่าเพราะอย่างนี้จึงเห็นพระอาทิตย์ขึ้นก่อนไหม','easternmost = อยู่ตะวันออกสุด, national park = อุทยานแห่งชาติ'),
-  TT("Yes! This is the first place in Thailand to see the sunrise.",'ใช่ครับ! ที่นี่เห็นพระอาทิตย์ขึ้นเป็นที่แรกในประเทศไทย',"I want to see it. When should I come?","I'm the first.","It is a sunrise.",'ได้ยินว่าเห็นพระอาทิตย์ขึ้นก่อนใคร ให้ถามว่าควรมาเมื่อไร','sunrise = พระอาทิตย์ขึ้น, the first place = ที่แรก'),
-  TT("Come early in the morning. In winter, you may see a sea of mist over the Mekong River.",'มาแต่เช้านะครับ หน้าหนาวอาจเห็นทะเลหมอกเหนือแม่น้ำโขง',"Sounds beautiful! I'll come early.","I'm a mist.","It's a river.",'ได้คำแนะนำแล้ว ให้ตอบรับ','sea of mist = ทะเลหมอก, early = เช้าตรู่')]),
+  TT("Welcome to Pha Taem! This is the easternmost national park in Thailand.",'ยินดีต้อนรับสู่ผาแต้มครับ นี่คืออุทยานแห่งชาติที่อยู่ตะวันออกสุดของประเทศไทย',"Really? Is that why it's famous for the sunrise?","I want to see it. When should I come?","Sounds beautiful! I'll come early.",'ได้ยินว่าอยู่ตะวันออกสุด ให้ถามว่าเพราะอย่างนี้จึงเห็นพระอาทิตย์ขึ้นก่อนไหม','easternmost = อยู่ตะวันออกสุด, national park = อุทยานแห่งชาติ'),
+  TT("Yes! This is the first place in Thailand to see the sunrise.",'ใช่ครับ! ที่นี่เห็นพระอาทิตย์ขึ้นเป็นที่แรกในประเทศไทย',"I want to see it. When should I come?","Really? Is that why it's famous for the sunrise?","Sounds beautiful! I'll come early.",'ได้ยินว่าเห็นพระอาทิตย์ขึ้นก่อนใคร ให้ถามว่าควรมาเมื่อไร','sunrise = พระอาทิตย์ขึ้น, the first place = ที่แรก'),
+  TT("Come early in the morning. In winter, you may see a sea of mist over the Mekong River.",'มาแต่เช้านะครับ หน้าหนาวอาจเห็นทะเลหมอกเหนือแม่น้ำโขง',"Sounds beautiful! I'll come early.","I want to see it. When should I come?","Really? Is that why it's famous for the sunrise?",'ได้คำแนะนำแล้ว ให้ตอบรับ','sea of mist = ทะเลหมอก, early = เช้าตรู่')]),
  NPCDEF('chada','Ms. Chada','Rock painting guide⁣ไกด์ภาพเขียนสี',-3,-4.2,0,[.8,.4,.2],[.2,.2,.3],[.1,.07,.05],'bun',[
-  TT("Look! These rock paintings are three to four thousand years old.",'ดูสิคะ ภาพเขียนสีบนหินเหล่านี้มีอายุสามถึงสี่พันปี',"Wow! Who painted them?","I'm four.","It's a painting.",'ได้ยินว่าเก่ามาก ให้ถามว่าใครวาด','rock paintings = ภาพเขียนสีบนหิน, thousand = พัน'),
-  TT("Ancient people painted them. This is the longest painted rock wall found in Thailand.",'คนโบราณวาดไว้ค่ะ นี่คือผนังหินภาพเขียนสีที่ยาวที่สุดเท่าที่พบในประเทศไทย',"Wow! It's very long.","I'm a wall.","It's a short wall.",'ได้ยินว่ายาวที่สุด ให้แสดงความทึ่ง','ancient = โบราณ, the longest = ยาวที่สุด'),
-  TT("There are four groups of paintings. The government protects them as an ancient site.",'มีภาพเขียนสี 4 กลุ่ม และรัฐคุ้มครองเป็นโบราณสถานค่ะ',"That's good. We should protect them.","I'm a group.","It is an ancient.",'ได้ยินว่ามีการคุ้มครอง ให้เห็นด้วย','protect = ปกป้อง, ancient site = โบราณสถาน')]),
+  TT("Look! These rock paintings are three to four thousand years old.",'ดูสิคะ ภาพเขียนสีบนหินเหล่านี้มีอายุสามถึงสี่พันปี',"Wow! Who painted them?","Wow! It's very long.","That's good. We should protect them.",'ได้ยินว่าเก่ามาก ให้ถามว่าใครวาด','rock paintings = ภาพเขียนสีบนหิน, thousand = พัน'),
+  TT("Ancient people painted them. This is the longest painted rock wall found in Thailand.",'คนโบราณวาดไว้ค่ะ นี่คือผนังหินภาพเขียนสีที่ยาวที่สุดเท่าที่พบในประเทศไทย',"Wow! It's very long.","Wow! Who painted them?","That's good. We should protect them.",'ได้ยินว่ายาวที่สุด ให้แสดงความทึ่ง','ancient = โบราณ, the longest = ยาวที่สุด'),
+  TT("There are four groups of paintings. The government protects them as an ancient site.",'มีภาพเขียนสี 4 กลุ่ม และรัฐคุ้มครองเป็นโบราณสถานค่ะ',"That's good. We should protect them.","Wow! Who painted them?","Wow! It's very long.",'ได้ยินว่ามีการคุ้มครอง ให้เห็นด้วย','protect = ปกป้อง, ancient site = โบราณสถาน')]),
  NPCDEF('ek','Mr. Ek','Nature guide⁣ไกด์ธรรมชาติ',-6.6,-1.5,0,[.5,.4,.3],[.3,.3,.3],[.5,.5,.52],'cap',[
-  TT("This is Sao Chaliang. It is a natural sandstone pillar.",'นี่คือเสาเฉลียง เป็นเสาหินทรายตามธรรมชาติครับ',"Wow! Did people make it?","I'm a pillar.","It's a big pillar.",'เห็นเสาหิน ให้ถามว่าคนสร้างหรือเปล่า (Did ...?)','sandstone = หินทราย, pillar = เสา'),
-  TT("No, wind and water made it over millions of years.",'ไม่ใช่ครับ ลมและน้ำทำให้เป็นแบบนี้เป็นเวลาหลายล้านปี',"That's a very long time!","I'm a million.","It is wind.",'ได้ยินว่าใช้เวลานานมาก ให้แสดงความทึ่ง','millions of years = หลายล้านปี'),
-  TT("Yes! More than one hundred million years.",'ใช่ครับ! มากกว่าหนึ่งร้อยล้านปี',"Amazing! Nature is beautiful.","I'm a million years.","It's a pillar.",'ได้ยินตัวเลขใหญ่ ให้แสดงความประทับใจ','more than = มากกว่า, nature = ธรรมชาติ')]),
+  TT("This is Sao Chaliang. It is a natural sandstone pillar.",'นี่คือเสาเฉลียง เป็นเสาหินทรายตามธรรมชาติครับ',"Wow! Did people make it?","That's a very long time!","Amazing! Nature is beautiful.",'เห็นเสาหิน ให้ถามว่าคนสร้างหรือเปล่า (Did ...?)','sandstone = หินทราย, pillar = เสา'),
+  TT("No, wind and water made it over millions of years.",'ไม่ใช่ครับ ลมและน้ำทำให้เป็นแบบนี้เป็นเวลาหลายล้านปี',"That's a very long time!","Wow! Did people make it?","Amazing! Nature is beautiful.",'ได้ยินว่าใช้เวลานานมาก ให้แสดงความทึ่ง','millions of years = หลายล้านปี'),
+  TT("Yes! More than one hundred million years.",'ใช่ครับ! มากกว่าหนึ่งร้อยล้านปี',"Amazing! Nature is beautiful.","Wow! Did people make it?","Yes, those mountains are in Laos.",'ได้ยินตัวเลขใหญ่ ให้แสดงความประทับใจ','more than = มากกว่า, nature = ธรรมชาติ')]),
  NPCDEF('mook','Mook','Visitor⁣ผู้มาเที่ยว',8,-2.2,0,[.9,.4,.5],[.25,.3,.5],[.1,.07,.05],'long',[
-  TT("Hi! Look at the Mekong River below. Do you see the mountains across it?",'หวัดดี ดูแม่น้ำโขงข้างล่างสิ เห็นภูเขาฝั่งตรงข้ามไหม',"Yes, those mountains are in Laos.","No, I'm a mountain.","It's a river.",'ถามว่าเห็นภูเขาไหม (Do you ...?) ตอบ Yes, ...','across = ฝั่งตรงข้าม, below = ข้างล่าง'),
-  TT("Yes! The Mekong River is the border between Thailand and Laos.",'ใช่! แม่น้ำโขงเป็นเส้นแบ่งเขตระหว่างไทยกับลาว',"I see. Thailand is on this side.","I'm a border.","It's a big river.",'ได้ยินเรื่องเส้นแบ่งเขต ให้บอกว่าไทยอยู่ฝั่งนี้','border = พรมแดน, on this side = ฝั่งนี้'),
-  TT("Did you know? \"Pha Chanadai\" means signing a name with your hand.",'รู้ไหม? "ผาชะนะได" แปลว่า การลงชื่อด้วยฝ่ามือ',"That's interesting! Like a handprint.","I'm a hand.","It's a name.",'ได้ยินความหมายของชื่อ ให้แสดงความสนใจ','handprint = รอยมือ, signing a name = การลงชื่อ')])]});
+  TT("Hi! Look at the Mekong River below. Do you see the mountains across it?",'หวัดดี ดูแม่น้ำโขงข้างล่างสิ เห็นภูเขาฝั่งตรงข้ามไหม',"Yes, those mountains are in Laos.","I see. Thailand is on this side.","That's interesting! Like a handprint.",'ถามว่าเห็นภูเขาไหม (Do you ...?) ตอบ Yes, ...','across = ฝั่งตรงข้าม, below = ข้างล่าง'),
+  TT("Yes! The Mekong River is the border between Thailand and Laos.",'ใช่! แม่น้ำโขงเป็นเส้นแบ่งเขตระหว่างไทยกับลาว',"I see. Thailand is on this side.","That's interesting! Like a handprint.","Wow! It's very long.",'ได้ยินเรื่องเส้นแบ่งเขต ให้บอกว่าไทยอยู่ฝั่งนี้','border = พรมแดน, on this side = ฝั่งนี้'),
+  TT("Did you know? \"Pha Chanadai\" means signing a name with your hand.",'รู้ไหม? "ผาชะนะได" แปลว่า การลงชื่อด้วยฝ่ามือ',"That's interesting! Like a handprint.","Yes, those mountains are in Laos.","I see. Thailand is on this side.",'ได้ยินความหมายของชื่อ ให้แสดงความสนใจ','handprint = รอยมือ, signing a name = การลงชื่อ')])]});
 /* ===== Train Station ===== */
 SCENES.push({id:'train',name:'Train Station',th:'สถานีรถไฟ',color:'#4F46E5',spawn:[0,3.4,Math.PI],bounds:[-12.4,12.4,-9,9],
  build(){const c=mk();base(c,[-12.4,12.4,-9,9],0,[.78,.78,.8]);
@@ -3533,21 +3533,21 @@ SCENES.push({id:'train',name:'Train Station',th:'สถานีรถไฟ',co
   return{a:new Float32Array(c.a),ob:c.ob}},
  npcs:[
  NPCDEF('lamyai','Ms. Lamyai','Ticket seller⁣พนักงานขายตั๋ว',-6,-6.3,0,[.3,.4,.8],[.2,.2,.3],[.08,.06,.07],'bun',[
-  TT("Hello! Where would you like to go?",'สวัสดีค่ะ จะไปไหนคะ',"A ticket to Bangkok, please.","I'm at the station.","It's a train.",'ถามว่าจะไปไหน ให้ขอซื้อตั๋วไปที่นั่น','A ticket to ..., please. = ขอตั๋วไป ... ค่ะ/ครับ'),
-  TT("Second class or third class?",'ชั้นสองหรือชั้นสามคะ',"Second class, please.","I'm second.","It's a long train.",'ถามให้เลือกชั้นที่นั่ง','class = ชั้น (ที่นั่ง), second = ที่สอง'),
-  TT("That's seven hundred baht.",'เจ็ดร้อยบาทค่ะ',"Here you are. Thank you.","It's seven.","You're welcome.",'ได้ราคาแล้ว ให้จ่ายเงินและขอบคุณ','Here you are. = นี่ค่ะ/ครับ')]),
+  TT("Hello! Where would you like to go?",'สวัสดีค่ะ จะไปไหนคะ',"A ticket to Bangkok, please.","Second class, please.","Seven hundred baht, please.",'ถามว่าจะไปไหน ให้ขอซื้อตั๋วไปที่นั่น','A ticket to ..., please. = ขอตั๋วไป ... ค่ะ/ครับ'),
+  TT("Second class or third class?",'ชั้นสองหรือชั้นสามคะ',"Second class, please.","A ticket to Bangkok, please.","Yes, second class.",'ถามให้เลือกชั้นที่นั่ง','class = ชั้น (ที่นั่ง), second = ที่สอง'),
+  TT("That's seven hundred baht.",'เจ็ดร้อยบาทค่ะ',"Here you are. Thank you.","Second class, please.","A ticket to Bangkok, please.",'ได้ราคาแล้ว ให้จ่ายเงินและขอบคุณ','Here you are. = นี่ค่ะ/ครับ')]),
  NPCDEF('somsak','Mr. Somsak','Station staff⁣เจ้าหน้าที่สถานี',0,-4.6,0,[.15,.3,.55],[.2,.2,.25],[.1,.07,.05],'cap',[
-  TT("Hello. Can I help you?",'สวัสดีครับ ให้ช่วยอะไรไหมครับ',"Yes. What time does the train leave?","I like trains.","He is a driver.",'เจ้าหน้าที่ถามว่าให้ช่วยไหม ให้ถามเวลารถไฟออก','What time does ... leave? = ... ออกกี่โมง'),
-  TT("It leaves at eight fifteen from Platform three.",'ออกแปดโมงสิบห้านาที จากชานชาลาที่สามครับ',"Thank you. Is the train on time?","It is eight.","It's a platform.",'ได้เวลาแล้ว ให้ขอบคุณและถามว่าตรงเวลาไหม','platform = ชานชาลา, on time = ตรงเวลา'),
-  TT("Yes. Please wait behind the yellow line.",'ตรงเวลาครับ กรุณารอหลังเส้นสีเหลืองนะครับ',"OK. I'll wait here.","I'm a yellow line.","It is behind.",'ถูกขอให้รอหลังเส้น ให้ตอบรับ','behind the yellow line = หลังเส้นสีเหลือง')]),
+  TT("Hello. Can I help you?",'สวัสดีครับ ให้ช่วยอะไรไหมครับ',"Yes. What time does the train leave?","I'm fine, thank you.","It leaves at eight fifteen.",'เจ้าหน้าที่ถามว่าให้ช่วยไหม ให้ถามเวลารถไฟออก','What time does ... leave? = ... ออกกี่โมง'),
+  TT("It leaves at eight fifteen from Platform three.",'ออกแปดโมงสิบห้านาที จากชานชาลาที่สามครับ',"Thank you. Is the train on time?","What time does the train leave?","Platform three, please.",'ได้เวลาแล้ว ให้ขอบคุณและถามว่าตรงเวลาไหม','platform = ชานชาลา, on time = ตรงเวลา'),
+  TT("Yes. Please wait behind the yellow line.",'ตรงเวลาครับ กรุณารอหลังเส้นสีเหลืองนะครับ',"OK. I'll wait here.","Is the train on time?","Sure. Here you are.",'ถูกขอให้รอหลังเส้น ให้ตอบรับ','behind the yellow line = หลังเส้นสีเหลือง')]),
  NPCDEF('prasert','Mr. Prasert','Conductor⁣พนักงานตรวจตั๋ว',4.6,-5.0,0,[.2,.3,.5],[.2,.2,.25],[.1,.07,.05],'cap',[
-  TT("Good morning! May I see your ticket, please?",'สวัสดีตอนเช้าครับ ขอดูตั๋วหน่อยครับ',"Sure. Here you are.","Yes, I'm a ticket.","I see you.",'พนักงานขอดูตั๋ว ให้ยื่นให้','May I see ...? = ขอดู ... ได้ไหม'),
-  TT("Your seat is in car five, seat twelve.",'ที่นั่งของคุณอยู่ตู้ห้า เลขที่นั่งสิบสองครับ',"Car five, seat twelve. Thank you.","I'm in car.","It's a seat.",'ได้เลขที่นั่งแล้ว ให้ทวนและขอบคุณ','car = ตู้โดยสาร, seat = ที่นั่ง'),
-  TT("Please put your bag on the shelf above your seat.",'กรุณาวางกระเป๋าบนชั้นเหนือที่นั่งนะครับ',"OK. Thanks for your help.","I'm a shelf.","It's my bag.",'ถูกขอให้วางกระเป๋า ให้ตอบรับและขอบคุณ','shelf = ชั้นวางของ')]),
+  TT("Good morning! May I see your ticket, please?",'สวัสดีตอนเช้าครับ ขอดูตั๋วหน่อยครับ',"Sure. Here you are.","Car five, seat twelve. Thank you.","OK. Thanks for your help.",'พนักงานขอดูตั๋ว ให้ยื่นให้','May I see ...? = ขอดู ... ได้ไหม'),
+  TT("Your seat is in car five, seat twelve.",'ที่นั่งของคุณอยู่ตู้ห้า เลขที่นั่งสิบสองครับ',"Car five, seat twelve. Thank you.","Sure. Here you are.","Yes, it is.",'ได้เลขที่นั่งแล้ว ให้ทวนและขอบคุณ','car = ตู้โดยสาร, seat = ที่นั่ง'),
+  TT("Please put your bag on the shelf above your seat.",'กรุณาวางกระเป๋าบนชั้นเหนือที่นั่งนะครับ',"OK. Thanks for your help.","Sure. Here you are.","Car five, seat twelve. Thank you.",'ถูกขอให้วางกระเป๋า ให้ตอบรับและขอบคุณ','shelf = ชั้นวางของ')]),
  NPCDEF('lee','Lee','Passenger⁣ผู้โดยสาร',-8.4,.6,Math.PI/2,[.9,.6,.2],[.25,.3,.5],[.5,.35,.15],'cap',[
-  TT("Excuse me. Is this the train to Bangkok?",'ขอโทษนะ ขบวนนี้ไปกรุงเทพไหม',"Yes, it is.","Yes, I do.","It's a train.",'ถามว่าใช่ขบวนไปกรุงเทพไหม (Is ...?) ตอบ Yes, it is.','Is this the train to ...? = นี่คือขบวนไป ... ใช่ไหม'),
-  TT("Thanks! Do you take the train often?",'ขอบคุณ เธอนั่งรถไฟบ่อยไหม',"Yes, I take it every month.","Yes, I'm a train.","It is a month.",'ถามว่านั่งบ่อยไหม (Do you ...?) ตอบ Yes, I do.','every month = ทุกเดือน, often = บ่อย'),
-  TT("Is there a restroom on the train?",'บนรถไฟมีห้องน้ำไหม',"Yes, there is. It's at the end of the car.","Yes, I am.","It's a train.",'ถามว่ามีห้องน้ำไหม (Is there ...?) ตอบ Yes, there is.','restroom = ห้องน้ำ (อเมริกัน), at the end of = ที่ปลาย')])]});
+  TT("Excuse me. Is this the train to Bangkok?",'ขอโทษนะ ขบวนนี้ไปกรุงเทพไหม',"Yes, it is.","Yes, I take it every month.","A ticket to Bangkok, please.",'ถามว่าใช่ขบวนไปกรุงเทพไหม (Is ...?) ตอบ Yes, it is.','Is this the train to ...? = นี่คือขบวนไป ... ใช่ไหม'),
+  TT("Thanks! Do you take the train often?",'ขอบคุณ เธอนั่งรถไฟบ่อยไหม',"Yes, I take it every month.","Yes, it is.","Yes, there is.",'ถามว่านั่งบ่อยไหม (Do you ...?) ตอบ Yes, I do.','every month = ทุกเดือน, often = บ่อย'),
+  TT("Is there a restroom on the train?",'บนรถไฟมีห้องน้ำไหม',"Yes, there is. It's at the end of the car.","Yes, it is.","Yes, I take it every month.",'ถามว่ามีห้องน้ำไหม (Is there ...?) ตอบ Yes, there is.','restroom = ห้องน้ำ (อเมริกัน), at the end of = ที่ปลาย')])]});
 /* ===== Cafeteria ===== */
 SCENES.push({id:'cafeteria',name:'Cafeteria',th:'โรงอาหาร',color:'#EA580C',spawn:[0,3.2,Math.PI],bounds:[-12.4,12.4,-9,9],
  build(){const c=mk();base(c,[-12.4,12.4,-9,9]);shell(c,[.98,.93,.78],[.75,.35,.2],true);

@@ -561,7 +561,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--pen);box-shadow:0 0 0
 </div></footer>
 <div id="toast" hidden></div>
 
-<script src="cloud-config.js?v=20261024c"></script>
+<script src="cloud-config.js?v=20261025a"></script>
 <script>
 /* ============ CONTENT: Unit 1 · My School Life (ม.2, A1-A2) ============ */
 // Q(question, why, correct, ...wrongs)  — the correct answer is written first and shuffled at run time
@@ -961,7 +961,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261024c';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261025a';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -3334,21 +3334,21 @@ SCENES.push({id:'candle',name:'Candle Festival',th:'งานแห่เที�
   return{a:new Float32Array(c.a),ob:c.ob}},
  npcs:[
  NPCDEF('buakaew','Ms. Buakaew','Parade dancer⁣นางรำในขบวนแห่',2.2,-2.8,0,[.95,.75,.2],[.7,.15,.2],[.08,.06,.07],'bun',[
-  TT("Hi! I'm a dancer in the parade today.",'สวัสดีค่ะ วันนี้ฉันเป็นนางรำในขบวนแห่ค่ะ',"Wow! Your costume is beautiful.","I'm a dancer too, yes.","It's a big school.",'เจอนางรำ ให้ชมชุดแสดง','Your ... is beautiful. = ... ของคุณสวยมาก, costume = ชุดแสดง'),
-  TT("Thank you! We dance in the day parade and the night parade.",'ขอบคุณค่ะ เรารำทั้งขบวนกลางวันและกลางคืน',"Great! I'll watch both.","I'm a night.","It is a parade.",'ได้ยินว่ามีขบวนกลางวันและกลางคืน ให้บอกว่าจะดูทั้งสอง','day parade = ขบวนภาคกลางวัน, night parade = ขบวนภาคกลางคืน'),
-  TT("Thank you! Enjoy the festival!",'ขอบคุณค่ะ ขอให้สนุกกับงานนะคะ',"Thanks! Good luck!","I'm a festival.","It is a big parade.",'ได้รับคำอวยพร ให้ขอบคุณและอวยพรกลับ','Good luck! = โชคดี')]),
+  TT("Hi! I'm a dancer in the parade today.",'สวัสดีค่ะ วันนี้ฉันเป็นนางรำในขบวนแห่ค่ะ',"Wow! Your costume is beautiful.","I'm fine, thank you. And you?","Thank you! Enjoy the festival!",'เจอนางรำ ให้ชมชุดแสดง','Your ... is beautiful. = ... ของคุณสวยมาก, costume = ชุดแสดง'),
+  TT("Thank you! We dance in the day parade and the night parade.",'ขอบคุณค่ะ เรารำทั้งขบวนกลางวันและกลางคืน',"Great! I'll watch both.","Thank you! Enjoy the festival!","Yes, I dance too.",'ได้ยินว่ามีขบวนกลางวันและกลางคืน ให้บอกว่าจะดูทั้งสอง','day parade = ขบวนภาคกลางวัน, night parade = ขบวนภาคกลางคืน'),
+  TT("Thank you! Enjoy the festival!",'ขอบคุณค่ะ ขอให้สนุกกับงานนะคะ',"Thanks! Good luck!","Wow! Your costume is beautiful.","How long does it take?",'ได้รับคำอวยพร ให้ขอบคุณและอวยพรกลับ','Good luck! = โชคดี')]),
  NPCDEF('somporn','Mr. Somporn','Wax carver⁣ช่างแกะสลักเทียน',-5.5,-4.6,0,[.85,.6,.3],[.3,.3,.35],[.15,.12,.1],'hat',[
-  TT("This giant candle is made of wax.",'เทียนต้นใหญ่นี้ทำจากขี้ผึ้งครับ',"Wow! It's so big!","I'm a wax.","It's a small candle.",'เห็นเทียนต้นใหญ่ ให้แสดงความทึ่ง','wax = ขี้ผึ้ง, giant = ใหญ่มาก'),
-  TT("We carve the wax many weeks before the festival.",'เราแกะสลักขี้ผึ้งหลายสัปดาห์ก่อนงานครับ',"How long does it take?","I carve a weeks.","It's a carving.",'ได้ยินว่าแกะนาน ให้ถามว่าใช้เวลานานแค่ไหน','How long does it take? = ใช้เวลานานเท่าไร, carve = แกะสลัก'),
-  TT("Sometimes weeks, sometimes months.",'บางต้นหลายสัปดาห์ บางต้นหลายเดือนครับ',"That's amazing! You work very hard.","I'm very hard.","It is a month.",'ได้ฟังแล้ว ให้ชื่นชมช่าง','You work very hard. = คุณทำงานหนักมาก')]),
+  TT("This giant candle is made of wax.",'เทียนต้นใหญ่นี้ทำจากขี้ผึ้งครับ',"Wow! It's so big!","Wow! It's so small!","Thank you! Enjoy the festival!",'เห็นเทียนต้นใหญ่ ให้แสดงความทึ่ง','wax = ขี้ผึ้ง, giant = ใหญ่มาก'),
+  TT("We carve the wax many weeks before the festival.",'เราแกะสลักขี้ผึ้งหลายสัปดาห์ก่อนงานครับ',"How long does it take?","Wow! It's so big!","Yes, I carve it every week.",'ได้ยินว่าแกะนาน ให้ถามว่าใช้เวลานานแค่ไหน','How long does it take? = ใช้เวลานานเท่าไร, carve = แกะสลัก'),
+  TT("Sometimes weeks, sometimes months.",'บางต้นหลายสัปดาห์ บางต้นหลายเดือนครับ',"That's amazing! You work very hard.","How long does it take?","Wow! It's so big!",'ได้ฟังแล้ว ให้ชื่นชมช่าง','You work very hard. = คุณทำงานหนักมาก')]),
  NPCDEF('wipa','Ms. Wipa','Festival guide⁣ไกด์อาสางานแห่เทียน',-1,-1.2,0,[.2,.5,.7],[.2,.2,.3],[.1,.07,.05],'long',[
-  TT("Welcome to the Candle Festival! Do you know about it?",'ยินดีต้อนรับสู่งานแห่เทียนค่ะ รู้จักงานนี้ไหมคะ',"A little. It's in Ubon Ratchathani.","Yes, I'm a festival.","It's a candle.",'ถามว่ารู้จักงานไหม ให้ตอบว่ารู้นิดหน่อย','A little. = นิดหน่อย'),
-  TT("The candles show stories from the life of the Buddha.",'เทียนแสดงเรื่องราวจากพุทธประวัติค่ะ',"That's interesting. Who makes the candles?","I like Buddha.","It's a story.",'ได้ฟังเรื่องราวบนเทียน ให้ถามว่าใครทำเทียน','Who makes ...? = ใครทำ ...'),
-  TT("Temples, districts, and many groups make them.",'วัด อำเภอ และหน่วยงานต่างๆ ช่วยกันทำค่ะ',"I see. Thank you for telling me!","It's many groups.","I'm a temple.",'ได้คำตอบแล้ว ให้ขอบคุณ','temple = วัด, district = อำเภอ')]),
+  TT("Welcome to the Candle Festival! Do you know about it?",'ยินดีต้อนรับสู่งานแห่เทียนค่ะ รู้จักงานนี้ไหมคะ',"A little. It's in Ubon Ratchathani.","Welcome to the Candle Festival!","Yes, I'd like a candle, please.",'ถามว่ารู้จักงานไหม ให้ตอบว่ารู้นิดหน่อย','A little. = นิดหน่อย'),
+  TT("The candles show stories from the life of the Buddha.",'เทียนแสดงเรื่องราวจากพุทธประวัติค่ะ',"That's interesting. Who makes the candles?","Wow! It's so big!","I'm fine, thank you.",'ได้ฟังเรื่องราวบนเทียน ให้ถามว่าใครทำเทียน','Who makes ...? = ใครทำ ...'),
+  TT("Temples, districts, and many groups make them.",'วัด อำเภอ และหน่วยงานต่างๆ ช่วยกันทำค่ะ',"I see. Thank you for telling me!","Who makes the candles?","A little. It's in Ubon Ratchathani.",'ได้คำตอบแล้ว ให้ขอบคุณ','temple = วัด, district = อำเภอ')]),
  NPCDEF('dave','Dave','Visitor⁣นักท่องเที่ยว',8.4,1.0,-Math.PI/2,[.4,.65,.9],[.3,.3,.4],[.5,.35,.15],'cap',[
-  TT("Hi! This is amazing. Is it your first time here?",'หวัดดี ตื่นตาตื่นใจมาก เธอมาที่นี่ครั้งแรกไหม',"No, I come every year with my family.","Yes, it is a festival.","I'm first.",'ถามว่าครั้งแรกไหม (Is it ...?) ตอบ No, ...','every year = ทุกปี'),
-  TT("Nice! When is the festival?",'ดีจัง! งานจัดเมื่อไร',"It's around Asalha Bucha Day.","It is in April.","It is on Monday.",'ถามว่างานจัดเมื่อไร ให้บอกช่วงวันสำคัญทางศาสนา','Asalha Bucha Day = วันอาสาฬหบูชา (Khao Phansa = วันเข้าพรรษา)'),
-  TT("Wow! I want to come again. Thanks!",'ว้าว! ฉันอยากมาอีก ขอบคุณนะ',"You're welcome. Come again!","I'm welcome.","It is again.",'ได้รับคำขอบคุณ ให้ตอบและเชิญมาอีก','You\'re welcome. = ยินดี')])]});
+  TT("Hi! This is amazing. Is it your first time here?",'หวัดดี ตื่นตาตื่นใจมาก เธอมาที่นี่ครั้งแรกไหม',"No, I come every year with my family.","Yes, I do. I come every year.","No, it's around Asalha Bucha Day.",'ถามว่าครั้งแรกไหม (Is it ...?) ตอบ No, ...','every year = ทุกปี'),
+  TT("Nice! When is the festival?",'ดีจัง! งานจัดเมื่อไร',"It's around Asalha Bucha Day.","No, I come every year.","It's in Ubon Ratchathani.",'ถามว่างานจัดเมื่อไร ให้บอกช่วงวันสำคัญทางศาสนา','Asalha Bucha Day = วันอาสาฬหบูชา (Khao Phansa = วันเข้าพรรษา)'),
+  TT("Wow! I want to come again. Thanks!",'ว้าว! ฉันอยากมาอีก ขอบคุณนะ',"You're welcome. Come again!","Welcome to the Candle Festival!","No, I come every year.",'ได้รับคำขอบคุณ ให้ตอบและเชิญมาอีก','You\'re welcome. = ยินดี')])]});
 /* ===== Ubon: Longboat Racing ===== */
 SCENES.push({id:'longboat',name:'Longboat Racing',th:'แข่งเรือยาว',color:'#0369A1',spawn:[0,3.2,Math.PI],bounds:[-12.4,12.4,-9,9],
  build(){const c=mk();base(c,[-12.4,12.4,-9,9],0,[.6,.78,.45]);
@@ -3434,21 +3434,21 @@ SCENES.push({id:'khongchiam',name:'Khong Chiam',th:'โขงเจียม',co
   return{a:new Float32Array(c.a),ob:c.ob}},
  npcs:[
  NPCDEF('pla','Auntie Pla','Fish seller⁣แม่ค้าปลา',8.7,-1.1,0,[.2,.6,.8],[.3,.3,.35],[.1,.07,.05],'bun',[
-  TT("Fresh Mekong fish! Would you like some?",'ปลาแม่น้ำโขงสดๆ! รับสักหน่อยไหมคะ',"Yes, please. How much is this fish?","I'm a fish.","It is a river.",'แม่ค้าชวนซื้อปลา ให้ตอบรับและถามราคา','fresh = สด, How much is ...? = ... ราคาเท่าไร'),
-  TT("It's one hundred and fifty baht per kilo.",'กิโลกรัมละหนึ่งร้อยห้าสิบบาทค่ะ',"That's a good price. I'll take one kilo.","I'm one hundred.","It's a big fish.",'ได้ราคาแล้ว ให้ตกลงซื้อ','per kilo = ต่อกิโลกรัม, I\'ll take ... = ฉันขอเอา ...'),
-  TT("Here you are. Is it for dinner?",'นี่ค่ะ ซื้อไปทำอาหารเย็นเหรอคะ',"Yes. My family loves fish.","Yes, I'm a fish.","It is dinner.",'ถามว่าซื้อไปกินเย็นไหม ให้ตอบ','love = ชอบมาก, dinner = อาหารเย็น')]),
+  TT("Fresh Mekong fish! Would you like some?",'ปลาแม่น้ำโขงสดๆ! รับสักหน่อยไหมคะ',"Yes, please. How much is this fish?","I'm fine, thank you.","It's one hundred and fifty baht.",'แม่ค้าชวนซื้อปลา ให้ตอบรับและถามราคา','fresh = สด, How much is ...? = ... ราคาเท่าไร'),
+  TT("It's one hundred and fifty baht per kilo.",'กิโลกรัมละหนึ่งร้อยห้าสิบบาทค่ะ',"That's a good price. I'll take one kilo.","How much is this fish?","Yes, it's for dinner.",'ได้ราคาแล้ว ให้ตกลงซื้อ','per kilo = ต่อกิโลกรัม, I\'ll take ... = ฉันขอเอา ...'),
+  TT("Here you are. Is it for dinner?",'นี่ค่ะ ซื้อไปทำอาหารเย็นเหรอคะ',"Yes. My family loves fish.","How much is it?","That's a good price.",'ถามว่าซื้อไปกินเย็นไหม ให้ตอบ','love = ชอบมาก, dinner = อาหารเย็น')]),
  NPCDEF('pet','Mr. Pet','Boat guide⁣ไกด์ล่องเรือ',0,-1.2,0,[.3,.5,.8],[.3,.3,.3],[.1,.07,.05],'cap',[
-  TT("Welcome to Khong Chiam! This is where two rivers meet.",'ยินดีต้อนรับสู่โขงเจียม ที่นี่คือจุดที่แม่น้ำสองสายมาพบกันครับ',"Wow! Which rivers are they?","I'm a river.","It's two.",'ได้ยินว่าแม่น้ำสองสายมาพบกัน ให้ถามว่าคือแม่น้ำอะไร','Which ...? = ... อันไหน, meet = มาพบกัน'),
-  TT("The Mun River and the Mekong River.",'แม่น้ำมูลและแม่น้ำโขงครับ',"Why do people call it the Two-Colored River?","I like the Mekong.","It's a big river.",'ได้ชื่อแม่น้ำแล้ว ให้ถามว่าทำไมเรียกแม่น้ำสองสี','Why do people call it ...? = ทำไมคนเรียกว่า ...'),
-  TT("The two rivers have different colors where they meet.",'แม่น้ำสองสายมีสีต่างกันตรงที่มาพบกันครับ',"That's so cool! I want to see it.","I'm two colors.","It's a color.",'ได้คำอธิบายแล้ว ให้แสดงความตื่นเต้น','different colors = สีต่างกัน')]),
+  TT("Welcome to Khong Chiam! This is where two rivers meet.",'ยินดีต้อนรับสู่โขงเจียม ที่นี่คือจุดที่แม่น้ำสองสายมาพบกันครับ',"Wow! Which rivers are they?","Yes, I know the Mun River.","Thank you. I'll take one kilo.",'ได้ยินว่าแม่น้ำสองสายมาพบกัน ให้ถามว่าคือแม่น้ำอะไร','Which ...? = ... อันไหน, meet = มาพบกัน'),
+  TT("The Mun River and the Mekong River.",'แม่น้ำมูลและแม่น้ำโขงครับ',"Why do people call it the Two-Colored River?","Which rivers are they?","Yes, I like the Mekong River.",'ได้ชื่อแม่น้ำแล้ว ให้ถามว่าทำไมเรียกแม่น้ำสองสี','Why do people call it ...? = ทำไมคนเรียกว่า ...'),
+  TT("The two rivers have different colors where they meet.",'แม่น้ำสองสายมีสีต่างกันตรงที่มาพบกันครับ',"That's so cool! I want to see it.","Why do people call it the Two-Colored River?","That's a good price.",'ได้คำอธิบายแล้ว ให้แสดงความตื่นเต้น','different colors = สีต่างกัน')]),
  NPCDEF('wichai','Mr. Wichai','Temple guide⁣ไกด์วัด',-6,2.4,0,[.97,.97,.95],[.2,.2,.25],[.5,.5,.52],'',[
-  TT("This is Wat Tham Khuha Sawan. Many people come to pay respect to Luang Pu Kham Kanueng.",'นี่คือวัดถ้ำคูหาสวรรค์ คนมากมายมาสักการะหลวงปู่คำคะนึงครับ',"I see. Is it a famous temple?","I'm a temple.","It's a famous monk.",'ได้ยินว่าคนมาสักการะ ให้ถามว่าวัดมีชื่อเสียงไหม','pay respect = สักการะ, famous = มีชื่อเสียง'),
-  TT("Yes, it's famous. Please be quiet and polite in the temple.",'ใช่ครับ มีชื่อเสียง กรุณาสงบและสุภาพในวัดนะครับ',"Sure. I'll be quiet.","I'm in the temple.","It is polite.",'ถูกขอให้เงียบและสุภาพ ให้ตอบรับ','Please be quiet and polite. = กรุณาสงบและสุภาพ'),
-  TT("Look at that drum. It is the biggest drum in Thailand.",'ดูกลองใบนั้นสิครับ เป็นกลองที่ใหญ่ที่สุดในประเทศไทย',"Wow! It's huge!","I'm a drum.","It's a small drum.",'เห็นกลองใหญ่ ให้แสดงความทึ่ง','the biggest = ใหญ่ที่สุด, huge = ใหญ่มาก')]),
+  TT("This is Wat Tham Khuha Sawan. Many people come to pay respect to Luang Pu Kham Kanueng.",'นี่คือวัดถ้ำคูหาสวรรค์ คนมากมายมาสักการะหลวงปู่คำคะนึงครับ',"I see. Is it a famous temple?","Sure. I'll be quiet.","Wow! It's huge!",'ได้ยินว่าคนมาสักการะ ให้ถามว่าวัดมีชื่อเสียงไหม','pay respect = สักการะ, famous = มีชื่อเสียง'),
+  TT("Yes, it's famous. Please be quiet and polite in the temple.",'ใช่ครับ มีชื่อเสียง กรุณาสงบและสุภาพในวัดนะครับ',"Sure. I'll be quiet.","Yes, it's famous.","Is it a famous temple?",'ถูกขอให้เงียบและสุภาพ ให้ตอบรับ','Please be quiet and polite. = กรุณาสงบและสุภาพ'),
+  TT("Look at that drum. It is the biggest drum in Thailand.",'ดูกลองใบนั้นสิครับ เป็นกลองที่ใหญ่ที่สุดในประเทศไทย',"Wow! It's huge!","Sure. I'll be quiet.","I see. Is it a famous temple?",'เห็นกลองใหญ่ ให้แสดงความทึ่ง','the biggest = ใหญ่ที่สุด, huge = ใหญ่มาก')]),
  NPCDEF('ning','Ning','Friend⁣เพื่อนที่ไปเที่ยว',-3,-1.4,0,[.95,.6,.3],[.2,.3,.5],[.1,.07,.05],'long',[
-  TT("Look at the sandy beach and the rocks! Isn't it beautiful?",'ดูหาดทรายกับก้อนหินสิ! สวยไหม',"Yes, it's really beautiful!","No, I'm a beach.","It's a big beach.",'เพื่อนถามว่าสวยไหม ให้เห็นด้วย','beach = หาด, really beautiful = สวยจริงๆ'),
-  TT("Let's take a photo here.",'ถ่ายรูปตรงนี้กันเถอะ',"Good idea! Stand over there.","I'm a photo.","It is a camera.",'เพื่อนชวนถ่ายรูป ให้ตอบรับ','Good idea! = ความคิดดี'),
-  TT("Did you know? \"Two-Colored River\" is in our province's slogan.",'รู้ไหม? "แม่น้ำสองสี" อยู่ในคำขวัญจังหวัดของเรา',"Yes, I know. We are proud of it!","I'm a slogan.","No, it's a river.",'เพื่อนบอกว่าอยู่ในคำขวัญ ให้ตอบว่ารู้และภูมิใจ','proud of = ภูมิใจใน, slogan = คำขวัญ')])]});
+  TT("Look at the sandy beach and the rocks! Isn't it beautiful?",'ดูหาดทรายกับก้อนหินสิ! สวยไหม',"Yes, it's really beautiful!","Good idea! Stand over there.","Yes, I know. We are proud of it!",'เพื่อนถามว่าสวยไหม ให้เห็นด้วย','beach = หาด, really beautiful = สวยจริงๆ'),
+  TT("Let's take a photo here.",'ถ่ายรูปตรงนี้กันเถอะ',"Good idea! Stand over there.","Yes, it's really beautiful!","Yes, I know. We are proud of it!",'เพื่อนชวนถ่ายรูป ให้ตอบรับ','Good idea! = ความคิดดี'),
+  TT("Did you know? \"Two-Colored River\" is in our province's slogan.",'รู้ไหม? "แม่น้ำสองสี" อยู่ในคำขวัญจังหวัดของเรา',"Yes, I know. We are proud of it!","Good idea! Stand over there.","Yes, it's really beautiful!",'เพื่อนบอกว่าอยู่ในคำขวัญ ให้ตอบว่ารู้และภูมิใจ','proud of = ภูมิใจใน, slogan = คำขวัญ')])]});
 /* ===== Ubon: Wat Phu Phrao ===== */
 SCENES.push({id:'phuphrao',name:'Wat Phu Phrao',th:'วัดภูพร้าว',color:'#CA8A04',spawn:[0,3.6,Math.PI],bounds:[-12.4,12.4,-9,9],
  build(){const c=mk();base(c,[-12.4,12.4,-9,9],0,[.78,.76,.68]);
@@ -3618,21 +3618,21 @@ SCENES.push({id:'home',name:'Home',th:'บ้าน',color:'#E11D48',spawn:[0,3.
   return{a:new Float32Array(c.a),ob:c.ob}},
  npcs:[
  NPCDEF('mom','Mom','Mother⁣คุณแม่',8,-6.2,0,[.85,.35,.45],[.25,.2,.3],[.08,.06,.07],'bun',[
-  TT("Welcome home! Are you hungry?",'กลับมาแล้วเหรอ หิวไหมลูก',"Yes, I am. What's for dinner?","Yes, I do.","It's a home.",'แม่ถามว่าหิวไหม (Are you ...?) ตอบ Yes, I am.','hungry = หิว, What\'s for dinner? = มื้อเย็นกินอะไร'),
-  TT("We're having rice and soup.",'เรามีข้าวกับแกงจืดนะ',"Great! I love soup.","I'm soup.","It's rice.",'แม่บอกเมนู ให้ตอบรับอย่างดีใจ','We\'re having ... = เรามี/จะกิน ...'),
-  TT("Can you set the table, please?",'ช่วยจัดโต๊ะอาหารหน่อยได้ไหม',"Sure. I'll do it now.","I'm a table.","It's dinner.",'แม่ขอให้ช่วยงานบ้าน ให้ตอบรับ','set the table = จัดโต๊ะอาหาร')]),
+  TT("Welcome home! Are you hungry?",'กลับมาแล้วเหรอ หิวไหมลูก',"Yes, I am. What's for dinner?","We're having rice and soup.","Yes, I do. I'm hungry.",'แม่ถามว่าหิวไหม (Are you ...?) ตอบ Yes, I am.','hungry = หิว, What\'s for dinner? = มื้อเย็นกินอะไร'),
+  TT("We're having rice and soup.",'เรามีข้าวกับแกงจืดนะ',"Great! I love soup.","Yes, I am. What's for dinner?","Sure. I'll do it now.",'แม่บอกเมนู ให้ตอบรับอย่างดีใจ','We\'re having ... = เรามี/จะกิน ...'),
+  TT("Can you set the table, please?",'ช่วยจัดโต๊ะอาหารหน่อยได้ไหม',"Sure. I'll do it now.","Great! I love soup.","Yes, I am. I'm hungry.",'แม่ขอให้ช่วยงานบ้าน ให้ตอบรับ','set the table = จัดโต๊ะอาหาร')]),
  NPCDEF('sis','Mint','Older sister⁣พี่สาว',-9.2,-.2,Math.PI/2,[.9,.5,.7],[.25,.3,.5],[.08,.06,.07],'long',[
-  TT("Hi! Where is my phone?",'ฮัลโหล โทรศัพท์พี่อยู่ที่ไหน',"It's on the sofa.","It's a phone.","Yes, it is.",'พี่ถามว่าของอยู่ที่ไหน ตอบด้วย on / in / under','sofa = โซฟา, on the sofa = บนโซฟา'),
-  TT("Thanks! Is your room clean?",'ขอบคุณนะ ห้องเธอสะอาดไหม',"Yes, it is. I cleaned it today.","Yes, I do.","I'm a room.",'ถามว่าสะอาดไหม (Is ...?) ตอบ Yes, it is.','clean = สะอาด/ทำความสะอาด'),
-  TT("Can I borrow your charger?",'ขอยืมที่ชาร์จหน่อยได้ไหม',"Sure. It's in my bedroom.","I'm a charger.","No, I'm not.",'พี่ขอยืมของ ให้ตอบรับและบอกที่อยู่','charger = ที่ชาร์จ, bedroom = ห้องนอน')]),
+  TT("Hi! Where is my phone?",'ฮัลโหล โทรศัพท์พี่อยู่ที่ไหน',"It's on the sofa.","Yes, I have a phone.","Sure. It's in my bedroom.",'พี่ถามว่าของอยู่ที่ไหน ตอบด้วย on / in / under','sofa = โซฟา, on the sofa = บนโซฟา'),
+  TT("Thanks! Is your room clean?",'ขอบคุณนะ ห้องเธอสะอาดไหม',"Yes, it is. I cleaned it today.","It's on the sofa.","Yes, I do. I clean it today.",'ถามว่าสะอาดไหม (Is ...?) ตอบ Yes, it is.','clean = สะอาด/ทำความสะอาด'),
+  TT("Can I borrow your charger?",'ขอยืมที่ชาร์จหน่อยได้ไหม',"Sure. It's in my bedroom.","Yes, it is. I cleaned it today.","It's on the sofa.",'พี่ขอยืมของ ให้ตอบรับและบอกที่อยู่','charger = ที่ชาร์จ, bedroom = ห้องนอน')]),
  NPCDEF('grandma','Grandma','Grandmother⁣คุณยาย',3.6,-.4,Math.PI,[.55,.5,.7],[.3,.25,.3],[.75,.75,.75],'bun',[
-  TT("Hello, dear. How was school today?",'สวัสดีหลาน วันนี้ที่โรงเรียนเป็นอย่างไรบ้าง',"It was good. I learned a lot.","I'm a school.","It is today.",'ยายถามว่าวันนี้เป็นอย่างไร (How was ...?) ตอบด้วย It was ...','How was ...? = ... เป็นอย่างไรบ้าง'),
-  TT("Did you do your homework?",'ทำการบ้านแล้วหรือยัง',"Yes, I did. I finished it.","Yes, I do.","It's my homework.",'ยายถามว่าทำแล้วไหม (Did you ...?) ตอบ Yes, I did.','finish = ทำเสร็จ'),
-  TT("Please wash your hands before dinner.",'ไปล้างมือก่อนกินข้าวนะ',"OK, Grandma. I'll do it now.","I'm a hand.","It is dinner.",'ยายขอให้ล้างมือ ให้ตอบรับ','wash your hands = ล้างมือ')]),
+  TT("Hello, dear. How was school today?",'สวัสดีหลาน วันนี้ที่โรงเรียนเป็นอย่างไรบ้าง',"It was good. I learned a lot.","Yes, I did. I finished it.","I'm fine, thank you.",'ยายถามว่าวันนี้เป็นอย่างไร (How was ...?) ตอบด้วย It was ...','How was ...? = ... เป็นอย่างไรบ้าง'),
+  TT("Did you do your homework?",'ทำการบ้านแล้วหรือยัง',"Yes, I did. I finished it.","It was good. I learned a lot.","OK, Grandma. I'll do it now.",'ยายถามว่าทำแล้วไหม (Did you ...?) ตอบ Yes, I did.','finish = ทำเสร็จ'),
+  TT("Please wash your hands before dinner.",'ไปล้างมือก่อนกินข้าวนะ',"OK, Grandma. I'll do it now.","Yes, I did. I finished it.","It was good. I learned a lot.",'ยายขอให้ล้างมือ ให้ตอบรับ','wash your hands = ล้างมือ')]),
  NPCDEF('neighbor','Mr. Boon','Neighbor⁣เพื่อนบ้าน',-6,3.4,0,[.3,.55,.4],[.2,.2,.25],[.1,.07,.05],'cap',[
-  TT("Good evening! Is your mother home?",'สวัสดีตอนเย็น คุณแม่อยู่บ้านไหม',"Yes, she is. She's in the kitchen.","Yes, I do.","It's a mother.",'ถามว่าแม่อยู่บ้านไหม (Is ...?) ตอบ Yes, she is.','kitchen = ห้องครัว, in the kitchen = ในครัว'),
-  TT("Please give her these mangoes.",'ฝากมะม่วงให้แม่ด้วยนะ',"Thank you very much!","I'm a mango.","It is a gift.",'เพื่อนบ้านฝากของ ให้ขอบคุณ','Please give her ... = ฝากให้เธอ ...'),
-  TT("Have a nice evening!",'ขอให้เป็นช่วงเย็นที่ดีนะ',"You, too. Goodbye!","I'm evening.","It's nice.",'เพื่อนบ้านอวยพร ให้ตอบ You, too.','You, too. = คุณเช่นกัน')])]});
+  TT("Good evening! Is your mother home?",'สวัสดีตอนเย็น คุณแม่อยู่บ้านไหม',"Yes, she is. She's in the kitchen.","Yes, I am. She's in the kitchen.","Thank you very much!",'ถามว่าแม่อยู่บ้านไหม (Is ...?) ตอบ Yes, she is.','kitchen = ห้องครัว, in the kitchen = ในครัว'),
+  TT("Please give her these mangoes.",'ฝากมะม่วงให้แม่ด้วยนะ',"Thank you very much!","Yes, she is. She's in the kitchen.","You, too. Goodbye!",'เพื่อนบ้านฝากของ ให้ขอบคุณ','Please give her ... = ฝากให้เธอ ...'),
+  TT("Have a nice evening!",'ขอให้เป็นช่วงเย็นที่ดีนะ',"You, too. Goodbye!","Yes, she is. She's in the kitchen.","Please give her these mangoes.",'เพื่อนบ้านอวยพร ให้ตอบ You, too.','You, too. = คุณเช่นกัน')])]});
 
 /* ===== Clothes Shop ===== */
 SCENES.push({id:'clothes',name:'Clothes Shop',th:'ร้านเสื้อผ้า',color:'#C026D3',spawn:[0,3.2,Math.PI],bounds:[-12.4,12.4,-9,9],
@@ -3883,21 +3883,21 @@ SCENES.push({id:'mall',name:'Mall',th:'ห้างสรรพสินค้�
   return{a:new Float32Array(c.a),ob:c.ob}},
  npcs:[
  NPCDEF('info','Ms. Anne','Information desk⁣เจ้าหน้าที่ประชาสัมพันธ์',0,-5.5,0,[.8,.25,.5],[.2,.2,.3],[.08,.06,.07],'bun',[
-  TT("Welcome to the mall! How can I help you?",'ยินดีต้อนรับสู่ห้างค่ะ ให้ช่วยอะไรคะ',"Where is the food court?","I'm a mall.","It's a food court.",'เจ้าหน้าที่ถามว่าให้ช่วยอะไร ให้ถามหาลานอาหาร','food court = ลานอาหาร (ในห้าง)'),
-  TT("It's on the third floor, next to the movie theater.",'อยู่ชั้นสาม ข้างโรงภาพยนตร์ค่ะ',"How can I get there?","I'm on the floor.","It's a theater.",'ได้ที่ตั้งแล้ว ให้ถามวิธีไป','movie theater = โรงภาพยนตร์ (อเมริกัน), third floor = ชั้นสาม'),
-  TT("Take the escalator over there.",'ขึ้นบันไดเลื่อนตรงนั้นเลยค่ะ',"Thank you very much.","I'm an escalator.","It's over.",'ได้ทางแล้ว ให้ขอบคุณ','escalator = บันไดเลื่อน')]),
+  TT("Welcome to the mall! How can I help you?",'ยินดีต้อนรับสู่ห้างค่ะ ให้ช่วยอะไรคะ',"Where is the food court?","I'm fine, thank you.","It's on the third floor.",'เจ้าหน้าที่ถามว่าให้ช่วยอะไร ให้ถามหาลานอาหาร','food court = ลานอาหาร (ในห้าง)'),
+  TT("It's on the third floor, next to the movie theater.",'อยู่ชั้นสาม ข้างโรงภาพยนตร์ค่ะ',"How can I get there?","Where is the food court?","Yes, I'd like a ticket, please.",'ได้ที่ตั้งแล้ว ให้ถามวิธีไป','movie theater = โรงภาพยนตร์ (อเมริกัน), third floor = ชั้นสาม'),
+  TT("Take the escalator over there.",'ขึ้นบันไดเลื่อนตรงนั้นเลยค่ะ',"Thank you very much.","Welcome to the mall!","It's on the third floor.",'ได้ทางแล้ว ให้ขอบคุณ','escalator = บันไดเลื่อน')]),
  NPCDEF('ticket','Mr. Ray','Movie ticket seller⁣พนักงานขายตั๋วหนัง',-7.4,-.2,Math.PI/2,[.25,.25,.4],[.2,.2,.25],[.1,.07,.05],'cap',[
-  TT("Hi! Which movie do you want to see?",'สวัสดีครับ จะดูหนังเรื่องไหนครับ',"I'd like to see the new comedy.","I'm a movie.","It's a ticket.",'ถามว่าจะดูเรื่องไหน ให้ตอบประเภทหนังที่อยากดู','comedy = หนังตลก, I\'d like to see ... = ฉันอยากดู ...'),
-  TT("What time? Seven or nine?",'รอบกี่โมงครับ เจ็ดโมงหรือสามทุ่ม',"Seven, please.","I'm seven.","It's a movie.",'ถามให้เลือกรอบ ตอบตัวเลขหนึ่งอย่าง','Seven or nine? = เจ็ดหรือเก้า'),
-  TT("Two tickets are two hundred baht.",'ตั๋วสองใบ สองร้อยบาทครับ',"Here you are. Thanks!","I'm two.","It's two hundred.",'ได้ราคาแล้ว ให้จ่ายเงิน','tickets = ตั๋ว (พหูพจน์)')]),
+  TT("Hi! Which movie do you want to see?",'สวัสดีครับ จะดูหนังเรื่องไหนครับ',"I'd like to see the new comedy.","Seven, please.","Here you are. Thanks!",'ถามว่าจะดูเรื่องไหน ให้ตอบประเภทหนังที่อยากดู','comedy = หนังตลก, I\'d like to see ... = ฉันอยากดู ...'),
+  TT("What time? Seven or nine?",'รอบกี่โมงครับ เจ็ดโมงหรือสามทุ่ม',"Seven, please.","I'd like to see the new comedy.","Two hundred baht, please.",'ถามให้เลือกรอบ ตอบตัวเลขหนึ่งอย่าง','Seven or nine? = เจ็ดหรือเก้า'),
+  TT("Two tickets are two hundred baht.",'ตั๋วสองใบ สองร้อยบาทครับ',"Here you are. Thanks!","Seven, please.","I'd like to see the new comedy.",'ได้ราคาแล้ว ให้จ่ายเงิน','tickets = ตั๋ว (พหูพจน์)')]),
  NPCDEF('friend','Gift','Friend⁣เพื่อน',6.4,3.0,Math.PI,[.9,.5,.7],[.25,.3,.5],[.08,.06,.07],'long',[
-  TT("Hi! Let's go shopping together.",'สวัสดี ไปเดินซื้อของด้วยกันเถอะ',"Sure. What do you want to buy?","I'm a shopping.","It's together.",'เพื่อนชวนไปซื้อของ ให้ตอบรับและถามว่าจะซื้ออะไร','Let\'s ... = ไป ... กันเถอะ, What do you want to buy? = เธออยากซื้ออะไร'),
-  TT("I want to buy new shoes.",'ฉันอยากซื้อรองเท้าคู่ใหม่',"The shoe store is on the second floor.","I'm a shoe.","It's new.",'เพื่อนอยากซื้อรองเท้า ให้บอกว่าร้านอยู่ชั้นไหน','shoe store = ร้านรองเท้า, second floor = ชั้นสอง'),
-  TT("Are you hungry? Let's eat first.",'เธอหิวไหม กินข้าวก่อนเถอะ',"Good idea. I'm hungry, too.","I'm first.","It's a meal.",'ถามว่าหิวไหม (Are you ...?) ตอบรับและบอกว่าหิวเช่นกัน','Good idea. = ความคิดดี')]),
+  TT("Hi! Let's go shopping together.",'สวัสดี ไปเดินซื้อของด้วยกันเถอะ',"Sure. What do you want to buy?","I want to buy new shoes.","Where is the food court?",'เพื่อนชวนไปซื้อของ ให้ตอบรับและถามว่าจะซื้ออะไร','Let\'s ... = ไป ... กันเถอะ, What do you want to buy? = เธออยากซื้ออะไร'),
+  TT("I want to buy new shoes.",'ฉันอยากซื้อรองเท้าคู่ใหม่',"The shoe store is on the second floor.","Sure. What do you want to buy?","Yes, I'm hungry, too.",'เพื่อนอยากซื้อรองเท้า ให้บอกว่าร้านอยู่ชั้นไหน','shoe store = ร้านรองเท้า, second floor = ชั้นสอง'),
+  TT("Are you hungry? Let's eat first.",'เธอหิวไหม กินข้าวก่อนเถอะ',"Good idea. I'm hungry, too.","The shoe store is on the second floor.","Sure. What do you want to buy?",'ถามว่าหิวไหม (Are you ...?) ตอบรับและบอกว่าหิวเช่นกัน','Good idea. = ความคิดดี')]),
  NPCDEF('guard','Mr. Chart','Security guard⁣เจ้าหน้าที่รักษาความปลอดภัย',-2.8,1.4,Math.PI,[.2,.25,.35],[.15,.15,.2],[.1,.07,.05],'cap',[
-  TT("Good afternoon! The mall closes at ten.",'สวัสดีตอนบ่าย ห้างปิดสี่ทุ่มนะครับ',"OK. Thanks for telling me.","I'm ten.","It's a mall.",'ได้ยินเวลาปิดห้าง ให้ตอบรับและขอบคุณ','closes at ten = ปิดสี่ทุ่ม (22:00)'),
-  TT("Please don't run in the mall.",'กรุณาอย่าวิ่งในห้างนะครับ',"Sorry. I'll walk.","I'm a run.","It's a mall.",'ถูกเตือนห้ามวิ่ง ให้ขอโทษและรับปาก','Please don\'t ... = กรุณาอย่า ...'),
-  TT("Is there a restroom near here?",'แถวนี้มีห้องน้ำไหมครับ',"Yes, there is. It's next to the elevator.","Yes, I am.","It's a restroom.",'ถามว่ามีไหม (Is there ...?) ตอบ Yes, there is.','elevator = ลิฟต์ (อเมริกัน)')])]});
+  TT("Good afternoon! The mall closes at ten.",'สวัสดีตอนบ่าย ห้างปิดสี่ทุ่มนะครับ',"OK. Thanks for telling me.","Sorry. I'll walk.","Yes, there is. It's next to the elevator.",'ได้ยินเวลาปิดห้าง ให้ตอบรับและขอบคุณ','closes at ten = ปิดสี่ทุ่ม (22:00)'),
+  TT("Please don't run in the mall.",'กรุณาอย่าวิ่งในห้างนะครับ',"Sorry. I'll walk.","Yes, there is. It's on the third floor.","It's ten o'clock.",'ถูกเตือนห้ามวิ่ง ให้ขอโทษและรับปาก','Please don\'t ... = กรุณาอย่า ...'),
+  TT("Is there a restroom near here?",'แถวนี้มีห้องน้ำไหมครับ',"Yes, there is. It's next to the elevator.","Sorry. I'll walk.","Yes, I am. It's next to the elevator.",'ถามว่ามีไหม (Is there ...?) ตอบ Yes, there is.','elevator = ลิฟต์ (อเมริกัน)')])]});
 
 /* ===== Ubon: Sam Phan Bok ===== */
 SCENES.push({id:'samphanbok',name:'Sam Phan Bok',th:'สามพันโบก',color:'#C2410C',spawn:[0,3.2,Math.PI],bounds:[-12.4,12.4,-9,9],

@@ -561,7 +561,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--pen);box-shadow:0 0 0
 </div></footer>
 <div id="toast" hidden></div>
 
-<script src="cloud-config.js?v=20261025a"></script>
+<script src="cloud-config.js?v=20261025b"></script>
 <script>
 /* ============ CONTENT: Unit 1 · My School Life (ม.2, A1-A2) ============ */
 // Q(question, why, correct, ...wrongs)  — the correct answer is written first and shuffled at run time
@@ -961,7 +961,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261025a';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261025b';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -3065,21 +3065,21 @@ SCENES.push({id:'bus',name:'Bus Station',th:'สถานีรถบัส',col
   return{a:new Float32Array(c.a),ob:c.ob}},
  npcs:[
  {id:'ploy',name:'Ms. Ploy',role:'Ticket seller⁣พนักงานขายตั๋ว',x:-6,z:-4.4,ry:0,shirt:[.2,.5,.8],pants:[.2,.2,.3],hair:[.08,.06,.07],acc:'bun',turns:[
-  TT("Hello! Where are you going?",'สวัสดีค่ะ จะไปไหนคะ',"A ticket to Ubon Ratchathani, please.","I like buses.","I'm at the bus station.",'ถามว่าจะไปไหน ให้ขอซื้อตั๋วไปที่นั่น','A ticket to ..., please. = ขอตั๋วไป ... ครับ/ค่ะ'),
-  TT("One way or round trip?",'เที่ยวเดียวหรือไปกลับคะ',"Round trip, please.","Yes, it is.","I'm tall.",'ถามว่าเที่ยวเดียวหรือไปกลับ ให้เลือก','one way = เที่ยวเดียว, round trip = ไปกลับ'),
-  TT("That is two hundred baht.",'สองร้อยบาทค่ะ',"Here you are. Thank you.","You're welcome.","I don't know.",'พนักงานบอกราคา ให้จ่ายเงินและขอบคุณ','Here you are. = นี่ครับ/ค่ะ ใช้ตอนยื่นเงินหรือของ')]},
+  TT("Hello! Where are you going?",'สวัสดีค่ะ จะไปไหนคะ',"A ticket to Ubon Ratchathani, please.","Round trip, please.","Two hundred baht, please.",'ถามว่าจะไปไหน ให้ขอซื้อตั๋วไปที่นั่น','A ticket to ..., please. = ขอตั๋วไป ... ครับ/ค่ะ'),
+  TT("One way or round trip?",'เที่ยวเดียวหรือไปกลับคะ',"Round trip, please.","A ticket to Ubon Ratchathani, please.","Two tickets, please.",'ถามว่าเที่ยวเดียวหรือไปกลับ ให้เลือก','one way = เที่ยวเดียว, round trip = ไปกลับ'),
+  TT("That is two hundred baht.",'สองร้อยบาทค่ะ',"Here you are. Thank you.","Round trip, please.","How much is it?",'พนักงานบอกราคา ให้จ่ายเงินและขอบคุณ','Here you are. = นี่ครับ/ค่ะ ใช้ตอนยื่นเงินหรือของ')]},
  {id:'wat',name:'Mr. Wat',role:'Information desk⁣เจ้าหน้าที่ประชาสัมพันธ์',x:0,z:-4.6,ry:0,shirt:[.95,.95,.9],pants:[.25,.25,.35],hair:[.4,.4,.42],acc:'',turns:[
-  TT("Hello. Can I help you?",'สวัสดีครับ ให้ช่วยอะไรไหมครับ',"What time does the bus leave?","I like the bus.","He is a driver.",'เจ้าหน้าที่ถามว่าให้ช่วยไหม ให้ถามเวลารถออก','What time does ... leave? = ... ออกกี่โมง'),
-  TT("It leaves at nine thirty.",'ออกเก้าโมงครึ่งครับ',"Thank you. Which platform is it?","It is nine.","It's a nice bus.",'ได้เวลาแล้ว ให้ขอบคุณและถามชานชาลา','platform = ชานชาลา'),
-  TT("Platform two. Go straight, then turn right.",'ชานชาลาที่สอง เดินตรงไปแล้วเลี้ยวขวาครับ',"Platform two. Thanks for your help!","Turn right, please.","I'm tired.",'ได้เส้นทางแล้ว ให้ทวนและขอบคุณ','Thanks for your help! = ขอบคุณที่ช่วย')]},
+  TT("Hello. Can I help you?",'สวัสดีครับ ให้ช่วยอะไรไหมครับ',"What time does the bus leave?","I'm fine, thank you.","It leaves at nine thirty.",'เจ้าหน้าที่ถามว่าให้ช่วยไหม ให้ถามเวลารถออก','What time does ... leave? = ... ออกกี่โมง'),
+  TT("It leaves at nine thirty.",'ออกเก้าโมงครึ่งครับ',"Thank you. Which platform is it?","What time does the bus leave?","Platform two, please.",'ได้เวลาแล้ว ให้ขอบคุณและถามชานชาลา','platform = ชานชาลา'),
+  TT("Platform two. Go straight, then turn right.",'ชานชาลาที่สอง เดินตรงไปแล้วเลี้ยวขวาครับ',"Platform two. Thanks for your help!","Which platform is it?","Turn left. Thanks for your help!",'ได้เส้นทางแล้ว ให้ทวนและขอบคุณ','Thanks for your help! = ขอบคุณที่ช่วย')]},
  {id:'chok',name:'Mr. Chok',role:'Bus driver⁣คนขับรถ',x:5.2,z:-3.6,ry:Math.PI/2,shirt:[.2,.35,.55],pants:[.2,.2,.25],hair:[.1,.08,.08],acc:'cap',turns:[
-  TT("Good morning! Where are you going?",'อรุณสวัสดิ์ จะไปไหนครับ',"Does this bus go to the market?","This is a big bus.","My name is Pat.",'คนขับถามว่าจะไปไหน ให้ถามว่ารถคันนี้ไปตลาดไหม','Does this bus go to ...? = รถคันนี้ไป ... ไหม'),
-  TT("Yes, it does. Show me your ticket, please.",'ไปครับ ขอดูตั๋วหน่อยครับ',"Here is my ticket.","It is a red ticket.","I am on the bus.",'คนขับขอดูตั๋ว ให้ยื่นตั๋ว','Here is my ticket. = นี่ตั๋วของฉัน'),
-  TT("Sit down, please. We leave in five minutes.",'นั่งก่อนนะครับ อีกห้านาทีออกรถ',"OK. Thank you!","I like my bag.","He is five.",'คนขับบอกให้นั่ง ให้ตอบรับและขอบคุณ','in five minutes = ในอีกห้านาที')]},
+  TT("Good morning! Where are you going?",'อรุณสวัสดิ์ จะไปไหนครับ',"Does this bus go to the market?","Here is my ticket.","Yes, it does.",'คนขับถามว่าจะไปไหน ให้ถามว่ารถคันนี้ไปตลาดไหม','Does this bus go to ...? = รถคันนี้ไป ... ไหม'),
+  TT("Yes, it does. Show me your ticket, please.",'ไปครับ ขอดูตั๋วหน่อยครับ',"Here is my ticket.","Does this bus go to the market?","A ticket to Ubon Ratchathani, please.",'คนขับขอดูตั๋ว ให้ยื่นตั๋ว','Here is my ticket. = นี่ตั๋วของฉัน'),
+  TT("Sit down, please. We leave in five minutes.",'นั่งก่อนนะครับ อีกห้านาทีออกรถ',"OK. Thank you!","Here is my ticket.","Yes, it does. Thank you!",'คนขับบอกให้นั่ง ให้ตอบรับและขอบคุณ','in five minutes = ในอีกห้านาที')]},
  {id:'kim',name:'Kim',role:'Passenger⁣ผู้โดยสาร',x:-3,z:3.5,ry:0,shirt:[.95,.75,.2],pants:[.25,.25,.4],hair:[.1,.07,.05],acc:'long',turns:[
-  TT("Excuse me. Do you know the time?",'ขอโทษค่ะ รู้ไหมคะว่ากี่โมงแล้ว',"Yes. It's ten fifteen.","Yes, I'm ten.","No, I'm Kim.",'ถามเวลา ให้บอกเวลา','It\'s ten fifteen. = สิบนาฬิกาสิบห้านาที'),
-  TT("Thanks! Is this your first time here?",'ขอบคุณค่ะ มาที่นี่ครั้งแรกเหรอ',"No, I come here every week.","Yes, it is a bus.","I'm here at the bus.",'ถามว่ามาครั้งแรกไหม ให้ตอบ','every week = ทุกสัปดาห์'),
-  TT("Nice. Have a safe trip!",'ดีจัง เดินทางปลอดภัยนะ',"Thanks. You too!","I'm very safe.","You're welcome.",'ได้รับคำอวยพร ให้ขอบคุณและอวยพรกลับ','Have a safe trip! = เดินทางปลอดภัย')]}]});
+  TT("Excuse me. Do you know the time?",'ขอโทษค่ะ รู้ไหมคะว่ากี่โมงแล้ว',"Yes. It's ten fifteen.","Yes. It's Monday.","No, I come here every week.",'ถามเวลา ให้บอกเวลา','It\'s ten fifteen. = สิบนาฬิกาสิบห้านาที'),
+  TT("Thanks! Is this your first time here?",'ขอบคุณค่ะ มาที่นี่ครั้งแรกเหรอ',"No, I come here every week.","Yes. It's ten fifteen.","Thanks. You too!",'ถามว่ามาครั้งแรกไหม ให้ตอบ','every week = ทุกสัปดาห์'),
+  TT("Nice. Have a safe trip!",'ดีจัง เดินทางปลอดภัยนะ',"Thanks. You too!","No, I come here every week.","Does this bus go to the market?",'ได้รับคำอวยพร ให้ขอบคุณและอวยพรกลับ','Have a safe trip! = เดินทางปลอดภัย')]}]});
 /* 5 Clinic */
 SCENES.push({id:'clinic',name:'Clinic',th:'คลินิก',color:'#D6336C',spawn:[0,3.2,Math.PI],bounds:[-12.4,12.4,-9,9],
  build(){const c=mk();base(c,[-12.4,12.4,-9,9],0,[.85,.88,.9]);shell(c,[.96,.97,1],[.3,.5,.75],false);
@@ -3092,21 +3092,21 @@ SCENES.push({id:'clinic',name:'Clinic',th:'คลินิก',color:'#D6336C',s
   return{a:new Float32Array(c.a),ob:c.ob}},
  npcs:[
  {id:'jane',name:'Ms. Jane',role:'Receptionist⁣พนักงานต้อนรับ',x:-5,z:-6.2,ry:0,shirt:[.3,.6,.85],pants:[.2,.2,.3],hair:[.45,.25,.1],acc:'bun',turns:[
-  TT("Hello. How can I help you?",'สวัสดีค่ะ มีอะไรให้ช่วยคะ',"I'd like to see a doctor, please.","I'm a doctor.","It's a clinic.",'ถามว่าให้ช่วยไหม ให้บอกว่าอยากพบหมอ','I\'d like to see a doctor. = ฉันอยากพบหมอ'),
-  TT("What is your name?",'ชื่ออะไรคะ',"My name is Mint.","I'm fourteen years old.","I'm fine.",'ถามชื่อ ให้ตอบชื่อ','My name is ... = ฉันชื่อ ...'),
-  TT("Please sit down. The doctor will see you soon.",'เชิญนั่งก่อนค่ะ คุณหมอจะตรวจเร็วๆ นี้',"OK. Thank you.","He is a doctor.","I'm a student.",'ให้นั่งรอ ให้ตอบรับและขอบคุณ','Please sit down. = เชิญนั่ง')]},
+  TT("Hello. How can I help you?",'สวัสดีค่ะ มีอะไรให้ช่วยคะ',"I'd like to see a doctor, please.","My name is Mint.","I'm fine, thank you.",'ถามว่าให้ช่วยไหม ให้บอกว่าอยากพบหมอ','I\'d like to see a doctor. = ฉันอยากพบหมอ'),
+  TT("What is your name?",'ชื่ออะไรคะ',"My name is Mint.","I'd like to see a doctor, please.","Yes, my name is Mint.",'ถามชื่อ ให้ตอบชื่อ','My name is ... = ฉันชื่อ ...'),
+  TT("Please sit down. The doctor will see you soon.",'เชิญนั่งก่อนค่ะ คุณหมอจะตรวจเร็วๆ นี้',"OK. Thank you.","What is your name?","My name is Mint.",'ให้นั่งรอ ให้ตอบรับและขอบคุณ','Please sit down. = เชิญนั่ง')]},
  {id:'ben',name:'Ben',role:'Nurse⁣พยาบาล',x:0,z:-2.4,ry:0,shirt:[.4,.8,.7],pants:[.4,.8,.7],hair:[.1,.08,.08],acc:'',turns:[
-  TT("How are you feeling today?",'วันนี้รู้สึกอย่างไรบ้าง',"Not good. I have a headache.","I'm in the clinic.","It's a nice day.",'พยาบาลถามอาการ ให้บอกว่าไม่สบายอะไร','I have a headache. = ฉันปวดหัว'),
-  TT("I'm sorry to hear that. Do you have a fever?",'เสียใจด้วยนะ มีไข้ไหม',"No, I don't.","I'm a nurse.","Yes, he does.",'ถามว่ามีไข้ไหม (Do you ...?) ตอบ Yes, I do. / No, I don\'t.','fever = ไข้'),
-  TT("How long have you had it?",'เป็นมานานเท่าไรแล้ว',"Since yesterday.","I'm twelve.","At the clinic.",'ถามว่าเป็นมานานแค่ไหน ให้ตอบเวลา','Since yesterday = ตั้งแต่เมื่อวาน')]},
+  TT("How are you feeling today?",'วันนี้รู้สึกอย่างไรบ้าง',"Not good. I have a headache.","Yes, I have a headache.","No, I don't.",'พยาบาลถามอาการ ให้บอกว่าไม่สบายอะไร','I have a headache. = ฉันปวดหัว'),
+  TT("I'm sorry to hear that. Do you have a fever?",'เสียใจด้วยนะ มีไข้ไหม',"No, I don't.","Since yesterday.","Thank you. I'm fine.",'ถามว่ามีไข้ไหม (Do you ...?) ตอบ Yes, I do. / No, I don\'t.','fever = ไข้'),
+  TT("How long have you had it?",'เป็นมานานเท่าไรแล้ว',"Since yesterday.","No, I don't.","Yes, I have a headache.",'ถามว่าเป็นมานานแค่ไหน ให้ตอบเวลา','Since yesterday = ตั้งแต่เมื่อวาน')]},
  {id:'suda',name:'Dr. Suda',role:'Doctor⁣คุณหมอ',x:8.8,z:-3.2,ry:-Math.PI/2,shirt:[.97,.97,.97],pants:[.25,.3,.4],hair:[.08,.06,.07],acc:'long',turns:[
-  TT("Hello. What's the problem?",'สวัสดีค่ะ เป็นอะไรมาคะ',"I have a headache and a sore throat.","I'm a student here.","Please open the door.",'หมอถามอาการ ให้บอกอาการ','sore throat = เจ็บคอ'),
-  TT("Does it hurt a lot?",'เจ็บมากไหม',"Yes, it hurts a lot.","Yes, it's a lot.","It's on Friday.",'ถามว่าเจ็บมากไหม ให้ตอบ','hurt = เจ็บ, a lot = มาก'),
-  TT("Take this medicine and rest. You will feel better soon.",'กินยานี้แล้วพักผ่อน เดี๋ยวก็ดีขึ้นค่ะ',"Thank you, doctor.","I'm not hungry.","Please sit down.",'หมอให้ยาและแนะนำ ให้ขอบคุณ','You will feel better soon. = เดี๋ยวคุณจะรู้สึกดีขึ้น')]},
+  TT("Hello. What's the problem?",'สวัสดีค่ะ เป็นอะไรมาคะ',"I have a headache and a sore throat.","Thank you, doctor.","My name is Mint.",'หมอถามอาการ ให้บอกอาการ','sore throat = เจ็บคอ'),
+  TT("Does it hurt a lot?",'เจ็บมากไหม',"Yes, it hurts a lot.","Since yesterday.","Yes, I do. It's hot.",'ถามว่าเจ็บมากไหม ให้ตอบ','hurt = เจ็บ, a lot = มาก'),
+  TT("Take this medicine and rest. You will feel better soon.",'กินยานี้แล้วพักผ่อน เดี๋ยวก็ดีขึ้นค่ะ',"Thank you, doctor.","Yes, it hurts a lot.","Here it is.",'หมอให้ยาและแนะนำ ให้ขอบคุณ','You will feel better soon. = เดี๋ยวคุณจะรู้สึกดีขึ้น')]},
  {id:'art',name:'Mr. Art',role:'Pharmacist⁣เภสัชกร',x:5,z:-6.2,ry:0,shirt:[.3,.65,.4],pants:[.2,.25,.3],hair:[.5,.5,.52],acc:'hat',turns:[
-  TT("Hello! Do you have a prescription?",'สวัสดีครับ มีใบสั่งยาไหมครับ',"Yes. Here it is.","No, I'm a doctor.","He is sick.",'เภสัชกรถามว่ามีใบสั่งยาไหม ให้ยื่นให้','prescription = ใบสั่งยา'),
-  TT("Take one pill three times a day, after meals.",'กินยาหนึ่งเม็ดวันละสามครั้ง หลังอาหารครับ',"One pill, three times a day. OK.","I have three meals.","It's a big pill.",'เภสัชกรบอกวิธีกินยา ให้ทวน','three times a day = วันละสามครั้ง, after meals = หลังอาหาร'),
-  TT("Drink water and get some rest. Feel better soon!",'ดื่มน้ำและพักผ่อนด้วยนะครับ หายไวๆ นะ',"Thank you. Goodbye!","You're welcome.","I'm hungry.",'ได้รับคำอวยพร ให้ขอบคุณและลา','Feel better soon! = ขอให้หายไวๆ')]}]});
+  TT("Hello! Do you have a prescription?",'สวัสดีครับ มีใบสั่งยาไหมครับ',"Yes. Here it is.","I'd like to see a doctor, please.","Yes. Thank you, doctor.",'เภสัชกรถามว่ามีใบสั่งยาไหม ให้ยื่นให้','prescription = ใบสั่งยา'),
+  TT("Take one pill three times a day, after meals.",'กินยาหนึ่งเม็ดวันละสามครั้ง หลังอาหารครับ',"One pill, three times a day. OK.","Yes. Here it is.","Yes, I have a prescription.",'เภสัชกรบอกวิธีกินยา ให้ทวน','three times a day = วันละสามครั้ง, after meals = หลังอาหาร'),
+  TT("Drink water and get some rest. Feel better soon!",'ดื่มน้ำและพักผ่อนด้วยนะครับ หายไวๆ นะ',"Thank you. Goodbye!","Yes. Here it is.","I'd like to see a doctor, please.",'ได้รับคำอวยพร ให้ขอบคุณและลา','Feel better soon! = ขอให้หายไวๆ')]}]});
 /* ===== batch 2: daily life ===== */
 const NPCDEF=(id,name,role,x,z,ry,shirt,pants,hair,acc,turns)=>({id,name,role,x,z,ry,shirt,pants,hair,acc,turns});
 SCENES.push({id:'restaurant',name:'Restaurant',th:'ร้านอาหาร',color:'#C2410C',spawn:[0,3.2,Math.PI],bounds:[-12.4,12.4,-9,9],
@@ -3197,21 +3197,21 @@ SCENES.push({id:'lotus',name:"Lotus's",th:'โลตัส',color:'#15803D',spaw
   return{a:new Float32Array(c.a),ob:c.ob}},
  npcs:[
  NPCDEF('aom','Ms. Aom','Clothes shop⁣พนักงานร้านเสื้อผ้า',-8,-.8,0,[.9,.4,.6],[.2,.2,.3],[.1,.07,.05],'bun',[
-  TT("Hi! Can I help you?",'สวัสดีค่ะ ให้ช่วยไหมคะ',"Can I try this on?","I can swim.","I'm in the shop.",'ให้ขอลองใส่เสื้อ','Can I try this on? = ลองใส่ได้ไหม'),
-  TT("Sure. The fitting room is over there.",'ได้ค่ะ ห้องลองเสื้ออยู่ตรงนั้นค่ะ',"Thank you. Do you have a bigger size?","I'm in the room.","It's a big room.",'ได้ที่ลองแล้ว ให้ขอบคุณและถามหาไซซ์ใหญ่กว่า','bigger size = ไซซ์ใหญ่กว่า'),
-  TT("Yes, here is a large.",'มีค่ะ นี่ไซซ์ L ค่ะ',"It fits well. I'll take it.","It is a large room.","I'm large.",'ลองแล้วพอดี ให้บอกว่าจะซื้อ','It fits well. = ใส่พอดีเลย')]),
+  TT("Hi! Can I help you?",'สวัสดีค่ะ ให้ช่วยไหมคะ',"Can I try this on?","It fits well. I'll take it.","I'm fine, thank you.",'ให้ขอลองใส่เสื้อ','Can I try this on? = ลองใส่ได้ไหม'),
+  TT("Sure. The fitting room is over there.",'ได้ค่ะ ห้องลองเสื้ออยู่ตรงนั้นค่ะ',"Thank you. Do you have a bigger size?","Can I try this on?","It fits well. I'll take it.",'ได้ที่ลองแล้ว ให้ขอบคุณและถามหาไซซ์ใหญ่กว่า','bigger size = ไซซ์ใหญ่กว่า'),
+  TT("Yes, here is a large.",'มีค่ะ นี่ไซซ์ L ค่ะ',"It fits well. I'll take it.","Do you have a bigger size?","That's a little expensive.",'ลองแล้วพอดี ให้บอกว่าจะซื้อ','It fits well. = ใส่พอดีเลย')]),
  NPCDEF('pop','Mr. Pop','Electronics⁣พนักงานร้านอิเล็กทรอนิกส์',7,-1.2,0,[.2,.2,.3],[.2,.2,.25],[.1,.07,.05],'',[
-  TT("Are you looking for something?",'กำลังมองหาอะไรอยู่ไหมครับ',"Yes. I'm looking for headphones.","No, I'm Pop.","I like music.",'ให้ตอบว่ากำลังหาอะไร','headphones = หูฟัง'),
-  TT("These are black and white. Which color do you like?",'มีสีดำกับสีขาว ชอบสีไหนครับ',"I like the black ones.","I'm black.","I have two colors.",'ถามว่าชอบสีไหน ให้เลือกสี','Which color ...? = ... สีอะไร'),
-  TT("They are nine hundred baht.",'เก้าร้อยบาทครับ',"That's a little expensive.","They are black.","I'm nine hundred.",'ได้ราคาแล้ว ให้แสดงความเห็นเรื่องราคา','a little expensive = แพงนิดหน่อย')]),
+  TT("Are you looking for something?",'กำลังมองหาอะไรอยู่ไหมครับ',"Yes. I'm looking for headphones.","Yes. It's nine hundred baht.","I like the black ones.",'ให้ตอบว่ากำลังหาอะไร','headphones = หูฟัง'),
+  TT("These are black and white. Which color do you like?",'มีสีดำกับสีขาว ชอบสีไหนครับ',"I like the black ones.","Yes. I'm looking for headphones.","That's a little expensive.",'ถามว่าชอบสีไหน ให้เลือกสี','Which color ...? = ... สีอะไร'),
+  TT("They are nine hundred baht.",'เก้าร้อยบาทครับ',"That's a little expensive.","I like the black ones.","Yes. I'm looking for headphones.",'ได้ราคาแล้ว ให้แสดงความเห็นเรื่องราคา','a little expensive = แพงนิดหน่อย')]),
  NPCDEF('som','Ms. Som','Food court⁣พนักงานฟู้ดคอร์ท',4,-6.3,0,[.95,.6,.2],[.2,.2,.25],[.08,.06,.07],'cap',[
-  TT("What would you like to eat?",'จะทานอะไรดีคะ',"I'd like a bowl of noodles, please.","I'm eating.","It's a food court.",'ถามว่าจะกินอะไร ให้สั่งอาหาร','a bowl of noodles = ก๋วยเตี๋ยวหนึ่งชาม'),
-  TT("Chicken or pork?",'ไก่หรือหมูคะ',"Chicken, please.","Yes, I do.","It is hot.",'ถามให้เลือกอย่างใดอย่างหนึ่ง','Chicken or pork? = ไก่หรือหมู'),
-  TT("That will be fifty baht. Please take a number.",'ห้าสิบบาทค่ะ กรุณารับบัตรคิวด้วยค่ะ',"OK. Thank you.","I'm number one.","It's a big number.",'ให้รอบัตรคิว ให้ตอบรับ','take a number = รับบัตรคิว')]),
+  TT("What would you like to eat?",'จะทานอะไรดีคะ',"I'd like a bowl of noodles, please.","Fifty baht, please.","I'm fine, thank you.",'ถามว่าจะกินอะไร ให้สั่งอาหาร','a bowl of noodles = ก๋วยเตี๋ยวหนึ่งชาม'),
+  TT("Chicken or pork?",'ไก่หรือหมูคะ',"Chicken, please.","I'd like a bowl of noodles, please.","I'm fine, thank you.",'ถามให้เลือกอย่างใดอย่างหนึ่ง','Chicken or pork? = ไก่หรือหมู'),
+  TT("That will be fifty baht. Please take a number.",'ห้าสิบบาทค่ะ กรุณารับบัตรคิวด้วยค่ะ',"OK. Thank you.","Chicken, please.","I'd like a bowl of noodles, please.",'ให้รอบัตรคิว ให้ตอบรับ','take a number = รับบัตรคิว')]),
  NPCDEF('jack','Mr. Jack','Guard⁣รปภ.',.5,-4,0,[.2,.3,.5],[.2,.2,.25],[.1,.07,.05],'cap',[
-  TT("Excuse me. Where is the parking lot?",'ขอโทษครับ ที่จอดรถอยู่ที่ไหน',"Go out the main door and turn right.","It's a car.","I like parking.",'ถามทางไปที่จอดรถ ให้บอกทาง','Go out ... and turn right. = ออกไปแล้วเลี้ยวขวา'),
-  TT("Is it far?",'ไกลไหม',"No, it's about two minutes.","Yes, I am.","It is two cars.",'ถามว่าไกลไหม ให้ตอบ','about two minutes = ประมาณสองนาที'),
-  TT("Thanks! Have a nice day.",'ขอบคุณ ขอให้เป็นวันที่ดีนะ',"You too!","It is a nice car.","It's a big lot.",'ได้รับคำอวยพร ให้อวยพรกลับ','You too! = คุณก็เช่นกัน')])]});
+  TT("Excuse me. Where is the parking lot?",'ขอโทษครับ ที่จอดรถอยู่ที่ไหน',"Go out the main door and turn right.","Yes, it's about two minutes.","Thanks! Have a nice day.",'ถามทางไปที่จอดรถ ให้บอกทาง','Go out ... and turn right. = ออกไปแล้วเลี้ยวขวา'),
+  TT("Is it far?",'ไกลไหม',"No, it's about two minutes.","Go out the main door and turn right.","Thanks! Have a nice day.",'ถามว่าไกลไหม ให้ตอบ','about two minutes = ประมาณสองนาที'),
+  TT("Thanks! Have a nice day.",'ขอบคุณ ขอให้เป็นวันที่ดีนะ',"You too!","No, it's about two minutes.","Go out the main door and turn right.",'ได้รับคำอวยพร ให้อวยพรกลับ','You too! = คุณก็เช่นกัน')])]});
 SCENES.push({id:'amazon',name:'Café Amazon',th:'คาเฟ่ อเมซอน',color:'#0E5C3A',spawn:[0,3.2,Math.PI],bounds:[-12.4,12.4,-9,9],
  build(){const c=mk();base(c,[-12.4,12.4,-9,9],0,[.8,.76,.62]);shell(c,[.2,.5,.35],[.4,.25,.15],true);
   c.box(0,3.0,-6.12,5,.7,.12,[.95,.95,.9]);c.box(0,3.0,-6.04,4.2,.4,.04,[.2,.5,.35]);c.box(0,1.0,-6.18,1.4,2,.06,[.5,.3,.2]);
@@ -3396,25 +3396,25 @@ SCENES.push({id:'songkran',name:'Songkran Kaeng Saphue',th:'สงกราน�
   return{a:new Float32Array(c.a),ob:c.ob}},
  npcs:[
  NPCDEF('sai','Grandma Sai','Elder⁣คุณยาย',8.8,-1.2,-Math.PI/2,[.9,.4,.6],[.3,.25,.35],[.8,.8,.82],'bun',[
-  TT("Happy Songkran! Come and pour water on my hands.",'สุขสันต์วันสงกรานต์ มารดน้ำที่มือยายสิ',"Happy Songkran, Grandma. I wish you good health.","I'm a Songkran.","It is hot water.",'ไปรดน้ำขอพรผู้ใหญ่ ให้อวยพรท่าน','I wish you good health. = ขอให้ท่านสุขภาพแข็งแรง'),
-  TT("Thank you, dear. May you be happy and healthy!",'ขอบใจจ้ะ ขอให้หลานมีความสุขและแข็งแรงนะ',"Thank you very much, Grandma.","You are a young man.","It is water.",'ผู้ใหญ่ให้พร ให้ขอบคุณอย่างสุภาพ','May you be ... = ขอให้คุณ ...'),
-  TT("Do you like Songkran?",'ชอบสงกรานต์ไหม',"Yes, I do. I love playing in the water!","Yes, I am.","It's April.",'ถามว่าชอบไหม (Do you ...?) ตอบ Yes, I do.','playing in the water = เล่นน้ำ'),
-  TT("Every Songkran, we hold a big festival here. People also pay respect to Phra Phue.",'ทุกสงกรานต์เรามีงานใหญ่ที่นี่ และผู้คนกราบไหว้พระพือด้วย',"That sounds nice. I'll join next year.","I'm a festival.","It is a respect.",'ได้ยินเรื่องงานประจำปี ให้บอกว่าจะมาร่วม','hold a festival = จัดงาน, pay respect = กราบไหว้')]),
+  TT("Happy Songkran! Come and pour water on my hands.",'สุขสันต์วันสงกรานต์ มารดน้ำที่มือยายสิ',"Happy Songkran, Grandma. I wish you good health.","Thank you very much, Grandma.","Yes, I do. I love playing in the water!",'ไปรดน้ำขอพรผู้ใหญ่ ให้อวยพรท่าน','I wish you good health. = ขอให้ท่านสุขภาพแข็งแรง'),
+  TT("Thank you, dear. May you be happy and healthy!",'ขอบใจจ้ะ ขอให้หลานมีความสุขและแข็งแรงนะ',"Thank you very much, Grandma.","Yes, I do. I love playing in the water!","That sounds nice. I'll join next year.",'ผู้ใหญ่ให้พร ให้ขอบคุณอย่างสุภาพ','May you be ... = ขอให้คุณ ...'),
+  TT("Do you like Songkran?",'ชอบสงกรานต์ไหม',"Yes, I do. I love playing in the water!","Happy Songkran, Grandma. I wish you good health.","That sounds nice. I'll join next year.",'ถามว่าชอบไหม (Do you ...?) ตอบ Yes, I do.','playing in the water = เล่นน้ำ'),
+  TT("Every Songkran, we hold a big festival here. People also pay respect to Phra Phue.",'ทุกสงกรานต์เรามีงานใหญ่ที่นี่ และผู้คนกราบไหว้พระพือด้วย',"That sounds nice. I'll join next year.","Yes, I do. I love playing in the water!","Thank you very much, Grandma.",'ได้ยินเรื่องงานประจำปี ให้บอกว่าจะมาร่วม','hold a festival = จัดงาน, pay respect = กราบไหว้')]),
  NPCDEF('tan','Tan','Friend⁣เพื่อนที่เล่นน้ำ',-2,1.8,0,[.95,.5,.2],[.2,.5,.8],[.1,.07,.05],'',[
-  TT("Happy Songkran! Do you want some water?",'สุขสันต์สงกรานต์! เอาน้ำไหม',"Yes, but please don't splash my phone!","I'm a water.","No, it's April.",'เพื่อนจะสาดน้ำ ให้ตอบและขอไม่ให้โดนมือถือ','splash = สาดน้ำ, Please don\'t ... = กรุณาอย่า ...'),
-  TT("OK! Is the water cold?",'โอเค! น้ำเย็นไหม',"It's cool and clean.","It's a river.","I'm cool.",'ถามว่าน้ำเย็นไหม (Is ...?) ให้บอกลักษณะน้ำ','clean = สะอาด, cool = เย็นสบาย'),
-  TT("Come here in the rainy season too! The water is not too deep and not too shallow.",'หน้าฝนก็มาเล่นได้นะ น้ำไม่ลึกไปและไม่ตื้นไป',"Sounds great! I'd like to come again.","I'm not too deep.","It is a rain.",'ได้ยินว่าหน้าฝนก็เล่นน้ำได้ ให้ตอบรับ','rainy season = หน้าฝน, deep = ลึก, shallow = ตื้น'),
-  TT("Be careful! The rocks are slippery.",'ระวังนะ! หินลื่น',"Thanks. I'll be careful.","I'm slippery.","It is a rock.",'เพื่อนเตือนว่าหินลื่น ให้ขอบคุณ','slippery = ลื่น')]),
+  TT("Happy Songkran! Do you want some water?",'สุขสันต์สงกรานต์! เอาน้ำไหม',"Yes, but please don't splash my phone!","It's cool and clean.","Happy Songkran! Here is some water.",'เพื่อนจะสาดน้ำ ให้ตอบและขอไม่ให้โดนมือถือ','splash = สาดน้ำ, Please don\'t ... = กรุณาอย่า ...'),
+  TT("OK! Is the water cold?",'โอเค! น้ำเย็นไหม',"It's cool and clean.","Thanks. I'll be careful.","Sounds great! I'd like to come again.",'ถามว่าน้ำเย็นไหม (Is ...?) ให้บอกลักษณะน้ำ','clean = สะอาด, cool = เย็นสบาย'),
+  TT("Come here in the rainy season too! The water is not too deep and not too shallow.",'หน้าฝนก็มาเล่นได้นะ น้ำไม่ลึกไปและไม่ตื้นไป',"Sounds great! I'd like to come again.","It's cool and clean.","Thanks. I'll be careful.",'ได้ยินว่าหน้าฝนก็เล่นน้ำได้ ให้ตอบรับ','rainy season = หน้าฝน, deep = ลึก, shallow = ตื้น'),
+  TT("Be careful! The rocks are slippery.",'ระวังนะ! หินลื่น',"Thanks. I'll be careful.","Sounds great! I'd like to come again.","It's cool and clean.",'เพื่อนเตือนว่าหินลื่น ให้ขอบคุณ','slippery = ลื่น')]),
  NPCDEF('sang','Mr. Sang','Local guide⁣ไกด์ท้องถิ่น',-1.2,-1.2,0,[.2,.6,.5],[.3,.3,.3],[.1,.07,.05],'hat',[
-  TT("Welcome to Kaeng Saphue! It is in Phibun Mangsahan, about forty-five kilometers from Ubon city.",'ยินดีต้อนรับสู่แก่งสะพือ อยู่ที่พิบูลมังสาหาร ห่างจากตัวเมืองอุบลประมาณ 45 กิโลเมตรครับ',"Wow! It's not far from the city.","I'm forty-five.","It is a kilometer.",'ได้ยินระยะทาง ให้แสดงความเห็นว่าไม่ไกล','kilometers = กิโลเมตร, not far = ไม่ไกล'),
-  TT("Its name comes from the Kui language. It means \"big snake rapids.\"",'ชื่อมาจากภาษากูย แปลว่า "แก่งงูใหญ่" ครับ',"Big snake? Is there a story?","I'm a snake.","It's a big river.",'ได้ยินความหมายของชื่อ ให้ถามว่ามีเรื่องเล่าไหม','rapids = แก่ง (กระแสน้ำเชี่ยวผ่านหิน)'),
-  TT("People believe a Naga, a big snake, lives here and protects this place.",'ผู้คนเชื่อว่ามีพญานาคอาศัยอยู่ที่นี่และปกปักรักษา',"That's an interesting story!","I'm a Naga.","It's a big snake.",'ได้ฟังตำนาน ให้แสดงความสนใจ','believe = เชื่อ, protect = ปกปักรักษา'),
-  TT("From about February to May, the rocks come out of the water. The water made holes like circles and stars.",'ตั้งแต่ประมาณกุมภาพันธ์ถึงพฤษภาคม หินโผล่พ้นน้ำ กระแสน้ำกัดเซาะเป็นหลุมรูปวงกลมและดาว',"They look like art! Why is the water low?","I'm a star.","It's a hole.",'เห็นหินสวย ให้ชมและถามว่าทำไมน้ำลด','circles and stars = วงกลมและดาว'),
-  TT("They open the Pak Mun Dam, so the water goes down.",'เขาเปิดเขื่อนปากมูล น้ำจึงลดลงครับ',"I see. Now I understand.","It's a big dam.","I'm a dam.",'ได้คำอธิบายแล้ว ให้บอกว่าเข้าใจแล้ว','dam = เขื่อน, I see. = อ๋อ เข้าใจแล้ว')]),
+  TT("Welcome to Kaeng Saphue! It is in Phibun Mangsahan, about forty-five kilometers from Ubon city.",'ยินดีต้อนรับสู่แก่งสะพือ อยู่ที่พิบูลมังสาหาร ห่างจากตัวเมืองอุบลประมาณ 45 กิโลเมตรครับ',"Wow! It's not far from the city.","Big snake? Is there a story?","Wow! It's very far from the city.",'ได้ยินระยะทาง ให้แสดงความเห็นว่าไม่ไกล','kilometers = กิโลเมตร, not far = ไม่ไกล'),
+  TT("Its name comes from the Kui language. It means \"big snake rapids.\"",'ชื่อมาจากภาษากูย แปลว่า "แก่งงูใหญ่" ครับ',"Big snake? Is there a story?","Wow! It's not far from the city.","They look like art!",'ได้ยินความหมายของชื่อ ให้ถามว่ามีเรื่องเล่าไหม','rapids = แก่ง (กระแสน้ำเชี่ยวผ่านหิน)'),
+  TT("People believe a Naga, a big snake, lives here and protects this place.",'ผู้คนเชื่อว่ามีพญานาคอาศัยอยู่ที่นี่และปกปักรักษา',"That's an interesting story!","Big snake? Is there a story?","I see. Now I understand.",'ได้ฟังตำนาน ให้แสดงความสนใจ','believe = เชื่อ, protect = ปกปักรักษา'),
+  TT("From about February to May, the rocks come out of the water. The water made holes like circles and stars.",'ตั้งแต่ประมาณกุมภาพันธ์ถึงพฤษภาคม หินโผล่พ้นน้ำ กระแสน้ำกัดเซาะเป็นหลุมรูปวงกลมและดาว',"They look like art! Why is the water low?","That's an interesting story!","Wow! It's not far from the city.",'เห็นหินสวย ให้ชมและถามว่าทำไมน้ำลด','circles and stars = วงกลมและดาว'),
+  TT("They open the Pak Mun Dam, so the water goes down.",'เขาเปิดเขื่อนปากมูล น้ำจึงลดลงครับ',"I see. Now I understand.","Why is the water low?","They look like art!",'ได้คำอธิบายแล้ว ให้บอกว่าเข้าใจแล้ว','dam = เขื่อน, I see. = อ๋อ เข้าใจแล้ว')]),
  NPCDEF('ladda','Ms. Ladda','Guide at the monument⁣ไกด์ประจำหินพระปรมาภิไธย',2,-1.4,0,[.85,.7,.2],[.2,.2,.3],[.1,.07,.05],'long',[
-  TT("Look! King Rama IX and Queen Sirikit visited Phibun Mangsahan on November 17, 1955.",'ดูสิคะ ในหลวงรัชกาลที่ 9 และสมเด็จพระนางเจ้าสิริกิติ์เสด็จมาพิบูลมังสาหารเมื่อวันที่ 17 พฤศจิกายน พ.ศ. 2498',"That was a long time ago. What did they do here?","I visit this place.","It's a big place.",'ได้ยินวันที่เสด็จ ให้แสดงความเห็นและถามว่าทรงทำอะไร','long time ago = นานมาแล้ว, visited = เสด็จมา/มาเยือน'),
-  TT("They signed their names on a sandstone rock.",'ทั้งสองพระองค์ลงพระปรมาภิไธยบนหินทราย',"I'd like to see it. Where is it?","I'm a sandstone.","It is a name.",'ให้ขอไปดู และถามว่าอยู่ที่ไหน','sandstone = หินทราย, I\'d like to see ... = ฉันอยากดู ...'),
-  TT("It's right here. Then they went up to the pavilion to see the rapids and the river.",'อยู่ตรงนี้ค่ะ จากนั้นทรงขึ้นไปที่พลับพลาเพื่อชมแก่งและแม่น้ำ',"Thank you. I'll go and see the view.","I'm a pavilion.","It is a rock.",'ได้คำแนะนำแล้ว ให้ขอบคุณและบอกว่าจะไปดูวิว','pavilion = พลับพลา, view = วิว')])]});
+  TT("Look! King Rama IX and Queen Sirikit visited Phibun Mangsahan on November 17, 1955.",'ดูสิคะ ในหลวงรัชกาลที่ 9 และสมเด็จพระนางเจ้าสิริกิติ์เสด็จมาพิบูลมังสาหารเมื่อวันที่ 17 พฤศจิกายน พ.ศ. 2498',"That was a long time ago. What did they do here?","I'd like to see it. Where is it?","Thank you. I'll go and see the view.",'ได้ยินวันที่เสด็จ ให้แสดงความเห็นและถามว่าทรงทำอะไร','long time ago = นานมาแล้ว, visited = เสด็จมา/มาเยือน'),
+  TT("They signed their names on a sandstone rock.",'ทั้งสองพระองค์ลงพระปรมาภิไธยบนหินทราย',"I'd like to see it. Where is it?","What did they do here?","Thank you. I'll go and see the view.",'ให้ขอไปดู และถามว่าอยู่ที่ไหน','sandstone = หินทราย, I\'d like to see ... = ฉันอยากดู ...'),
+  TT("It's right here. Then they went up to the pavilion to see the rapids and the river.",'อยู่ตรงนี้ค่ะ จากนั้นทรงขึ้นไปที่พลับพลาเพื่อชมแก่งและแม่น้ำ',"Thank you. I'll go and see the view.","Where is it?","What did they do here?",'ได้คำแนะนำแล้ว ให้ขอบคุณและบอกว่าจะไปดูวิว','pavilion = พลับพลา, view = วิว')])]});
 
 /* ===== Ubon: Khong Chiam ===== */
 SCENES.push({id:'khongchiam',name:'Khong Chiam',th:'โขงเจียม',color:'#0D9488',spawn:[0,3.2,Math.PI],bounds:[-12.4,12.4,-9,9],

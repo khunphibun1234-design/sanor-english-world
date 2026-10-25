@@ -561,7 +561,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--pen);box-shadow:0 0 0
 </div></footer>
 <div id="toast" hidden></div>
 
-<script src="cloud-config.js?v=20261025b"></script>
+<script src="cloud-config.js?v=20261025c"></script>
 <script>
 /* ============ CONTENT: Unit 1 · My School Life (ม.2, A1-A2) ============ */
 // Q(question, why, correct, ...wrongs)  — the correct answer is written first and shuffled at run time
@@ -961,7 +961,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261025b';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261025c';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -3222,21 +3222,21 @@ SCENES.push({id:'amazon',name:'Café Amazon',th:'คาเฟ่ อเมซอ
   return{a:new Float32Array(c.a),ob:c.ob}},
  npcs:[
  NPCDEF('joy','Ms. Joy','Barista⁣บาริสต้า',-3,-6.3,0,[.2,.5,.35],[.15,.15,.2],[.08,.06,.07],'bun',[
-  TT("Welcome! What would you like to drink?",'ยินดีต้อนรับค่ะ รับเครื่องดื่มอะไรดีคะ',"An iced Americano, please.","I'm a drink.","It's a nice café.",'ถามว่าจะดื่มอะไร ให้สั่งเครื่องดื่ม','iced Americano = อเมริกาโนเย็น'),
-  TT("Do you want it sweet?",'ต้องการหวานไหมคะ',"Less sweet, please.","I'm sweet.","It is sugar.",'ถามความหวาน ให้บอกระดับ','Less sweet = หวานน้อย, No sugar = ไม่ใส่น้ำตาล'),
-  TT("For here or to go?",'ทานที่ร้านหรือกลับบ้านคะ',"Take away, please.","It's near my house.","It's here.",'ถามว่ากินที่ร้านหรือซื้อกลับ ให้เลือก','take away = ซื้อกลับ (ในอเมริกันมักพูด to go)')]),
+  TT("Welcome! What would you like to drink?",'ยินดีต้อนรับค่ะ รับเครื่องดื่มอะไรดีคะ',"An iced Americano, please.","Less sweet, please.","I'm fine, thank you.",'ถามว่าจะดื่มอะไร ให้สั่งเครื่องดื่ม','iced Americano = อเมริกาโนเย็น'),
+  TT("Do you want it sweet?",'ต้องการหวานไหมคะ',"Less sweet, please.","An iced Americano, please.","Take away, please.",'ถามความหวาน ให้บอกระดับ','Less sweet = หวานน้อย, No sugar = ไม่ใส่น้ำตาล'),
+  TT("For here or to go?",'ทานที่ร้านหรือกลับบ้านคะ',"Take away, please.","Less sweet, please.","Yes, take away.",'ถามว่ากินที่ร้านหรือซื้อกลับ ให้เลือก','take away = ซื้อกลับ (ในอเมริกันมักพูด to go)')]),
  NPCDEF('sky','Mr. Sky','Cashier⁣แคชเชียร์',3,-6.3,0,[.95,.95,.9],[.15,.15,.2],[.1,.07,.05],'',[
-  TT("Would you like a cake with that?",'รับเค้กด้วยไหมครับ',"Yes, one chocolate cake, please.","No, I'm a cake.","It is a cake.",'ถามว่าเอาเค้กไหม ให้ตอบและสั่ง','chocolate cake = เค้กช็อกโกแลต'),
-  TT("That's one hundred and ten baht.",'ทั้งหมดหนึ่งร้อยสิบบาทครับ',"Can I use my phone to pay?","I'm one hundred.","It's a big cake.",'ได้ราคาแล้ว ให้ถามเรื่องการจ่าย','Can I ...? = ฉัน ... ได้ไหม'),
-  TT("Here's your receipt. Your number is twenty-three.",'นี่ใบเสร็จครับ หมายเลขของคุณคือยี่สิบสาม',"Thank you. I'll wait here.","I'm twenty-three.","It's a long receipt.",'ได้หมายเลขแล้ว ให้ขอบคุณและบอกว่าจะรอ',"I'll wait here. = ฉันจะรอที่นี่")]),
+  TT("Would you like a cake with that?",'รับเค้กด้วยไหมครับ',"Yes, one chocolate cake, please.","Can I use my phone to pay?","That's one hundred and ten baht.",'ถามว่าเอาเค้กไหม ให้ตอบและสั่ง','chocolate cake = เค้กช็อกโกแลต'),
+  TT("That's one hundred and ten baht.",'ทั้งหมดหนึ่งร้อยสิบบาทครับ',"Can I use my phone to pay?","Yes, one chocolate cake, please.","Thank you. I'll wait here.",'ได้ราคาแล้ว ให้ถามเรื่องการจ่าย','Can I ...? = ฉัน ... ได้ไหม'),
+  TT("Here's your receipt. Your number is twenty-three.",'นี่ใบเสร็จครับ หมายเลขของคุณคือยี่สิบสาม',"Thank you. I'll wait here.","Can I use my phone to pay?","An iced Americano, please.",'ได้หมายเลขแล้ว ให้ขอบคุณและบอกว่าจะรอ',"I'll wait here. = ฉันจะรอที่นี่")]),
  NPCDEF('ice','Ice','Customer⁣ลูกค้าที่นั่งอยู่',-5.4,1,Math.PI/2,[.9,.5,.3],[.2,.25,.4],[.1,.07,.05],'long',[
-  TT("Excuse me. Do you know the Wi-Fi password?",'ขอโทษนะ รู้รหัส Wi-Fi ไหม',"No, sorry. Please ask the staff.","It's a Wi-Fi.","I know you.",'ถามรหัส Wi-Fi ให้ตอบว่าไม่รู้และแนะนำให้ถามพนักงาน','Please ask the staff. = กรุณาถามพนักงาน'),
-  TT("OK. Is this seat taken?",'โอเค ที่นั่งนี้มีคนจองไหม',"No, it isn't. Please sit.","Yes, I'm fine.","It's a big seat.",'ถามว่าที่นั่งมีคนไหม (Is ...?) ตอบ No, it isn\'t.','Is this seat taken? = ที่นั่งนี้มีคนนั่งไหม'),
-  TT("Thanks. Do you come here often?",'ขอบคุณ เธอมาที่นี่บ่อยไหม',"Yes, I come here every Friday.","It is Friday.","It is a coffee.",'ถามว่ามาบ่อยไหม ให้ตอบ','every Friday = ทุกวันศุกร์')]),
+  TT("Excuse me. Do you know the Wi-Fi password?",'ขอโทษนะ รู้รหัส Wi-Fi ไหม',"No, sorry. Please ask the staff.","Yes, I come here every Friday.","No, it isn't. Please sit.",'ถามรหัส Wi-Fi ให้ตอบว่าไม่รู้และแนะนำให้ถามพนักงาน','Please ask the staff. = กรุณาถามพนักงาน'),
+  TT("OK. Is this seat taken?",'โอเค ที่นั่งนี้มีคนจองไหม',"No, it isn't. Please sit.","No, sorry. Please ask the staff.","Yes, I come here every Friday.",'ถามว่าที่นั่งมีคนไหม (Is ...?) ตอบ No, it isn\'t.','Is this seat taken? = ที่นั่งนี้มีคนนั่งไหม'),
+  TT("Thanks. Do you come here often?",'ขอบคุณ เธอมาที่นี่บ่อยไหม',"Yes, I come here every Friday.","No, it isn't. Please sit.","No, sorry. Please ask the staff.",'ถามว่ามาบ่อยไหม ให้ตอบ','every Friday = ทุกวันศุกร์')]),
  NPCDEF('max','Mr. Max','Drive-through window⁣พนักงานช่องรับเครื่องดื่ม',9,-3.2,0,[.2,.5,.35],[.15,.15,.2],[.1,.07,.05],'cap',[
-  TT("Your iced Americano is ready.",'อเมริกาโนเย็นของคุณพร้อมแล้วครับ',"Thank you. Can I have a straw?","I'm ready.","It is cold.",'ได้เครื่องดื่ม ให้ขอบคุณและขอหลอด','straw = หลอด'),
-  TT("Sure. Here you are.",'ได้ครับ นี่ครับ',"Thanks. Where can I sit?","I'm here.","It's a straw.",'ได้หลอดแล้ว ให้ขอบคุณและถามที่นั่ง','Where can I sit? = ฉันนั่งได้ที่ไหน'),
-  TT("You can sit outside, near the trees.",'นั่งข้างนอก ใกล้ต้นไม้ได้เลยครับ',"Great. Thanks!","I like trees.","It's a tree.",'ได้คำตอบแล้ว ให้ขอบคุณ','near the trees = ใกล้ต้นไม้')])]});
+  TT("Your iced Americano is ready.",'อเมริกาโนเย็นของคุณพร้อมแล้วครับ',"Thank you. Can I have a straw?","Sure. Here you are.","An iced Americano, please.",'ได้เครื่องดื่ม ให้ขอบคุณและขอหลอด','straw = หลอด'),
+  TT("Sure. Here you are.",'ได้ครับ นี่ครับ',"Thanks. Where can I sit?","Can I have a straw?","You can sit outside, near the trees.",'ได้หลอดแล้ว ให้ขอบคุณและถามที่นั่ง','Where can I sit? = ฉันนั่งได้ที่ไหน'),
+  TT("You can sit outside, near the trees.",'นั่งข้างนอก ใกล้ต้นไม้ได้เลยครับ',"Great. Thanks!","Thank you. Can I have a straw?","Thanks! Where can I sit?",'ได้คำตอบแล้ว ให้ขอบคุณ','near the trees = ใกล้ต้นไม้')])]});
 /* ===== batch 3: park, hotel, airport ===== */
 SCENES.push({id:'park',name:'Park',th:'สวนสาธารณะ',color:'#3F9B3F',spawn:[0,3.2,Math.PI],bounds:[-12.4,12.4,-9,9],
  build(){const c=mk();base(c,[-12.4,12.4,-9,9],0,[.5,.76,.42]);
@@ -3251,21 +3251,21 @@ SCENES.push({id:'park',name:'Park',th:'สวนสาธารณะ',color:'#3
   return{a:new Float32Array(c.a),ob:c.ob}},
  npcs:[
  NPCDEF('gun','Mr. Gun','Ice cream seller⁣คนขายไอศกรีม',-6,-2.9,0,[.95,.4,.5],[.2,.2,.3],[.1,.07,.05],'cap',[
-  TT("Hi! Would you like some ice cream?",'สวัสดี รับไอศกรีมไหมครับ',"Yes, please. A chocolate one, please.","No, I'm Gun.","It is a nice park.",'ถามว่ารับไอศกรีมไหม ให้ตอบรับและเลือกรส','chocolate = ช็อกโกแลต, vanilla = วานิลลา, strawberry = สตรอว์เบอร์รี'),
-  TT("Cup or cone?",'ถ้วยหรือโคนครับ',"A cone, please.","Yes, I do.","It's very cold.",'ถามให้เลือกถ้วยหรือโคน','cone = โคน'),
-  TT("That's thirty baht.",'สามสิบบาทครับ',"Here is thirty baht. Thank you.","I'm thirty.","It's very sweet.",'ได้ราคาแล้ว ให้จ่ายเงินและขอบคุณ','Here is ... baht. = นี่เงิน ... บาท')]),
+  TT("Hi! Would you like some ice cream?",'สวัสดี รับไอศกรีมไหมครับ',"Yes, please. A chocolate one, please.","A cone, please.","Yes, thirty baht.",'ถามว่ารับไอศกรีมไหม ให้ตอบรับและเลือกรส','chocolate = ช็อกโกแลต, vanilla = วานิลลา, strawberry = สตรอว์เบอร์รี'),
+  TT("Cup or cone?",'ถ้วยหรือโคนครับ',"A cone, please.","Yes, please. A chocolate one, please.","Here is thirty baht.",'ถามให้เลือกถ้วยหรือโคน','cone = โคน'),
+  TT("That's thirty baht.",'สามสิบบาทครับ',"Here is thirty baht. Thank you.","A cone, please.","Yes, please. Thank you.",'ได้ราคาแล้ว ให้จ่ายเงินและขอบคุณ','Here is ... baht. = นี่เงิน ... บาท')]),
  NPCDEF('kla','Mr. Kla','Park ranger⁣เจ้าหน้าที่สวน',0,-3.2,0,[.2,.5,.3],[.3,.3,.25],[.1,.07,.05],'hat',[
-  TT("Excuse me. Please don't feed the ducks.",'ขอโทษครับ กรุณาอย่าให้อาหารเป็ดนะครับ',"Oh, I'm sorry. I won't.","Today is sunny.","I'm a duck.",'เจ้าหน้าที่ห้ามให้อาหารเป็ด ให้ขอโทษและรับปาก','Don\'t ... = ห้าม/อย่า ... , I won\'t. = ฉันจะไม่ทำ'),
-  TT("It's OK. Are you enjoying the park?",'ไม่เป็นไรครับ ชอบสวนนี้ไหมครับ',"Yes, it's beautiful!","Yes, I'm a park.","No, it's Monday.",'ถามว่าชอบสวนไหม ให้ตอบ','beautiful = สวย'),
-  TT("The park closes at six o'clock.",'สวนปิดหกโมงเย็นครับ',"Thanks. I'll leave before six.","It closes my house.","I'm six.",'ได้ยินเวลาปิด ให้ขอบคุณและบอกว่าจะกลับก่อน','before six = ก่อนหกโมง')]),
+  TT("Excuse me. Please don't feed the ducks.",'ขอโทษครับ กรุณาอย่าให้อาหารเป็ดนะครับ',"Oh, I'm sorry. I won't.","Yes, it's beautiful!","Thanks. I'll leave before six.",'เจ้าหน้าที่ห้ามให้อาหารเป็ด ให้ขอโทษและรับปาก','Don\'t ... = ห้าม/อย่า ... , I won\'t. = ฉันจะไม่ทำ'),
+  TT("It's OK. Are you enjoying the park?",'ไม่เป็นไรครับ ชอบสวนนี้ไหมครับ',"Yes, it's beautiful!","Oh, I'm sorry. I won't.","Thanks. I'll leave before six.",'ถามว่าชอบสวนไหม ให้ตอบ','beautiful = สวย'),
+  TT("The park closes at six o'clock.",'สวนปิดหกโมงเย็นครับ',"Thanks. I'll leave before six.","Yes, it's beautiful!","Oh, I'm sorry. I won't.",'ได้ยินเวลาปิด ให้ขอบคุณและบอกว่าจะกลับก่อน','before six = ก่อนหกโมง')]),
  NPCDEF('dao','Ms. Dao','Jogger⁣คนวิ่งออกกำลังกาย',-2,4,0,[.95,.5,.2],[.15,.15,.2],[.1,.07,.05],'long',[
-  TT("Hi! Do you run here every day?",'หวัดดี เธอวิ่งที่นี่ทุกวันไหม',"No, I walk here on weekends.","Yes, she is.","It's a long way.",'ถามว่าวิ่งทุกวันไหม (Do you ...?) ตอบ No, I ... หรือ Yes, I do.','on weekends = ในวันเสาร์อาทิตย์'),
-  TT("What do you do on weekends?",'เธอทำอะไรในวันหยุด',"I play soccer with my friends.","I'm on Saturday.","It's a weekend.",'ถามว่าทำอะไรวันหยุด ให้ตอบกิจกรรม','I play ... with my friends. = ฉันเล่น ... กับเพื่อน'),
-  TT("That sounds fun! See you around.",'ฟังดูสนุก! แล้วเจอกันนะ',"See you! Have a nice run.","It is a run.","I sound fun.",'เพื่อนลา ให้ลาและอวยพร','Have a nice ... = ขอให้ ... ดี')]),
+  TT("Hi! Do you run here every day?",'หวัดดี เธอวิ่งที่นี่ทุกวันไหม',"No, I walk here on weekends.","I play soccer with my friends.","See you! Have a nice run.",'ถามว่าวิ่งทุกวันไหม (Do you ...?) ตอบ No, I ... หรือ Yes, I do.','on weekends = ในวันเสาร์อาทิตย์'),
+  TT("What do you do on weekends?",'เธอทำอะไรในวันหยุด',"I play soccer with my friends.","No, I walk here on weekends.","Yes, I run every day.",'ถามว่าทำอะไรวันหยุด ให้ตอบกิจกรรม','I play ... with my friends. = ฉันเล่น ... กับเพื่อน'),
+  TT("That sounds fun! See you around.",'ฟังดูสนุก! แล้วเจอกันนะ',"See you! Have a nice run.","No, I walk here on weekends.","I play soccer with my friends.",'เพื่อนลา ให้ลาและอวยพร','Have a nice ... = ขอให้ ... ดี')]),
  NPCDEF('jay','Jay','Child⁣เด็กน้อย',-9,2.4,0,[.9,.8,.2],[.2,.3,.5],[.1,.07,.05],'',[
-  TT("Hi! Do you want to play with me?",'หวัดดี เล่นกับฉันไหม',"Sure! What game?","No, I'm Jay.","It's my game.",'ชวนเล่น ให้ตอบรับและถามว่าเล่นอะไร','Sure! = ได้เลย'),
-  TT("Let's play on the swings!",'ไปเล่นชิงช้ากัน',"OK. Let's go!","I'm a swing.","It's a big park.",'ชวนเล่นชิงช้า ให้ตอบรับ','Let\'s ... = ไป ... กันเถอะ'),
-  TT("That was fun! Can we play again?",'สนุกจัง! เล่นอีกได้ไหม',"Sorry, I have to go. See you!","It was a swing.","It's a game.",'ถูกชวนเล่นอีก ให้ปฏิเสธสุภาพเพราะต้องไป','I have to go. = ฉันต้องไปแล้ว')])]});
+  TT("Hi! Do you want to play with me?",'หวัดดี เล่นกับฉันไหม',"Sure! What game?","Let's play on the swings!","I play soccer with my friends.",'ชวนเล่น ให้ตอบรับและถามว่าเล่นอะไร','Sure! = ได้เลย'),
+  TT("Let's play on the swings!",'ไปเล่นชิงช้ากัน',"OK. Let's go!","That was fun! Can we play again?","Hi! Do you want to play with me?",'ชวนเล่นชิงช้า ให้ตอบรับ','Let\'s ... = ไป ... กันเถอะ'),
+  TT("That was fun! Can we play again?",'สนุกจัง! เล่นอีกได้ไหม',"Sorry, I have to go. See you!","Let's play on the swings!","Yes, I play soccer with my friends.",'ถูกชวนเล่นอีก ให้ปฏิเสธสุภาพเพราะต้องไป','I have to go. = ฉันต้องไปแล้ว')])]});
 SCENES.push({id:'hotel',name:'Hotel',th:'โรงแรม',color:'#6D4AC9',spawn:[0,3.2,Math.PI],bounds:[-12.4,12.4,-9,9],
  build(){const c=mk();base(c,[-12.4,12.4,-9,9],0,[.92,.86,.76]);shell(c,[.95,.9,.85],[.25,.3,.6],false);
   c.box(0,3.6,-6.14,6,.9,.06,[.25,.3,.6]);c.box(0,1.1,-6.18,3,2.2,.06,[.6,.85,.95]);
@@ -3278,21 +3278,21 @@ SCENES.push({id:'hotel',name:'Hotel',th:'โรงแรม',color:'#6D4AC9',spa
   return{a:new Float32Array(c.a),ob:c.ob}},
  npcs:[
  NPCDEF('rose','Ms. Rose','Receptionist⁣พนักงานต้อนรับ',-4,-6.3,0,[.45,.3,.7],[.15,.15,.2],[.08,.06,.07],'bun',[
-  TT("Good evening! Do you have a reservation?",'สวัสดีตอนเย็นค่ะ จองห้องไว้ไหมคะ',"Yes, I do. My name is Mint.","Yes, I am.","It's a big hotel.",'ถามว่าจองไว้ไหม (Do you ...?) ตอบ Yes, I do. แล้วบอกชื่อ','reservation = การจอง'),
-  TT("How many nights will you stay?",'จะพักกี่คืนคะ',"Two nights, please.","I'm on the second floor.","It's two people.",'ถามว่าพักกี่คืน ให้บอกจำนวนคืน','nights = คืน'),
-  TT("Here is your key. Your room is 305.",'นี่กุญแจค่ะ ห้องของคุณคือ 305',"Thank you. Where is the elevator?","It's room 305.","I'm 305.",'ได้กุญแจแล้ว ให้ขอบคุณและถามที่ลิฟต์','elevator = ลิฟต์ (อเมริกัน)')]),
+  TT("Good evening! Do you have a reservation?",'สวัสดีตอนเย็นค่ะ จองห้องไว้ไหมคะ',"Yes, I do. My name is Mint.","Two nights, please.","Thank you. Where is the elevator?",'ถามว่าจองไว้ไหม (Do you ...?) ตอบ Yes, I do. แล้วบอกชื่อ','reservation = การจอง'),
+  TT("How many nights will you stay?",'จะพักกี่คืนคะ',"Two nights, please.","Yes, I do. My name is Mint.","Thank you. Where is the elevator?",'ถามว่าพักกี่คืน ให้บอกจำนวนคืน','nights = คืน'),
+  TT("Here is your key. Your room is 305.",'นี่กุญแจค่ะ ห้องของคุณคือ 305',"Thank you. Where is the elevator?","Two nights, please.","Yes, I do. My name is Mint.",'ได้กุญแจแล้ว ให้ขอบคุณและถามที่ลิฟต์','elevator = ลิฟต์ (อเมริกัน)')]),
  NPCDEF('tee','Mr. Tee','Bellboy⁣พนักงานยกกระเป๋า',1,-3,0,[.2,.2,.5],[.15,.15,.2],[.1,.07,.05],'cap',[
-  TT("Hello! Can I carry your bag?",'สวัสดีครับ ให้ผมช่วยยกกระเป๋าไหมครับ',"Yes, please. Thank you.","No, I'm a bag.","It is a heavy bag.",'ถามว่าให้ยกกระเป๋าไหม ให้ตอบรับ','Can I ...? = ให้ฉัน ... ไหม'),
-  TT("Which floor, please?",'ชั้นไหนครับ',"The third floor.","I'm three.","It's a floor.",'ถามชั้น ให้ตอบชั้น','the third floor = ชั้นสาม'),
-  TT("Here is your room. Enjoy your stay!",'ถึงห้องแล้วครับ ขอให้พักผ่อนให้สบายนะครับ',"Thank you. Have a nice day!","I'm in my stay.","It's a nice room.",'ถึงห้องแล้ว ให้ขอบคุณ','Enjoy your stay! = ขอให้พักผ่อนให้สบาย')]),
+  TT("Hello! Can I carry your bag?",'สวัสดีครับ ให้ผมช่วยยกกระเป๋าไหมครับ',"Yes, please. Thank you.","The third floor.","Thank you. Have a nice day!",'ถามว่าให้ยกกระเป๋าไหม ให้ตอบรับ','Can I ...? = ให้ฉัน ... ไหม'),
+  TT("Which floor, please?",'ชั้นไหนครับ',"The third floor.","Yes, please. Thank you.","Two nights, please.",'ถามชั้น ให้ตอบชั้น','the third floor = ชั้นสาม'),
+  TT("Here is your room. Enjoy your stay!",'ถึงห้องแล้วครับ ขอให้พักผ่อนให้สบายนะครับ',"Thank you. Have a nice day!","The third floor.","Yes, please. Thank you.",'ถึงห้องแล้ว ให้ขอบคุณ','Enjoy your stay! = ขอให้พักผ่อนให้สบาย')]),
  NPCDEF('pa','Ms. Pa','Housekeeping⁣แม่บ้านโรงแรม',8.4,-1,0,[.3,.6,.7],[.2,.2,.3],[.1,.07,.05],'bun',[
-  TT("Hello. Do you need anything for your room?",'สวัสดีค่ะ ต้องการอะไรเพิ่มไหมคะ',"Yes. Can I have two more towels, please?","No, I'm a room.","It's a clean room.",'ถามว่าต้องการอะไรไหม ให้ขอผ้าเช็ดตัว','towels = ผ้าเช็ดตัว'),
-  TT("Sure. Anything else?",'ได้ค่ะ ต้องการอะไรอีกไหมคะ',"Yes. The air conditioner doesn't work.","It is a nice room.","I have anything.",'ถามว่ามีอะไรอีกไหม ให้แจ้งปัญหา','doesn\'t work = ใช้ไม่ได้ (เสีย)'),
-  TT("I'm sorry. I'll fix it right now.",'ขอโทษค่ะ จะรีบซ่อมให้เดี๋ยวนี้ค่ะ',"Thank you very much.","I'm sorry too.","It's a nice fix.",'แม่บ้านขอโทษและจะแก้ไข ให้ขอบคุณ','fix = ซ่อม, right now = เดี๋ยวนี้')]),
+  TT("Hello. Do you need anything for your room?",'สวัสดีค่ะ ต้องการอะไรเพิ่มไหมคะ',"Yes. Can I have two more towels, please?","Thank you very much.","Great. Thanks for your help!",'ถามว่าต้องการอะไรไหม ให้ขอผ้าเช็ดตัว','towels = ผ้าเช็ดตัว'),
+  TT("Sure. Anything else?",'ได้ค่ะ ต้องการอะไรอีกไหมคะ',"Yes. The air conditioner doesn't work.","Thank you very much.","What time is breakfast?",'ถามว่ามีอะไรอีกไหม ให้แจ้งปัญหา','doesn\'t work = ใช้ไม่ได้ (เสีย)'),
+  TT("I'm sorry. I'll fix it right now.",'ขอโทษค่ะ จะรีบซ่อมให้เดี๋ยวนี้ค่ะ',"Thank you very much.","Sure. Anything else?","What time is breakfast?",'แม่บ้านขอโทษและจะแก้ไข ให้ขอบคุณ','fix = ซ่อม, right now = เดี๋ยวนี้')]),
  NPCDEF('kay','Ms. Kay','Concierge⁣พนักงานบริการแขก',5,-6.3,0,[.82,.62,.4],[.15,.15,.2],[.08,.06,.07],'long',[
-  TT("Good morning! How can I help you?",'สวัสดีตอนเช้าค่ะ ให้ช่วยอะไรคะ',"What time is breakfast?","I'm in the morning.","It's good.",'ถามเวลาอาหารเช้า','What time is ...? = ... กี่โมง'),
-  TT("Breakfast is from six to ten, on the first floor.",'อาหารเช้าหกโมงถึงสิบโมง ชั้นหนึ่งค่ะ',"Thank you. Is the Wi-Fi free?","It is six to ten.","I'm on the first floor.",'ได้เวลาแล้ว ให้ขอบคุณและถามเรื่อง Wi-Fi','free = ฟรี'),
-  TT("Yes, it is free. The password is on your key card.",'ฟรีค่ะ รหัสผ่านอยู่ที่บัตรกุญแจค่ะ',"Great. Thanks for your help!","It is a key.","Yes, I'm free.",'ได้คำตอบแล้ว ให้ขอบคุณ','password = รหัสผ่าน')])]});
+  TT("Good morning! How can I help you?",'สวัสดีตอนเช้าค่ะ ให้ช่วยอะไรคะ',"What time is breakfast?","Breakfast is from six to ten.","Great. Thanks for your help!",'ถามเวลาอาหารเช้า','What time is ...? = ... กี่โมง'),
+  TT("Breakfast is from six to ten, on the first floor.",'อาหารเช้าหกโมงถึงสิบโมง ชั้นหนึ่งค่ะ',"Thank you. Is the Wi-Fi free?","What time is breakfast?","Yes, it is free.",'ได้เวลาแล้ว ให้ขอบคุณและถามเรื่อง Wi-Fi','free = ฟรี'),
+  TT("Yes, it is free. The password is on your key card.",'ฟรีค่ะ รหัสผ่านอยู่ที่บัตรกุญแจค่ะ',"Great. Thanks for your help!","Is the Wi-Fi free?","What time is breakfast?",'ได้คำตอบแล้ว ให้ขอบคุณ','password = รหัสผ่าน')])]});
 SCENES.push({id:'airport',name:'Airport',th:'สนามบิน',color:'#0284C7',spawn:[0,3.2,Math.PI],bounds:[-12.4,12.4,-9,9],
  build(){const c=mk();base(c,[-12.4,12.4,-9,9],0,[.82,.85,.9]);shell(c,[.9,.93,.97],[.2,.4,.7],false);
   c.box(0,3.6,-6.14,8,.9,.06,[.2,.4,.7]);for(const x of [-8,-3,3,8])c.box(x,2.2,-6.16,2.4,2.2,.06,WIN);
@@ -3304,21 +3304,21 @@ SCENES.push({id:'airport',name:'Airport',th:'สนามบิน',color:'#0284
   return{a:new Float32Array(c.a),ob:c.ob}},
  npcs:[
  NPCDEF('pang','Ms. Pang','Check-in agent⁣เจ้าหน้าที่เช็กอิน',-6,-6.3,0,[.2,.4,.7],[.15,.15,.2],[.08,.06,.07],'bun',[
-  TT("Good morning. May I see your passport and ticket?",'สวัสดีตอนเช้าค่ะ ขอดูหนังสือเดินทางและตั๋วหน่อยค่ะ',"Sure. Here you are.","Yes, I'm good.","I see you.",'เจ้าหน้าที่ขอดูเอกสาร ให้ยื่นให้','May I see ...? = ขอดู ... ได้ไหม'),
-  TT("How many bags do you have?",'มีกระเป๋ากี่ใบคะ',"Just one suitcase.","I'm one.","It's a long trip.",'ถามจำนวนกระเป๋า ให้ตอบ','suitcase = กระเป๋าเดินทาง'),
-  TT("Here is your boarding pass. Gate 4, boarding at ten thirty.",'นี่บัตรขึ้นเครื่องค่ะ ประตู 4 ขึ้นเครื่องสิบโมงครึ่ง',"Gate 4, ten thirty. Thank you!","I'm in gate.","It is a pass.",'ได้ข้อมูลประตูและเวลา ให้ทวนและขอบคุณ','boarding pass = บัตรขึ้นเครื่อง, gate = ประตูขึ้นเครื่อง')]),
+  TT("Good morning. May I see your passport and ticket?",'สวัสดีตอนเช้าค่ะ ขอดูหนังสือเดินทางและตั๋วหน่อยค่ะ',"Sure. Here you are.","Just one suitcase.","Gate 4, ten thirty. Thank you!",'เจ้าหน้าที่ขอดูเอกสาร ให้ยื่นให้','May I see ...? = ขอดู ... ได้ไหม'),
+  TT("How many bags do you have?",'มีกระเป๋ากี่ใบคะ',"Just one suitcase.","Sure. Here you are.","Yes, I have one.",'ถามจำนวนกระเป๋า ให้ตอบ','suitcase = กระเป๋าเดินทาง'),
+  TT("Here is your boarding pass. Gate 4, boarding at ten thirty.",'นี่บัตรขึ้นเครื่องค่ะ ประตู 4 ขึ้นเครื่องสิบโมงครึ่ง',"Gate 4, ten thirty. Thank you!","Just one suitcase.","Sure. Here you are.",'ได้ข้อมูลประตูและเวลา ให้ทวนและขอบคุณ','boarding pass = บัตรขึ้นเครื่อง, gate = ประตูขึ้นเครื่อง')]),
  NPCDEF('sak','Mr. Sak','Security officer⁣เจ้าหน้าที่ตรวจความปลอดภัย',2.5,-2.4,0,[.2,.2,.3],[.2,.2,.25],[.1,.07,.05],'cap',[
-  TT("Please put your bag on the belt.",'กรุณาวางกระเป๋าบนสายพานครับ',"OK. Here you go.","I'm a belt.","It is my bag's belt.",'เจ้าหน้าที่บอกให้วางกระเป๋า ให้ตอบรับ','belt = สายพาน'),
-  TT("Do you have a laptop in your bag?",'มีแล็ปท็อปในกระเป๋าไหมครับ',"Yes, I do. It's in my backpack.","I'm a laptop.","It's a big bag.",'ถามว่ามีแล็ปท็อปไหม (Do you have ...?) ตอบ Yes, I do.','backpack = เป้สะพายหลัง'),
-  TT("OK. Please walk through.",'ได้ครับ เดินผ่านเข้าไปได้เลยครับ',"Thank you, officer.","I'm walking through.","It's a walk.",'ให้เดินผ่าน ให้ขอบคุณ','Please walk through. = เชิญเดินผ่าน')]),
+  TT("Please put your bag on the belt.",'กรุณาวางกระเป๋าบนสายพานครับ',"OK. Here you go.","Thank you, officer.","Yes, I do. It's in my backpack.",'เจ้าหน้าที่บอกให้วางกระเป๋า ให้ตอบรับ','belt = สายพาน'),
+  TT("Do you have a laptop in your bag?",'มีแล็ปท็อปในกระเป๋าไหมครับ',"Yes, I do. It's in my backpack.","OK. Here you go.","Just one suitcase.",'ถามว่ามีแล็ปท็อปไหม (Do you have ...?) ตอบ Yes, I do.','backpack = เป้สะพายหลัง'),
+  TT("OK. Please walk through.",'ได้ครับ เดินผ่านเข้าไปได้เลยครับ',"Thank you, officer.","Yes, I do. It's in my backpack.","OK. Here you go.",'ให้เดินผ่าน ให้ขอบคุณ','Please walk through. = เชิญเดินผ่าน')]),
  NPCDEF('wan','Ms. Wan','Gate agent⁣เจ้าหน้าที่ประตูขึ้นเครื่อง',-1,-3.5,0,[.2,.55,.75],[.15,.15,.2],[.08,.06,.07],'long',[
-  TT("Hello. May I see your boarding pass?",'สวัสดีค่ะ ขอดูบัตรขึ้นเครื่องหน่อยค่ะ',"Sure. Here it is.","No, I'm a pass.","I'm on the plane.",'ให้ยื่นบัตรขึ้นเครื่อง','Here it is. = นี่ครับ/ค่ะ'),
-  TT("Boarding starts in twenty minutes. Please wait here.",'เริ่มขึ้นเครื่องในอีกยี่สิบนาที กรุณารอที่นี่ค่ะ',"OK. Is the flight on time?","It's twenty.","I'm waiting minutes.",'ให้รอ ให้ตอบรับและถามว่าเที่ยวบินตรงเวลาไหม','on time = ตรงเวลา, flight = เที่ยวบิน'),
-  TT("Yes, it is on time.",'ตรงเวลาค่ะ',"Great. Thank you!","Yes, it's time.","No, I'm on it.",'ได้คำตอบแล้ว ให้ขอบคุณ','Great. Thank you! = ดีเลย ขอบคุณ')]),
+  TT("Hello. May I see your boarding pass?",'สวัสดีค่ะ ขอดูบัตรขึ้นเครื่องหน่อยค่ะ',"Sure. Here it is.","Yes, it is on time.","OK. Is the flight on time?",'ให้ยื่นบัตรขึ้นเครื่อง','Here it is. = นี่ครับ/ค่ะ'),
+  TT("Boarding starts in twenty minutes. Please wait here.",'เริ่มขึ้นเครื่องในอีกยี่สิบนาที กรุณารอที่นี่ค่ะ',"OK. Is the flight on time?","Sure. Here it is.","Gate 4, ten thirty. Thank you!",'ให้รอ ให้ตอบรับและถามว่าเที่ยวบินตรงเวลาไหม','on time = ตรงเวลา, flight = เที่ยวบิน'),
+  TT("Yes, it is on time.",'ตรงเวลาค่ะ',"Great. Thank you!","OK. Is the flight on time?","Sure. Here it is.",'ได้คำตอบแล้ว ให้ขอบคุณ','Great. Thank you! = ดีเลย ขอบคุณ')]),
  NPCDEF('lisa','Lisa','Traveler⁣นักเดินทาง',-8,.4,Math.PI/2,[.9,.4,.4],[.25,.3,.5],[.5,.35,.15],'long',[
-  TT("Excuse me. Where is Gate 4?",'ขอโทษค่ะ ประตู 4 อยู่ที่ไหนคะ',"It's over there. Go straight.","It is four.","I'm at gate four.",'ถามทางไปประตู 4 ให้บอกทาง','Go straight. = เดินตรงไป'),
-  TT("Thank you! Is your flight to Bangkok too?",'ขอบคุณค่ะ เที่ยวบินของคุณไปกรุงเทพด้วยไหมคะ',"Yes, it is.","Yes, I do.","It's Bangkok.",'ถามว่าไปกรุงเทพไหม (Is ...?) ตอบ Yes, it is.','Is your flight ...? ตอบ Yes, it is.'),
-  TT("Nice! Have a good flight!",'ดีจัง! เดินทางโดยสวัสดิภาพนะคะ',"Thanks. You too!","I'm a good flight.","It is a long flight.",'ได้รับคำอวยพร ให้ขอบคุณและอวยพรกลับ','Have a good flight! = เดินทางโดยสวัสดิภาพ')])]});
+  TT("Excuse me. Where is Gate 4?",'ขอโทษค่ะ ประตู 4 อยู่ที่ไหนคะ',"It's over there. Go straight.","Thanks. You too!","Yes, it is.",'ถามทางไปประตู 4 ให้บอกทาง','Go straight. = เดินตรงไป'),
+  TT("Thank you! Is your flight to Bangkok too?",'ขอบคุณค่ะ เที่ยวบินของคุณไปกรุงเทพด้วยไหมคะ',"Yes, it is.","It's over there. Go straight.","Just one suitcase.",'ถามว่าไปกรุงเทพไหม (Is ...?) ตอบ Yes, it is.','Is your flight ...? ตอบ Yes, it is.'),
+  TT("Nice! Have a good flight!",'ดีจัง! เดินทางโดยสวัสดิภาพนะคะ',"Thanks. You too!","Yes, it is.","It's over there. Go straight.",'ได้รับคำอวยพร ให้ขอบคุณและอวยพรกลับ','Have a good flight! = เดินทางโดยสวัสดิภาพ')])]});
 /* ===== Ubon: Candle Festival ===== */
 SCENES.push({id:'candle',name:'Candle Festival',th:'งานแห่เทียนพรรษา',color:'#B45309',spawn:[0,3.2,Math.PI],bounds:[-12.4,12.4,-9,9],
  build(){const c=mk();base(c,[-12.4,12.4,-9,9],0,[.62,.62,.66]);

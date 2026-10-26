@@ -561,7 +561,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--pen);box-shadow:0 0 0
 </div></footer>
 <div id="toast" hidden></div>
 
-<script src="cloud-config.js?v=20261026a"></script>
+<script src="cloud-config.js?v=20261026b"></script>
 <script>
 /* ============ CONTENT: Unit 1 · My School Life (ม.2, A1-A2) ============ */
 // Q(question, why, correct, ...wrongs)  — the correct answer is written first and shuffled at run time
@@ -961,7 +961,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261026a';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261026b';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -3795,21 +3795,21 @@ SCENES.push({id:'library',name:'Library',th:'ห้องสมุด',color:'#7
   return{a:new Float32Array(c.a),ob:c.ob}},
  npcs:[
  NPCDEF('libn','Ms. Siri','Librarian⁣บรรณารักษ์',0,-5.6,0,[.5,.3,.65],[.2,.2,.3],[.08,.06,.07],'bun',[
-  TT("Hello! Can I help you find a book?",'สวัสดีค่ะ ให้ช่วยหาหนังสือไหมคะ',"Yes, please. I'm looking for a story book.","I'm a book.","It's a library.",'บรรณารักษ์ถามว่าให้ช่วยไหม ให้บอกว่ากำลังหาหนังสือนิทาน','story book = หนังสือนิทาน'),
-  TT("Do you have a library card?",'มีบัตรห้องสมุดไหมคะ',"Yes, I do. Here it is.","Yes, I am.","It's a card.",'ถามว่ามีบัตรไหม (Do you ...?) ตอบ Yes, I do.','library card = บัตรห้องสมุด'),
-  TT("You can keep it for two weeks.",'ยืมได้สองสัปดาห์ค่ะ',"OK. I'll bring it back on time.","I'm two weeks.","It's a book.",'ได้ยินระยะเวลายืม ให้ตอบรับและสัญญาว่าจะคืน','keep = เก็บไว้/ยืม, on time = ตรงเวลา')]),
+  TT("Hello! Can I help you find a book?",'สวัสดีค่ะ ให้ช่วยหาหนังสือไหมคะ',"Yes, please. I'm looking for a story book.",'Yes, I do. Here it is.','OK. I\'ll bring it back on time.','บรรณารักษ์ถามว่าให้ช่วยไหม ให้บอกว่ากำลังหาหนังสือนิทาน','story book = หนังสือนิทาน'),
+  TT("Do you have a library card?",'มีบัตรห้องสมุดไหมคะ',"Yes, I do. Here it is.",'Yes, please. I\'m looking for a story book.','OK. I\'ll bring it back on time.','ถามว่ามีบัตรไหม (Do you ...?) ตอบ Yes, I do.','library card = บัตรห้องสมุด'),
+  TT("You can keep it for two weeks.",'ยืมได้สองสัปดาห์ค่ะ',"OK. I'll bring it back on time.",'Yes, I do. Here it is.','Yes, please. I\'m looking for a story book.','ได้ยินระยะเวลายืม ให้ตอบรับและสัญญาว่าจะคืน','keep = เก็บไว้/ยืม, on time = ตรงเวลา')]),
  NPCDEF('stu1','Pim','Student⁣นักเรียน',-9.4,-.6,Math.PI/2,[.9,.5,.65],[.25,.3,.5],[.08,.06,.07],'long',[
-  TT("Shh! Please be quiet in the library.",'ชู่ว กรุณาเงียบในห้องสมุดนะ',"Sorry. I'll be quiet.","I'm quiet.","It's a library.",'ถูกเตือนให้เงียบ ให้ขอโทษและรับปาก','be quiet = เงียบ'),
-  TT("It's OK. What are you reading?",'ไม่เป็นไร เธออ่านอะไรอยู่',"I'm reading a science book.","I'm a reading.","It's a book.",'ถามว่ากำลังอ่านอะไร ตอบด้วย I\'m reading ...','science = วิทยาศาสตร์'),
-  TT("Sounds interesting! Is it hard?",'น่าสนใจจัง ยากไหม',"No, it isn't. It has many pictures.","Yes, I do.","It's a hard.",'ถามว่ายากไหม (Is ...?) ตอบ No, it isn\'t.','Sounds interesting! = ฟังดูน่าสนใจ, picture = รูปภาพ')]),
+  TT("Shh! Please be quiet in the library.",'ชู่ว กรุณาเงียบในห้องสมุดนะ',"Sorry. I'll be quiet.",'I\'m reading a science book.','No, it isn\'t. It has many pictures.','ถูกเตือนให้เงียบ ให้ขอโทษและรับปาก','be quiet = เงียบ'),
+  TT("It's OK. What are you reading?",'ไม่เป็นไร เธออ่านอะไรอยู่',"I'm reading a science book.",'Sorry. I\'ll be quiet.','No, it isn\'t. It has many pictures.','ถามว่ากำลังอ่านอะไร ตอบด้วย I\'m reading ...','science = วิทยาศาสตร์'),
+  TT("Sounds interesting! Is it hard?",'น่าสนใจจัง ยากไหม',"No, it isn't. It has many pictures.",'I\'m reading a science book.','Sorry. I\'ll be quiet.','ถามว่ายากไหม (Is ...?) ตอบ No, it isn\'t.','Sounds interesting! = ฟังดูน่าสนใจ, picture = รูปภาพ')]),
  NPCDEF('stu2','Jack','Student⁣นักเรียน',8.6,-.6,-Math.PI/2,[.3,.55,.7],[.25,.3,.5],[.1,.07,.05],'cap',[
-  TT("Excuse me. Is this seat free?",'ขอโทษนะ ที่นั่งนี้ว่างไหม',"Yes, it is. Please sit down.","Yes, I do.","It's a seat.",'ถามว่าที่ว่างไหม (Is ...?) ตอบ Yes, it is.','free = ว่าง'),
-  TT("Thanks! Do you have a pencil I can borrow?",'ขอบคุณ มีดินสอให้ยืมไหม',"Sure. Here you go.","Yes, I'm a pencil.","It's a pencil.",'เพื่อนขอยืมดินสอ ให้ตอบรับและยื่นให้','Do you have ...? = มี ... ไหม'),
-  TT("I need to finish my homework before 5 o'clock.",'ฉันต้องทำการบ้านให้เสร็จก่อนห้าโมงเย็น',"Me too. Let's study together.","I'm five.","It's homework.",'เพื่อนบอกว่าต้องรีบทำงาน ให้ตอบและชวนทำด้วยกัน','finish = ทำให้เสร็จ, before = ก่อน')]),
+  TT("Excuse me. Is this seat free?",'ขอโทษนะ ที่นั่งนี้ว่างไหม',"Yes, it is. Please sit down.",'Sure. Here you go.','Me too. Let\'s study together.','ถามว่าที่ว่างไหม (Is ...?) ตอบ Yes, it is.','free = ว่าง'),
+  TT("Thanks! Do you have a pencil I can borrow?",'ขอบคุณ มีดินสอให้ยืมไหม',"Sure. Here you go.",'Yes, it is. Please sit down.','Me too. Let\'s study together.','เพื่อนขอยืมดินสอ ให้ตอบรับและยื่นให้','Do you have ...? = มี ... ไหม'),
+  TT("I need to finish my homework before 5 o'clock.",'ฉันต้องทำการบ้านให้เสร็จก่อนห้าโมงเย็น',"Me too. Let's study together.",'Sure. Here you go.','Yes, it is. Please sit down.','เพื่อนบอกว่าต้องรีบทำงาน ให้ตอบและชวนทำด้วยกัน','finish = ทำให้เสร็จ, before = ก่อน')]),
  NPCDEF('teacher2','Teacher Wan','Teacher⁣ครู',3.0,1.0,Math.PI,[.4,.3,.65],[.2,.2,.25],[.1,.07,.05],'',[
-  TT("Good afternoon! Are you here to read?",'สวัสดีตอนบ่าย มาอ่านหนังสือหรือคะ',"Yes, I am. I like reading.","Yes, I do.","It's a read.",'ครูถามว่ามาอ่านไหม (Are you ...?) ตอบ Yes, I am.','like + V-ing = ชอบทำ ...'),
-  TT("What kind of books do you like?",'เธอชอบหนังสือประเภทไหน',"I like comic books.","I'm a kind.","It's a kind of book.",'ถามประเภทหนังสือที่ชอบ ตอบ I like ...','kind = ประเภท, comic book = หนังสือการ์ตูน'),
-  TT("Please return your books by Friday.",'กรุณาคืนหนังสือภายในวันศุกร์นะ',"OK, Teacher. I will.","I'm Friday.","It's a book.",'ครูขอให้คืนหนังสือ ให้ตอบรับ','return = คืน, by Friday = ภายในวันศุกร์')])]});
+  TT("Good afternoon! Are you here to read?",'สวัสดีตอนบ่าย มาอ่านหนังสือหรือคะ',"Yes, I am. I like reading.",'I like comic books.','OK, Teacher. I will.','ครูถามว่ามาอ่านไหม (Are you ...?) ตอบ Yes, I am.','like + V-ing = ชอบทำ ...'),
+  TT("What kind of books do you like?",'เธอชอบหนังสือประเภทไหน',"I like comic books.",'Yes, I am. I like reading.','OK, Teacher. I will.','ถามประเภทหนังสือที่ชอบ ตอบ I like ...','kind = ประเภท, comic book = หนังสือการ์ตูน'),
+  TT("Please return your books by Friday.",'กรุณาคืนหนังสือภายในวันศุกร์นะ',"OK, Teacher. I will.",'I like comic books.','Yes, I am. I like reading.','ครูขอให้คืนหนังสือ ให้ตอบรับ','return = คืน, by Friday = ภายในวันศุกร์')])]});
 
 /* ===== Police Station / Lost & Found ===== */
 SCENES.push({id:'police',name:'Police Station',th:'ตำรวจ / ของหาย',color:'#475569',spawn:[0,3.2,Math.PI],bounds:[-12.4,12.4,-9,9],
@@ -3823,21 +3823,21 @@ SCENES.push({id:'police',name:'Police Station',th:'ตำรวจ / ของ�
   return{a:new Float32Array(c.a),ob:c.ob}},
  npcs:[
  NPCDEF('officer','Officer Somchai','Police officer⁣เจ้าหน้าที่ตำรวจ',-4.5,-6.3,0,[.35,.4,.3],[.2,.2,.25],[.1,.07,.05],'cap',[
-  TT("Good afternoon. How can I help you?",'สวัสดีตอนบ่ายครับ ให้ช่วยอะไรครับ',"I lost my backpack.","I'm a backpack.","It's a police station.",'เจ้าหน้าที่ถามว่าให้ช่วยอะไร ให้บอกว่าทำกระเป๋าเป้หาย','I lost my ... = ฉันทำ ... หาย, backpack = กระเป๋าเป้'),
-  TT("What color is it?",'สีอะไรครับ',"It's black and red.","It's a backpack.","I'm black.",'ถามสีของที่หาย ตอบ It\'s ...','What color is it? = มันสีอะไร'),
-  TT("Where did you lose it?",'ทำหายที่ไหนครับ',"I think I left it on the bus.","I'm on the bus.","It's a bus.",'ถามว่าทำหายที่ไหน ตอบด้วยอดีต (left)','left = ลืมไว้ (อดีตของ leave)')]),
+  TT("Good afternoon. How can I help you?",'สวัสดีตอนบ่ายครับ ให้ช่วยอะไรครับ',"I lost my backpack.",'It\'s black and red.','I think I left it on the bus.','เจ้าหน้าที่ถามว่าให้ช่วยอะไร ให้บอกว่าทำกระเป๋าเป้หาย','I lost my ... = ฉันทำ ... หาย, backpack = กระเป๋าเป้'),
+  TT("What color is it?",'สีอะไรครับ',"It's black and red.",'I lost my backpack.','I think I left it on the bus.','ถามสีของที่หาย ตอบ It\'s ...','What color is it? = มันสีอะไร'),
+  TT("Where did you lose it?",'ทำหายที่ไหนครับ',"I think I left it on the bus.",'I lost my backpack.','It\'s black and red.','ถามว่าทำหายที่ไหน ตอบด้วยอดีต (left)','left = ลืมไว้ (อดีตของ leave)')]),
  NPCDEF('clerk2','Ms. Jan','Lost & Found clerk⁣เจ้าหน้าที่ของหาย',7,-6.3,0,[.3,.5,.7],[.2,.2,.25],[.08,.06,.07],'bun',[
-  TT("Hi! Are you looking for something?",'สวัสดีค่ะ กำลังหาของอยู่หรือคะ',"Yes, I am. I'm looking for my umbrella.","Yes, I do.","It's something.",'ถามว่าหาของอยู่ไหม (Are you ...?) ตอบ Yes, I am.','umbrella = ร่ม'),
-  TT("Please describe it.",'ช่วยบอกลักษณะหน่อยค่ะ',"It's blue and it has a long handle.","I'm blue.","It's an umbrella.",'ขอให้บอกลักษณะ ตอบสีและรูปร่าง','describe = บรรยาย, handle = ด้ามจับ'),
-  TT("Is this your umbrella?",'ร่มคันนี้ของคุณใช่ไหมคะ',"Yes, it is! Thank you so much.","Yes, I do.","It's blue.",'ถามว่าใช่ของเราไหม (Is ...?) ตอบ Yes, it is.','Thank you so much. = ขอบคุณมาก')]),
+  TT("Hi! Are you looking for something?",'สวัสดีค่ะ กำลังหาของอยู่หรือคะ',"Yes, I am. I'm looking for my umbrella.",'It\'s blue and it has a long handle.','Yes, it is! Thank you so much.','ถามว่าหาของอยู่ไหม (Are you ...?) ตอบ Yes, I am.','umbrella = ร่ม'),
+  TT("Please describe it.",'ช่วยบอกลักษณะหน่อยค่ะ',"It's blue and it has a long handle.",'Yes, I am. I\'m looking for my umbrella.','Yes, it is! Thank you so much.','ขอให้บอกลักษณะ ตอบสีและรูปร่าง','describe = บรรยาย, handle = ด้ามจับ'),
+  TT("Is this your umbrella?",'ร่มคันนี้ของคุณใช่ไหมคะ',"Yes, it is! Thank you so much.",'Yes, I am. I\'m looking for my umbrella.','Don\'t worry. Let\'s look together.','ถามว่าใช่ของเราไหม (Is ...?) ตอบ Yes, it is.','Thank you so much. = ขอบคุณมาก')]),
  NPCDEF('kid','Ben','Student⁣นักเรียน',-9.2,1.0,Math.PI/2,[.9,.5,.2],[.25,.3,.5],[.1,.07,.05],'cap',[
-  TT("Excuse me. I can't find my phone.",'ขอโทษครับ ผมหาโทรศัพท์ไม่เจอ',"Don't worry. Let's look together.","I'm a phone.","It's my phone.",'เพื่อนหาของไม่เจอ ให้ปลอบและชวนหา','Don\'t worry. = ไม่ต้องกังวล'),
-  TT("Thanks! When did you last see it?",'ขอบคุณ เธอเห็นมันครั้งสุดท้ายเมื่อไร',"I saw it at lunch.","I'm lunch.","It's a phone.",'ถามว่าเห็นครั้งสุดท้ายเมื่อไร ตอบด้วยอดีต (saw)','saw = เห็น (อดีตของ see), at lunch = ตอนพักเที่ยง'),
-  TT("Oh, here it is! It's in my pocket.",'อ้าว นี่ไง มันอยู่ในกระเป๋ากางเกงผม',"Great! I'm glad you found it.","I'm a pocket.","It's a phone.",'เพื่อนเจอของแล้ว ให้ยินดีด้วย','pocket = กระเป๋า (เสื้อ/กางเกง), I\'m glad ... = ฉันดีใจที่ ...')]),
+  TT("Excuse me. I can't find my phone.",'ขอโทษครับ ผมหาโทรศัพท์ไม่เจอ',"Don't worry. Let's look together.",'I saw it at lunch.','Great! I\'m glad you found it.','เพื่อนหาของไม่เจอ ให้ปลอบและชวนหา','Don\'t worry. = ไม่ต้องกังวล'),
+  TT("Thanks! When did you last see it?",'ขอบคุณ เธอเห็นมันครั้งสุดท้ายเมื่อไร',"I saw it at lunch.",'Don\'t worry. Let\'s look together.','Great! I\'m glad you found it.','ถามว่าเห็นครั้งสุดท้ายเมื่อไร ตอบด้วยอดีต (saw)','saw = เห็น (อดีตของ see), at lunch = ตอนพักเที่ยง'),
+  TT("Oh, here it is! It's in my pocket.",'อ้าว นี่ไง มันอยู่ในกระเป๋ากางเกงผม',"Great! I'm glad you found it.",'Don\'t worry. Let\'s look together.','I saw it at lunch.','เพื่อนเจอของแล้ว ให้ยินดีด้วย','pocket = กระเป๋า (เสื้อ/กางเกง), I\'m glad ... = ฉันดีใจที่ ...')]),
  NPCDEF('mom2','Ms. Pui','Visitor⁣ผู้มาติดต่อ',2.8,1.0,Math.PI,[.85,.45,.4],[.25,.2,.3],[.08,.06,.07],'bun',[
-  TT("Hello. Is this the Lost and Found?",'สวัสดีค่ะ ที่นี่คือที่รับแจ้งของหายใช่ไหมคะ',"Yes, it is. Please go to the counter.","Yes, I do.","It's lost.",'ถามว่าใช่ที่นี่ไหม (Is ...?) ตอบ Yes, it is.','Lost and Found = ที่รับแจ้งของหาย/ของที่เจอ'),
-  TT("Thank you. I lost my wallet.",'ขอบคุณค่ะ ฉันทำกระเป๋าสตางค์หาย',"I'm sorry to hear that.","I'm a wallet.","It's a wallet.",'ได้ยินว่าทำของหาย ให้แสดงความเห็นใจ','I\'m sorry to hear that. = เสียใจด้วยนะ'),
-  TT("I hope I can find it soon.",'หวังว่าจะหาเจอเร็ว ๆ',"I hope so, too.","I'm hope.","It's soon.",'ได้ยินความหวัง ให้ตอบว่าหวังเช่นกัน','I hope so, too. = ฉันก็หวังเช่นนั้น')])]});
+  TT("Hello. Is this the Lost and Found?",'สวัสดีค่ะ ที่นี่คือที่รับแจ้งของหายใช่ไหมคะ',"Yes, it is. Please go to the counter.",'I\'m sorry to hear that.','I hope so, too.','ถามว่าใช่ที่นี่ไหม (Is ...?) ตอบ Yes, it is.','Lost and Found = ที่รับแจ้งของหาย/ของที่เจอ'),
+  TT("Thank you. I lost my wallet.",'ขอบคุณค่ะ ฉันทำกระเป๋าสตางค์หาย',"I'm sorry to hear that.",'Yes, it is. Please go to the counter.','I hope so, too.','ได้ยินว่าทำของหาย ให้แสดงความเห็นใจ','I\'m sorry to hear that. = เสียใจด้วยนะ'),
+  TT("I hope I can find it soon.",'หวังว่าจะหาเจอเร็ว ๆ',"I hope so, too.",'Yes, it is. Please go to the counter.','Thank you. I lost my wallet.','ได้ยินความหวัง ให้ตอบว่าหวังเช่นกัน','I hope so, too. = ฉันก็หวังเช่นนั้น')])]});
 
 /* ===== Gas Station ===== */
 SCENES.push({id:'gas',name:'Gas Station',th:'ปั๊มน้ำมัน',color:'#EAB308',spawn:[0,3.2,Math.PI],bounds:[-12.4,12.4,-9,9],
@@ -3853,21 +3853,21 @@ SCENES.push({id:'gas',name:'Gas Station',th:'ปั๊มน้ำมัน',col
   return{a:new Float32Array(c.a),ob:c.ob}},
  npcs:[
  NPCDEF('attendant','Mr. Ton','Gas station attendant⁣พนักงานปั๊มน้ำมัน',-2.5,-3.0,Math.PI,[.85,.3,.2],[.2,.2,.25],[.1,.07,.05],'cap',[
-  TT("Hello! How much gas do you need?",'สวัสดีครับ ต้องการเติมน้ำมันเท่าไรครับ',"Fill it up, please.","I'm a gas.","It's a station.",'พนักงานถามว่าเติมเท่าไร ให้ตอบว่าเติมเต็มถัง','gas = น้ำมัน (อเมริกัน), Fill it up. = เติมให้เต็มถัง'),
-  TT("Regular or premium?",'ธรรมดาหรือพรีเมียมครับ',"Regular, please.","I'm regular.","It's premium.",'ถามให้เลือกชนิดน้ำมัน','regular = ธรรมดา, premium = พรีเมียม'),
-  TT("Do you want me to check the oil?",'ให้ผมเช็คน้ำมันเครื่องให้ไหมครับ',"Yes, please. Thank you.","Yes, I'm oil.","It's the oil.",'ถามว่าให้เช็คไหม (Do you want ...?) ตอบรับสุภาพ','check the oil = เช็คน้ำมันเครื่อง')]),
+  TT("Hello! How much gas do you need?",'สวัสดีครับ ต้องการเติมน้ำมันเท่าไรครับ',"Fill it up, please.",'Regular, please.','Yes, please. Thank you.','พนักงานถามว่าเติมเท่าไร ให้ตอบว่าเติมเต็มถัง','gas = น้ำมัน (อเมริกัน), Fill it up. = เติมให้เต็มถัง'),
+  TT("Regular or premium?",'ธรรมดาหรือพรีเมียมครับ',"Regular, please.",'Fill it up, please.','Yes, please. Thank you.','ถามให้เลือกชนิดน้ำมัน','regular = ธรรมดา, premium = พรีเมียม'),
+  TT("Do you want me to check the oil?",'ให้ผมเช็คน้ำมันเครื่องให้ไหมครับ',"Yes, please. Thank you.",'Regular, please.','Fill it up, please.','ถามว่าให้เช็คไหม (Do you want ...?) ตอบรับสุภาพ','check the oil = เช็คน้ำมันเครื่อง')]),
  NPCDEF('cashier','Ms. Lek','Cashier⁣แคชเชียร์',-8.5,-4.9,0,[.9,.7,.2],[.2,.2,.3],[.08,.06,.07],'bun',[
-  TT("Hi! Which pump number?",'สวัสดีค่ะ ตู้จ่ายหมายเลขอะไรคะ',"Pump number two.","I'm two.","It's a pump.",'ถามหมายเลขตู้จ่าย ตอบเป็นตัวเลข','pump = ตู้จ่ายน้ำมัน'),
-  TT("That's five hundred baht.",'ห้าร้อยบาทค่ะ',"Here you are. Thank you.","It's five.","You're welcome.",'ได้ราคาแล้ว ให้จ่ายเงินและขอบคุณ','Here you are. = นี่ค่ะ/ครับ'),
-  TT("Do you need a receipt?",'ต้องการใบเสร็จไหมคะ',"No, thanks.","No, I'm not.","It's a receipt.",'ถามว่าต้องการใบเสร็จไหม (Do you ...?) ปฏิเสธสุภาพ','receipt = ใบเสร็จ')]),
+  TT("Hi! Which pump number?",'สวัสดีค่ะ ตู้จ่ายหมายเลขอะไรคะ',"Pump number two.",'Here you are. Thank you.','No, thanks.','ถามหมายเลขตู้จ่าย ตอบเป็นตัวเลข','pump = ตู้จ่ายน้ำมัน'),
+  TT("That's five hundred baht.",'ห้าร้อยบาทค่ะ',"Here you are. Thank you.",'Pump number two.','No, thanks.','ได้ราคาแล้ว ให้จ่ายเงินและขอบคุณ','Here you are. = นี่ค่ะ/ครับ'),
+  TT("Do you need a receipt?",'ต้องการใบเสร็จไหมคะ',"No, thanks.",'Pump number two.','Here you are. Thank you.','ถามว่าต้องการใบเสร็จไหม (Do you ...?) ปฏิเสธสุภาพ','receipt = ใบเสร็จ')]),
  NPCDEF('driver','Mr. Dan','Driver⁣คนขับรถ',8.2,-.8,-Math.PI/2,[.3,.5,.75],[.25,.3,.5],[.1,.07,.05],'cap',[
-  TT("Excuse me. Where is the restroom?",'ขอโทษครับ ห้องน้ำอยู่ที่ไหน',"It's next to the store.","It's a restroom.","I'm next.",'ถามที่ตั้งห้องน้ำ ตอบด้วย next to / behind','restroom = ห้องน้ำ (อเมริกัน), next to = ข้าง ๆ'),
-  TT("Thanks! Is there a coffee shop near here?",'ขอบคุณ แถวนี้มีร้านกาแฟไหม',"Yes, there is. It's down the road.","Yes, I am.","It's a coffee.",'ถามว่ามีไหม (Is there ...?) ตอบ Yes, there is.','down the road = ไปตามถนน'),
-  TT("Great! Have a safe trip.",'เยี่ยม ขอให้เดินทางปลอดภัยนะ',"Thanks. You, too!","I'm a trip.","It's safe.",'ได้รับคำอวยพร ให้ตอบ','Have a safe trip. = ขอให้เดินทางปลอดภัย')]),
+  TT("Excuse me. Where is the restroom?",'ขอโทษครับ ห้องน้ำอยู่ที่ไหน',"It's next to the store.",'Yes, there is. It\'s down the road.','Thanks. You, too!','ถามที่ตั้งห้องน้ำ ตอบด้วย next to / behind','restroom = ห้องน้ำ (อเมริกัน), next to = ข้าง ๆ'),
+  TT("Thanks! Is there a coffee shop near here?",'ขอบคุณ แถวนี้มีร้านกาแฟไหม',"Yes, there is. It's down the road.",'It\'s next to the store.','Thanks. You, too!','ถามว่ามีไหม (Is there ...?) ตอบ Yes, there is.','down the road = ไปตามถนน'),
+  TT("Great! Have a safe trip.",'เยี่ยม ขอให้เดินทางปลอดภัยนะ',"Thanks. You, too!",'It\'s next to the store.','Yes, there is. It\'s down the road.','ได้รับคำอวยพร ให้ตอบ','Have a safe trip. = ขอให้เดินทางปลอดภัย')]),
  NPCDEF('friend','Pete','Friend⁣เพื่อน',3.5,3.4,Math.PI,[.3,.65,.45],[.25,.3,.5],[.1,.07,.05],'',[
-  TT("Hi! My dad is filling the tank.",'สวัสดี พ่อฉันกำลังเติมน้ำมันอยู่',"OK. Let's wait over there.","I'm a tank.","It's my dad.",'เพื่อนบอกว่าพ่อกำลังเติมน้ำมัน ให้ชวนไปรอ','tank = ถัง, fill = เติม'),
-  TT("Do you want a snack from the store?",'เธออยากได้ขนมจากร้านไหม',"Yes, I'd like some chips.","Yes, I'm a snack.","It's a store.",'ถามว่าอยากได้ขนมไหม ตอบพร้อมบอกอย่างที่อยากได้','chips = มันฝรั่งทอดกรอบ (อเมริกัน)'),
-  TT("We're going to Ubon next.",'ต่อไปเรากำลังจะไปอุบลฯ',"Cool! I love Ubon.","I'm Ubon.","It's next.",'เพื่อนบอกว่าจะไปอุบล ให้ตอบอย่างสนใจ','We\'re going to ... = เรากำลังจะไป ...')])]});
+  TT("Hi! My dad is filling the tank.",'สวัสดี พ่อฉันกำลังเติมน้ำมันอยู่',"OK. Let's wait over there.",'Yes, I\'d like some chips.','Cool! I love Ubon.','เพื่อนบอกว่าพ่อกำลังเติมน้ำมัน ให้ชวนไปรอ','tank = ถัง, fill = เติม'),
+  TT("Do you want a snack from the store?",'เธออยากได้ขนมจากร้านไหม',"Yes, I'd like some chips.",'OK. Let\'s wait over there.','Cool! I love Ubon.','ถามว่าอยากได้ขนมไหม ตอบพร้อมบอกอย่างที่อยากได้','chips = มันฝรั่งทอดกรอบ (อเมริกัน)'),
+  TT("We're going to Ubon next.",'ต่อไปเรากำลังจะไปอุบลฯ',"Cool! I love Ubon.",'OK. Let\'s wait over there.','Yes, I\'d like some chips.','เพื่อนบอกว่าจะไปอุบล ให้ตอบอย่างสนใจ','We\'re going to ... = เรากำลังจะไป ...')])]});
 
 /* ===== Mall ===== */
 SCENES.push({id:'mall',name:'Mall',th:'ห้างสรรพสินค้า',color:'#DB2777',spawn:[0,3.2,Math.PI],bounds:[-12.4,12.4,-9,9],
@@ -3953,21 +3953,21 @@ SCENES.push({id:'sirindhorn',name:'Sirindhorn Dam',th:'เขื่อนสิ�
   return{a:new Float32Array(c.a),ob:c.ob}},
  npcs:[
  NPCDEF('guide','Mr. Wirat','Dam guide⁣ไกด์เขื่อน',-2.6,1.0,Math.PI,[.2,.45,.7],[.25,.25,.3],[.1,.07,.05],'cap',[
-  TT("Welcome to Sirindhorn Dam! It is a very big dam.",'ยินดีต้อนรับสู่เขื่อนสิรินธร เป็นเขื่อนที่ใหญ่มากครับ',"Wow! How high is it?","I'm a dam.","It's a river.",'ได้ยินว่าเขื่อนใหญ่ ให้ถามว่าสูงเท่าไร','How high is it? = สูงเท่าไร'),
-  TT("It is forty-two meters high and nine hundred forty meters long.",'สูงสี่สิบสองเมตร ยาวเก้าร้อยสี่สิบเมตรครับ',"That's really big!","I'm forty-two.","It's a meter.",'ได้ยินขนาดแล้ว ให้ตอบอย่างทึ่ง','meters = เมตร (อเมริกัน), long = ยาว'),
-  TT("People finished building it in 1971.",'คนสร้างเสร็จในปี ค.ศ. 1971 ครับ',"So it is a very old dam.","I'm in 1971.","It's a building.",'ได้ยินปีที่สร้างเสร็จ ให้สรุปว่าเขื่อนเก่าแก่','finish = ทำเสร็จ, old = เก่า')]),
+  TT("Welcome to Sirindhorn Dam! It is a very big dam.",'ยินดีต้อนรับสู่เขื่อนสิรินธร เป็นเขื่อนที่ใหญ่มากครับ',"Wow! How high is it?",'So it is a very old dam.','Thank you. I will go there.','ได้ยินว่าเขื่อนใหญ่ ให้ถามว่าสูงเท่าไร','How high is it? = สูงเท่าไร'),
+  TT("It is forty-two meters high and nine hundred forty meters long.",'สูงสี่สิบสองเมตร ยาวเก้าร้อยสี่สิบเมตรครับ',"That's really big!",'Wow! How high is it?','So it is a very old dam.','ได้ยินขนาดแล้ว ให้ตอบอย่างทึ่ง','meters = เมตร (อเมริกัน), long = ยาว'),
+  TT("People finished building it in 1971.",'คนสร้างเสร็จในปี ค.ศ. 1971 ครับ',"So it is a very old dam.",'Wow! How high is it?','Thank you. I will go there.','ได้ยินปีที่สร้างเสร็จ ให้สรุปว่าเขื่อนเก่าแก่','finish = ทำเสร็จ, old = เก่า')]),
  NPCDEF('engineer','Ms. Kanda','Power plant worker⁣พนักงานโรงไฟฟ้า',8.6,-.4,Math.PI,[.95,.7,.15],[.2,.2,.25],[.08,.06,.07],'bun',[
-  TT("Hello! This dam makes electricity.",'สวัสดีค่ะ เขื่อนนี้ผลิตไฟฟ้าค่ะ',"Cool! How does it make electricity?","I'm electricity.","It's a dam.",'ได้ยินว่าผลิตไฟฟ้า ให้ถามว่าผลิตได้อย่างไร','electricity = ไฟฟ้า, How does it ...? = ... ได้อย่างไร'),
-  TT("Water moves the generators. We have three of them.",'น้ำทำให้เครื่องกำเนิดไฟฟ้าหมุนค่ะ เรามีสามเครื่อง',"I see. Water makes power.","I'm a generator.","It's three.",'เข้าใจหลักการ ให้สรุปว่าน้ำทำให้เกิดพลังงาน','generator = เครื่องกำเนิดไฟฟ้า, power = พลังงาน'),
-  TT("We also have floating solar panels on the lake.",'เรายังมีแผงโซลาร์เซลล์ลอยน้ำบนทะเลสาบด้วยค่ะ',"That's a great idea. It's good for the environment.","I'm a panel.","It's a lake.",'ได้ยินเรื่องโซลาร์ลอยน้ำ ให้ชมว่าเป็นมิตรกับสิ่งแวดล้อม','floating solar panels = แผงโซลาร์ลอยน้ำ, environment = สิ่งแวดล้อม')]),
+  TT("Hello! This dam makes electricity.",'สวัสดีค่ะ เขื่อนนี้ผลิตไฟฟ้าค่ะ',"Cool! How does it make electricity?",'I see. Water makes power.','That\'s a great idea. It\'s good for the environment.','ได้ยินว่าผลิตไฟฟ้า ให้ถามว่าผลิตได้อย่างไร','electricity = ไฟฟ้า, How does it ...? = ... ได้อย่างไร'),
+  TT("Water moves the generators. We have three of them.",'น้ำทำให้เครื่องกำเนิดไฟฟ้าหมุนค่ะ เรามีสามเครื่อง',"I see. Water makes power.",'Cool! How does it make electricity?','That\'s a great idea. It\'s good for the environment.','เข้าใจหลักการ ให้สรุปว่าน้ำทำให้เกิดพลังงาน','generator = เครื่องกำเนิดไฟฟ้า, power = พลังงาน'),
+  TT("We also have floating solar panels on the lake.",'เรายังมีแผงโซลาร์เซลล์ลอยน้ำบนทะเลสาบด้วยค่ะ',"That's a great idea. It's good for the environment.",'Cool! How does it make electricity?','I see. Water makes power.','ได้ยินเรื่องโซลาร์ลอยน้ำ ให้ชมว่าเป็นมิตรกับสิ่งแวดล้อม','floating solar panels = แผงโซลาร์ลอยน้ำ, environment = สิ่งแวดล้อม')]),
  NPCDEF('fisher','Mr. Sing','Fisherman⁣ชาวประมง',-8.6,1.8,0,[.55,.4,.25],[.3,.3,.3],[.1,.07,.05],'cap',[
-  TT("Good morning! I fish in this big lake.",'สวัสดีตอนเช้า ผมหาปลาในทะเลสาบใหญ่นี้ครับ',"What kind of fish do you catch?","I'm a fish.","It's a lake.",'ได้ยินว่าหาปลาที่นี่ ให้ถามว่าจับปลาอะไร','What kind of ...? = ... ประเภทไหน, catch = จับ'),
-  TT("I catch many freshwater fish. I sell them at the market.",'ผมจับปลาน้ำจืดหลายชนิด แล้วเอาไปขายที่ตลาดครับ',"That's a good job.","I'm a market.","It's fresh.",'ได้ยินว่าขายที่ตลาด ให้ชมงานของเขา','freshwater fish = ปลาน้ำจืด, sell = ขาย'),
-  TT("The lake helps many families earn money.",'ทะเลสาบนี้ช่วยให้หลายครอบครัวมีรายได้ครับ',"I understand. Thank you for telling me.","I'm a family.","It's money.",'ได้ยินว่าช่วยครอบครัวมีรายได้ ให้ตอบรับและขอบคุณ','earn money = หาเงิน/มีรายได้, helps = ช่วย')]),
+  TT("Good morning! I fish in this big lake.",'สวัสดีตอนเช้า ผมหาปลาในทะเลสาบใหญ่นี้ครับ',"What kind of fish do you catch?",'That\'s a good job.','I understand. Thank you for telling me.','ได้ยินว่าหาปลาที่นี่ ให้ถามว่าจับปลาอะไร','What kind of ...? = ... ประเภทไหน, catch = จับ'),
+  TT("I catch many freshwater fish. I sell them at the market.",'ผมจับปลาน้ำจืดหลายชนิด แล้วเอาไปขายที่ตลาดครับ',"That's a good job.",'What kind of fish do you catch?','Thank you. I will go there.','ได้ยินว่าขายที่ตลาด ให้ชมงานของเขา','freshwater fish = ปลาน้ำจืด, sell = ขาย'),
+  TT("The lake helps many families earn money.",'ทะเลสาบนี้ช่วยให้หลายครอบครัวมีรายได้ครับ',"I understand. Thank you for telling me.",'What kind of fish do you catch?','Thank you. I will go there.','ได้ยินว่าช่วยครอบครัวมีรายได้ ให้ตอบรับและขอบคุณ','earn money = หาเงิน/มีรายได้, helps = ช่วย')]),
  NPCDEF('farmer','Auntie Lek','Farmer⁣เกษตรกร',3.0,-.8,Math.PI,[.3,.55,.3],[.3,.25,.2],[.1,.07,.05],'hat',[
-  TT("Hi! I'm a farmer. The dam gives water to my rice field.",'สวัสดีค่ะ ฉันเป็นเกษตรกร เขื่อนให้น้ำกับนาข้าวของฉันค่ะ',"That's wonderful. Water is important.","I'm a farmer.","It's a rice.",'ได้ยินว่าเขื่อนให้น้ำนาข้าว ให้ตอบอย่างชื่นชม','rice field = นาข้าว, important = สำคัญ'),
-  TT("The dam also helps when there is too much rain.",'เขื่อนยังช่วยเวลาฝนตกมากเกินไปด้วยค่ะ',"I see. It protects the city from floods.","I'm rain.","It's a flood.",'ได้ยินว่าช่วยตอนฝนมาก ให้สรุปว่าช่วยป้องกันน้ำท่วม','flood = น้ำท่วม, protect = ปกป้อง'),
-  TT("Please visit Sirindhorn Park. The flowers are beautiful.",'แวะไปเที่ยวสวนสิรินธรนะคะ ดอกไม้สวยมากค่ะ',"Thank you. I will go there.","I'm a park.","It's a flower.",'ได้รับคำแนะนำ ให้ตอบรับและขอบคุณ','park = สวนสาธารณะ, beautiful = สวยงาม')])]});
+  TT("Hi! I'm a farmer. The dam gives water to my rice field.",'สวัสดีค่ะ ฉันเป็นเกษตรกร เขื่อนให้น้ำกับนาข้าวของฉันค่ะ',"That's wonderful. Water is important.",'Thank you. I will go there.','I see. It protects the city from floods.','ได้ยินว่าเขื่อนให้น้ำนาข้าว ให้ตอบอย่างชื่นชม','rice field = นาข้าว, important = สำคัญ'),
+  TT("The dam also helps when there is too much rain.",'เขื่อนยังช่วยเวลาฝนตกมากเกินไปด้วยค่ะ',"I see. It protects the city from floods.",'That\'s wonderful. Water is important.','Thank you. I will go there.','ได้ยินว่าช่วยตอนฝนมาก ให้สรุปว่าช่วยป้องกันน้ำท่วม','flood = น้ำท่วม, protect = ปกป้อง'),
+  TT("Please visit Sirindhorn Park. The flowers are beautiful.",'แวะไปเที่ยวสวนสิรินธรนะคะ ดอกไม้สวยมากค่ะ',"Thank you. I will go there.",'That\'s wonderful. Water is important.','I see. It protects the city from floods.','ได้รับคำแนะนำ ให้ตอบรับและขอบคุณ','park = สวนสาธารณะ, beautiful = สวยงาม')])]});
 
 /* ===== Ubon: National Museum ===== */
 SCENES.push({id:'museum',name:'Ubon National Museum',th:'พิพิธภัณฑ์แห่งชาติ',color:'#92400E',spawn:[0,3.2,Math.PI],bounds:[-12.4,12.4,-9,9],

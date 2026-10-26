@@ -561,7 +561,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--pen);box-shadow:0 0 0
 </div></footer>
 <div id="toast" hidden></div>
 
-<script src="cloud-config.js?v=20261026b"></script>
+<script src="cloud-config.js?v=20261026c"></script>
 <script>
 /* ============ CONTENT: Unit 1 · My School Life (ม.2, A1-A2) ============ */
 // Q(question, why, correct, ...wrongs)  — the correct answer is written first and shuffled at run time
@@ -961,7 +961,7 @@ function vcKey(text,slow){const s=(slow?'s|':'n|')+String(text).replace(/\s+/g,'
   for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
   h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
   return(4294967296*(2097151&h2)+(h1>>>0)).toString(16)}
-const BUILD='20261026b';/* bump when voice files change: it forces browsers to fetch the new files together */
+const BUILD='20261026c';/* bump when voice files change: it forces browsers to fetch the new files together */
 try{fetch('voice/index.json?v='+BUILD).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.clips&&j.bundles)VC.idx=j}).catch(e=>{VC.err='index: '+e})}catch(e){}
 /* One shared <audio> element (works with the iPhone silent switch). It is "unlocked" by the first tap. */
 function vcEl(){try{if(!VC.el){VC.el=new Audio();VC.el.preload='auto';VC.el.setAttribute('playsinline','')}
@@ -2921,6 +2921,11 @@ const M4={
   return new Float32Array([xx,yx,zx,0,xy,yy,zy,0,xz,yz,zz,0,-(xx*e[0]+xy*e[1]+xz*e[2]),-(yx*e[0]+yy*e[1]+yz*e[2]),-(zx*e[0]+zy*e[1]+zz*e[2]),1])}
 };
 const TSKY=[.62,.82,.95];
+/* Light-and-shadow look (only scenes with fx:true): sky/ground ambient, warm sun, soft darkening near the ground, sky gradient. Other scenes keep the original shader. */
+const TFX_VS='attribute vec3 aPos;attribute vec3 aNor;attribute vec3 aCol;uniform mat4 uVP;uniform mat4 uM;uniform vec3 uTint;varying vec3 vCol;varying float vFog;void main(){vec4 w=uM*vec4(aPos,1.0);vec3 n=normalize((uM*vec4(aNor,0.0)).xyz);float d=max(dot(n,normalize(vec3(-0.45,0.85,0.35))),0.0);vec3 hemi=mix(vec3(0.46,0.42,0.38),vec3(0.56,0.60,0.68),n.y*0.5+0.5);vec3 sun=vec3(1.0,0.90,0.72)*0.55*d;float ao=mix(0.68,1.0,smoothstep(0.0,0.9,w.y));ao=mix(1.0,ao,1.0-max(n.y,0.0));vCol=aCol*uTint*(hemi+sun)*ao;gl_Position=uVP*w;vFog=clamp((gl_Position.w-20.0)/24.0,0.0,0.85);}';
+const TFX_FS='precision mediump float;varying vec3 vCol;varying float vFog;uniform float uAlpha;void main(){vec3 f=vec3(0.74,0.87,0.96);gl_FragColor=vec4(mix(vCol,f,vFog),uAlpha);}';
+const TFX_SKY_VS='attribute vec2 p;varying vec2 v;void main(){v=p;gl_Position=vec4(p,0.999,1.0);}';
+const TFX_SKY_FS='precision mediump float;varying vec2 v;void main(){float t=smoothstep(-0.3,1.0,v.y);gl_FragColor=vec4(mix(vec3(0.74,0.87,0.96),vec3(0.34,0.60,0.92),t),1.0);}';
 function tBox(a,cx,cy,cz,sx,sy,sz,c){const x0=cx-sx/2,x1=cx+sx/2,y0=cy-sy/2,y1=cy+sy/2,z0=cz-sz/2,z1=cz+sz/2;
  const F=[[[x0,y0,z1],[x1,y0,z1],[x1,y1,z1],[x0,y1,z1],[0,0,1]],[[x1,y0,z0],[x0,y0,z0],[x0,y1,z0],[x1,y1,z0],[0,0,-1]],
   [[x1,y0,z1],[x1,y0,z0],[x1,y1,z0],[x1,y1,z1],[1,0,0]],[[x0,y0,z0],[x0,y0,z1],[x0,y1,z1],[x0,y1,z0],[-1,0,0]],
@@ -2981,16 +2986,21 @@ function townPerson(g,u,P){
   else M=M4.mul(B,M4.mul(M4.T(cx,cy,cz),M4.S(sx,sy,sz)));
   g.uniformMatrix4fv(u.M,false,M);g.uniform3fv(u.tint,col);g.drawArrays(g.TRIANGLES,0,36)};
  const sw=Math.sin(P.t*9)*.7*P.walk,skin=[.96,.78,.62];
+ /* fx people: breathing, blinking, head nod, greeting wave (P.wave 0-1) and talking gestures (P.talk 0-1). Other scenes use the plain pose. */
+ const fx=!!P.fx,W=fx?(P.wave||0):0,T=fx?(P.talk||0):0;
+ const br=fx?1+Math.sin(P.t*2.1)*.014:1,hy=fx?Math.sin(P.t*1.3)*.012+T*Math.sin(P.t*6.5)*.02:0,bl=fx&&(P.t%3.7)<.13?.15:1;
+ let la=-sw,ra=sw;
+ if(fx){const id=Math.sin(P.t*1.7)*.035;la=-sw*(1-T)+id+T*(-.45+Math.sin(P.t*3.7+1)*.16);ra=sw*(1-W-T)-id+W*(-2.55+Math.sin(P.t*10)*.32)+T*(-.85+Math.sin(P.t*4.6)*.26)}
  part(-.13,0,0,.22,.5,.22,P.pants,sw,.5);part(.13,0,0,.22,.5,.22,P.pants,-sw,.5);
- part(0,.8,0,.52,.6,.3,P.shirt);
- part(-.35,0,0,.14,.5,.14,skin,-sw,1.07);part(.35,0,0,.14,.5,.14,skin,sw,1.07);
- part(0,1.3,0,.34,.34,.32,skin);
- part(0,1.5,-.01,.38,.14,.36,P.hair);
- if(P.acc==='bun')part(0,1.58,-.2,.16,.16,.16,P.hair);
- if(P.acc==='long')part(0,1.3,-.2,.38,.4,.08,P.hair);
- if(P.acc==='hat'){part(0,1.53,0,.72,.04,.72,[.9,.78,.45]);part(0,1.6,0,.34,.12,.34,[.9,.78,.45])}
- if(P.acc==='cap'){part(0,1.55,0,.4,.1,.4,[.2,.4,.8]);part(0,1.5,.26,.34,.04,.2,[.2,.4,.8])}
- part(-.08,1.33,.17,.05,.05,.02,[.1,.1,.1]);part(.08,1.33,.17,.05,.05,.02,[.1,.1,.1]);
+ part(0,.8,0,.52,.6*br,.3,P.shirt);
+ part(-.35,0,0,.14,.5,.14,skin,la,1.07);part(.35,0,0,.14,.5,.14,skin,ra,1.07);
+ part(0,1.3+hy,0,.34,.34,.32,skin);
+ part(0,1.5+hy,-.01,.38,.14,.36,P.hair);
+ if(P.acc==='bun')part(0,1.58+hy,-.2,.16,.16,.16,P.hair);
+ if(P.acc==='long')part(0,1.3+hy,-.2,.38,.4,.08,P.hair);
+ if(P.acc==='hat'){part(0,1.53+hy,0,.72,.04,.72,[.9,.78,.45]);part(0,1.6+hy,0,.34,.12,.34,[.9,.78,.45])}
+ if(P.acc==='cap'){part(0,1.55+hy,0,.4,.1,.4,[.2,.4,.8]);part(0,1.5+hy,.26,.34,.04,.2,[.2,.4,.8])}
+ part(-.08,1.33+hy,.17,.05,.05*bl,.02,[.1,.1,.1]);part(.08,1.33+hy,.17,.05,.05*bl,.02,[.1,.1,.1]);
 }
 
 
@@ -3019,7 +3029,7 @@ function shell(c,col,roof,wrow){ /* building along the north edge */
 }
 const SCENES=[];
 /* 1 Market (built earlier) */
-SCENES.push({id:'market',name:'Market',th:'ตลาด',color:'#E4572E',spawn:[0,2.6,Math.PI],bounds:[-14.2,14.2,-10.2,10.2],
+SCENES.push({id:'market',name:'Market',th:'ตลาด',fx:true,color:'#E4572E',spawn:[0,2.6,Math.PI],bounds:[-14.2,14.2,-10.2,10.2],
  build(){return{a:townWorld(),ob:TOWN_OBST}},npcs:TOWN_NPCS});
 /* 3 School */
 SCENES.push({id:'school',name:'School',th:'โรงเรียน',color:'#2447C8',spawn:[0,3.2,Math.PI],bounds:[-12.4,12.4,-9,9],
@@ -4102,10 +4112,11 @@ function playPlace(sc,onExit,bl){
  if(!gl){root.append(el('div',{class:'tfail card stack'},el('h2',{},'3D is not available on this phone'),el('p',{},'ขออภัย โทรศัพท์เครื่องนี้แสดงภาพ 3 มิติไม่ได้ ลองเปิดด้วย Chrome หรือเครื่องอื่นครับ'),back));
   document.body.append(root);document.body.classList.add('tlock');TOWN={raf:0,kd:()=>{},ku:()=>{},rs:()=>{},fail:true,close};return}
  const sh=(t,s)=>{const o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);return o};
- const pr=gl.createProgram();
- gl.attachShader(pr,sh(gl.VERTEX_SHADER,'attribute vec3 aPos;attribute vec3 aNor;attribute vec3 aCol;uniform mat4 uVP;uniform mat4 uM;uniform vec3 uTint;varying vec3 vCol;varying float vFog;void main(){vec4 w=uM*vec4(aPos,1.0);vec3 n=normalize((uM*vec4(aNor,0.0)).xyz);float d=max(dot(n,normalize(vec3(-0.45,0.85,0.35))),0.0);vCol=aCol*uTint*(0.58+0.52*d);gl_Position=uVP*w;vFog=clamp((gl_Position.w-20.0)/24.0,0.0,0.85);}'));
- gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,'precision mediump float;varying vec3 vCol;varying float vFog;uniform float uAlpha;void main(){vec3 f=vec3(0.62,0.82,0.95);gl_FragColor=vec4(mix(vCol,f,vFog),uAlpha);}'));
- gl.linkProgram(pr);gl.useProgram(pr);
+ const mkProg=(v,f)=>{const q=gl.createProgram();gl.attachShader(q,sh(gl.VERTEX_SHADER,v));gl.attachShader(q,sh(gl.FRAGMENT_SHADER,f));gl.linkProgram(q);return q};
+ const VS0='attribute vec3 aPos;attribute vec3 aNor;attribute vec3 aCol;uniform mat4 uVP;uniform mat4 uM;uniform vec3 uTint;varying vec3 vCol;varying float vFog;void main(){vec4 w=uM*vec4(aPos,1.0);vec3 n=normalize((uM*vec4(aNor,0.0)).xyz);float d=max(dot(n,normalize(vec3(-0.45,0.85,0.35))),0.0);vCol=aCol*uTint*(0.58+0.52*d);gl_Position=uVP*w;vFog=clamp((gl_Position.w-20.0)/24.0,0.0,0.85);}',FS0='precision mediump float;varying vec3 vCol;varying float vFog;uniform float uAlpha;void main(){vec3 f=vec3(0.62,0.82,0.95);gl_FragColor=vec4(mix(vCol,f,vFog),uAlpha);}';
+ let FX=!!sc.fx;let pr=mkProg(FX?TFX_VS:VS0,FX?TFX_FS:FS0);
+ if(FX&&!gl.getProgramParameter(pr,gl.LINK_STATUS)){FX=false;pr=mkProg(VS0,FS0);console.warn('town fx shader failed, using the plain look')}
+ gl.useProgram(pr);
  const U={VP:gl.getUniformLocation(pr,'uVP'),M:gl.getUniformLocation(pr,'uM'),tint:gl.getUniformLocation(pr,'uTint'),alpha:gl.getUniformLocation(pr,'uAlpha')};
  const AP=gl.getAttribLocation(pr,'aPos'),AN=gl.getAttribLocation(pr,'aNor'),AC=gl.getAttribLocation(pr,'aCol');
  const mkb=data=>{const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,data,gl.STATIC_DRAW);return {b,n:data.length/9}};
@@ -4115,6 +4126,7 @@ function playPlace(sc,onExit,bl){
  const world=mkb(W.a);
  const cube=(()=>{const a=[];tBox(a,0,0,0,1,1,1,[1,1,1]);return mkb(new Float32Array(a))})();
  const disc=(()=>{const a=[];tDisc(a,.55);return mkb(new Float32Array(a))})();
+ let sky=null;if(FX){try{const sp=mkProg(TFX_SKY_VS,TFX_SKY_FS);if(gl.getProgramParameter(sp,gl.LINK_STATUS)){const sb=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,sb);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);sky={sp,sb,loc:gl.getAttribLocation(sp,'p')}}}catch(e){}}
  gl.enable(gl.DEPTH_TEST);gl.clearColor(TSKY[0],TSKY[1],TSKY[2],1);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);
  const P={x:sc.spawn[0],z:sc.spawn[1],ry:sc.spawn[2],walk:0,t:0};
  const sv=SAVE.done[sc.id]||{};
@@ -4189,7 +4201,7 @@ function playPlace(sc,onExit,bl){
   const showTalk=!!near&&!dlg&&win.hidden;
   if(showTalk&&talk.hidden)talk.hidden=false;if(!showTalk&&!talk.hidden)talk.hidden=true;
   if(near)talk.textContent='Talk to '+near.name;
-  npcs.forEach(n=>{n.t+=dt;const face=(n===near||(dlg&&dlg.n===n))?Math.atan2(P.x-n.x,P.z-n.z):n.cry;n.ry+=shortAng(n.ry,face)*Math.min(1,dt*6)});
+  npcs.forEach(n=>{n.t+=dt;if(FX){const tw=(n===near&&!dlg&&win.hidden&&!n.done)?1:0,tk=(dlg&&dlg.n===n)?1:0;n.w=(n.w||0)+(tw-(n.w||0))*Math.min(1,dt*7);n.tk=(n.tk||0)+(tk-(n.tk||0))*Math.min(1,dt*7)}const face=(n===near||(dlg&&dlg.n===n))?Math.atan2(P.x-n.x,P.z-n.z):n.cry;n.ry+=shortAng(n.ry,face)*Math.min(1,dt*6)});
   cam.x+=(P.x-cam.x)*Math.min(1,dt*5);cam.z+=(P.z-cam.z)*Math.min(1,dt*5);
   if(hintT>0){hintT-=dt;if(hintT<=0)hint.hidden=true}
  }
@@ -4201,12 +4213,13 @@ function playPlace(sc,onExit,bl){
   const asp=cv.width/cv.height,fov=(asp<1?58:46)*Math.PI/180;
   const eye=[cam.x,asp<1?10:8.5,cam.z+(asp<1?9.5:8.5)],tgt=[cam.x,.4,cam.z-.8];
   const VP=M4.mul(M4.persp(fov,asp,.5,80),M4.look(eye,tgt));
+  if(sky){gl.disable(gl.DEPTH_TEST);gl.useProgram(sky.sp);gl.bindBuffer(gl.ARRAY_BUFFER,sky.sb);gl.enableVertexAttribArray(sky.loc);gl.vertexAttribPointer(sky.loc,2,gl.FLOAT,false,0,0);gl.drawArrays(gl.TRIANGLES,0,3);gl.disableVertexAttribArray(sky.loc);gl.enable(gl.DEPTH_TEST)}
   gl.useProgram(pr);gl.uniformMatrix4fv(U.VP,false,VP);gl.uniform1f(U.alpha,1);
   gl.uniformMatrix4fv(U.M,false,M4.id());gl.uniform3fv(U.tint,[1,1,1]);
   bind(world);gl.drawArrays(gl.TRIANGLES,0,world.n);
   bind(cube);
-  townPerson(gl,U,{x:P.x,z:P.z,ry:P.ry,y:Math.abs(Math.sin(P.t*9))*.06*P.walk,walk:P.walk,t:P.t,shirt:[.15,.7,.72],pants:[.15,.2,.45],hair:[.1,.07,.07]});
-  npcs.forEach(n=>{townPerson(gl,U,{x:n.x,z:n.z,ry:n.ry,y:Math.sin(n.t*2.2)*.025,walk:0,t:n.t,shirt:n.shirt,pants:n.pants,hair:n.hair,acc:n.acc});
+  townPerson(gl,U,{x:P.x,z:P.z,ry:P.ry,y:Math.abs(Math.sin(P.t*9))*.06*P.walk,walk:P.walk,t:P.t,fx:FX,shirt:[.15,.7,.72],pants:[.15,.2,.45],hair:[.1,.07,.07]});
+  npcs.forEach(n=>{townPerson(gl,U,{x:n.x,z:n.z,ry:n.ry,y:Math.sin(n.t*2.2)*.025,walk:0,t:n.t,fx:FX,wave:n.w,talk:n.tk,shirt:n.shirt,pants:n.pants,hair:n.hair,acc:n.acc});
    const bob=Math.sin(P.t*3+n.x)*.12;
    if(!n.done){const m=M4.mul(M4.T(n.x,3.05+bob,n.z),M4.Ry(P.t*1.6));
     gl.uniformMatrix4fv(U.M,false,M4.mul(m,M4.mul(M4.T(0,.18,0),M4.S(.2,.5,.2))));gl.uniform3fv(U.tint,[1,.85,.1]);gl.drawArrays(gl.TRIANGLES,0,36);
